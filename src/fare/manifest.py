@@ -46,11 +46,11 @@ def git_revision(root: Path = REPO_ROOT) -> dict[str, Any]:
     try:
         rev = subprocess.run(["git", "-C", str(root), "rev-parse", "HEAD"], capture_output=True,
                              text=True, check=True).stdout.strip()
-        dirty = subprocess.run(["git", "-C", str(root), "status", "--porcelain"], capture_output=True,
+        dirty = subprocess.run(["git", "-C", str(root), "status", "--porcelain", "--untracked-files=no"], capture_output=True,
                                text=True, check=True).stdout.strip() != ""
-        return {"revision": rev, "dirty": dirty}
+        return {"revision": rev, "dirty_tracked_files": dirty}
     except (OSError, subprocess.CalledProcessError):
-        return {"revision": None, "dirty": None}
+        return {"revision": None, "dirty_tracked_files": None}
 
 
 def cpu_name() -> str:
