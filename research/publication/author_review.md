@@ -3,7 +3,7 @@
 
 Status (2026-11-24): pending. Only the owner completes this file.
 
-- [ ] Protocols frozen by the owner (version and hash recorded): EXP-001, EXP-002, EXP-003.
+- [x] Protocols frozen by the owner (version and hash recorded): EXP-001, EXP-002, EXP-003 (v1.0, 2026-11-24, `research/freeze.json`, D-009).
 - [ ] Authorship and affiliation metadata approved (no invented affiliation or funding).
 - [ ] AI-assistance disclosure reviewed and accurate.
 - [ ] Every registered experiment has a truthful standalone report.

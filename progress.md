@@ -219,3 +219,38 @@ REFUSED (exit 3) for all three: registry protocol hash missing or different from
 **Owner decisions needed.** The tuning-grid ruling, options (a) to (c) in D-008. After it: set the grid in the protocol text and configs, then write `research/freeze.json` with `fare.manifest.build_freeze_record`, record the hashes in the registry, and check that `run` accepts the frozen configs.
 
 **Next action.** Owner ruling on the grid; then the freeze; then M3 when the coordinator schedules it.
+
+## 2026-11-24: Ratification session (second-round ruling; freeze completed)
+
+**Milestone.** M1 freeze, following `/Users/bechir/research/labs/_shared/RATIFY-brief.md` and section 2 of `/Users/bechir/research/labs/_shared/owner-approvals-2026-11-24b.md` ("Approve all"). Performed by the AI assistant (Claude Code). No confirmatory run. Nothing pushed. FARE has no ratified follow-on choice (section 3) and no new pre-data rule (section 4).
+
+**Starting state.** `git status`: on branch main, clean; HEAD a3ce6d4.
+
+**Decisions.** D-009: widened grids within the equal budget, grid-edge reporting rule, freeze v1.0.
+
+**What changed.**
+- Commit 1d0fcfc: protocols to frozen v1.0 text (grids in section 4, grid-edge rule in section 4, FIX6 arm, EXP-001 run count 73,000, second-round amendment sections); configs name `p0_n` 6, `occ_k`, `drp_eta`; `fare.tuning.edge_labels`, `fare.report.grid_edge_findings` and a report section; tests updated (real protocols frozen, frozen configs accepted, changed configs refused, plan counts, grid-edge findings).
+- Second commit: `research/freeze.json` (built with `fare.manifest.build_freeze_record`, revision 1d0fcfc), registry v1.0 hashes and status, decision log, roadmap (M1 gate passed), README, limitations, CONTRIBUTING (one comment line in section 6), author review checklist.
+
+**Commands and actual outputs.**
+
+```
+$ PYTHONPATH=src .venv/bin/python -m fare.cli run --plan --config research/experiments/EXP-00N/config.json
+EXP-001 total_runs 73000; EXP-002 594000; EXP-003 258000
+$ PYTHONPATH=src .venv/bin/python -m pytest -q        (before the freeze record existed)
+2 failed, 139 passed   (the two tests that require the freeze record; expected)
+$ PYTHONPATH=src .venv/bin/python -m pytest -q        (after research/freeze.json and the registry)
+141 passed in 1.83s
+```
+
+**Frozen v1.0 hashes (SHA-256).**
+
+- research/protocol.md: d4b7c1e04c1152853769f1a1de851a5fc1950a91b37cba693543b88ffebe03b1
+- research/experiments/EXP-001/protocol.md: 06f939d8fd59389a3438cd539f862a36ed4d47275137b50aeb3ffdc233df2ec2
+- research/experiments/EXP-002/protocol.md: 7ffbc666ffd6465791d09e10ee3a3014002a513c90a876bf65c6e8ea4d2f6ab9
+- research/experiments/EXP-003/protocol.md: b1e2a2f8931bada91fd5f4589f0fa8bd50004db6c05d568c9354f43f14a510fd
+- configs (canonical): EXP-001 592a197632390bb9ab8fdcf7e95555e3bb590c921faba573175c4dcaa9cffc76; EXP-002 df7da4d68172d469301e6b46d70628dede3cfa255ee660898ceedf6d30d62856; EXP-003 3c25c10c1cfcacf1103e6613b195c58c5ce0afd675556efa290f8b380ca039fd
+
+**Outstanding risks.** Per-run storage for EXP-002 at n = 4,000 (about 100 MB) under the git-ignored `results/raw/` must be settled before M3. Edge optima are expected in some EXP-002 cells (J-0006); they are reported as findings.
+
+**Next action.** M3 when the coordinator schedules it: run EXP-001 to EXP-003 with the frozen configs, write each 11.3 report as it finishes.

@@ -71,7 +71,7 @@ $UV run --frozen --python /usr/local/bin/python3 python -m fare.cli smoke
 $UV run --frozen --python /usr/local/bin/python3 python -m fare.cli run --config experiments/exploratory/pilot-exp001.json
 $UV run --frozen --python /usr/local/bin/python3 python experiments/exploratory/pilot_summary.py results/exploratory/*/result.json > results/exploratory/pilot_summary.json
 
-# planned run counts and freeze status; confirmatory configs are refused until the owner freezes the protocol
+# planned run counts and freeze status; the frozen confirmatory configs are accepted, any changed config is refused
 $UV run --frozen --python /usr/local/bin/python3 python -m fare.cli run --plan --config research/experiments/EXP-001/config.json
 
 # tables, figures and (optionally) a PDF from a result file

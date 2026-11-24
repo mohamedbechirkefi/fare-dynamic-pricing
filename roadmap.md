@@ -1,14 +1,14 @@
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
 # FARE roadmap
 
-Updated 2026-11-24 (freeze session). Effort is a planning estimate in focused days (five-day target). Section 11.6 additions of the master prompt are included and mandatory.
+Updated 2026-11-24 (freeze completed, second-round ruling). Effort is a planning estimate in focused days (five-day target). Section 11.6 additions of the master prompt are included and mandatory.
 
 | ID | Milestone | Depends on | Priority | Effort | Status | Blockers |
 |---|---|---|---|---|---|---|
 | M0 | Bootstrap and feasibility | none | P0 | 0.5 d | done pending owner review (see acceptance) | none |
-| M1 | Research and preregistration | M0 | P0 | 0.5 d | in progress: owner approved the freeze with amendments (2026-11-24); amendments applied (draft v0.2) except the tuning-grid item; **M1 gate not passed** | owner ruling on the tuning-grid item (D-008), then the freeze (G-FREEZE) |
-| M2 | Core implementation | M1 drafts (implementation may start before the freeze) | P0 | 1 d | implemented; acceptance met for the draft protocol (133 tests pass); exploratory smoke and pilot run | owner decisions D-007 may require config and grid changes before M3 |
-| M3 | Experiments | M2 gate; M1 freeze for confirmatory runs | P0 | 0.75 d | not started (exploratory pilot only) | M1 freeze; M3 scheduled by the coordinator |
+| M1 | Research and preregistration | M0 | P0 | 0.5 d | done: protocols frozen v1.0 (owner-approved 2026-11-24, D-009; `research/freeze.json`); **M1 gate passed** | none |
+| M2 | Core implementation | M1 drafts (implementation may start before the freeze) | P0 | 1 d | implemented; acceptance met for the draft protocol (133 tests pass); exploratory smoke and pilot run | none (frozen configs in place) |
+| M3 | Experiments | M2 gate; M1 freeze for confirmatory runs | P0 | 0.75 d | not started (exploratory pilot only) | M3 scheduled by the coordinator |
 | M4 | Interpretation | M3 | P0 | 1 d | not started | M3 |
 | M5 | Interactive experience | M2 schemas; M4 verified results for published numbers | P1 (cut first if time is short) | 0.75 d | not started | M4 |
 | M6 | Release candidate | M4, M5 | P0 | 0.5 d | not started | owner approval for any publication (G-PUBLIC) |
@@ -26,6 +26,7 @@ Updated 2026-11-24 (freeze session). Effort is a planning estimate in focused da
 - Acceptance: protocols frozen by the owner with SHA-256 recorded in the registry and decision log; exploratory results (if any) visibly separated; fixture manifest lists the synthetic fixtures.
 - Open items: optional pilot on tuning streams to estimate the paired-difference SD; owner decisions listed in `progress.md`.
 - Status (2026-11-24, freeze session): owner-approved amendments applied (D-008): 500 tuning and 4,000 evaluation streams, scope cut (no DP reference, no scale experiment), D-006 choices and DRP target reading pinned, EXP-002 interaction method named and implemented, commands fixed, authorship set. The grid amendment could not be applied as written (7 of 20 pilot optima stay on an edge with the proposed grid; J-0006), so the protocols were not frozen. The freeze guard (`research/freeze.json` plus registry hashes plus config hashes) is implemented and tested.
+- Status (2026-11-24, second round): the owner approved the widened grids within the equal budget and the grid-edge reporting rule ("Approve all"); protocols and configs frozen as v1.0 (D-009), hashes in `research/freeze.json` and the registry. **M1 gate passed.**
 
 ## M2: Core implementation
 

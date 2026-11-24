@@ -1,0 +1,184 @@
+{
+ "project": "FARE",
+ "spdx": "LicenseRef-FARE-NC-Research-1.0",
+ "frozen_on": "2026-11-24",
+ "gate": "G-FREEZE",
+ "protocol_version": "v1.0",
+ "freeze_record_version": "1.0.0",
+ "status": "frozen",
+ "approval": {
+  "by": "the owner",
+  "date": "2026-11-24",
+  "sources": [
+   "labs/_shared/owner-approvals-2026-11-24.md (FARE section and common decisions), outside this repository",
+   "labs/_shared/owner-approvals-2026-11-24b.md (section 2), outside this repository"
+  ],
+  "first_round_answers_quoted": "\"yes for all others\"",
+  "first_round_amendments_quoted": [
+   "4,000 evaluation streams and 500 tuning streams per cell.",
+   "Widen the OCC and DRP tuning grids so the pilot optima are interior.",
+   "No dynamic-programming reference policy, and the optional scale experiment is out of scope.",
+   "Pin the D-006 implementation choices and the DRP target reading.",
+   "Name the method for the EXP-002 interaction contrasts.",
+   "Fix the command names."
+  ],
+  "second_round_answer_quoted": "\"Approve all\"",
+  "second_round_fare_quoted": "Keep the widened grids within the equal tuning budget. Report optima on a grid edge as a finding (a DRP responsiveness of 0 means the dynamic rule reduces to a fixed price). Freeze."
+ },
+ "common_decisions": {
+  "C1": "Data: synthetic data only.",
+  "C2": "PDFs: built with pandoc and Typst (-V mainfont=\"Libertinus Serif\"); there is no LaTeX on the machine.",
+  "C3": "Authorship: \"Mohamed Bechir Kefi\", no affiliation. The AI is disclosed as a research and development assistant, not as an author.",
+  "C4": "Disclosure: exploratory values of the primary contrast seen before the freeze are listed in c4_disclosure, with where they are stored."
+ },
+ "c4_disclosure": {
+  "statement": "Before the freeze, exploratory values of the primary contrast (paired revenue difference vs tuned FIX) were computed and seen, on tuning streams only (role 0), with the draft v0.1 grid (9 p0 x 4 sensitivity values). No evaluation stream (role 1) has been generated or simulated. The owner chose the widened grids with these values and the J-0006 edge check available. None tests a hypothesis.",
+  "values": [
+   {
+    "run": "smoke (J-0002)",
+    "design": "base cell, 5 tuning streams, hand-set configurations",
+    "OCC_minus_FIX": 62.8,
+    "DRP_minus_FIX": 525.8,
+    "path": "results/exploratory/EXP-001-exp-smoke-20261124T161050Z/result.json"
+   },
+   {
+    "run": "EXP-001 pilot (J-0003)",
+    "design": "base cell, tuned on tuning streams 0-49, evaluated on tuning streams 50-99 (n = 50), draft grid",
+    "OCC_minus_FIX": {
+     "mean": 536.4,
+     "ci97_5_bootstrap": [
+      332.8,
+      741.1
+     ]
+    },
+    "DRP_minus_FIX": {
+     "mean": 515.5,
+     "ci97_5_bootstrap": [
+      243.5,
+      793.6
+     ]
+    },
+    "path": "results/exploratory/EXP-001-exp-pilot-exp001-20261124T161050Z/result.json"
+   },
+   {
+    "run": "EXP-002 pilot (J-0004)",
+    "design": "9 cells, same split, draft grid",
+    "path": "results/exploratory/EXP-002-exp-pilot-exp002-20261124T161051Z/result.json"
+   },
+   {
+    "run": "EXP-003 pilot (J-0005)",
+    "design": "6 misspecified cells, same split, draft grid",
+    "path": "results/exploratory/EXP-003-exp-pilot-exp003-20261124T161055Z/result.json"
+   },
+   {
+    "run": "summary",
+    "path": "results/exploratory/pilot_summary.json"
+   },
+   {
+    "run": "grid edge check (J-0006)",
+    "design": "tuning only on streams 0-49, no contrast computed; 7 of 20 pilot optima on an edge of the frozen grid, all in EXP-002 cells; a wider probe selected DRP eta = 0 in sv0.5-k1.0 and sv1.0-k1.0",
+    "path": "results/exploratory/grid_interior_check.json; results/exploratory/grid_widening_probe.json"
+   }
+  ]
+ },
+ "main_protocol": {
+  "path": "research/protocol.md",
+  "sha256": "d4b7c1e04c1152853769f1a1de851a5fc1950a91b37cba693543b88ffebe03b1"
+ },
+ "experiments": {
+  "EXP-001": {
+   "protocol": {
+    "path": "research/experiments/EXP-001/protocol.md",
+    "sha256": "06f939d8fd59389a3438cd539f862a36ed4d47275137b50aeb3ffdc233df2ec2"
+   },
+   "config": {
+    "path": "research/experiments/EXP-001/config.json",
+    "file_sha256": "b8f3f87283c791e6da1fa845c0e6e7559a460ee9d9488e86ca42465f9c003178",
+    "canonical_sha256": "592a197632390bb9ab8fdcf7e95555e3bb590c921faba573175c4dcaa9cffc76"
+   }
+  },
+  "EXP-002": {
+   "protocol": {
+    "path": "research/experiments/EXP-002/protocol.md",
+    "sha256": "7ffbc666ffd6465791d09e10ee3a3014002a513c90a876bf65c6e8ea4d2f6ab9"
+   },
+   "config": {
+    "path": "research/experiments/EXP-002/config.json",
+    "file_sha256": "5f279b83f972b83df3c5d7629f3152c7c2a8328757ce10e950dfe48777499e44",
+    "canonical_sha256": "df7da4d68172d469301e6b46d70628dede3cfa255ee660898ceedf6d30d62856"
+   }
+  },
+  "EXP-003": {
+   "protocol": {
+    "path": "research/experiments/EXP-003/protocol.md",
+    "sha256": "b1e2a2f8931bada91fd5f4589f0fa8bd50004db6c05d568c9354f43f14a510fd"
+   },
+   "config": {
+    "path": "research/experiments/EXP-003/config.json",
+    "file_sha256": "b49710e31d943ed1fba05388a5f6ea95e3e793b6bf76033824c3020a858b2c1c",
+    "canonical_sha256": "3c25c10c1cfcacf1103e6613b195c58c5ce0afd675556efa290f8b380ca039fd"
+   }
+  }
+ },
+ "git_revision": "1d0fcfc06c723e44b1fed2a95ea854b8cf0447da",
+ "amendments": [
+  {
+   "id": "A1",
+   "round": 1,
+   "text": "4,000 evaluation and 500 tuning streams per cell.",
+   "decision": "D-008"
+  },
+  {
+   "id": "A2",
+   "round": 1,
+   "text": "Tuning-grid widening: not applicable as written in round 1; resolved by A7.",
+   "decision": "D-008"
+  },
+  {
+   "id": "A3",
+   "round": 1,
+   "text": "No dynamic-programming reference; optional scale experiment out of scope.",
+   "decision": "D-008"
+  },
+  {
+   "id": "A4",
+   "round": 1,
+   "text": "D-006 choices and the DRP target reading (stock at the start of period t) pinned.",
+   "decision": "D-008"
+  },
+  {
+   "id": "A5",
+   "round": 1,
+   "text": "EXP-002 interaction contrasts: independent stratified percentile bootstrap.",
+   "decision": "D-008"
+  },
+  {
+   "id": "A6",
+   "round": 1,
+   "text": "Reproduction commands name the implemented CLI.",
+   "decision": "D-008"
+  },
+  {
+   "id": "A7",
+   "round": 2,
+   "text": "Widened grids within the equal budget: 6 p0 x OCC k {0.25, 0.5, 1, 2, 4, 8} and DRP eta {0.025, 0.05, 0.1, 0.25, 0.5, 1.0}; FIX 36 prices; sensitivity arm FIX6; EXP-001 73,000 runs.",
+   "decision": "D-009"
+  },
+  {
+   "id": "A8",
+   "round": 2,
+   "text": "Grid-edge optima reported as findings, reading fixed in research/protocol.md section 4 (DRP lower edge read as close to eta = 0, the fixed price).",
+   "decision": "D-009"
+  }
+ ],
+ "superseded_hashes": {
+  "note": "Draft hashes before the freeze; never frozen, listed for traceability.",
+  "draft_v0.2": {
+   "research/protocol.md": "efdd6d19f4a3db7f332c8323959b160a82254cd799647a392ef38e42327abc6c",
+   "research/experiments/EXP-001/protocol.md": "43d4c0865d67c389e1fbdce7412733e1096f16627000c29e9a50e224e2533c37",
+   "research/experiments/EXP-002/protocol.md": "f21c664a5ee6240bf8c8a75a59bcc23f0c0b9f9f6e7fb1d64451c5b4fe6120d9",
+   "research/experiments/EXP-003/protocol.md": "2891e10f1fe10a8513600448f6953e7345c6c9b8308855b7a4e8abc70695ea77"
+  }
+ },
+ "guard": "fare.manifest.protocol_status: registry hash, this record (protocol, main protocol, canonical config SHA-256) and the files on disk must all agree; fare.cli run refuses anything else (exit 3)."
+}
