@@ -1,0 +1,95 @@
+{
+ "experiment_id": "EXP-001",
+ "experiment_number": 1,
+ "label": "exploratory",
+ "mode": "fixed",
+ "note": "Smoke matrix of research/protocol.md section 9 and EXP-001 protocol section 18: base cell with one hand-set configuration per family plus nesting arms (OCC k=0, DRP eta=0) on 5 tuning streams, and edge-case cells. Exploratory; validates invariants and metric code and measures runtime. Never evidence.",
+ "base_scenario": {},
+ "fixed_policies": [
+  {
+   "arm": "FIX",
+   "family": "FIX",
+   "params": {
+    "p": 150.0
+   }
+  },
+  {
+   "arm": "OCC",
+   "family": "OCC",
+   "params": {
+    "p0": 150.0,
+    "k": 1.0
+   }
+  },
+  {
+   "arm": "DRP",
+   "family": "DRP",
+   "params": {
+    "p0": 150.0,
+    "eta": 0.25
+   }
+  },
+  {
+   "arm": "OCC_k0",
+   "family": "OCC",
+   "params": {
+    "p0": 150.0,
+    "k": 0.0
+   }
+  },
+  {
+   "arm": "DRP_eta0",
+   "family": "DRP",
+   "params": {
+    "p0": 150.0,
+    "eta": 0.0
+   }
+  }
+ ],
+ "eval_streams": {
+  "role": 0,
+  "start": 0,
+  "count": 5
+ },
+ "cells": [
+  {
+   "id": "base",
+   "index": 0,
+   "scenario": {}
+  },
+  {
+   "id": "edge-zero-demand",
+   "index": 90,
+   "scenario": {
+    "kappa": 0.0
+   }
+  },
+  {
+   "id": "edge-C1",
+   "index": 91,
+   "scenario": {
+    "C": 1
+   }
+  },
+  {
+   "id": "edge-valuations-below-pmin",
+   "index": 92,
+   "scenario": {
+    "m_L": 5.0,
+    "m_H": 5.0,
+    "sigma_v": 0.1
+   }
+  },
+  {
+   "id": "edge-kappa20",
+   "index": 93,
+   "scenario": {
+    "kappa": 20.0
+   }
+  }
+ ],
+ "bootstrap": {
+  "resamples": 2000,
+  "seed": 20261124
+ }
+}

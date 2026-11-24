@@ -254,3 +254,50 @@ $ PYTHONPATH=src .venv/bin/python -m pytest -q        (after research/freeze.jso
 **Outstanding risks.** Per-run storage for EXP-002 at n = 4,000 (about 100 MB) under the git-ignored `results/raw/` must be settled before M3. Edge optima are expected in some EXP-002 cells (J-0006); they are reported as findings.
 
 **Next action.** M3 when the coordinator schedules it: run EXP-001 to EXP-003 with the frozen configs, write each 11.3 report as it finishes.
+
+## 2026-11-25: M3 session (confirmatory runs of the frozen matrix)
+
+**Milestone.** M3, following `/Users/bechir/research/labs/_shared/M3-brief.md` after the owner's "Start next". Performed by the AI assistant (Claude Code). Nothing pushed.
+
+**Starting state.** `git status`: clean; HEAD d67beee. Frozen hashes checked on disk against `research/freeze.json`: all seven match (main protocol, three EXP protocols, three configs).
+
+**Commands and actual outputs.**
+
+```
+$ ../.tools/py/bin/uv sync --frozen --all-groups --all-extras
+Audited 14 packages
+$ .venv/bin/python -m pytest -q                      (before changes)
+141 passed in 1.97s
+$ .venv/bin/python -m pytest -q                      (after fare.summary, data-manifest hash, tests; commit 4204eac)
+143 passed in 2.55s
+$ PYTHONPATH=src .venv/bin/python experiments/exploratory/metric_validation.py > results/exploratory/metric_validation.json
+58 checks, 0 failed (J-0008)
+$ PYTHONPATH=src nice -n 10 .venv/bin/python -m fare.cli smoke --no-report
+EXPLORATORY run set EXP-001-exp-smoke-20261124T233439Z: 0 tuning + 125 evaluation runs, 0 failed, 0.09 s, peak RSS 42.0 MiB   (J-0007)
+$ fare.cli run --plan (three frozen configs)
+EXP-001 frozen True, 73,000 runs; EXP-002 frozen True, 594,000; EXP-003 frozen True, 258,000
+$ PYTHONPATH=src nice -n 10 .venv/bin/python -m fare.cli run --config research/experiments/EXP-00N/config.json --out results/raw/confirmatory
+CONFIRMATORY run set EXP-001-con-config-20261124T233503Z: 57000 tuning + 16000 evaluation runs, 0 failed, 34.47 s, peak RSS 396.5 MiB
+CONFIRMATORY run set EXP-002-con-config-20261124T233503Z: 486000 tuning + 108000 evaluation runs, 0 failed, 268.84 s, peak RSS 698.5 MiB
+CONFIRMATORY run set EXP-003-con-config-20261124T233547Z: 162000 tuning + 96000 evaluation runs, 0 failed, 161.11 s, peak RSS 587.0 MiB
+exit status 0 for all three (results/confirmatory/logs/exit_status.jsonl); revision 4204eac, dirty_tracked_files false
+$ fare.cli report and fare.summary for each run set (EXP-003 with --exp001-summary)
+$ .venv/bin/python -m pytest -q                      (end of session)
+143 passed in 3.82s
+```
+
+**Results (confirmatory, simulated).**
+- EXP-001: OCC minus FIX +407.0, 97.5% [373.2, 440.2] (+3.47%); DRP minus FIX +462.1, 97.5% [426.0, 498.1] (+3.94%); H0 rejected for both, both detectable and practically relevant; FIX6 sensitivity changes neither sign nor class; no grid-edge optimum.
+- EXP-002: 18 of 18 contrasts rejected after Holm; dynamic rules lose in all kappa = 1.0 cells and in sv1.0-k2.0, gain elsewhere; interaction contrasts all positive with intervals excluding 0; 8 grid-edge optima (findings).
+- EXP-003: invalidation rule not triggered; at demand x0.6 both rules lose to base-tuned FIX (descriptive).
+- Details: journal J-0009 to J-0011, `research/experiments/EXP-NNN/summary.json`, claims C-001 to C-008.
+
+**Failures and deviations.** No run failed. D-010: raw outputs in git-ignored `results/raw/confirmatory/` (above 20 MB); summary module and data-manifest hash added before any confirmatory output; concurrent second worker on a loaded machine. The first draft of the metric validation script had a wrong hand-computed Holm expectation; the code was right and the script was corrected before commit.
+
+**Not done.** The 11.3 experiment reports (`research/experiments/EXP-NNN/report.md`, `reproduction.md`): the file tool refused to write an experiment report, and the coordinator instructed that this not be worked around. M3 is therefore not marked done. No PDF built. Manuscript not updated (M4).
+
+**Changed files.** `src/fare/{summary.py (new), manifest.py}`, `tests/{test_summary.py (new), test_integration.py}`, `experiments/exploratory/metric_validation.py`, `results/exploratory/{metric_validation.json, EXP-001-exp-smoke-20261124T233439Z/}`, `results/confirmatory/{README.md, logs/}`, `research/experiments/EXP-00N/{summary.json, metrics.csv, arm_summary.csv, run_manifest.json, figures/}`, `research/{experiment_journal.jsonl, experiment_registry.csv, claims_register.csv, decision_log.md, limitations.md, publication/artifact_manifest.json}`, `roadmap.md`, `progress.md`.
+
+**Owner decisions needed.** How the three 11.3 experiment reports are to be written (they are the remaining M3 item). Nothing else is blocked.
+
+**Next action.** Write the EXP-001 to EXP-003 reports from the committed summaries; then M4.

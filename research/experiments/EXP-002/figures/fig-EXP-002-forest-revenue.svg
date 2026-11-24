@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="578" viewBox="0 0 820 578" role="img" aria-labelledby="t d" font-family="Helvetica, Arial, sans-serif" font-size="11">
+<!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
+<title id="t">EXP-002: paired revenue differences with intervals (confirmatory)</title><desc id="d">Interval plot. sv0.25-k1.0 OCC vs FIX: mean -124.96, interval [-144.70, -105.30], n 4000; sv0.25-k1.0 DRP vs FIX: mean -348.67, interval [-373.54, -324.40], n 4000; sv0.25-k2.0 OCC vs FIX: mean 815.05, interval [786.49, 842.78], n 4000; sv0.25-k2.0 DRP vs FIX: mean 955.54, interval [928.89, 982.52], n 4000; sv0.25-k4.0 OCC vs FIX: mean 527.47, interval [493.58, 561.68], n 4000; sv0.25-k4.0 DRP vs FIX: mean 262.82, interval [223.05, 301.96], n 4000; sv0.5-k1.0 OCC vs FIX: mean -37.02, interval [-41.32, -32.62], n 4000; sv0.5-k1.0 DRP vs FIX: mean -479.98, interval [-496.35, -463.50], n 4000; sv0.5-k2.0 OCC vs FIX: mean 435.49, interval [405.76, 464.13], n 4000; sv0.5-k2.0 DRP vs FIX: mean 491.11, interval [459.53, 522.02], n 4000; sv0.5-k4.0 OCC vs FIX: mean 1094.08, interval [1054.83, 1133.21], n 4000; sv0.5-k4.0 DRP vs FIX: mean 1050.80, interval [1008.49, 1093.76], n 4000; sv1.0-k1.0 OCC vs FIX: mean -120.35, interval [-131.30, -109.55], n 4000; sv1.0-k1.0 DRP vs FIX: mean -815.04, interval [-834.16, -796.19], n 4000; sv1.0-k2.0 OCC vs FIX: mean -116.28, interval [-136.19, -95.76], n 4000; sv1.0-k2.0 DRP vs FIX: mean -473.84, interval [-502.28, -444.28], n 4000; sv1.0-k4.0 OCC vs FIX: mean 1036.67, interval [964.56, 1111.48], n 4000; sv1.0-k4.0 DRP vs FIX: mean 939.05, interval [866.36, 1013.81], n 4000</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="10" y="22" font-size="13" font-weight="bold">EXP-002: paired revenue differences with intervals (confirmatory)</text>
+<line x1="478.4" y1="42" x2="478.4" y2="518" stroke="#999" stroke-dasharray="4 3"/>
+<rect x="460.6" y="54.0" width="35.5" height="18" fill="#dddddd" fill-opacity="0.6"/>
+<text x="242" y="67.0" text-anchor="end">sv0.25-k1.0: OCC vs FIX (n=4000, 95%)</text>
+<line x1="442.9" y1="63.0" x2="452.6" y2="63.0" stroke="#1f6f8b" stroke-width="2.5"/>
+<circle cx="447.8" cy="63.0" r="4" fill="#1f6f8b"/>
+<rect x="460.6" y="80.0" width="35.5" height="18" fill="#dddddd" fill-opacity="0.6"/>
+<text x="242" y="93.0" text-anchor="end">sv0.25-k1.0: DRP vs FIX (n=4000, 95%)</text>
+<line x1="386.9" y1="89.0" x2="398.9" y2="89.0" stroke="#b5562b" stroke-width="2.5"/>
+<circle cx="393.0" cy="89.0" r="4" fill="#b5562b"/>
+<rect x="452.0" y="106.0" width="52.8" height="18" fill="#dddddd" fill-opacity="0.6"/>
+<text x="242" y="119.0" text-anchor="end">sv0.25-k2.0: OCC vs FIX (n=4000, 95%)</text>
+<line x1="671.0" y1="115.0" x2="684.8" y2="115.0" stroke="#1f6f8b" stroke-width="2.5"/>
+<circle cx="678.0" cy="115.0" r="4" fill="#1f6f8b"/>
+<rect x="452.0" y="132.0" width="52.8" height="18" fill="#dddddd" fill-opacity="0.6"/>
+<text x="242" y="145.0" text-anchor="end">sv0.25-k2.0: DRP vs FIX (n=4000, 95%)</text>
+<line x1="705.9" y1="141.0" x2="719.0" y2="141.0" stroke="#b5562b" stroke-width="2.5"/>
+<circle cx="712.4" cy="141.0" r="4" fill="#b5562b"/>
+<rect x="440.4" y="158.0" width="75.9" height="18" fill="#dddddd" fill-opacity="0.6"/>
+<text x="242" y="171.0" text-anchor="end">sv0.25-k4.0: OCC vs FIX (n=4000, 95%)</text>
+<line x1="599.3" y1="167.0" x2="615.9" y2="167.0" stroke="#1f6f8b" stroke-width="2.5"/>
+<circle cx="607.6" cy="167.0" r="4" fill="#1f6f8b"/>
+<rect x="440.4" y="184.0" width="75.9" height="18" fill="#dddddd" fill-opacity="0.6"/>
+<text x="242" y="197.0" text-anchor="end">sv0.25-k4.0: DRP vs FIX (n=4000, 95%)</text>
+<line x1="533.0" y1="193.0" x2="552.3" y2="193.0" stroke="#b5562b" stroke-width="2.5"/>
+<circle cx="542.7" cy="193.0" r="4" fill="#b5562b"/>
+<rect x="461.5" y="210.0" width="33.7" height="18" fill="#dddddd" fill-opacity="0.6"/>
+<text x="242" y="223.0" text-anchor="end">sv0.5-k1.0: OCC vs FIX (n=4000, 95%)</text>
+<line x1="468.3" y1="219.0" x2="470.4" y2="219.0" stroke="#1f6f8b" stroke-width="2.5"/>
+<circle cx="469.3" cy="219.0" r="4" fill="#1f6f8b"/>
+<rect x="461.5" y="236.0" width="33.7" height="18" fill="#dddddd" fill-opacity="0.6"/>
+<text x="242" y="249.0" text-anchor="end">sv0.5-k1.0: DRP vs FIX (n=4000, 95%)</text>
+<line x1="356.8" y1="245.0" x2="364.9" y2="245.0" stroke="#b5562b" stroke-width="2.5"/>
+<circle cx="360.8" cy="245.0" r="4" fill="#b5562b"/>
+<rect x="449.6" y="262.0" width="57.6" height="18" fill="#dddddd" fill-opacity="0.6"/>
+<text x="242" y="275.0" text-anchor="end">sv0.5-k2.0: OCC vs FIX (n=4000, 95%)</text>
+<line x1="577.8" y1="271.0" x2="592.0" y2="271.0" stroke="#1f6f8b" stroke-width="2.5"/>
+<circle cx="585.0" cy="271.0" r="4" fill="#1f6f8b"/>
+<rect x="449.6" y="288.0" width="57.6" height="18" fill="#dddddd" fill-opacity="0.6"/>
+<text x="242" y="301.0" text-anchor="end">sv0.5-k2.0: DRP vs FIX (n=4000, 95%)</text>
+<line x1="590.9" y1="297.0" x2="606.2" y2="297.0" stroke="#b5562b" stroke-width="2.5"/>
+<circle cx="598.7" cy="297.0" r="4" fill="#b5562b"/>
+<rect x="436.2" y="314.0" width="84.4" height="18" fill="#dddddd" fill-opacity="0.6"/>
+<text x="242" y="327.0" text-anchor="end">sv0.5-k4.0: OCC vs FIX (n=4000, 95%)</text>
+<line x1="736.7" y1="323.0" x2="755.9" y2="323.0" stroke="#1f6f8b" stroke-width="2.5"/>
+<circle cx="746.3" cy="323.0" r="4" fill="#1f6f8b"/>
+<rect x="436.2" y="340.0" width="84.4" height="18" fill="#dddddd" fill-opacity="0.6"/>
+<text x="242" y="353.0" text-anchor="end">sv0.5-k4.0: DRP vs FIX (n=4000, 95%)</text>
+<line x1="725.4" y1="349.0" x2="746.2" y2="349.0" stroke="#b5562b" stroke-width="2.5"/>
+<circle cx="735.7" cy="349.0" r="4" fill="#b5562b"/>
+<rect x="460.9" y="366.0" width="35.0" height="18" fill="#dddddd" fill-opacity="0.6"/>
+<text x="242" y="379.0" text-anchor="end">sv1.0-k1.0: OCC vs FIX (n=4000, 95%)</text>
+<line x1="446.2" y1="375.0" x2="451.6" y2="375.0" stroke="#1f6f8b" stroke-width="2.5"/>
+<circle cx="448.9" cy="375.0" r="4" fill="#1f6f8b"/>
+<rect x="460.9" y="392.0" width="35.0" height="18" fill="#dddddd" fill-opacity="0.6"/>
+<text x="242" y="405.0" text-anchor="end">sv1.0-k1.0: DRP vs FIX (n=4000, 95%)</text>
+<line x1="274.1" y1="401.0" x2="283.4" y2="401.0" stroke="#b5562b" stroke-width="2.5"/>
+<circle cx="278.8" cy="401.0" r="4" fill="#b5562b"/>
+<rect x="443.9" y="418.0" width="68.9" height="18" fill="#dddddd" fill-opacity="0.6"/>
+<text x="242" y="431.0" text-anchor="end">sv1.0-k2.0: OCC vs FIX (n=4000, 95%)</text>
+<line x1="445.0" y1="427.0" x2="454.9" y2="427.0" stroke="#1f6f8b" stroke-width="2.5"/>
+<circle cx="449.9" cy="427.0" r="4" fill="#1f6f8b"/>
+<rect x="443.9" y="444.0" width="68.9" height="18" fill="#dddddd" fill-opacity="0.6"/>
+<text x="242" y="457.0" text-anchor="end">sv1.0-k2.0: DRP vs FIX (n=4000, 95%)</text>
+<line x1="355.4" y1="453.0" x2="369.6" y2="453.0" stroke="#b5562b" stroke-width="2.5"/>
+<circle cx="362.3" cy="453.0" r="4" fill="#b5562b"/>
+<rect x="417.4" y="470.0" width="122.0" height="18" fill="#dddddd" fill-opacity="0.6"/>
+<text x="242" y="483.0" text-anchor="end">sv1.0-k4.0: OCC vs FIX (n=4000, 95%)</text>
+<line x1="714.6" y1="479.0" x2="750.6" y2="479.0" stroke="#1f6f8b" stroke-width="2.5"/>
+<circle cx="732.3" cy="479.0" r="4" fill="#1f6f8b"/>
+<rect x="417.4" y="496.0" width="122.0" height="18" fill="#dddddd" fill-opacity="0.6"/>
+<text x="242" y="509.0" text-anchor="end">sv1.0-k4.0: DRP vs FIX (n=4000, 95%)</text>
+<line x1="690.6" y1="505.0" x2="726.7" y2="505.0" stroke="#b5562b" stroke-width="2.5"/>
+<circle cx="708.4" cy="505.0" r="4" fill="#b5562b"/>
+<line x1="250" y1="526" x2="780" y2="526" stroke="#333"/>
+<line x1="250.0" y1="526" x2="250.0" y2="531" stroke="#333"/>
+<text x="250.0" y="544" text-anchor="middle">-933</text>
+<line x1="356.0" y1="526" x2="356.0" y2="531" stroke="#333"/>
+<text x="356.0" y="544" text-anchor="middle">-500</text>
+<line x1="462.0" y1="526" x2="462.0" y2="531" stroke="#333"/>
+<text x="462.0" y="544" text-anchor="middle">-67</text>
+<line x1="568.0" y1="526" x2="568.0" y2="531" stroke="#333"/>
+<text x="568.0" y="544" text-anchor="middle">366</text>
+<line x1="674.0" y1="526" x2="674.0" y2="531" stroke="#333"/>
+<text x="674.0" y="544" text-anchor="middle">799</text>
+<line x1="780.0" y1="526" x2="780.0" y2="531" stroke="#333"/>
+<text x="780.0" y="544" text-anchor="middle">1,232</text>
+<text x="515.0" y="564" text-anchor="middle">mean paired revenue difference (currency per season); bar = paired percentile bootstrap interval; grey band = +/- SESOI (1% of mean FIX revenue in the cell)</text>
+</svg>

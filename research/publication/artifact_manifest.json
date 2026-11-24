@@ -1,7 +1,153 @@
 {
   "schema_version": "0.1",
-  "updated": "2026-11-24",
-  "status": "empty: no results, figures, tables or claims exist yet",
-  "entries": [],
-  "entry_fields": ["artifact_id", "kind", "experiment_id", "run_ids", "metric_definition", "result_path", "generator_script", "config_or_protocol_hash", "code_revision"]
+  "updated": "2026-11-25",
+  "status": "M3: confirmatory summaries and figures for EXP-001 to EXP-003; experiment reports and manuscript numbers pending",
+  "entries": [
+    {
+      "artifact_id": "T-EXP-001-contrasts",
+      "kind": "table",
+      "path": "research/experiments/EXP-001/metrics.csv",
+      "metric_definition": "paired differences arm minus comparator per evaluation stream; research/experiments/EXP-001/protocol.md section 13",
+      "experiment_id": "EXP-001",
+      "run_ids": "EXP-001-con-config-20261124T233503Z/<cell>/<arm>/eval0000-eval3999",
+      "result_path": "results/raw/confirmatory/EXP-001-con-config-20261124T233503Z/result.json",
+      "generator_script": "src/fare/summary.py",
+      "config_or_protocol_hash": {
+        "config_canonical_sha256": "592a197632390bb9ab8fdcf7e95555e3bb590c921faba573175c4dcaa9cffc76",
+        "protocol_sha256": "06f939d8fd59389a3438cd539f862a36ed4d47275137b50aeb3ffdc233df2ec2"
+      },
+      "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252"
+    },
+    {
+      "artifact_id": "T-EXP-001-arms",
+      "kind": "table",
+      "path": "research/experiments/EXP-001/arm_summary.csv",
+      "metric_definition": "per-arm mean and SD of every metric",
+      "experiment_id": "EXP-001",
+      "run_ids": "EXP-001-con-config-20261124T233503Z/<cell>/<arm>/eval0000-eval3999",
+      "result_path": "results/raw/confirmatory/EXP-001-con-config-20261124T233503Z/result.json",
+      "generator_script": "src/fare/summary.py",
+      "config_or_protocol_hash": {
+        "config_canonical_sha256": "592a197632390bb9ab8fdcf7e95555e3bb590c921faba573175c4dcaa9cffc76",
+        "protocol_sha256": "06f939d8fd59389a3438cd539f862a36ed4d47275137b50aeb3ffdc233df2ec2"
+      },
+      "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252"
+    },
+    {
+      "artifact_id": "F-EXP-001-forest",
+      "kind": "figure",
+      "path": "research/experiments/EXP-001/figures/fig-EXP-001-forest-revenue.svg",
+      "metric_definition": "mean paired revenue difference with paired percentile bootstrap interval",
+      "experiment_id": "EXP-001",
+      "run_ids": "EXP-001-con-config-20261124T233503Z/<cell>/<arm>/eval0000-eval3999",
+      "result_path": "results/raw/confirmatory/EXP-001-con-config-20261124T233503Z/result.json",
+      "generator_script": "src/fare/summary.py",
+      "config_or_protocol_hash": {
+        "config_canonical_sha256": "592a197632390bb9ab8fdcf7e95555e3bb590c921faba573175c4dcaa9cffc76",
+        "protocol_sha256": "06f939d8fd59389a3438cd539f862a36ed4d47275137b50aeb3ffdc233df2ec2"
+      },
+      "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252"
+    },
+    {
+      "artifact_id": "T-EXP-002-contrasts",
+      "kind": "table",
+      "path": "research/experiments/EXP-002/metrics.csv",
+      "metric_definition": "paired differences arm minus comparator per evaluation stream; research/experiments/EXP-001/protocol.md section 13",
+      "experiment_id": "EXP-002",
+      "run_ids": "EXP-002-con-config-20261124T233503Z/<cell>/<arm>/eval0000-eval3999",
+      "result_path": "results/raw/confirmatory/EXP-002-con-config-20261124T233503Z/result.json",
+      "generator_script": "src/fare/summary.py",
+      "config_or_protocol_hash": {
+        "config_canonical_sha256": "df7da4d68172d469301e6b46d70628dede3cfa255ee660898ceedf6d30d62856",
+        "protocol_sha256": "7ffbc666ffd6465791d09e10ee3a3014002a513c90a876bf65c6e8ea4d2f6ab9"
+      },
+      "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252"
+    },
+    {
+      "artifact_id": "T-EXP-002-arms",
+      "kind": "table",
+      "path": "research/experiments/EXP-002/arm_summary.csv",
+      "metric_definition": "per-arm mean and SD of every metric",
+      "experiment_id": "EXP-002",
+      "run_ids": "EXP-002-con-config-20261124T233503Z/<cell>/<arm>/eval0000-eval3999",
+      "result_path": "results/raw/confirmatory/EXP-002-con-config-20261124T233503Z/result.json",
+      "generator_script": "src/fare/summary.py",
+      "config_or_protocol_hash": {
+        "config_canonical_sha256": "df7da4d68172d469301e6b46d70628dede3cfa255ee660898ceedf6d30d62856",
+        "protocol_sha256": "7ffbc666ffd6465791d09e10ee3a3014002a513c90a876bf65c6e8ea4d2f6ab9"
+      },
+      "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252"
+    },
+    {
+      "artifact_id": "F-EXP-002-forest",
+      "kind": "figure",
+      "path": "research/experiments/EXP-002/figures/fig-EXP-002-forest-revenue.svg",
+      "metric_definition": "mean paired revenue difference with paired percentile bootstrap interval",
+      "experiment_id": "EXP-002",
+      "run_ids": "EXP-002-con-config-20261124T233503Z/<cell>/<arm>/eval0000-eval3999",
+      "result_path": "results/raw/confirmatory/EXP-002-con-config-20261124T233503Z/result.json",
+      "generator_script": "src/fare/summary.py",
+      "config_or_protocol_hash": {
+        "config_canonical_sha256": "df7da4d68172d469301e6b46d70628dede3cfa255ee660898ceedf6d30d62856",
+        "protocol_sha256": "7ffbc666ffd6465791d09e10ee3a3014002a513c90a876bf65c6e8ea4d2f6ab9"
+      },
+      "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252"
+    },
+    {
+      "artifact_id": "T-EXP-003-contrasts",
+      "kind": "table",
+      "path": "research/experiments/EXP-003/metrics.csv",
+      "metric_definition": "paired differences arm minus comparator per evaluation stream; research/experiments/EXP-001/protocol.md section 13",
+      "experiment_id": "EXP-003",
+      "run_ids": "EXP-003-con-config-20261124T233547Z/<cell>/<arm>/eval0000-eval3999",
+      "result_path": "results/raw/confirmatory/EXP-003-con-config-20261124T233547Z/result.json",
+      "generator_script": "src/fare/summary.py",
+      "config_or_protocol_hash": {
+        "config_canonical_sha256": "3c25c10c1cfcacf1103e6613b195c58c5ce0afd675556efa290f8b380ca039fd",
+        "protocol_sha256": "b1e2a2f8931bada91fd5f4589f0fa8bd50004db6c05d568c9354f43f14a510fd"
+      },
+      "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252"
+    },
+    {
+      "artifact_id": "T-EXP-003-arms",
+      "kind": "table",
+      "path": "research/experiments/EXP-003/arm_summary.csv",
+      "metric_definition": "per-arm mean and SD of every metric",
+      "experiment_id": "EXP-003",
+      "run_ids": "EXP-003-con-config-20261124T233547Z/<cell>/<arm>/eval0000-eval3999",
+      "result_path": "results/raw/confirmatory/EXP-003-con-config-20261124T233547Z/result.json",
+      "generator_script": "src/fare/summary.py",
+      "config_or_protocol_hash": {
+        "config_canonical_sha256": "3c25c10c1cfcacf1103e6613b195c58c5ce0afd675556efa290f8b380ca039fd",
+        "protocol_sha256": "b1e2a2f8931bada91fd5f4589f0fa8bd50004db6c05d568c9354f43f14a510fd"
+      },
+      "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252"
+    },
+    {
+      "artifact_id": "F-EXP-003-forest",
+      "kind": "figure",
+      "path": "research/experiments/EXP-003/figures/fig-EXP-003-forest-revenue.svg",
+      "metric_definition": "mean paired revenue difference with paired percentile bootstrap interval",
+      "experiment_id": "EXP-003",
+      "run_ids": "EXP-003-con-config-20261124T233547Z/<cell>/<arm>/eval0000-eval3999",
+      "result_path": "results/raw/confirmatory/EXP-003-con-config-20261124T233547Z/result.json",
+      "generator_script": "src/fare/summary.py",
+      "config_or_protocol_hash": {
+        "config_canonical_sha256": "3c25c10c1cfcacf1103e6613b195c58c5ce0afd675556efa290f8b380ca039fd",
+        "protocol_sha256": "b1e2a2f8931bada91fd5f4589f0fa8bd50004db6c05d568c9354f43f14a510fd"
+      },
+      "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252"
+    }
+  ],
+  "entry_fields": [
+    "artifact_id",
+    "kind",
+    "experiment_id",
+    "run_ids",
+    "metric_definition",
+    "result_path",
+    "generator_script",
+    "config_or_protocol_hash",
+    "code_revision"
+  ]
 }

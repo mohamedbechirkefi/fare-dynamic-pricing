@@ -1,0 +1,62 @@
+{
+ "manifest_version": "1.0.0",
+ "run_set_id": "EXP-001-exp-smoke-20261124T233439Z",
+ "label": "exploratory",
+ "simulated": true,
+ "experiment_id": "EXP-001",
+ "config_sha256": "8a4fe5ea7b33fee7dcd29f1aef6e21e924f48f2129ecab26feb8398086372588",
+ "protocol": {
+  "path": "research/experiments/EXP-001/protocol.md",
+  "sha256": "06f939d8fd59389a3438cd539f862a36ed4d47275137b50aeb3ffdc233df2ec2",
+  "frozen": false,
+  "reason": "config differs from the frozen confirmatory config"
+ },
+ "seeds": {
+  "project_entropy": 20261124,
+  "generator_version": "fare-streams-1",
+  "spawn_key_layout": "(experiment, cell, role, index)",
+  "experiment_number": 1,
+  "tune_streams": null,
+  "eval_streams": {
+   "role": 0,
+   "start": 0,
+   "count": 5
+  },
+  "bootstrap_seed": 20261124
+ },
+ "git": {
+  "revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252",
+  "dirty_tracked_files": false
+ },
+ "data_manifest": {
+  "path": "data/manifest.json",
+  "sha256": "a1a99feb3579f3abefdc314495a2eb3c99deea5c7caec4948c38fe08405195ee"
+ },
+ "environment": {
+  "os": "Darwin 24.3.0 (macOS-15.3.1-arm64-arm-64bit)",
+  "cpu": "Apple M1 Pro",
+  "machine": "arm64",
+  "versions": {
+   "python": "3.12.1",
+   "fare": "0.2.0",
+   "numpy": "2.5.4",
+   "jsonschema": "4.26.0"
+  }
+ },
+ "command": [
+  "fare",
+  "smoke",
+  "--config",
+  "experiments/smoke.json"
+ ],
+ "start_utc": "2026-11-24T23:34:39Z",
+ "end_utc": "2026-11-24T23:34:39Z",
+ "runtime_s": 0.08943308299785713,
+ "peak_rss_bytes": 44040192,
+ "counts": {
+  "cells": 5,
+  "tuning_runs": 0,
+  "eval_runs": 125,
+  "failed_runs": 0
+ }
+}

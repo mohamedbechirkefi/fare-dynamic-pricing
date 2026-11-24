@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="330" viewBox="0 0 760 330" role="img" aria-labelledby="t d" font-family="Helvetica, Arial, sans-serif" font-size="12">
+<!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
+<title id="t">EXP-001 edge-kappa20 paired revenue differences</title><desc id="d">Dot plot, one dot per stream, of revenue under each arm minus revenue under FIX on the same stream; the black bar is the mean; the dashed line is zero. OCC: n=5, mean 5886.14, min 4752.95, max 6770.84; DRP: n=5, mean 15234.38, min 12418.67, max 18068.71; OCC_k0: n=5, mean 0.00, min 0.00, max 0.00; DRP_eta0: n=5, mean 0.00, min 0.00, max 0.00</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="110" y="22" font-size="13" font-weight="bold">EXP-001 edge-kappa20: paired revenue difference vs FIX (currency per season)</text>
+<line x1="110.0" y1="35" x2="110.0" y2="280" stroke="#999" stroke-dasharray="4 3"/>
+<text x="100" y="74.0" text-anchor="end">OCC (n=5)</text>
+<circle cx="342.3" cy="73.3" r="2.2" fill="#1f6f8b" fill-opacity="0.45"/>
+<circle cx="324.8" cy="64.5" r="2.2" fill="#1f6f8b" fill-opacity="0.45"/>
+<circle cx="304.0" cy="59.0" r="2.2" fill="#1f6f8b" fill-opacity="0.45"/>
+<circle cx="315.6" cy="58.4" r="2.2" fill="#1f6f8b" fill-opacity="0.45"/>
+<circle cx="273.1" cy="77.5" r="2.2" fill="#1f6f8b" fill-opacity="0.45"/>
+<line x1="312.0" y1="52.0" x2="312.0" y2="88.0" stroke="#000" stroke-width="2"/>
+<text x="100" y="134.0" text-anchor="end">DRP (n=5)</text>
+<circle cx="730.0" cy="139.9" r="2.2" fill="#b5562b" fill-opacity="0.45"/>
+<circle cx="713.4" cy="132.6" r="2.2" fill="#b5562b" fill-opacity="0.45"/>
+<circle cx="625.6" cy="135.5" r="2.2" fill="#b5562b" fill-opacity="0.45"/>
+<circle cx="536.1" cy="131.0" r="2.2" fill="#b5562b" fill-opacity="0.45"/>
+<circle cx="558.6" cy="140.4" r="2.2" fill="#b5562b" fill-opacity="0.45"/>
+<line x1="632.7" y1="112.0" x2="632.7" y2="148.0" stroke="#000" stroke-width="2"/>
+<text x="100" y="194.0" text-anchor="end">OCC_k0 (n=5)</text>
+<circle cx="110.0" cy="197.6" r="2.2" fill="#333" fill-opacity="0.45"/>
+<circle cx="110.0" cy="178.1" r="2.2" fill="#333" fill-opacity="0.45"/>
+<circle cx="110.0" cy="198.6" r="2.2" fill="#333" fill-opacity="0.45"/>
+<circle cx="110.0" cy="178.8" r="2.2" fill="#333" fill-opacity="0.45"/>
+<circle cx="110.0" cy="195.5" r="2.2" fill="#333" fill-opacity="0.45"/>
+<line x1="110.0" y1="172.0" x2="110.0" y2="208.0" stroke="#000" stroke-width="2"/>
+<text x="100" y="254.0" text-anchor="end">DRP_eta0 (n=5)</text>
+<circle cx="110.0" cy="242.2" r="2.2" fill="#333" fill-opacity="0.45"/>
+<circle cx="110.0" cy="258.7" r="2.2" fill="#333" fill-opacity="0.45"/>
+<circle cx="110.0" cy="251.0" r="2.2" fill="#333" fill-opacity="0.45"/>
+<circle cx="110.0" cy="245.2" r="2.2" fill="#333" fill-opacity="0.45"/>
+<circle cx="110.0" cy="248.1" r="2.2" fill="#333" fill-opacity="0.45"/>
+<line x1="110.0" y1="232.0" x2="110.0" y2="268.0" stroke="#000" stroke-width="2"/>
+<line x1="110" y1="290" x2="730" y2="290" stroke="#333"/>
+<line x1="110.0" y1="290" x2="110.0" y2="295" stroke="#333"/>
+<text x="110.0" y="308" text-anchor="middle">0</text>
+<line x1="234.0" y1="290" x2="234.0" y2="295" stroke="#333"/>
+<text x="234.0" y="308" text-anchor="middle">3,614</text>
+<line x1="358.0" y1="290" x2="358.0" y2="295" stroke="#333"/>
+<text x="358.0" y="308" text-anchor="middle">7,227</text>
+<line x1="482.0" y1="290" x2="482.0" y2="295" stroke="#333"/>
+<text x="482.0" y="308" text-anchor="middle">10,841</text>
+<line x1="606.0" y1="290" x2="606.0" y2="295" stroke="#333"/>
+<text x="606.0" y="308" text-anchor="middle">14,455</text>
+<line x1="730.0" y1="290" x2="730.0" y2="295" stroke="#333"/>
+<text x="730.0" y="308" text-anchor="middle">18,069</text>
+</svg>

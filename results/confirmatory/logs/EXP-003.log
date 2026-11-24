@@ -1,0 +1,2 @@
+CONFIRMATORY run set EXP-003-con-config-20261124T233547Z: 162000 tuning + 96000 evaluation runs, 0 failed, 161.11 s, peak RSS 587.0 MiB
+wrote results/raw/confirmatory/EXP-003-con-config-20261124T233547Z/result.json

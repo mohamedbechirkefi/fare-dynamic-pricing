@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="214" viewBox="0 0 820 214" role="img" aria-labelledby="t d" font-family="Helvetica, Arial, sans-serif" font-size="11">
+<!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
+<title id="t">EXP-001: paired revenue differences with intervals (confirmatory)</title><desc id="d">Interval plot. base OCC vs FIX: mean 407.04, interval [373.17, 440.17], n 4000; base DRP vs FIX: mean 462.08, interval [426.03, 498.13], n 4000; base OCC vs FIX6: mean 816.60, interval [789.75, 843.30], n 4000; base DRP vs FIX6: mean 871.64, interval [836.47, 905.82], n 4000</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="10" y="22" font-size="13" font-weight="bold">EXP-001: paired revenue differences with intervals (confirmatory)</text>
+<line x1="329.3" y1="42" x2="329.3" y2="154" stroke="#999" stroke-dasharray="4 3"/>
+<rect x="274.1" y="54.0" width="110.4" height="18" fill="#dddddd" fill-opacity="0.6"/>
+<text x="242" y="67.0" text-anchor="end">base: OCC vs FIX (n=4000, 97.5%)</text>
+<line x1="505.0" y1="63.0" x2="536.6" y2="63.0" stroke="#1f6f8b" stroke-width="2.5"/>
+<circle cx="521.0" cy="63.0" r="4" fill="#1f6f8b"/>
+<rect x="274.1" y="80.0" width="110.4" height="18" fill="#dddddd" fill-opacity="0.6"/>
+<text x="242" y="93.0" text-anchor="end">base: DRP vs FIX (n=4000, 97.5%)</text>
+<line x1="529.9" y1="89.0" x2="563.9" y2="89.0" stroke="#b5562b" stroke-width="2.5"/>
+<circle cx="546.9" cy="89.0" r="4" fill="#b5562b"/>
+<rect x="274.1" y="106.0" width="110.4" height="18" fill="#dddddd" fill-opacity="0.6"/>
+<text x="242" y="119.0" text-anchor="end">base: OCC vs FIX6 (n=4000, 97.5%)</text>
+<line x1="701.2" y1="115.0" x2="726.5" y2="115.0" stroke="#1f6f8b" stroke-width="2.5"/>
+<circle cx="713.9" cy="115.0" r="4" fill="#1f6f8b"/>
+<rect x="274.1" y="132.0" width="110.4" height="18" fill="#dddddd" fill-opacity="0.6"/>
+<text x="242" y="145.0" text-anchor="end">base: DRP vs FIX6 (n=4000, 97.5%)</text>
+<line x1="723.2" y1="141.0" x2="755.9" y2="141.0" stroke="#b5562b" stroke-width="2.5"/>
+<circle cx="739.8" cy="141.0" r="4" fill="#b5562b"/>
+<line x1="250" y1="162" x2="780" y2="162" stroke="#333"/>
+<line x1="250.0" y1="162" x2="250.0" y2="167" stroke="#333"/>
+<text x="250.0" y="180" text-anchor="middle">-168</text>
+<line x1="356.0" y1="162" x2="356.0" y2="167" stroke="#333"/>
+<text x="356.0" y="180" text-anchor="middle">57</text>
+<line x1="462.0" y1="162" x2="462.0" y2="167" stroke="#333"/>
+<text x="462.0" y="180" text-anchor="middle">282</text>
+<line x1="568.0" y1="162" x2="568.0" y2="167" stroke="#333"/>
+<text x="568.0" y="180" text-anchor="middle">507</text>
+<line x1="674.0" y1="162" x2="674.0" y2="167" stroke="#333"/>
+<text x="674.0" y="180" text-anchor="middle">732</text>
+<line x1="780.0" y1="162" x2="780.0" y2="167" stroke="#333"/>
+<text x="780.0" y="180" text-anchor="middle">957</text>
+<text x="515.0" y="200" text-anchor="middle">mean paired revenue difference (currency per season); bar = paired percentile bootstrap interval; grey band = +/- SESOI (1% of mean FIX revenue in the cell)</text>
+</svg>
