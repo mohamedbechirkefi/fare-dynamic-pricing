@@ -1,14 +1,14 @@
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
 # FARE roadmap
 
-Updated 2026-11-24 (M0 session). Effort is a planning estimate in focused days (five-day target). Section 11.6 additions of the master prompt are included and mandatory.
+Updated 2026-11-24 (M2 session). Effort is a planning estimate in focused days (five-day target). Section 11.6 additions of the master prompt are included and mandatory.
 
 | ID | Milestone | Depends on | Priority | Effort | Status | Blockers |
 |---|---|---|---|---|---|---|
 | M0 | Bootstrap and feasibility | none | P0 | 0.5 d | done pending owner review (see acceptance) | none |
 | M1 | Research and preregistration | M0 | P0 | 0.5 d | in progress: drafts written; freeze pending | owner freeze (G-FREEZE) of research/protocol.md and EXP-001..003 |
-| M2 | Core implementation | M1 drafts (implementation may start before the freeze) | P0 | 1 d | not started | none |
-| M3 | Experiments | M2 gate; M1 freeze for confirmatory runs | P0 | 0.75 d | not started | owner freeze |
+| M2 | Core implementation | M1 drafts (implementation may start before the freeze) | P0 | 1 d | implemented; acceptance met for the draft protocol (133 tests pass); exploratory smoke and pilot run | owner decisions D-007 may require config and grid changes before M3 |
+| M3 | Experiments | M2 gate; M1 freeze for confirmatory runs | P0 | 0.75 d | not started (exploratory pilot only) | owner freeze; D-007 decisions |
 | M4 | Interpretation | M3 | P0 | 1 d | not started | M3 |
 | M5 | Interactive experience | M2 schemas; M4 verified results for published numbers | P1 (cut first if time is short) | 0.75 d | not started | M4 |
 | M6 | Release candidate | M4, M5 | P0 | 0.5 d | not started | owner approval for any publication (G-PUBLIC) |
@@ -31,6 +31,18 @@ Updated 2026-11-24 (M0 session). Effort is a planning estimate in focused days (
 - Deliverables: demand-stream generator, simulator, FIX baseline first, then OCC and DRP; metrics; runner with CLI (`smoke`, `run`, `report`, `test`); run manifests (runtime, peak memory, OS, CPU, package versions, git revision, config).
 - 11.6 additions: versioned JSON output schemas, reproducibility manifests and report generators built alongside the core.
 - Acceptance: unit, invariant and property tests pass and their actual counts are recorded: stock conservation, price bounds, no-demand state, sold-out state, policy nesting (k = 0, eta = 0 equal FIX exactly), hand-computed examples, golden fixtures, config-to-results integration test, extreme parameters. Correctness before any UI work.
+- Status (2026-11-24, M2 session):
+  - Done:
+    - core package `src/fare`, with the FIX baseline first, then OCC and DRP;
+    - result schema 1.0.0, validated at export and import;
+    - run manifests;
+    - CLI with `smoke`, `run` (refuses confirmatory configs while the protocol is unfrozen), `report` and `test`;
+    - report generator (Markdown, CSV, SVG, pandoc to Typst PDF).
+  - Tests: 133 passed, 0 failed. Every acceptance item above has a test, including Hypothesis property tests and a differential test against a naive reference simulator.
+  - Exploratory smoke and pilots on tuning streams only: J-0002 to J-0005 and `results/exploratory/`.
+  - Open:
+    - the EXP-002 interaction-contrast interval (D-007, item 7);
+    - the owner's decisions on the D-007 amendments (n, tuning streams, grids), which change the planned configs before M3.
 
 ## M3: Experiments
 

@@ -55,4 +55,25 @@ Paths below are those of the owner's machine; adapt them to your installation of
 /Users/bechir/research/labs/.tools/py/bin/python -c "import typst; typst.compile('research/paper/manuscript.typ', output='research/paper/manuscript.pdf')"
 ```
 
-Simulation, test and report commands are added at M2.
+Simulation, test and report commands (M2). The package is imported from `src/` with `PYTHONPATH=src`.
+
+```
+export PYTHONPATH=src
+UV=/Users/bechir/research/labs/.tools/py/bin/uv
+
+# tests (unit, property, golden, differential, integration)
+$UV run --frozen --python /usr/local/bin/python3 python -m fare.cli test
+
+# exploratory smoke run (tuning streams and edge cases only) -> results/exploratory/<run_set_id>/
+$UV run --frozen --python /usr/local/bin/python3 python -m fare.cli smoke
+
+# exploratory pilots (tuning streams only) and their summary
+$UV run --frozen --python /usr/local/bin/python3 python -m fare.cli run --config experiments/exploratory/pilot-exp001.json
+$UV run --frozen --python /usr/local/bin/python3 python experiments/exploratory/pilot_summary.py results/exploratory/*/result.json > results/exploratory/pilot_summary.json
+
+# planned run counts and freeze status; confirmatory configs are refused until the owner freezes the protocol
+$UV run --frozen --python /usr/local/bin/python3 python -m fare.cli run --plan --config research/experiments/EXP-001/config.json
+
+# tables, figures and (optionally) a PDF from a result file
+$UV run --frozen --python /usr/local/bin/python3 python -m fare.cli report --result results/exploratory/<run_set_id>/result.json [--pdf]
+```

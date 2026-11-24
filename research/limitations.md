@@ -12,3 +12,5 @@ No results exist yet. These are limitations known at design time; the list is ex
 7. **No costs.** No marginal, holding or salvage values beyond zero salvage at the deadline.
 8. **Toolchain.** No TeX distribution: LaTeX output is generated but not compiled locally; PDFs come from the Typst path.
 9. **Literature search is targeted, not systematic.** No novelty claim is made.
+10. **Tuning grids may bind.** In the exploratory pilot (J-0003 to J-0005), the tuned DRP and OCC sensitivities sit at grid edges in every cell. Unless the grids change before the freeze (D-007), the comparison partly reflects the grid choice.
+11. **Unspecified design details.** These details are implementation choices (D-006), not empirically grounded: the arrival-profile shape, the within-period arrival order and the DRP target-rate reading.

@@ -1,0 +1,111 @@
+{
+ "experiment_id": "EXP-002",
+ "experiment_number": 2,
+ "label": "exploratory",
+ "mode": "tuned",
+ "base_scenario": {},
+ "families": [
+  "FIX",
+  "OCC",
+  "DRP"
+ ],
+ "grid": {
+  "lo": 40.0,
+  "hi": 400.0,
+  "fix_n": 36,
+  "p0_n": 9
+ },
+ "tune_streams": {
+  "role": 0,
+  "start": 0,
+  "count": 50
+ },
+ "eval_streams": {
+  "role": 0,
+  "start": 50,
+  "count": 50
+ },
+ "bootstrap": {
+  "resamples": 10000,
+  "seed": 20261124,
+  "primary_level": 0.95,
+  "secondary_level": 0.95
+ },
+ "sesoi_fraction": 0.01,
+ "note": "EXPLORATORY PILOT for EXP-002, run before the owner's freeze. Tuning streams only: policies are tuned on tuning streams 0-49 and evaluated on tuning streams 50-99; evaluation streams (role 1) are never generated. Purpose: runtime per run, projected full-matrix time, spread of paired differences between streams (seed-count adequacy) and degenerate cells or grid-edge optima. Not evidence and never reported as a finding.",
+ "fix_coarse_sensitivity": false,
+ "cells": [
+  {
+   "id": "sv0.25-k1.0",
+   "index": 0,
+   "scenario": {
+    "sigma_v": 0.25,
+    "kappa": 1.0
+   }
+  },
+  {
+   "id": "sv0.25-k2.0",
+   "index": 1,
+   "scenario": {
+    "sigma_v": 0.25,
+    "kappa": 2.0
+   }
+  },
+  {
+   "id": "sv0.25-k4.0",
+   "index": 2,
+   "scenario": {
+    "sigma_v": 0.25,
+    "kappa": 4.0
+   }
+  },
+  {
+   "id": "sv0.5-k1.0",
+   "index": 3,
+   "scenario": {
+    "sigma_v": 0.5,
+    "kappa": 1.0
+   }
+  },
+  {
+   "id": "sv0.5-k2.0",
+   "index": 4,
+   "scenario": {
+    "sigma_v": 0.5,
+    "kappa": 2.0
+   }
+  },
+  {
+   "id": "sv0.5-k4.0",
+   "index": 5,
+   "scenario": {
+    "sigma_v": 0.5,
+    "kappa": 4.0
+   }
+  },
+  {
+   "id": "sv1.0-k1.0",
+   "index": 6,
+   "scenario": {
+    "sigma_v": 1.0,
+    "kappa": 1.0
+   }
+  },
+  {
+   "id": "sv1.0-k2.0",
+   "index": 7,
+   "scenario": {
+    "sigma_v": 1.0,
+    "kappa": 2.0
+   }
+  },
+  {
+   "id": "sv1.0-k4.0",
+   "index": 8,
+   "scenario": {
+    "sigma_v": 1.0,
+    "kappa": 4.0
+   }
+  }
+ ]
+}

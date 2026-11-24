@@ -1,4 +1,9 @@
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
 # experiments/
 
-Experiment configurations and runner entry points (planned for M2/M3). Protocols and reports live in `research/experiments/EXP-NNN/`. Empty at M0.
+Run configurations.
+
+- `smoke.json` is the exploratory smoke matrix.
+- `exploratory/pilot-exp00N.json` are the pre-freeze pilots, on tuning streams only. `exploratory/pilot_summary.py` summarises their results.
+
+The planned confirmatory configs live next to their protocols in `research/experiments/EXP-NNN/config.json`.

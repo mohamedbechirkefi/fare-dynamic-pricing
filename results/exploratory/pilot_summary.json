@@ -1,0 +1,1869 @@
+{
+ "label": "EXPLORATORY (pre-freeze; not evidence)",
+ "results": [
+  {
+   "run_set_id": "EXP-001-exp-pilot-exp001-20261124T161050Z",
+   "label": "exploratory",
+   "experiment_id": "EXP-001",
+   "failures": 0,
+   "cells": [
+    {
+     "cell_id": "base",
+     "grid_edge_optima": [
+      {
+       "arm": "OCC",
+       "selected": {
+        "family": "OCC",
+        "params": {
+         "p0": 126.49110640673521,
+         "k": 4.0
+        }
+       }
+      },
+      {
+       "arm": "DRP",
+       "selected": {
+        "family": "DRP",
+        "params": {
+         "p0": 94.85494822646623,
+         "eta": 0.1,
+         "weight": 0.3
+        }
+       }
+      }
+     ],
+     "FIX_revenue_mean": 11593.230605952143,
+     "FIX_revenue_sd_between_streams": 2351.0547712096427,
+     "FIX_sell_through_mean": 0.8303999999999999,
+     "FIX_share_streams_sold_out": 0.3,
+     "arm_spread": {
+      "FIX": {
+       "n": 50,
+       "revenue_mean": 11593.230605952143,
+       "revenue_sd": 2351.0547712096427,
+       "sell_through_mean": 0.8303999999999999,
+       "price_volatility_mean": 0.0
+      },
+      "OCC": {
+       "n": 50,
+       "revenue_mean": 12129.642364432322,
+       "revenue_sd": 2329.07187816231,
+       "sell_through_mean": 0.9634,
+       "price_volatility_mean": 0.04473672316384181
+      },
+      "DRP": {
+       "n": 50,
+       "revenue_mean": 12108.701284178716,
+       "revenue_sd": 2490.5496286645553,
+       "sell_through_mean": 0.9828,
+       "price_volatility_mean": 0.028948286883494753
+      },
+      "FIX9": {
+       "n": 50,
+       "revenue_mean": 11475.273173219019,
+       "revenue_sd": 1753.8370761835095,
+       "sell_through_mean": 0.9072,
+       "price_volatility_mean": 0.0
+      }
+     },
+     "paired_revenue": [
+      {
+       "arm": "OCC",
+       "n": 50,
+       "sd_diff": 654.826201123993,
+       "abs_d_z": 0.8191666087267755,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 115.93230605952144,
+       "required_n_for_sesoi": {
+        "0.8": 304,
+        "0.89": 384
+       }
+      },
+      {
+       "arm": "DRP",
+       "n": 50,
+       "sd_diff": 871.1222003666481,
+       "abs_d_z": 0.5917317662316691,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 115.93230605952144,
+       "required_n_for_sesoi": {
+        "0.8": 537,
+        "0.89": 680
+       }
+      }
+     ]
+    }
+   ],
+   "timing": {
+    "wall_s": 0.46940591700149525,
+    "peak_rss_mib": 51.578125,
+    "tuning_ms_per_run": 0.05393098273516521,
+    "eval_ms_per_run_incl_metrics": 0.19068791500103544,
+    "stream_generation_s": 0.05685049900057493,
+    "tuning_runs": 5850,
+    "eval_runs": 200
+   }
+  },
+  {
+   "run_set_id": "EXP-001-exp-smoke-20261124T161050Z",
+   "label": "exploratory",
+   "experiment_id": "EXP-001",
+   "failures": 0,
+   "cells": [
+    {
+     "cell_id": "base",
+     "grid_edge_optima": [],
+     "FIX_revenue_mean": 10560.0,
+     "FIX_revenue_sd_between_streams": 3521.966780081834,
+     "FIX_sell_through_mean": 0.704,
+     "FIX_share_streams_sold_out": 0.2,
+     "arm_spread": {
+      "FIX": {
+       "n": 5,
+       "revenue_mean": 10560.0,
+       "revenue_sd": 3521.966780081834,
+       "sell_through_mean": 0.704,
+       "price_volatility_mean": 0.0
+      },
+      "OCC": {
+       "n": 5,
+       "revenue_mean": 10622.795505679227,
+       "revenue_sd": 3930.897058463064,
+       "sell_through_mean": 0.78,
+       "price_volatility_mean": 0.010587570621468912
+      },
+      "DRP": {
+       "n": 5,
+       "revenue_mean": 11085.845372409243,
+       "revenue_sd": 4574.268968047949,
+       "sell_through_mean": 0.9620000000000001,
+       "price_volatility_mean": 0.05927496514114167
+      },
+      "OCC_k0": {
+       "n": 5,
+       "revenue_mean": 10560.0,
+       "revenue_sd": 3521.966780081834,
+       "sell_through_mean": 0.704,
+       "price_volatility_mean": 0.0
+      },
+      "DRP_eta0": {
+       "n": 5,
+       "revenue_mean": 10560.0,
+       "revenue_sd": 3521.966780081834,
+       "sell_through_mean": 0.704,
+       "price_volatility_mean": 0.0
+      }
+     },
+     "paired_revenue": [
+      {
+       "arm": "OCC",
+       "n": 5,
+       "sd_diff": 421.0360646969857,
+       "abs_d_z": 0.14914519430638237,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 105.60000000000001,
+       "required_n_for_sesoi": {
+        "0.8": 152,
+        "0.89": 192
+       }
+      },
+      {
+       "arm": "DRP",
+       "n": 5,
+       "sd_diff": 1411.4841426859236,
+       "abs_d_z": 0.3725478427328325,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 105.60000000000001,
+       "required_n_for_sesoi": {
+        "0.8": 1699,
+        "0.89": 2149
+       }
+      },
+      {
+       "arm": "OCC_k0",
+       "n": 5,
+       "sd_diff": 0.0,
+       "abs_d_z": null,
+       "degenerate_all_zero": true
+      },
+      {
+       "arm": "DRP_eta0",
+       "n": 5,
+       "sd_diff": 0.0,
+       "abs_d_z": null,
+       "degenerate_all_zero": true
+      }
+     ]
+    },
+    {
+     "cell_id": "edge-zero-demand",
+     "grid_edge_optima": [],
+     "FIX_revenue_mean": 0.0,
+     "FIX_revenue_sd_between_streams": 0.0,
+     "FIX_sell_through_mean": 0.0,
+     "FIX_share_streams_sold_out": 0.0,
+     "arm_spread": {
+      "FIX": {
+       "n": 5,
+       "revenue_mean": 0.0,
+       "revenue_sd": 0.0,
+       "sell_through_mean": 0.0,
+       "price_volatility_mean": 0.0
+      },
+      "OCC": {
+       "n": 5,
+       "revenue_mean": 0.0,
+       "revenue_sd": 0.0,
+       "sell_through_mean": 0.0,
+       "price_volatility_mean": 0.016666666666666666
+      },
+      "DRP": {
+       "n": 5,
+       "revenue_mean": 0.0,
+       "revenue_sd": 0.0,
+       "sell_through_mean": 0.0,
+       "price_volatility_mean": 0.02727860868532373
+      },
+      "OCC_k0": {
+       "n": 5,
+       "revenue_mean": 0.0,
+       "revenue_sd": 0.0,
+       "sell_through_mean": 0.0,
+       "price_volatility_mean": 0.0
+      },
+      "DRP_eta0": {
+       "n": 5,
+       "revenue_mean": 0.0,
+       "revenue_sd": 0.0,
+       "sell_through_mean": 0.0,
+       "price_volatility_mean": 0.0
+      }
+     },
+     "paired_revenue": [
+      {
+       "arm": "OCC",
+       "n": 5,
+       "sd_diff": 0.0,
+       "abs_d_z": null,
+       "degenerate_all_zero": true
+      },
+      {
+       "arm": "DRP",
+       "n": 5,
+       "sd_diff": 0.0,
+       "abs_d_z": null,
+       "degenerate_all_zero": true
+      },
+      {
+       "arm": "OCC_k0",
+       "n": 5,
+       "sd_diff": 0.0,
+       "abs_d_z": null,
+       "degenerate_all_zero": true
+      },
+      {
+       "arm": "DRP_eta0",
+       "n": 5,
+       "sd_diff": 0.0,
+       "abs_d_z": null,
+       "degenerate_all_zero": true
+      }
+     ]
+    },
+    {
+     "cell_id": "edge-C1",
+     "grid_edge_optima": [],
+     "FIX_revenue_mean": 90.0,
+     "FIX_revenue_sd_between_streams": 82.15838362577492,
+     "FIX_sell_through_mean": 0.6,
+     "FIX_share_streams_sold_out": 0.6,
+     "arm_spread": {
+      "FIX": {
+       "n": 5,
+       "revenue_mean": 90.0,
+       "revenue_sd": 82.15838362577492,
+       "sell_through_mean": 0.6,
+       "price_volatility_mean": 0.0
+      },
+      "OCC": {
+       "n": 5,
+       "revenue_mean": 56.703680570873985,
+       "revenue_sd": 53.89071715392985,
+       "sell_through_mean": 0.6,
+       "price_volatility_mean": 0.02649717514124294
+      },
+      "DRP": {
+       "n": 5,
+       "revenue_mean": 66.23057384295502,
+       "revenue_sd": 62.27963403658179,
+       "sell_through_mean": 0.6,
+       "price_volatility_mean": 0.01824876932813433
+      },
+      "OCC_k0": {
+       "n": 5,
+       "revenue_mean": 90.0,
+       "revenue_sd": 82.15838362577492,
+       "sell_through_mean": 0.6,
+       "price_volatility_mean": 0.0
+      },
+      "DRP_eta0": {
+       "n": 5,
+       "revenue_mean": 90.0,
+       "revenue_sd": 82.15838362577492,
+       "sell_through_mean": 0.6,
+       "price_volatility_mean": 0.0
+      }
+     },
+     "paired_revenue": [
+      {
+       "arm": "OCC",
+       "n": 5,
+       "sd_diff": 33.89184724581668,
+       "abs_d_z": 0.9824285819426921,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 0.9,
+       "required_n_for_sesoi": {
+        "0.8": 13480,
+        "0.89": 17055
+       }
+      },
+      {
+       "arm": "DRP",
+       "n": 5,
+       "sd_diff": 26.347044222973157,
+       "abs_d_z": 0.9021667081850251,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 0.9,
+       "required_n_for_sesoi": {
+        "0.8": 8146,
+        "0.89": 10307
+       }
+      },
+      {
+       "arm": "OCC_k0",
+       "n": 5,
+       "sd_diff": 0.0,
+       "abs_d_z": null,
+       "degenerate_all_zero": true
+      },
+      {
+       "arm": "DRP_eta0",
+       "n": 5,
+       "sd_diff": 0.0,
+       "abs_d_z": null,
+       "degenerate_all_zero": true
+      }
+     ]
+    },
+    {
+     "cell_id": "edge-valuations-below-pmin",
+     "grid_edge_optima": [],
+     "FIX_revenue_mean": 0.0,
+     "FIX_revenue_sd_between_streams": 0.0,
+     "FIX_sell_through_mean": 0.0,
+     "FIX_share_streams_sold_out": 0.0,
+     "arm_spread": {
+      "FIX": {
+       "n": 5,
+       "revenue_mean": 0.0,
+       "revenue_sd": 0.0,
+       "sell_through_mean": 0.0,
+       "price_volatility_mean": 0.0
+      },
+      "OCC": {
+       "n": 5,
+       "revenue_mean": 0.0,
+       "revenue_sd": 0.0,
+       "sell_through_mean": 0.0,
+       "price_volatility_mean": 0.016666666666666666
+      },
+      "DRP": {
+       "n": 5,
+       "revenue_mean": 0.0,
+       "revenue_sd": 0.0,
+       "sell_through_mean": 0.0,
+       "price_volatility_mean": 0.02727860868532373
+      },
+      "OCC_k0": {
+       "n": 5,
+       "revenue_mean": 0.0,
+       "revenue_sd": 0.0,
+       "sell_through_mean": 0.0,
+       "price_volatility_mean": 0.0
+      },
+      "DRP_eta0": {
+       "n": 5,
+       "revenue_mean": 0.0,
+       "revenue_sd": 0.0,
+       "sell_through_mean": 0.0,
+       "price_volatility_mean": 0.0
+      }
+     },
+     "paired_revenue": [
+      {
+       "arm": "OCC",
+       "n": 5,
+       "sd_diff": 0.0,
+       "abs_d_z": null,
+       "degenerate_all_zero": true
+      },
+      {
+       "arm": "DRP",
+       "n": 5,
+       "sd_diff": 0.0,
+       "abs_d_z": null,
+       "degenerate_all_zero": true
+      },
+      {
+       "arm": "OCC_k0",
+       "n": 5,
+       "sd_diff": 0.0,
+       "abs_d_z": null,
+       "degenerate_all_zero": true
+      },
+      {
+       "arm": "DRP_eta0",
+       "n": 5,
+       "sd_diff": 0.0,
+       "abs_d_z": null,
+       "degenerate_all_zero": true
+      }
+     ]
+    },
+    {
+     "cell_id": "edge-kappa20",
+     "grid_edge_optima": [],
+     "FIX_revenue_mean": 15000.0,
+     "FIX_revenue_sd_between_streams": 0.0,
+     "FIX_sell_through_mean": 1.0,
+     "FIX_share_streams_sold_out": 1.0,
+     "arm_spread": {
+      "FIX": {
+       "n": 5,
+       "revenue_mean": 15000.0,
+       "revenue_sd": 0.0,
+       "sell_through_mean": 1.0,
+       "price_volatility_mean": 0.0
+      },
+      "OCC": {
+       "n": 5,
+       "revenue_mean": 20886.139067268923,
+       "revenue_sd": 753.3974849943795,
+       "sell_through_mean": 1.0,
+       "price_volatility_mean": 0.021073446327683633
+      },
+      "DRP": {
+       "n": 5,
+       "revenue_mean": 30234.38067702573,
+       "revenue_sd": 2559.645731493182,
+       "sell_through_mean": 0.9960000000000001,
+       "price_volatility_mean": 0.0743664086361481
+      },
+      "OCC_k0": {
+       "n": 5,
+       "revenue_mean": 15000.0,
+       "revenue_sd": 0.0,
+       "sell_through_mean": 1.0,
+       "price_volatility_mean": 0.0
+      },
+      "DRP_eta0": {
+       "n": 5,
+       "revenue_mean": 15000.0,
+       "revenue_sd": 0.0,
+       "sell_through_mean": 1.0,
+       "price_volatility_mean": 0.0
+      }
+     },
+     "paired_revenue": [
+      {
+       "arm": "OCC",
+       "n": 5,
+       "sd_diff": 753.3974849943795,
+       "abs_d_z": 7.81279362422193,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 150.0,
+       "required_n_for_sesoi": {
+        "0.8": 240,
+        "0.89": 304
+       }
+      },
+      {
+       "arm": "DRP",
+       "n": 5,
+       "sd_diff": 2559.645731493182,
+       "abs_d_z": 5.9517535921420945,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 150.0,
+       "required_n_for_sesoi": {
+        "0.8": 2768,
+        "0.89": 3503
+       }
+      },
+      {
+       "arm": "OCC_k0",
+       "n": 5,
+       "sd_diff": 0.0,
+       "abs_d_z": null,
+       "degenerate_all_zero": true
+      },
+      {
+       "arm": "DRP_eta0",
+       "n": 5,
+       "sd_diff": 0.0,
+       "abs_d_z": null,
+       "degenerate_all_zero": true
+      }
+     ]
+    }
+   ],
+   "timing": {
+    "wall_s": 0.09295262500017998,
+    "peak_rss_mib": 43.625,
+    "tuning_ms_per_run": null,
+    "eval_ms_per_run_incl_metrics": 0.17213933599123266,
+    "stream_generation_s": 0.016246751003563986,
+    "tuning_runs": 0,
+    "eval_runs": 125
+   }
+  },
+  {
+   "run_set_id": "EXP-002-exp-pilot-exp002-20261124T161051Z",
+   "label": "exploratory",
+   "experiment_id": "EXP-002",
+   "failures": 0,
+   "cells": [
+    {
+     "cell_id": "sv0.25-k1.0",
+     "grid_edge_optima": [
+      {
+       "arm": "OCC",
+       "selected": {
+        "family": "OCC",
+        "params": {
+         "p0": 94.85494822646623,
+         "k": 0.5
+        }
+       }
+      },
+      {
+       "arm": "DRP",
+       "selected": {
+        "family": "DRP",
+        "params": {
+         "p0": 71.1311764015569,
+         "eta": 0.1,
+         "weight": 0.3
+        }
+       }
+      }
+     ],
+     "FIX_revenue_mean": 7172.1313107188835,
+     "FIX_revenue_sd_between_streams": 1419.0491163147553,
+     "FIX_sell_through_mean": 0.8142,
+     "FIX_share_streams_sold_out": 0.26,
+     "arm_spread": {
+      "FIX": {
+       "n": 50,
+       "revenue_mean": 7172.1313107188835,
+       "revenue_sd": 1419.0491163147553,
+       "sell_through_mean": 0.8142,
+       "price_volatility_mean": 0.0
+      },
+      "OCC": {
+       "n": 50,
+       "revenue_mean": 7163.160326706008,
+       "revenue_sd": 1634.7627060465675,
+       "sell_through_mean": 0.7831999999999999,
+       "price_volatility_mean": 0.00542598870056497
+      },
+      "DRP": {
+       "n": 50,
+       "revenue_mean": 6508.355690434002,
+       "revenue_sd": 2222.771136689759,
+       "sell_through_mean": 0.8917999999999999,
+       "price_volatility_mean": 0.025883058293444353
+      }
+     },
+     "paired_revenue": [
+      {
+       "arm": "OCC",
+       "n": 50,
+       "sd_diff": 424.0845486195354,
+       "abs_d_z": 0.02115376295146522,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 71.72131310718883,
+       "required_n_for_sesoi": {
+        "0.8": 333,
+        "0.89": 421
+       }
+      },
+      {
+       "arm": "DRP",
+       "n": 50,
+       "sd_diff": 1027.109390247593,
+       "abs_d_z": 0.6462560138067428,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 71.72131310718883,
+       "required_n_for_sesoi": {
+        "0.8": 1950,
+        "0.89": 2467
+       }
+      }
+     ]
+    },
+    {
+     "cell_id": "sv0.25-k2.0",
+     "grid_edge_optima": [
+      {
+       "arm": "OCC",
+       "selected": {
+        "family": "OCC",
+        "params": {
+         "p0": 126.49110640673521,
+         "k": 4.0
+        }
+       }
+      },
+      {
+       "arm": "DRP",
+       "selected": {
+        "family": "DRP",
+        "params": {
+         "p0": 94.85494822646623,
+         "eta": 0.1,
+         "weight": 0.3
+        }
+       }
+      }
+     ],
+     "FIX_revenue_mean": 10981.547437449191,
+     "FIX_revenue_sd_between_streams": 1860.2127498959508,
+     "FIX_sell_through_mean": 0.8972,
+     "FIX_share_streams_sold_out": 0.54,
+     "arm_spread": {
+      "FIX": {
+       "n": 50,
+       "revenue_mean": 10981.547437449191,
+       "revenue_sd": 1860.2127498959508,
+       "sell_through_mean": 0.8972,
+       "price_volatility_mean": 0.0
+      },
+      "OCC": {
+       "n": 50,
+       "revenue_mean": 11795.631232026202,
+       "revenue_sd": 1898.412856601482,
+       "sell_through_mean": 0.9764,
+       "price_volatility_mean": 0.044949152542372854
+      },
+      "DRP": {
+       "n": 50,
+       "revenue_mean": 11890.254975326825,
+       "revenue_sd": 1827.4013629308572,
+       "sell_through_mean": 0.9894,
+       "price_volatility_mean": 0.02986436951354898
+      }
+     },
+     "paired_revenue": [
+      {
+       "arm": "OCC",
+       "n": 50,
+       "sd_diff": 750.1532434180447,
+       "abs_d_z": 1.0852233216611467,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 109.81547437449191,
+       "required_n_for_sesoi": {
+        "0.8": 444,
+        "0.89": 562
+       }
+      },
+      {
+       "arm": "DRP",
+       "n": 50,
+       "sd_diff": 830.3746455961127,
+       "abs_d_z": 1.0943343979695932,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 109.81547437449191,
+       "required_n_for_sesoi": {
+        "0.8": 544,
+        "0.89": 688
+       }
+      }
+     ]
+    },
+    {
+     "cell_id": "sv0.25-k4.0",
+     "grid_edge_optima": [
+      {
+       "arm": "OCC",
+       "selected": {
+        "family": "OCC",
+        "params": {
+         "p0": 224.9365300761397,
+         "k": 4.0
+        }
+       }
+      },
+      {
+       "arm": "DRP",
+       "selected": {
+        "family": "DRP",
+        "params": {
+         "p0": 126.49110640673521,
+         "eta": 0.1,
+         "weight": 0.3
+        }
+       }
+      }
+     ],
+     "FIX_revenue_mean": 15428.882137715835,
+     "FIX_revenue_sd_between_streams": 2130.8617618382227,
+     "FIX_sell_through_mean": 0.9072,
+     "FIX_share_streams_sold_out": 0.44,
+     "arm_spread": {
+      "FIX": {
+       "n": 50,
+       "revenue_mean": 15428.882137715835,
+       "revenue_sd": 2130.8617618382227,
+       "sell_through_mean": 0.9072,
+       "price_volatility_mean": 0.0
+      },
+      "OCC": {
+       "n": 50,
+       "revenue_mean": 16087.857150971075,
+       "revenue_sd": 1842.6095606338,
+       "sell_through_mean": 0.9732000000000001,
+       "price_volatility_mean": 0.0481175141242938
+      },
+      "DRP": {
+       "n": 50,
+       "revenue_mean": 15753.941948411053,
+       "revenue_sd": 1481.4607081364284,
+       "sell_through_mean": 0.9974000000000001,
+       "price_volatility_mean": 0.028868942052861894
+      }
+     },
+     "paired_revenue": [
+      {
+       "arm": "OCC",
+       "n": 50,
+       "sd_diff": 1042.9688765880883,
+       "abs_d_z": 0.6318261532510708,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 154.28882137715834,
+       "required_n_for_sesoi": {
+        "0.8": 435,
+        "0.89": 550
+       }
+      },
+      {
+       "arm": "DRP",
+       "n": 50,
+       "sd_diff": 1230.7430236120476,
+       "abs_d_z": 0.26411672011044157,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 154.28882137715834,
+       "required_n_for_sesoi": {
+        "0.8": 605,
+        "0.89": 766
+       }
+      }
+     ]
+    },
+    {
+     "cell_id": "sv0.5-k1.0",
+     "grid_edge_optima": [
+      {
+       "arm": "OCC",
+       "selected": {
+        "family": "OCC",
+        "params": {
+         "p0": 94.85494822646623,
+         "k": 0.5
+        }
+       }
+      },
+      {
+       "arm": "DRP",
+       "selected": {
+        "family": "DRP",
+        "params": {
+         "p0": 71.1311764015569,
+         "eta": 0.1,
+         "weight": 0.3
+        }
+       }
+      }
+     ],
+     "FIX_revenue_mean": 6643.437234056539,
+     "FIX_revenue_sd_between_streams": 1785.126203976796,
+     "FIX_sell_through_mean": 0.6612,
+     "FIX_share_streams_sold_out": 0.1,
+     "arm_spread": {
+      "FIX": {
+       "n": 50,
+       "revenue_mean": 6643.437234056539,
+       "revenue_sd": 1785.126203976796,
+       "sell_through_mean": 0.6612,
+       "price_volatility_mean": 0.0
+      },
+      "OCC": {
+       "n": 50,
+       "revenue_mean": 6589.142572042525,
+       "revenue_sd": 1797.4958296367583,
+       "sell_through_mean": 0.7266000000000001,
+       "price_volatility_mean": 0.005420338983050847
+      },
+      "DRP": {
+       "n": 50,
+       "revenue_mean": 5738.782689378293,
+       "revenue_sd": 2575.830809954896,
+       "sell_through_mean": 0.8534,
+       "price_volatility_mean": 0.024709394975915403
+      }
+     },
+     "paired_revenue": [
+      {
+       "arm": "OCC",
+       "n": 50,
+       "sd_diff": 229.43337429528094,
+       "abs_d_z": 0.23664674845489403,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 66.43437234056539,
+       "required_n_for_sesoi": {
+        "0.8": 114,
+        "0.89": 144
+       }
+      },
+      {
+       "arm": "DRP",
+       "n": 50,
+       "sd_diff": 1001.8170703390359,
+       "abs_d_z": 0.9030137052586761,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 66.43437234056539,
+       "required_n_for_sesoi": {
+        "0.8": 2162,
+        "0.89": 2735
+       }
+      }
+     ]
+    },
+    {
+     "cell_id": "sv0.5-k2.0",
+     "grid_edge_optima": [
+      {
+       "arm": "OCC",
+       "selected": {
+        "family": "OCC",
+        "params": {
+         "p0": 126.49110640673521,
+         "k": 4.0
+        }
+       }
+      },
+      {
+       "arm": "DRP",
+       "selected": {
+        "family": "DRP",
+        "params": {
+         "p0": 94.85494822646623,
+         "eta": 0.1,
+         "weight": 0.3
+        }
+       }
+      }
+     ],
+     "FIX_revenue_mean": 11550.516712011151,
+     "FIX_revenue_sd_between_streams": 1955.34174491062,
+     "FIX_sell_through_mean": 0.8835999999999999,
+     "FIX_share_streams_sold_out": 0.4,
+     "arm_spread": {
+      "FIX": {
+       "n": 50,
+       "revenue_mean": 11550.516712011151,
+       "revenue_sd": 1955.34174491062,
+       "sell_through_mean": 0.8835999999999999,
+       "price_volatility_mean": 0.0
+      },
+      "OCC": {
+       "n": 50,
+       "revenue_mean": 12160.73902465566,
+       "revenue_sd": 2681.7606878441247,
+       "sell_through_mean": 0.9666,
+       "price_volatility_mean": 0.04344858757062148
+      },
+      "DRP": {
+       "n": 50,
+       "revenue_mean": 12103.564453377383,
+       "revenue_sd": 2866.204437038016,
+       "sell_through_mean": 0.9889999999999999,
+       "price_volatility_mean": 0.029607723795042572
+      }
+     },
+     "paired_revenue": [
+      {
+       "arm": "OCC",
+       "n": 50,
+       "sd_diff": 1289.1102588846252,
+       "abs_d_z": 0.47336704400482577,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 115.50516712011151,
+       "required_n_for_sesoi": {
+        "0.8": 1184,
+        "0.89": 1499
+       }
+      },
+      {
+       "arm": "DRP",
+       "n": 50,
+       "sd_diff": 1482.8126852249757,
+       "abs_d_z": 0.3729720866815515,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 115.50516712011151,
+       "required_n_for_sesoi": {
+        "0.8": 1567,
+        "0.89": 1983
+       }
+      }
+     ]
+    },
+    {
+     "cell_id": "sv0.5-k4.0",
+     "grid_edge_optima": [
+      {
+       "arm": "OCC",
+       "selected": {
+        "family": "OCC",
+        "params": {
+         "p0": 224.9365300761397,
+         "k": 4.0
+        }
+       }
+      },
+      {
+       "arm": "DRP",
+       "selected": {
+        "family": "DRP",
+        "params": {
+         "p0": 168.67860137143293,
+         "eta": 0.1,
+         "weight": 0.3
+        }
+       }
+      }
+     ],
+     "FIX_revenue_mean": 17361.90247413094,
+     "FIX_revenue_sd_between_streams": 2821.85181038084,
+     "FIX_sell_through_mean": 0.895,
+     "FIX_share_streams_sold_out": 0.46,
+     "arm_spread": {
+      "FIX": {
+       "n": 50,
+       "revenue_mean": 17361.90247413094,
+       "revenue_sd": 2821.85181038084,
+       "sell_through_mean": 0.895,
+       "price_volatility_mean": 0.0
+      },
+      "OCC": {
+       "n": 50,
+       "revenue_mean": 18392.47165834313,
+       "revenue_sd": 2446.627241403036,
+       "sell_through_mean": 0.9778,
+       "price_volatility_mean": 0.04602033898305085
+      },
+      "DRP": {
+       "n": 50,
+       "revenue_mean": 18188.776293587005,
+       "revenue_sd": 2291.765761468197,
+       "sell_through_mean": 0.9934000000000001,
+       "price_volatility_mean": 0.028368725190767264
+      }
+     },
+     "paired_revenue": [
+      {
+       "arm": "OCC",
+       "n": 50,
+       "sd_diff": 1121.8834376193595,
+       "abs_d_z": 0.9186062915761157,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 173.6190247413094,
+       "required_n_for_sesoi": {
+        "0.8": 397,
+        "0.89": 503
+       }
+      },
+      {
+       "arm": "DRP",
+       "n": 50,
+       "sd_diff": 1329.8146518856631,
+       "abs_d_z": 0.6217962918994482,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 173.6190247413094,
+       "required_n_for_sesoi": {
+        "0.8": 558,
+        "0.89": 706
+       }
+      }
+     ]
+    },
+    {
+     "cell_id": "sv1.0-k1.0",
+     "grid_edge_optima": [
+      {
+       "arm": "OCC",
+       "selected": {
+        "family": "OCC",
+        "params": {
+         "p0": 224.9365300761397,
+         "k": 0.5
+        }
+       }
+      },
+      {
+       "arm": "DRP",
+       "selected": {
+        "family": "DRP",
+        "params": {
+         "p0": 126.49110640673521,
+         "eta": 0.1,
+         "weight": 0.3
+        }
+       }
+      }
+     ],
+     "FIX_revenue_mean": 7077.23420170153,
+     "FIX_revenue_sd_between_streams": 2666.477650030153,
+     "FIX_sell_through_mean": 0.3416,
+     "FIX_share_streams_sold_out": 0.0,
+     "arm_spread": {
+      "FIX": {
+       "n": 50,
+       "revenue_mean": 7077.23420170153,
+       "revenue_sd": 2666.477650030153,
+       "sell_through_mean": 0.3416,
+       "price_volatility_mean": 0.0
+      },
+      "OCC": {
+       "n": 50,
+       "revenue_mean": 6997.175031817281,
+       "revenue_sd": 2589.519972045034,
+       "sell_through_mean": 0.3608,
+       "price_volatility_mean": 0.006224858757062155
+      },
+      "DRP": {
+       "n": 50,
+       "revenue_mean": 5050.0650350432625,
+       "revenue_sd": 2537.1539893318095,
+       "sell_through_mean": 0.7352000000000001,
+       "price_volatility_mean": 0.026995520225385528
+      }
+     },
+     "paired_revenue": [
+      {
+       "arm": "OCC",
+       "n": 50,
+       "sd_diff": 330.0019764565452,
+       "abs_d_z": 0.24260209209623465,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 70.7723420170153,
+       "required_n_for_sesoi": {
+        "0.8": 207,
+        "0.89": 262
+       }
+      },
+      {
+       "arm": "DRP",
+       "n": 50,
+       "sd_diff": 985.3978489450835,
+       "abs_d_z": 2.057208840904667,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 70.7723420170153,
+       "required_n_for_sesoi": {
+        "0.8": 1843,
+        "0.89": 2332
+       }
+      }
+     ]
+    },
+    {
+     "cell_id": "sv1.0-k2.0",
+     "grid_edge_optima": [
+      {
+       "arm": "OCC",
+       "selected": {
+        "family": "OCC",
+        "params": {
+         "p0": 224.9365300761397,
+         "k": 0.5
+        }
+       }
+      },
+      {
+       "arm": "DRP",
+       "selected": {
+        "family": "DRP",
+        "params": {
+         "p0": 126.49110640673521,
+         "eta": 0.1,
+         "weight": 0.3
+        }
+       }
+      }
+     ],
+     "FIX_revenue_mean": 12965.261017051575,
+     "FIX_revenue_sd_between_streams": 3934.083497085352,
+     "FIX_sell_through_mean": 0.6258,
+     "FIX_share_streams_sold_out": 0.06,
+     "arm_spread": {
+      "FIX": {
+       "n": 50,
+       "revenue_mean": 12965.261017051575,
+       "revenue_sd": 3934.083497085352,
+       "sell_through_mean": 0.6258,
+       "price_volatility_mean": 0.0
+      },
+      "OCC": {
+       "n": 50,
+       "revenue_mean": 13052.7063289036,
+       "revenue_sd": 4152.600791185306,
+       "sell_through_mean": 0.6278,
+       "price_volatility_mean": 0.005512994350282482
+      },
+      "DRP": {
+       "n": 50,
+       "revenue_mean": 12329.15720861868,
+       "revenue_sd": 5001.941655789821,
+       "sell_through_mean": 0.9541999999999998,
+       "price_volatility_mean": 0.028686706849658284
+      }
+     },
+     "paired_revenue": [
+      {
+       "arm": "OCC",
+       "n": 50,
+       "sd_diff": 641.917593663417,
+       "abs_d_z": 0.1362251365521463,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 129.65261017051574,
+       "required_n_for_sesoi": {
+        "0.8": 233,
+        "0.89": 295
+       }
+      },
+      {
+       "arm": "DRP",
+       "n": 50,
+       "sd_diff": 1719.2563433721798,
+       "abs_d_z": 0.36998776295641234,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 129.65261017051574,
+       "required_n_for_sesoi": {
+        "0.8": 1672,
+        "0.89": 2115
+       }
+      }
+     ]
+    },
+    {
+     "cell_id": "sv1.0-k4.0",
+     "grid_edge_optima": [
+      {
+       "arm": "OCC",
+       "selected": {
+        "family": "OCC",
+        "params": {
+         "p0": 299.9576837329824,
+         "k": 4.0
+        }
+       }
+      },
+      {
+       "arm": "DRP",
+       "selected": {
+        "family": "DRP",
+        "params": {
+         "p0": 168.67860137143293,
+         "eta": 0.1,
+         "weight": 0.3
+        }
+       }
+      }
+     ],
+     "FIX_revenue_mean": 25167.84423114236,
+     "FIX_revenue_sd_between_streams": 4349.776157266319,
+     "FIX_sell_through_mean": 0.8186,
+     "FIX_share_streams_sold_out": 0.2,
+     "arm_spread": {
+      "FIX": {
+       "n": 50,
+       "revenue_mean": 25167.84423114236,
+       "revenue_sd": 4349.776157266319,
+       "sell_through_mean": 0.8186,
+       "price_volatility_mean": 0.0
+      },
+      "OCC": {
+       "n": 50,
+       "revenue_mean": 25834.722596612803,
+       "revenue_sd": 4842.342748141801,
+       "sell_through_mean": 0.9595999999999999,
+       "price_volatility_mean": 0.043674576271186434
+      },
+      "DRP": {
+       "n": 50,
+       "revenue_mean": 25591.342311273045,
+       "revenue_sd": 4895.793557731555,
+       "sell_through_mean": 0.9932,
+       "price_volatility_mean": 0.03042968743655012
+      }
+     },
+     "paired_revenue": [
+      {
+       "arm": "OCC",
+       "n": 50,
+       "sd_diff": 2012.940166273571,
+       "abs_d_z": 0.3312956721932725,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 251.67844231142362,
+       "required_n_for_sesoi": {
+        "0.8": 609,
+        "0.89": 770
+       }
+      },
+      {
+       "arm": "DRP",
+       "n": 50,
+       "sd_diff": 2159.8445617762954,
+       "abs_d_z": 0.1960780361816381,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 251.67844231142362,
+       "required_n_for_sesoi": {
+        "0.8": 701,
+        "0.89": 886
+       }
+      }
+     ]
+    }
+   ],
+   "timing": {
+    "wall_s": 3.929692416999387,
+    "peak_rss_mib": 62.09375,
+    "tuning_ms_per_run": 0.057827853230534215,
+    "eval_ms_per_run_incl_metrics": 0.228669196297199,
+    "stream_generation_s": 0.44699345500339405,
+    "tuning_runs": 48600,
+    "eval_runs": 1350
+   }
+  },
+  {
+   "run_set_id": "EXP-003-exp-pilot-exp003-20261124T161055Z",
+   "label": "exploratory",
+   "experiment_id": "EXP-003",
+   "failures": 0,
+   "cells": [
+    {
+     "cell_id": "base-tuning",
+     "grid_edge_optima": [
+      {
+       "arm": "OCC",
+       "selected": {
+        "family": "OCC",
+        "params": {
+         "p0": 126.49110640673521,
+         "k": 4.0
+        }
+       }
+      },
+      {
+       "arm": "DRP",
+       "selected": {
+        "family": "DRP",
+        "params": {
+         "p0": 94.85494822646623,
+         "eta": 0.1,
+         "weight": 0.3
+        }
+       }
+      }
+     ],
+     "arm_spread": {},
+     "paired_revenue": []
+    },
+    {
+     "cell_id": "demand-x0.6",
+     "grid_edge_optima": [
+      {
+       "arm": "OCC",
+       "selected": {
+        "family": "OCC",
+        "params": {
+         "p0": 126.49110640673521,
+         "k": 4.0
+        }
+       }
+      },
+      {
+       "arm": "DRP",
+       "selected": {
+        "family": "DRP",
+        "params": {
+         "p0": 94.85494822646623,
+         "eta": 0.1,
+         "weight": 0.3
+        }
+       }
+      }
+     ],
+     "FIX_revenue_mean": 6935.834495468477,
+     "FIX_revenue_sd_between_streams": 1847.502388203973,
+     "FIX_sell_through_mean": 0.4968000000000001,
+     "FIX_share_streams_sold_out": 0.0,
+     "arm_spread": {
+      "FIX": {
+       "n": 50,
+       "revenue_mean": 6935.834495468477,
+       "revenue_sd": 1847.502388203973,
+       "sell_through_mean": 0.4968000000000001,
+       "price_volatility_mean": 0.0
+      },
+      "OCC": {
+       "n": 50,
+       "revenue_mean": 6999.940492616076,
+       "revenue_sd": 2117.107640318551,
+       "sell_through_mean": 0.8000000000000002,
+       "price_volatility_mean": 0.042091612606840585
+      },
+      "DRP": {
+       "n": 50,
+       "revenue_mean": 6663.041119271755,
+       "revenue_sd": 2421.519610383425,
+       "sell_through_mean": 0.8854000000000001,
+       "price_volatility_mean": 0.02620473032058419
+      },
+      "FIX_retuned": {
+       "n": 50,
+       "revenue_mean": 7524.95187624495,
+       "revenue_sd": 1928.8006262345407,
+       "sell_through_mean": 0.6566,
+       "price_volatility_mean": 0.0
+      }
+     },
+     "paired_revenue": [
+      {
+       "arm": "OCC",
+       "n": 50,
+       "sd_diff": 814.2542661890996,
+       "abs_d_z": 0.07872970374184299,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 69.35834495468477,
+       "required_n_for_sesoi": {
+        "0.8": 1311,
+        "0.89": 1658
+       }
+      },
+      {
+       "arm": "DRP",
+       "n": 50,
+       "sd_diff": 1172.0460907490583,
+       "abs_d_z": 0.23274970016100652,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 69.35834495468477,
+       "required_n_for_sesoi": {
+        "0.8": 2715,
+        "0.89": 3435
+       }
+      }
+     ]
+    },
+    {
+     "cell_id": "demand-x0.8",
+     "grid_edge_optima": [
+      {
+       "arm": "OCC",
+       "selected": {
+        "family": "OCC",
+        "params": {
+         "p0": 126.49110640673521,
+         "k": 4.0
+        }
+       }
+      },
+      {
+       "arm": "DRP",
+       "selected": {
+        "family": "DRP",
+        "params": {
+         "p0": 94.85494822646623,
+         "eta": 0.1,
+         "weight": 0.3
+        }
+       }
+      }
+     ],
+     "FIX_revenue_mean": 9889.986225019866,
+     "FIX_revenue_sd_between_streams": 2405.975390707799,
+     "FIX_sell_through_mean": 0.7083999999999999,
+     "FIX_share_streams_sold_out": 0.06,
+     "arm_spread": {
+      "FIX": {
+       "n": 50,
+       "revenue_mean": 9889.986225019866,
+       "revenue_sd": 2405.975390707799,
+       "sell_through_mean": 0.7083999999999999,
+       "price_volatility_mean": 0.0
+      },
+      "OCC": {
+       "n": 50,
+       "revenue_mean": 10151.048708772692,
+       "revenue_sd": 2381.6074888543453,
+       "sell_through_mean": 0.9174,
+       "price_volatility_mean": 0.0432361581920904
+      },
+      "DRP": {
+       "n": 50,
+       "revenue_mean": 10090.976052684937,
+       "revenue_sd": 2531.206330642988,
+       "sell_through_mean": 0.9670000000000001,
+       "price_volatility_mean": 0.0272959042134947
+      },
+      "FIX_retuned": {
+       "n": 50,
+       "revenue_mean": 10023.69422223874,
+       "revenue_sd": 2300.285157300127,
+       "sell_through_mean": 0.7668,
+       "price_volatility_mean": 0.0
+      }
+     },
+     "paired_revenue": [
+      {
+       "arm": "OCC",
+       "n": 50,
+       "sd_diff": 650.3577005067086,
+       "abs_d_z": 0.4014136890351626,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 98.89986225019867,
+       "required_n_for_sesoi": {
+        "0.8": 412,
+        "0.89": 521
+       }
+      },
+      {
+       "arm": "DRP",
+       "n": 50,
+       "sd_diff": 687.4178350281587,
+       "abs_d_z": 0.2923837838115391,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 98.89986225019867,
+       "required_n_for_sesoi": {
+        "0.8": 460,
+        "0.89": 582
+       }
+      }
+     ]
+    },
+    {
+     "cell_id": "demand-x1.25",
+     "grid_edge_optima": [
+      {
+       "arm": "OCC",
+       "selected": {
+        "family": "OCC",
+        "params": {
+         "p0": 126.49110640673521,
+         "k": 4.0
+        }
+       }
+      },
+      {
+       "arm": "DRP",
+       "selected": {
+        "family": "DRP",
+        "params": {
+         "p0": 94.85494822646623,
+         "eta": 0.1,
+         "weight": 0.3
+        }
+       }
+      }
+     ],
+     "FIX_revenue_mean": 13371.864492269946,
+     "FIX_revenue_sd_between_streams": 1164.0681061911991,
+     "FIX_sell_through_mean": 0.9578,
+     "FIX_share_streams_sold_out": 0.74,
+     "arm_spread": {
+      "FIX": {
+       "n": 50,
+       "revenue_mean": 13371.864492269946,
+       "revenue_sd": 1164.0681061911991,
+       "sell_through_mean": 0.9578,
+       "price_volatility_mean": 0.0
+      },
+      "OCC": {
+       "n": 50,
+       "revenue_mean": 14525.861283384573,
+       "revenue_sd": 1964.4828439156756,
+       "sell_through_mean": 0.9972,
+       "price_volatility_mean": 0.04625084745762713
+      },
+      "DRP": {
+       "n": 50,
+       "revenue_mean": 14748.747678831009,
+       "revenue_sd": 2114.9570029512593,
+       "sell_through_mean": 0.9940000000000001,
+       "price_volatility_mean": 0.031535410136401175
+      },
+      "FIX_retuned": {
+       "n": 50,
+       "revenue_mean": 13789.114690189024,
+       "revenue_sd": 1754.2229305355188,
+       "sell_through_mean": 0.9248000000000001,
+       "price_volatility_mean": 0.0
+      }
+     },
+     "paired_revenue": [
+      {
+       "arm": "OCC",
+       "n": 50,
+       "sd_diff": 1265.1831801636874,
+       "abs_d_z": 0.9121183471355723,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 133.71864492269947,
+       "required_n_for_sesoi": {
+        "0.8": 851,
+        "0.89": 1077
+       }
+      },
+      {
+       "arm": "DRP",
+       "n": 50,
+       "sd_diff": 1420.2620287161171,
+       "abs_d_z": 0.9694571555966554,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 133.71864492269947,
+       "required_n_for_sesoi": {
+        "0.8": 1073,
+        "0.89": 1357
+       }
+      }
+     ]
+    },
+    {
+     "cell_id": "demand-x1.6",
+     "grid_edge_optima": [
+      {
+       "arm": "OCC",
+       "selected": {
+        "family": "OCC",
+        "params": {
+         "p0": 126.49110640673521,
+         "k": 4.0
+        }
+       }
+      },
+      {
+       "arm": "DRP",
+       "selected": {
+        "family": "DRP",
+        "params": {
+         "p0": 94.85494822646623,
+         "eta": 0.1,
+         "weight": 0.3
+        }
+       }
+      }
+     ],
+     "FIX_revenue_mean": 13838.162544098948,
+     "FIX_revenue_sd_between_streams": 453.60928728374927,
+     "FIX_sell_through_mean": 0.9912000000000001,
+     "FIX_share_streams_sold_out": 0.9,
+     "arm_spread": {
+      "FIX": {
+       "n": 50,
+       "revenue_mean": 13838.162544098948,
+       "revenue_sd": 453.60928728374927,
+       "sell_through_mean": 0.9912000000000001,
+       "price_volatility_mean": 0.0
+      },
+      "OCC": {
+       "n": 50,
+       "revenue_mean": 15779.163955771264,
+       "revenue_sd": 1736.7199507946461,
+       "sell_through_mean": 0.9992,
+       "price_volatility_mean": 0.04773333333333332
+      },
+      "DRP": {
+       "n": 50,
+       "revenue_mean": 16080.849209622413,
+       "revenue_sd": 1968.4597825754608,
+       "sell_through_mean": 0.9964,
+       "price_volatility_mean": 0.03395031126461636
+      },
+      "FIX_retuned": {
+       "n": 50,
+       "revenue_mean": 15524.12215091161,
+       "revenue_sd": 2079.5492407125175,
+       "sell_through_mean": 0.9128000000000001,
+       "price_volatility_mean": 0.0
+      }
+     },
+     "paired_revenue": [
+      {
+       "arm": "OCC",
+       "n": 50,
+       "sd_diff": 1566.0952923253406,
+       "abs_d_z": 1.239389085187988,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 138.3816254409895,
+       "required_n_for_sesoi": {
+        "0.8": 1218,
+        "0.89": 1541
+       }
+      },
+      {
+       "arm": "DRP",
+       "n": 50,
+       "sd_diff": 1769.2505708633248,
+       "abs_d_z": 1.2675913194303083,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 138.3816254409895,
+       "required_n_for_sesoi": {
+        "0.8": 1554,
+        "0.89": 1966
+       }
+      }
+     ]
+    },
+    {
+     "cell_id": "reversed-arrivals",
+     "grid_edge_optima": [
+      {
+       "arm": "OCC",
+       "selected": {
+        "family": "OCC",
+        "params": {
+         "p0": 126.49110640673521,
+         "k": 4.0
+        }
+       }
+      },
+      {
+       "arm": "DRP",
+       "selected": {
+        "family": "DRP",
+        "params": {
+         "p0": 94.85494822646623,
+         "eta": 0.1,
+         "weight": 0.3
+        }
+       }
+      }
+     ],
+     "FIX_revenue_mean": 11341.932254667052,
+     "FIX_revenue_sd_between_streams": 2282.4800880206853,
+     "FIX_sell_through_mean": 0.8123999999999998,
+     "FIX_share_streams_sold_out": 0.26,
+     "arm_spread": {
+      "FIX": {
+       "n": 50,
+       "revenue_mean": 11341.932254667052,
+       "revenue_sd": 2282.4800880206853,
+       "sell_through_mean": 0.8123999999999998,
+       "price_volatility_mean": 0.0
+      },
+      "OCC": {
+       "n": 50,
+       "revenue_mean": 11970.074183715591,
+       "revenue_sd": 2133.015300615957,
+       "sell_through_mean": 0.976,
+       "price_volatility_mean": 0.04471412429378531
+      },
+      "DRP": {
+       "n": 50,
+       "revenue_mean": 11141.6242808683,
+       "revenue_sd": 2273.3506819003005,
+       "sell_through_mean": 0.992,
+       "price_volatility_mean": 0.028426924771158005
+      },
+      "FIX_retuned": {
+       "n": 50,
+       "revenue_mean": 11341.932254667052,
+       "revenue_sd": 2282.4800880206853,
+       "sell_through_mean": 0.8123999999999998,
+       "price_volatility_mean": 0.0
+      }
+     },
+     "paired_revenue": [
+      {
+       "arm": "OCC",
+       "n": 50,
+       "sd_diff": 800.4015048390087,
+       "abs_d_z": 0.7847835433229009,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 113.41932254667051,
+       "required_n_for_sesoi": {
+        "0.8": 474,
+        "0.89": 599
+       }
+      },
+      {
+       "arm": "DRP",
+       "n": 50,
+       "sd_diff": 924.8963407980036,
+       "abs_d_z": 0.21657343094895024,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 113.41932254667051,
+       "required_n_for_sesoi": {
+        "0.8": 633,
+        "0.89": 800
+       }
+      }
+     ]
+    },
+    {
+     "cell_id": "no-shocks",
+     "grid_edge_optima": [
+      {
+       "arm": "OCC",
+       "selected": {
+        "family": "OCC",
+        "params": {
+         "p0": 126.49110640673521,
+         "k": 4.0
+        }
+       }
+      },
+      {
+       "arm": "DRP",
+       "selected": {
+        "family": "DRP",
+        "params": {
+         "p0": 94.85494822646623,
+         "eta": 0.1,
+         "weight": 0.3
+        }
+       }
+      }
+     ],
+     "FIX_revenue_mean": 11464.789226406428,
+     "FIX_revenue_sd_between_streams": 1259.0660512703232,
+     "FIX_sell_through_mean": 0.8211999999999999,
+     "FIX_share_streams_sold_out": 0.02,
+     "arm_spread": {
+      "FIX": {
+       "n": 50,
+       "revenue_mean": 11464.789226406428,
+       "revenue_sd": 1259.0660512703232,
+       "sell_through_mean": 0.8211999999999999,
+       "price_volatility_mean": 0.0
+      },
+      "OCC": {
+       "n": 50,
+       "revenue_mean": 11851.738888333584,
+       "revenue_sd": 990.0868763922051,
+       "sell_through_mean": 0.9838,
+       "price_volatility_mean": 0.042802259887005645
+      },
+      "DRP": {
+       "n": 50,
+       "revenue_mean": 11959.518786172504,
+       "revenue_sd": 916.7379805685254,
+       "sell_through_mean": 0.992,
+       "price_volatility_mean": 0.02592576710788245
+      },
+      "FIX_retuned": {
+       "n": 50,
+       "revenue_mean": 11691.45576488126,
+       "revenue_sd": 847.7240750085261,
+       "sell_through_mean": 0.9551999999999999,
+       "price_volatility_mean": 0.0
+      }
+     },
+     "paired_revenue": [
+      {
+       "arm": "OCC",
+       "n": 50,
+       "sd_diff": 529.8065335166881,
+       "abs_d_z": 0.7303603059756675,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 114.64789226406428,
+       "required_n_for_sesoi": {
+        "0.8": 203,
+        "0.89": 257
+       }
+      },
+      {
+       "arm": "DRP",
+       "n": 50,
+       "sd_diff": 656.4121456161079,
+       "abs_d_z": 0.7536873945282059,
+       "degenerate_all_zero": false,
+       "sesoi_abs": 114.64789226406428,
+       "required_n_for_sesoi": {
+        "0.8": 312,
+        "0.89": 395
+       }
+      }
+     ]
+    }
+   ],
+   "timing": {
+    "wall_s": 1.7609972080008447,
+    "peak_rss_mib": 56.171875,
+    "tuning_ms_per_run": 0.05600269808663726,
+    "eval_ms_per_run_incl_metrics": 0.1954648608337569,
+    "stream_generation_s": 0.3247170400009054,
+    "tuning_runs": 16200,
+    "eval_runs": 1200
+   }
+  }
+ ],
+ "pooled_tuning_ms_per_run": 0.05708667551320882,
+ "pooled_wall_ms_per_run_all_inclusive": 0.08504655786469782,
+ "projection_from_tuning_rate": {
+  "EXP-001": {
+   "tuning_runs": 11700,
+   "eval_runs": 1200,
+   "total_runs": 12900,
+   "projected_simulation_s": 0.7364181141203937
+  },
+  "EXP-002": {
+   "tuning_runs": 97200,
+   "eval_runs": 8100,
+   "total_runs": 105300,
+   "projected_simulation_s": 6.011226931540889
+  },
+  "EXP-003": {
+   "tuning_runs": 32400,
+   "eval_runs": 7200,
+   "total_runs": 39600,
+   "projected_simulation_s": 2.2606323503230694
+  },
+  "all": {
+   "total_runs": 157800,
+   "projected_simulation_s": 9.008277395984353
+  }
+ },
+ "projection_all_inclusive": {
+  "EXP-001": {
+   "tuning_runs": 11700,
+   "eval_runs": 1200,
+   "total_runs": 12900,
+   "projected_simulation_s": 1.097100596454602
+  },
+  "EXP-002": {
+   "tuning_runs": 97200,
+   "eval_runs": 8100,
+   "total_runs": 105300,
+   "projected_simulation_s": 8.955402543152681
+  },
+  "EXP-003": {
+   "tuning_runs": 32400,
+   "eval_runs": 7200,
+   "total_runs": 39600,
+   "projected_simulation_s": 3.3678436914420335
+  },
+  "all": {
+   "total_runs": 157800,
+   "projected_simulation_s": 13.420346831049317
+  }
+ }
+}

@@ -1,0 +1,61 @@
+{
+ "manifest_version": "1.0.0",
+ "run_set_id": "EXP-003-exp-pilot-exp003-20261124T161055Z",
+ "label": "exploratory",
+ "simulated": true,
+ "experiment_id": "EXP-003",
+ "config_sha256": "2f28ab5ad7dcddb03895d0f3a6833e31977d8b9db11e1661a427d3b48034b6e2",
+ "protocol": {
+  "path": "research/experiments/EXP-003/protocol.md",
+  "sha256": "a7b83e766343b301f42615a36ed9e5b23b878a53b984b862182207d5bc0810e4",
+  "frozen": false
+ },
+ "seeds": {
+  "project_entropy": 20261124,
+  "generator_version": "fare-streams-1",
+  "spawn_key_layout": "(experiment, cell, role, index)",
+  "experiment_number": 3,
+  "tune_streams": {
+   "role": 0,
+   "start": 0,
+   "count": 50
+  },
+  "eval_streams": {
+   "role": 0,
+   "start": 50,
+   "count": 50
+  },
+  "bootstrap_seed": 20261124
+ },
+ "git": {
+  "revision": "f3218ebe3bf687bc13f7a186c5bfb45ddb435500",
+  "dirty_tracked_files": true
+ },
+ "environment": {
+  "os": "Darwin 24.3.0 (macOS-15.3.1-arm64-arm-64bit)",
+  "cpu": "Apple M1 Pro",
+  "machine": "arm64",
+  "versions": {
+   "python": "3.12.1",
+   "fare": "0.2.0",
+   "numpy": "2.5.4",
+   "jsonschema": "4.26.0"
+  }
+ },
+ "command": [
+  "fare",
+  "run",
+  "--config",
+  "experiments/exploratory/pilot-exp003.json"
+ ],
+ "start_utc": "2026-11-24T16:10:55Z",
+ "end_utc": "2026-11-24T16:10:57Z",
+ "runtime_s": 1.7609972080008447,
+ "peak_rss_bytes": 58900480,
+ "counts": {
+  "cells": 7,
+  "tuning_runs": 16200,
+  "eval_runs": 1200,
+  "failed_runs": 0
+ }
+}

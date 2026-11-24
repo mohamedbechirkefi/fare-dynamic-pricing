@@ -1,0 +1,7055 @@
+{
+ "schema": "fare-result",
+ "schema_version": "1.0.0",
+ "label": "exploratory",
+ "simulated": true,
+ "experiment_id": "EXP-001",
+ "run_set_id": "EXP-001-exp-smoke-20261124T161050Z",
+ "created_utc": "2026-11-24T16:10:50Z",
+ "config": {
+  "experiment_id": "EXP-001",
+  "experiment_number": 1,
+  "label": "exploratory",
+  "mode": "fixed",
+  "note": "Smoke matrix of research/protocol.md section 9 and EXP-001 protocol section 18: base cell with one hand-set configuration per family plus nesting arms (OCC k=0, DRP eta=0) on 5 tuning streams, and edge-case cells. Exploratory; validates invariants and metric code and measures runtime. Never evidence.",
+  "base_scenario": {},
+  "fixed_policies": [
+   {
+    "arm": "FIX",
+    "family": "FIX",
+    "params": {
+     "p": 150.0
+    }
+   },
+   {
+    "arm": "OCC",
+    "family": "OCC",
+    "params": {
+     "p0": 150.0,
+     "k": 1.0
+    }
+   },
+   {
+    "arm": "DRP",
+    "family": "DRP",
+    "params": {
+     "p0": 150.0,
+     "eta": 0.25
+    }
+   },
+   {
+    "arm": "OCC_k0",
+    "family": "OCC",
+    "params": {
+     "p0": 150.0,
+     "k": 0.0
+    }
+   },
+   {
+    "arm": "DRP_eta0",
+    "family": "DRP",
+    "params": {
+     "p0": 150.0,
+     "eta": 0.0
+    }
+   }
+  ],
+  "eval_streams": {
+   "role": 0,
+   "start": 0,
+   "count": 5
+  },
+  "cells": [
+   {
+    "id": "base",
+    "index": 0,
+    "scenario": {}
+   },
+   {
+    "id": "edge-zero-demand",
+    "index": 90,
+    "scenario": {
+     "kappa": 0.0
+    }
+   },
+   {
+    "id": "edge-C1",
+    "index": 91,
+    "scenario": {
+     "C": 1
+    }
+   },
+   {
+    "id": "edge-valuations-below-pmin",
+    "index": 92,
+    "scenario": {
+     "m_L": 5.0,
+     "m_H": 5.0,
+     "sigma_v": 0.1
+    }
+   },
+   {
+    "id": "edge-kappa20",
+    "index": 93,
+    "scenario": {
+     "kappa": 20.0
+    }
+   }
+  ],
+  "bootstrap": {
+   "resamples": 2000,
+   "seed": 20261124
+  }
+ },
+ "config_sha256": "8a4fe5ea7b33fee7dcd29f1aef6e21e924f48f2129ecab26feb8398086372588",
+ "protocol": {
+  "path": "research/experiments/EXP-001/protocol.md",
+  "sha256": "0066a421e09217a7184f92a1de3e3c1f24dafd4c74b6b41e2706350fd283b984",
+  "frozen": false
+ },
+ "cells": [
+  {
+   "cell_id": "base",
+   "cell_index": 0,
+   "scenario": {
+    "T": 60,
+    "C": 100,
+    "kappa": 2.0,
+    "demand_scale": 1.0,
+    "w_L": 0.7,
+    "m_L": 100.0,
+    "m_H": 200.0,
+    "sigma_v": 0.5,
+    "sigma_M": 0.25,
+    "surge_prob": 0.05,
+    "surge_len": 3,
+    "surge_factor": 1.8,
+    "arrival_profile": "linear",
+    "p_min": 30.0,
+    "p_max": 600.0
+   },
+   "tuning": [],
+   "runs": [
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/FIX/tune0000",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      0,
+      0,
+      0
+     ],
+     "stream_sha256": "47eb8be816d346f8a46ce815bbfb3061aac630f5fdc35cd779c0e52cd17c5d74",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 7500.0,
+      "units_sold": 50,
+      "sell_through": 0.5,
+      "arrivals": 160,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 4934.785775784198,
+      "total_surplus": 12434.7857757842,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 22,
+      "buyers_H": 28
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/FIX/tune0001",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "stream_sha256": "dc84717b626e4baac37b6e68b44affe631975c78146a2896be4a3310df998ba0",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 7050.0,
+      "units_sold": 47,
+      "sell_through": 0.47,
+      "arrivals": 123,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 3738.4901677635185,
+      "total_surplus": 10788.490167763519,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 19,
+      "buyers_H": 28
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/FIX/tune0002",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      0,
+      0,
+      2
+     ],
+     "stream_sha256": "b50a9e9242f510a7d6c5f48572907ffdd3f08ed89907ec06fb953f8ab59c6b20",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 9900.0,
+      "units_sold": 66,
+      "sell_through": 0.66,
+      "arrivals": 174,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 5549.289733974543,
+      "total_surplus": 15449.289733974543,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 28,
+      "buyers_H": 38
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/FIX/tune0003",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      0,
+      0,
+      3
+     ],
+     "stream_sha256": "59ae9ac509c47cd91c2657e6a2489d938c0a8b95cec14b9d66f2f772c5e57176",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 15000.0,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 311,
+      "availability": 0.8713826366559485,
+      "stockout_period": 52,
+      "price_volatility": 0.0,
+      "consumer_surplus": 8898.649251338673,
+      "total_surplus": 23898.649251338673,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 52,
+      "buyers_H": 48
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/FIX/tune0004",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      0,
+      0,
+      4
+     ],
+     "stream_sha256": "744ac7dc611f6190e4f659028dbacc4c8abfed24f0666ca35d3f293f6b7823c3",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 13350.0,
+      "units_sold": 89,
+      "sell_through": 0.89,
+      "arrivals": 272,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 7709.351994498513,
+      "total_surplus": 21059.351994498513,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 45,
+      "buyers_H": 44
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/OCC/tune0000",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      0,
+      0,
+      0
+     ],
+     "stream_sha256": "47eb8be816d346f8a46ce815bbfb3061aac630f5fdc35cd779c0e52cd17c5d74",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 7307.922466202907,
+      "units_sold": 62,
+      "sell_through": 0.62,
+      "arrivals": 160,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.009830508474576227,
+      "consumer_surplus": 6760.276987893727,
+      "total_surplus": 14068.199454096633,
+      "mean_price_paid": 117.86971719682109,
+      "mean_price_paid_L": 128.70488037468616,
+      "mean_price_paid_H": 108.34790713142453,
+      "buyers_L": 29,
+      "buyers_H": 33
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/OCC/tune0001",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "stream_sha256": "dc84717b626e4baac37b6e68b44affe631975c78146a2896be4a3310df998ba0",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 6724.403513212332,
+      "units_sold": 54,
+      "sell_through": 0.54,
+      "arrivals": 123,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.010282485875706166,
+      "consumer_surplus": 4981.061593528716,
+      "total_surplus": 11705.465106741049,
+      "mean_price_paid": 124.52599098541356,
+      "mean_price_paid_L": 132.06580750512614,
+      "mean_price_paid_H": 119.34236712811116,
+      "buyers_L": 22,
+      "buyers_H": 32
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/OCC/tune0002",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      0,
+      0,
+      2
+     ],
+     "stream_sha256": "b50a9e9242f510a7d6c5f48572907ffdd3f08ed89907ec06fb953f8ab59c6b20",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 9706.28120541832,
+      "units_sold": 77,
+      "sell_through": 0.77,
+      "arrivals": 174,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.010395480225988775,
+      "consumer_surplus": 7216.147273890829,
+      "total_surplus": 16922.42847930915,
+      "mean_price_paid": 126.05560007036779,
+      "mean_price_paid_L": 132.95423294248167,
+      "mean_price_paid_H": 120.88162541628243,
+      "buyers_L": 33,
+      "buyers_H": 44
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/OCC/tune0003",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      0,
+      0,
+      3
+     ],
+     "stream_sha256": "59ae9ac509c47cd91c2657e6a2489d938c0a8b95cec14b9d66f2f772c5e57176",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 15619.16487752047,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 311,
+      "availability": 0.8938906752411575,
+      "stockout_period": 55,
+      "price_volatility": 0.010112994350282426,
+      "consumer_surplus": 8617.430515641889,
+      "total_surplus": 24236.59539316236,
+      "mean_price_paid": 156.1916487752047,
+      "mean_price_paid_L": 152.71876984625843,
+      "mean_price_paid_H": 159.80627786451618,
+      "buyers_L": 51,
+      "buyers_H": 49
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/OCC/tune0004",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      0,
+      0,
+      4
+     ],
+     "stream_sha256": "744ac7dc611f6190e4f659028dbacc4c8abfed24f0666ca35d3f293f6b7823c3",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 13756.205466042104,
+      "units_sold": 97,
+      "sell_through": 0.97,
+      "arrivals": 272,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.012316384180790958,
+      "consumer_surplus": 8462.366128129695,
+      "total_surplus": 22218.5715941718,
+      "mean_price_paid": 141.81655119631034,
+      "mean_price_paid_L": 142.1445210181663,
+      "mean_price_paid_H": 141.4676471305061,
+      "buyers_L": 50,
+      "buyers_H": 47
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/DRP/tune0000",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      0,
+      0,
+      0
+     ],
+     "stream_sha256": "47eb8be816d346f8a46ce815bbfb3061aac630f5fdc35cd779c0e52cd17c5d74",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 8562.790968421645,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 160,
+      "availability": 1.0,
+      "stockout_period": 60,
+      "price_volatility": 0.05354903859090524,
+      "consumer_surplus": 9385.243292359844,
+      "total_surplus": 17948.03426078149,
+      "mean_price_paid": 85.62790968421645,
+      "mean_price_paid_L": 92.49443079557322,
+      "mean_price_paid_H": 74.88796640747888,
+      "buyers_L": 61,
+      "buyers_H": 39
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/DRP/tune0001",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "stream_sha256": "dc84717b626e4baac37b6e68b44affe631975c78146a2896be4a3310df998ba0",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 6272.376399521946,
+      "units_sold": 81,
+      "sell_through": 0.81,
+      "arrivals": 123,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.056224427086543766,
+      "consumer_surplus": 8187.566821549386,
+      "total_surplus": 14459.943221071331,
+      "mean_price_paid": 77.43674567311045,
+      "mean_price_paid_L": 87.65018664564838,
+      "mean_price_paid_H": 65.87943088839647,
+      "buyers_L": 43,
+      "buyers_H": 38
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/DRP/tune0002",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      0,
+      0,
+      2
+     ],
+     "stream_sha256": "b50a9e9242f510a7d6c5f48572907ffdd3f08ed89907ec06fb953f8ab59c6b20",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 9091.658284076226,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 174,
+      "availability": 0.9827586206896551,
+      "stockout_period": 59,
+      "price_volatility": 0.05124725543481958,
+      "consumer_surplus": 10094.191473167386,
+      "total_surplus": 19185.84975724361,
+      "mean_price_paid": 90.91658284076226,
+      "mean_price_paid_L": 98.61595074399484,
+      "mean_price_paid_H": 82.57560094559356,
+      "buyers_L": 52,
+      "buyers_H": 48
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/DRP/tune0003",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      0,
+      0,
+      3
+     ],
+     "stream_sha256": "59ae9ac509c47cd91c2657e6a2489d938c0a8b95cec14b9d66f2f772c5e57176",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 17575.0150492086,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 311,
+      "availability": 0.954983922829582,
+      "stockout_period": 57,
+      "price_volatility": 0.07005277873491399,
+      "consumer_surplus": 7127.467729156292,
+      "total_surplus": 24702.48277836489,
+      "mean_price_paid": 175.750150492086,
+      "mean_price_paid_L": 167.95739476190266,
+      "mean_price_paid_H": 183.54290622226938,
+      "buyers_L": 50,
+      "buyers_H": 50
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/DRP/tune0004",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      0,
+      0,
+      4
+     ],
+     "stream_sha256": "744ac7dc611f6190e4f659028dbacc4c8abfed24f0666ca35d3f293f6b7823c3",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 13927.386160817796,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 272,
+      "availability": 0.9963235294117647,
+      "stockout_period": 60,
+      "price_volatility": 0.06530132585852579,
+      "consumer_surplus": 8192.70696788124,
+      "total_surplus": 22120.093128699038,
+      "mean_price_paid": 139.27386160817795,
+      "mean_price_paid_L": 131.1418913176126,
+      "mean_price_paid_H": 150.05345013288087,
+      "buyers_L": 57,
+      "buyers_H": 43
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/OCC_k0/tune0000",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      0,
+      0,
+      0
+     ],
+     "stream_sha256": "47eb8be816d346f8a46ce815bbfb3061aac630f5fdc35cd779c0e52cd17c5d74",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 7500.0,
+      "units_sold": 50,
+      "sell_through": 0.5,
+      "arrivals": 160,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 4934.785775784198,
+      "total_surplus": 12434.7857757842,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 22,
+      "buyers_H": 28
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/OCC_k0/tune0001",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "stream_sha256": "dc84717b626e4baac37b6e68b44affe631975c78146a2896be4a3310df998ba0",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 7050.0,
+      "units_sold": 47,
+      "sell_through": 0.47,
+      "arrivals": 123,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 3738.4901677635185,
+      "total_surplus": 10788.490167763519,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 19,
+      "buyers_H": 28
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/OCC_k0/tune0002",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      0,
+      0,
+      2
+     ],
+     "stream_sha256": "b50a9e9242f510a7d6c5f48572907ffdd3f08ed89907ec06fb953f8ab59c6b20",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 9900.0,
+      "units_sold": 66,
+      "sell_through": 0.66,
+      "arrivals": 174,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 5549.289733974543,
+      "total_surplus": 15449.289733974543,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 28,
+      "buyers_H": 38
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/OCC_k0/tune0003",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      0,
+      0,
+      3
+     ],
+     "stream_sha256": "59ae9ac509c47cd91c2657e6a2489d938c0a8b95cec14b9d66f2f772c5e57176",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 15000.0,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 311,
+      "availability": 0.8713826366559485,
+      "stockout_period": 52,
+      "price_volatility": 0.0,
+      "consumer_surplus": 8898.649251338673,
+      "total_surplus": 23898.649251338673,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 52,
+      "buyers_H": 48
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/OCC_k0/tune0004",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      0,
+      0,
+      4
+     ],
+     "stream_sha256": "744ac7dc611f6190e4f659028dbacc4c8abfed24f0666ca35d3f293f6b7823c3",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 13350.0,
+      "units_sold": 89,
+      "sell_through": 0.89,
+      "arrivals": 272,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 7709.351994498513,
+      "total_surplus": 21059.351994498513,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 45,
+      "buyers_H": 44
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/DRP_eta0/tune0000",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      0,
+      0,
+      0
+     ],
+     "stream_sha256": "47eb8be816d346f8a46ce815bbfb3061aac630f5fdc35cd779c0e52cd17c5d74",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 7500.0,
+      "units_sold": 50,
+      "sell_through": 0.5,
+      "arrivals": 160,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 4934.785775784198,
+      "total_surplus": 12434.7857757842,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 22,
+      "buyers_H": 28
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/DRP_eta0/tune0001",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "stream_sha256": "dc84717b626e4baac37b6e68b44affe631975c78146a2896be4a3310df998ba0",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 7050.0,
+      "units_sold": 47,
+      "sell_through": 0.47,
+      "arrivals": 123,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 3738.4901677635185,
+      "total_surplus": 10788.490167763519,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 19,
+      "buyers_H": 28
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/DRP_eta0/tune0002",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      0,
+      0,
+      2
+     ],
+     "stream_sha256": "b50a9e9242f510a7d6c5f48572907ffdd3f08ed89907ec06fb953f8ab59c6b20",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 9900.0,
+      "units_sold": 66,
+      "sell_through": 0.66,
+      "arrivals": 174,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 5549.289733974543,
+      "total_surplus": 15449.289733974543,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 28,
+      "buyers_H": 38
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/DRP_eta0/tune0003",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      0,
+      0,
+      3
+     ],
+     "stream_sha256": "59ae9ac509c47cd91c2657e6a2489d938c0a8b95cec14b9d66f2f772c5e57176",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 15000.0,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 311,
+      "availability": 0.8713826366559485,
+      "stockout_period": 52,
+      "price_volatility": 0.0,
+      "consumer_surplus": 8898.649251338673,
+      "total_surplus": 23898.649251338673,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 52,
+      "buyers_H": 48
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/base/DRP_eta0/tune0004",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      0,
+      0,
+      4
+     ],
+     "stream_sha256": "744ac7dc611f6190e4f659028dbacc4c8abfed24f0666ca35d3f293f6b7823c3",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 13350.0,
+      "units_sold": 89,
+      "sell_through": 0.89,
+      "arrivals": 272,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 7709.351994498513,
+      "total_surplus": 21059.351994498513,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 45,
+      "buyers_H": 44
+     }
+    }
+   ],
+   "contrasts": [
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "revenue",
+     "n": 5,
+     "mean_diff": 62.795505679226515,
+     "sd_diff": 421.0360646969857,
+     "d_z": 0.14914519430638237,
+     "level": 0.975,
+     "boot_ci": [
+      -272.51715774835554,
+      430.44491395483016
+     ],
+     "t_ci": [
+      -595.3651464798078,
+      720.9561578382608
+     ],
+     "relative_effect": 0.005946544098411602,
+     "classification": "inconclusive"
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "revenue",
+     "n": 5,
+     "mean_diff": 525.8453724092424,
+     "sd_diff": 1411.4841426859236,
+     "d_z": 0.3725478427328325,
+     "level": 0.975,
+     "boot_ci": [
+      -777.7003957666682,
+      1775.9634938522781
+     ],
+     "t_ci": [
+      -1680.5768364124183,
+      2732.267581230903
+     ],
+     "relative_effect": 0.04979596329632977,
+     "classification": "inconclusive"
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "revenue",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.975,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": "practically_equivalent"
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "revenue",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.975,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": "practically_equivalent"
+    },
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "sell_through",
+     "n": 5,
+     "mean_diff": 0.076,
+     "sd_diff": 0.04722287581247038,
+     "d_z": 1.6093894895729814,
+     "level": 0.95,
+     "boot_ci": [
+      0.03799999999999999,
+      0.10999999999999999
+     ],
+     "t_ci": [
+      0.0173650552123056,
+      0.1346349447876944
+     ],
+     "relative_effect": 0.10795454545454546,
+     "classification": null
+    },
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "availability",
+     "n": 5,
+     "mean_diff": 0.0045016077170418,
+     "sd_diff": 0.010065900863343104,
+     "d_z": 0.4472135954999579,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0135048231511254
+     ],
+     "t_ci": [
+      -0.007996858994396127,
+      0.017000074428479728
+     ],
+     "relative_effect": 0.0046204620462046205,
+     "classification": null
+    },
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "consumer_surplus",
+     "n": 5,
+     "mean_diff": 1041.3431151450818,
+     "sd_diff": 848.3738588393599,
+     "d_z": 1.2274578056538878,
+     "level": 0.95,
+     "boot_ci": [
+      346.96982773007164,
+      1645.4537859633651
+     ],
+     "t_ci": [
+      -12.052162387610679,
+      2094.7383926777743
+     ],
+     "relative_effect": 0.16888160339926894,
+     "classification": null
+    },
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "total_surplus",
+     "n": 5,
+     "mean_diff": 1104.1386208243089,
+     "sd_diff": 510.24706056923975,
+     "d_z": 2.163929410181245,
+     "level": 0.95,
+     "boot_ci": [
+      685.3634201159923,
+      1490.1259304454532
+     ],
+     "t_ci": [
+      470.58321552940185,
+      1737.6940261192158
+     ],
+     "relative_effect": 0.06601286236862182,
+     "classification": null
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "sell_through",
+     "n": 5,
+     "mean_diff": 0.258,
+     "sd_diff": 0.20029977533686852,
+     "d_z": 1.2880693428941195,
+     "level": 0.95,
+     "boot_ci": [
+      0.11199999999999999,
+      0.4040000000000001
+     ],
+     "t_ci": [
+      0.009294980117169588,
+      0.5067050198828305
+     ],
+     "relative_effect": 0.36647727272727276,
+     "classification": null
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "availability",
+     "n": 5,
+     "mean_diff": 0.01253668725501067,
+     "sd_diff": 0.04035503069551978,
+     "d_z": 0.31065983692592,
+     "level": 0.95,
+     "boot_ci": [
+      -0.010344827586206917,
+      0.04942547758653304
+     ],
+     "t_ci": [
+      -0.0375707015057699,
+      0.06264407601579125
+     ],
+     "relative_effect": 0.012867688898707322,
+     "classification": null
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "consumer_surplus",
+     "n": 5,
+     "mean_diff": 2431.32187215094,
+     "sd_diff": 2918.521577007851,
+     "d_z": 0.8330662659152236,
+     "level": 0.95,
+     "boot_ci": [
+      30.210043143109363,
+      4487.959033064569
+     ],
+     "t_ci": [
+      -1192.5012979822031,
+      6055.1450422840835
+     ],
+     "relative_effect": 0.3943037891899413,
+     "classification": null
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "total_surplus",
+     "n": 5,
+     "mean_diff": 2957.1672445601826,
+     "sd_diff": 1992.7673420973417,
+     "d_z": 1.4839500738946434,
+     "level": 0.95,
+     "boot_ci": [
+      1480.1204751522596,
+      4447.235407960356
+     ],
+     "t_ci": [
+      482.8197790942586,
+      5431.5147100261065
+     ],
+     "relative_effect": 0.17679942593658268,
+     "classification": null
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "sell_through",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "availability",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "consumer_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "total_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "sell_through",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "availability",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "consumer_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "total_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    }
+   ],
+   "timing": {
+    "stream_generation_s": 0.00938670800132968,
+    "tuning_s": 0.0,
+    "tuning_runs": 0,
+    "eval_s": 0.004873124998994172,
+    "eval_runs": 25
+   }
+  },
+  {
+   "cell_id": "edge-zero-demand",
+   "cell_index": 90,
+   "scenario": {
+    "T": 60,
+    "C": 100,
+    "kappa": 0.0,
+    "demand_scale": 1.0,
+    "w_L": 0.7,
+    "m_L": 100.0,
+    "m_H": 200.0,
+    "sigma_v": 0.5,
+    "sigma_M": 0.25,
+    "surge_prob": 0.05,
+    "surge_len": 3,
+    "surge_factor": 1.8,
+    "arrival_profile": "linear",
+    "p_min": 30.0,
+    "p_max": 600.0
+   },
+   "tuning": [],
+   "runs": [
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/FIX/tune0000",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      90,
+      0,
+      0
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/FIX/tune0001",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      90,
+      0,
+      1
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/FIX/tune0002",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      90,
+      0,
+      2
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/FIX/tune0003",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      90,
+      0,
+      3
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/FIX/tune0004",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      90,
+      0,
+      4
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/OCC/tune0000",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      90,
+      0,
+      0
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.016666666666666666,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/OCC/tune0001",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      90,
+      0,
+      1
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.016666666666666666,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/OCC/tune0002",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      90,
+      0,
+      2
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.016666666666666666,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/OCC/tune0003",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      90,
+      0,
+      3
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.016666666666666666,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/OCC/tune0004",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      90,
+      0,
+      4
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.016666666666666666,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/DRP/tune0000",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      90,
+      0,
+      0
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.02727860868532373,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/DRP/tune0001",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      90,
+      0,
+      1
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.02727860868532373,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/DRP/tune0002",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      90,
+      0,
+      2
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.02727860868532373,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/DRP/tune0003",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      90,
+      0,
+      3
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.02727860868532373,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/DRP/tune0004",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      90,
+      0,
+      4
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.02727860868532373,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/OCC_k0/tune0000",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      90,
+      0,
+      0
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/OCC_k0/tune0001",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      90,
+      0,
+      1
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/OCC_k0/tune0002",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      90,
+      0,
+      2
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/OCC_k0/tune0003",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      90,
+      0,
+      3
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/OCC_k0/tune0004",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      90,
+      0,
+      4
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/DRP_eta0/tune0000",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      90,
+      0,
+      0
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/DRP_eta0/tune0001",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      90,
+      0,
+      1
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/DRP_eta0/tune0002",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      90,
+      0,
+      2
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/DRP_eta0/tune0003",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      90,
+      0,
+      3
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-zero-demand/DRP_eta0/tune0004",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      90,
+      0,
+      4
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    }
+   ],
+   "contrasts": [
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "revenue",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.975,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "revenue",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.975,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "revenue",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.975,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "revenue",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.975,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "sell_through",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "availability",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "consumer_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "total_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "sell_through",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "availability",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "consumer_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "total_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "sell_through",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "availability",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "consumer_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "total_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "sell_through",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "availability",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "consumer_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "total_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    }
+   ],
+   "timing": {
+    "stream_generation_s": 0.0004328340000938624,
+    "tuning_s": 0.0,
+    "tuning_runs": 0,
+    "eval_s": 0.003831500000160304,
+    "eval_runs": 25
+   }
+  },
+  {
+   "cell_id": "edge-C1",
+   "cell_index": 91,
+   "scenario": {
+    "T": 60,
+    "C": 1,
+    "kappa": 2.0,
+    "demand_scale": 1.0,
+    "w_L": 0.7,
+    "m_L": 100.0,
+    "m_H": 200.0,
+    "sigma_v": 0.5,
+    "sigma_M": 0.25,
+    "surge_prob": 0.05,
+    "surge_len": 3,
+    "surge_factor": 1.8,
+    "arrival_profile": "linear",
+    "p_min": 30.0,
+    "p_max": 600.0
+   },
+   "tuning": [],
+   "runs": [
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/FIX/tune0000",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      91,
+      0,
+      0
+     ],
+     "stream_sha256": "c9b71961b29d1657eb36636d5a1c0acd27aa18874544e621be21df9dc1e6da33",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 150.0,
+      "units_sold": 1,
+      "sell_through": 1.0,
+      "arrivals": 4,
+      "availability": 0.75,
+      "stockout_period": 35,
+      "price_volatility": 0.0,
+      "consumer_surplus": 294.91695327453505,
+      "total_surplus": 444.91695327453505,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 0,
+      "buyers_H": 1
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/FIX/tune0001",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      91,
+      0,
+      1
+     ],
+     "stream_sha256": "cdee29b09e8c08a2d6728137d12700578eb89e7a4c10e91eeae0b4de039897f9",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 150.0,
+      "units_sold": 1,
+      "sell_through": 1.0,
+      "arrivals": 5,
+      "availability": 0.4,
+      "stockout_period": 15,
+      "price_volatility": 0.0,
+      "consumer_surplus": 42.59560571313392,
+      "total_surplus": 192.59560571313392,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": null,
+      "buyers_L": 1,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/FIX/tune0002",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      91,
+      0,
+      2
+     ],
+     "stream_sha256": "86fb8316057ccab5b4909f3d5c2ad4f41d04a61db42f58faf8754ba621172e83",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 150.0,
+      "units_sold": 1,
+      "sell_through": 1.0,
+      "arrivals": 6,
+      "availability": 0.3333333333333333,
+      "stockout_period": 39,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.4855739292545138,
+      "total_surplus": 150.4855739292545,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 0,
+      "buyers_H": 1
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/FIX/tune0003",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      91,
+      0,
+      3
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/FIX/tune0004",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      91,
+      0,
+      4
+     ],
+     "stream_sha256": "f772ea00fc4d9c20fd09f94cf3d4f20161c112e06e0aaeed305d5cd51c64ae19",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 2,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/OCC/tune0000",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      91,
+      0,
+      0
+     ],
+     "stream_sha256": "c9b71961b29d1657eb36636d5a1c0acd27aa18874544e621be21df9dc1e6da33",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 85.11205031955058,
+      "units_sold": 1,
+      "sell_through": 1.0,
+      "arrivals": 4,
+      "availability": 0.75,
+      "stockout_period": 35,
+      "price_volatility": 0.033050847457627125,
+      "consumer_surplus": 359.80490295498447,
+      "total_surplus": 444.91695327453505,
+      "mean_price_paid": 85.11205031955058,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": 85.11205031955058,
+      "buyers_L": 0,
+      "buyers_H": 1
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/OCC/tune0001",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      91,
+      0,
+      1
+     ],
+     "stream_sha256": "cdee29b09e8c08a2d6728137d12700578eb89e7a4c10e91eeae0b4de039897f9",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 118.78343495051725,
+      "units_sold": 1,
+      "sell_through": 1.0,
+      "arrivals": 5,
+      "availability": 0.4,
+      "stockout_period": 15,
+      "price_volatility": 0.033050847457627125,
+      "consumer_surplus": 73.81217076261667,
+      "total_surplus": 192.59560571313392,
+      "mean_price_paid": 118.78343495051725,
+      "mean_price_paid_L": 118.78343495051725,
+      "mean_price_paid_H": null,
+      "buyers_L": 1,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/OCC/tune0002",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      91,
+      0,
+      2
+     ],
+     "stream_sha256": "86fb8316057ccab5b4909f3d5c2ad4f41d04a61db42f58faf8754ba621172e83",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 79.6229175843021,
+      "units_sold": 1,
+      "sell_through": 1.0,
+      "arrivals": 6,
+      "availability": 0.3333333333333333,
+      "stockout_period": 39,
+      "price_volatility": 0.033050847457627125,
+      "consumer_surplus": 70.86265634495241,
+      "total_surplus": 150.4855739292545,
+      "mean_price_paid": 79.6229175843021,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": 79.6229175843021,
+      "buyers_L": 0,
+      "buyers_H": 1
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/OCC/tune0003",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      91,
+      0,
+      3
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.016666666666666666,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/OCC/tune0004",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      91,
+      0,
+      4
+     ],
+     "stream_sha256": "f772ea00fc4d9c20fd09f94cf3d4f20161c112e06e0aaeed305d5cd51c64ae19",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 2,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.016666666666666666,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/DRP/tune0000",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      91,
+      0,
+      0
+     ],
+     "stream_sha256": "c9b71961b29d1657eb36636d5a1c0acd27aa18874544e621be21df9dc1e6da33",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 102.25360593237284,
+      "units_sold": 1,
+      "sell_through": 1.0,
+      "arrivals": 4,
+      "availability": 0.75,
+      "stockout_period": 35,
+      "price_volatility": 0.013496293330647212,
+      "consumer_surplus": 342.6633473421622,
+      "total_surplus": 444.916953274535,
+      "mean_price_paid": 102.25360593237284,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": 102.25360593237284,
+      "buyers_L": 0,
+      "buyers_H": 1
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/DRP/tune0001",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      91,
+      0,
+      1
+     ],
+     "stream_sha256": "cdee29b09e8c08a2d6728137d12700578eb89e7a4c10e91eeae0b4de039897f9",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 134.37724475681995,
+      "units_sold": 1,
+      "sell_through": 1.0,
+      "arrivals": 5,
+      "availability": 0.4,
+      "stockout_period": 15,
+      "price_volatility": 0.009002372551685369,
+      "consumer_surplus": 58.21836095631397,
+      "total_surplus": 192.59560571313392,
+      "mean_price_paid": 134.37724475681995,
+      "mean_price_paid_L": 134.37724475681995,
+      "mean_price_paid_H": null,
+      "buyers_L": 1,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/DRP/tune0002",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      91,
+      0,
+      2
+     ],
+     "stream_sha256": "86fb8316057ccab5b4909f3d5c2ad4f41d04a61db42f58faf8754ba621172e83",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 94.52201852558234,
+      "units_sold": 1,
+      "sell_through": 1.0,
+      "arrivals": 6,
+      "availability": 0.3333333333333333,
+      "stockout_period": 39,
+      "price_volatility": 0.014770617860797933,
+      "consumer_surplus": 55.963555403672174,
+      "total_surplus": 150.4855739292545,
+      "mean_price_paid": 94.52201852558234,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": 94.52201852558234,
+      "buyers_L": 0,
+      "buyers_H": 1
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/DRP/tune0003",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      91,
+      0,
+      3
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.02698728144877056,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/DRP/tune0004",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      91,
+      0,
+      4
+     ],
+     "stream_sha256": "f772ea00fc4d9c20fd09f94cf3d4f20161c112e06e0aaeed305d5cd51c64ae19",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 2,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.02698728144877056,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/OCC_k0/tune0000",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      91,
+      0,
+      0
+     ],
+     "stream_sha256": "c9b71961b29d1657eb36636d5a1c0acd27aa18874544e621be21df9dc1e6da33",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 150.0,
+      "units_sold": 1,
+      "sell_through": 1.0,
+      "arrivals": 4,
+      "availability": 0.75,
+      "stockout_period": 35,
+      "price_volatility": 0.0,
+      "consumer_surplus": 294.91695327453505,
+      "total_surplus": 444.91695327453505,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 0,
+      "buyers_H": 1
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/OCC_k0/tune0001",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      91,
+      0,
+      1
+     ],
+     "stream_sha256": "cdee29b09e8c08a2d6728137d12700578eb89e7a4c10e91eeae0b4de039897f9",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 150.0,
+      "units_sold": 1,
+      "sell_through": 1.0,
+      "arrivals": 5,
+      "availability": 0.4,
+      "stockout_period": 15,
+      "price_volatility": 0.0,
+      "consumer_surplus": 42.59560571313392,
+      "total_surplus": 192.59560571313392,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": null,
+      "buyers_L": 1,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/OCC_k0/tune0002",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      91,
+      0,
+      2
+     ],
+     "stream_sha256": "86fb8316057ccab5b4909f3d5c2ad4f41d04a61db42f58faf8754ba621172e83",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 150.0,
+      "units_sold": 1,
+      "sell_through": 1.0,
+      "arrivals": 6,
+      "availability": 0.3333333333333333,
+      "stockout_period": 39,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.4855739292545138,
+      "total_surplus": 150.4855739292545,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 0,
+      "buyers_H": 1
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/OCC_k0/tune0003",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      91,
+      0,
+      3
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/OCC_k0/tune0004",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      91,
+      0,
+      4
+     ],
+     "stream_sha256": "f772ea00fc4d9c20fd09f94cf3d4f20161c112e06e0aaeed305d5cd51c64ae19",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 2,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/DRP_eta0/tune0000",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      91,
+      0,
+      0
+     ],
+     "stream_sha256": "c9b71961b29d1657eb36636d5a1c0acd27aa18874544e621be21df9dc1e6da33",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 150.0,
+      "units_sold": 1,
+      "sell_through": 1.0,
+      "arrivals": 4,
+      "availability": 0.75,
+      "stockout_period": 35,
+      "price_volatility": 0.0,
+      "consumer_surplus": 294.91695327453505,
+      "total_surplus": 444.91695327453505,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 0,
+      "buyers_H": 1
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/DRP_eta0/tune0001",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      91,
+      0,
+      1
+     ],
+     "stream_sha256": "cdee29b09e8c08a2d6728137d12700578eb89e7a4c10e91eeae0b4de039897f9",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 150.0,
+      "units_sold": 1,
+      "sell_through": 1.0,
+      "arrivals": 5,
+      "availability": 0.4,
+      "stockout_period": 15,
+      "price_volatility": 0.0,
+      "consumer_surplus": 42.59560571313392,
+      "total_surplus": 192.59560571313392,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": null,
+      "buyers_L": 1,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/DRP_eta0/tune0002",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      91,
+      0,
+      2
+     ],
+     "stream_sha256": "86fb8316057ccab5b4909f3d5c2ad4f41d04a61db42f58faf8754ba621172e83",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 150.0,
+      "units_sold": 1,
+      "sell_through": 1.0,
+      "arrivals": 6,
+      "availability": 0.3333333333333333,
+      "stockout_period": 39,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.4855739292545138,
+      "total_surplus": 150.4855739292545,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 0,
+      "buyers_H": 1
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/DRP_eta0/tune0003",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      91,
+      0,
+      3
+     ],
+     "stream_sha256": "bf39fe72dd0fbec38738eb9e041b8d54d00f843b543480eb22d26f6833d6fc5a",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 0,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-C1/DRP_eta0/tune0004",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      91,
+      0,
+      4
+     ],
+     "stream_sha256": "f772ea00fc4d9c20fd09f94cf3d4f20161c112e06e0aaeed305d5cd51c64ae19",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 2,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    }
+   ],
+   "contrasts": [
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "revenue",
+     "n": 5,
+     "mean_diff": -33.296319429126015,
+     "sd_diff": 33.89184724581668,
+     "d_z": -0.9824285819426921,
+     "level": 0.975,
+     "boot_ci": [
+      -65.98577622749912,
+      -6.243313009896551
+     ],
+     "t_ci": [
+      -86.27581965848195,
+      19.68318080022992
+     ],
+     "relative_effect": -0.3699591047680668,
+     "classification": "detectable_practically_relevant"
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "revenue",
+     "n": 5,
+     "mean_diff": -23.769426157044975,
+     "sd_diff": 26.347044222973157,
+     "d_z": -0.9021667081850251,
+     "level": 0.975,
+     "boot_ci": [
+      -49.29271154898526,
+      -3.12455104863601
+     ],
+     "t_ci": [
+      -64.95494270117933,
+      17.416090387089383
+     ],
+     "relative_effect": -0.26410473507827753,
+     "classification": "detectable_practically_relevant"
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "revenue",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.975,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": "practically_equivalent"
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "revenue",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.975,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": "practically_equivalent"
+    },
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "sell_through",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "availability",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "consumer_surplus",
+     "n": 5,
+     "mean_diff": 33.296319429126015,
+     "sd_diff": 33.89184724581668,
+     "d_z": 0.9824285819426921,
+     "level": 0.95,
+     "boot_ci": [
+      6.243313009896551,
+      60.34932584835548
+     ],
+     "t_ci": [
+      -8.785967128412508,
+      75.37860598666454
+     ],
+     "relative_effect": 0.4925518247952853,
+     "classification": null
+    },
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "total_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "sell_through",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "availability",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "consumer_surplus",
+     "n": 5,
+     "mean_diff": 23.76942615704497,
+     "sd_diff": 26.34704422297315,
+     "d_z": 0.9021667081850251,
+     "level": 0.95,
+     "boot_ci": [
+      3.12455104863601,
+      44.41430126545393
+     ],
+     "t_ci": [
+      -8.944750113537332,
+      56.48360242762727
+     ],
+     "relative_effect": 0.35162067245630685,
+     "classification": null
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "total_surplus",
+     "n": 5,
+     "mean_diff": -1.1368683772161604e-14,
+     "sd_diff": 2.542114972925208e-14,
+     "d_z": -0.44721359549995787,
+     "level": 0.95,
+     "boot_ci": [
+      -3.410605131648481e-14,
+      0.0
+     ],
+     "t_ci": [
+      -4.293321018376119e-14,
+      2.0195842639437977e-14
+     ],
+     "relative_effect": -7.213648927109942e-17,
+     "classification": null
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "sell_through",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "availability",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "consumer_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "total_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "sell_through",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "availability",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "consumer_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "total_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    }
+   ],
+   "timing": {
+    "stream_generation_s": 0.000599000000875094,
+    "tuning_s": 0.0,
+    "tuning_runs": 0,
+    "eval_s": 0.0033562499993422534,
+    "eval_runs": 25
+   }
+  },
+  {
+   "cell_id": "edge-valuations-below-pmin",
+   "cell_index": 92,
+   "scenario": {
+    "T": 60,
+    "C": 100,
+    "kappa": 2.0,
+    "demand_scale": 1.0,
+    "w_L": 0.7,
+    "m_L": 5.0,
+    "m_H": 5.0,
+    "sigma_v": 0.1,
+    "sigma_M": 0.25,
+    "surge_prob": 0.05,
+    "surge_len": 3,
+    "surge_factor": 1.8,
+    "arrival_profile": "linear",
+    "p_min": 30.0,
+    "p_max": 600.0
+   },
+   "tuning": [],
+   "runs": [
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/FIX/tune0000",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      92,
+      0,
+      0
+     ],
+     "stream_sha256": "93592e70423a0b08937e003ca5a29a6650c85cfeff2528527ec129ea0c4d1715",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 272,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/FIX/tune0001",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      92,
+      0,
+      1
+     ],
+     "stream_sha256": "b217906b89338cad8f839a7d8606e54d00b89a4329f3a54be52ce4721e5f632f",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 296,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/FIX/tune0002",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      92,
+      0,
+      2
+     ],
+     "stream_sha256": "9254e3cf37bedfeb3ce17de6dd6d07297ec966545461975f9ed2f83b9739dfa7",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 241,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/FIX/tune0003",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      92,
+      0,
+      3
+     ],
+     "stream_sha256": "b5a25f15f46336b3cc0dbf1ccbf48316974374dfd1f3872adf9df40562073d22",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 191,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/FIX/tune0004",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      92,
+      0,
+      4
+     ],
+     "stream_sha256": "33a467ac5a6e53ece2345fb6f9591e9685e38dcada3fc8b1e2a012195c5af6f2",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 162,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/OCC/tune0000",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      92,
+      0,
+      0
+     ],
+     "stream_sha256": "93592e70423a0b08937e003ca5a29a6650c85cfeff2528527ec129ea0c4d1715",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 272,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.016666666666666666,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/OCC/tune0001",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      92,
+      0,
+      1
+     ],
+     "stream_sha256": "b217906b89338cad8f839a7d8606e54d00b89a4329f3a54be52ce4721e5f632f",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 296,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.016666666666666666,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/OCC/tune0002",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      92,
+      0,
+      2
+     ],
+     "stream_sha256": "9254e3cf37bedfeb3ce17de6dd6d07297ec966545461975f9ed2f83b9739dfa7",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 241,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.016666666666666666,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/OCC/tune0003",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      92,
+      0,
+      3
+     ],
+     "stream_sha256": "b5a25f15f46336b3cc0dbf1ccbf48316974374dfd1f3872adf9df40562073d22",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 191,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.016666666666666666,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/OCC/tune0004",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      92,
+      0,
+      4
+     ],
+     "stream_sha256": "33a467ac5a6e53ece2345fb6f9591e9685e38dcada3fc8b1e2a012195c5af6f2",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 162,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.016666666666666666,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/DRP/tune0000",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      92,
+      0,
+      0
+     ],
+     "stream_sha256": "93592e70423a0b08937e003ca5a29a6650c85cfeff2528527ec129ea0c4d1715",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 272,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.02727860868532373,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/DRP/tune0001",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      92,
+      0,
+      1
+     ],
+     "stream_sha256": "b217906b89338cad8f839a7d8606e54d00b89a4329f3a54be52ce4721e5f632f",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 296,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.02727860868532373,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/DRP/tune0002",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      92,
+      0,
+      2
+     ],
+     "stream_sha256": "9254e3cf37bedfeb3ce17de6dd6d07297ec966545461975f9ed2f83b9739dfa7",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 241,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.02727860868532373,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/DRP/tune0003",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      92,
+      0,
+      3
+     ],
+     "stream_sha256": "b5a25f15f46336b3cc0dbf1ccbf48316974374dfd1f3872adf9df40562073d22",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 191,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.02727860868532373,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/DRP/tune0004",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      92,
+      0,
+      4
+     ],
+     "stream_sha256": "33a467ac5a6e53ece2345fb6f9591e9685e38dcada3fc8b1e2a012195c5af6f2",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 162,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.02727860868532373,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/OCC_k0/tune0000",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      92,
+      0,
+      0
+     ],
+     "stream_sha256": "93592e70423a0b08937e003ca5a29a6650c85cfeff2528527ec129ea0c4d1715",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 272,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/OCC_k0/tune0001",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      92,
+      0,
+      1
+     ],
+     "stream_sha256": "b217906b89338cad8f839a7d8606e54d00b89a4329f3a54be52ce4721e5f632f",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 296,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/OCC_k0/tune0002",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      92,
+      0,
+      2
+     ],
+     "stream_sha256": "9254e3cf37bedfeb3ce17de6dd6d07297ec966545461975f9ed2f83b9739dfa7",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 241,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/OCC_k0/tune0003",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      92,
+      0,
+      3
+     ],
+     "stream_sha256": "b5a25f15f46336b3cc0dbf1ccbf48316974374dfd1f3872adf9df40562073d22",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 191,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/OCC_k0/tune0004",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      92,
+      0,
+      4
+     ],
+     "stream_sha256": "33a467ac5a6e53ece2345fb6f9591e9685e38dcada3fc8b1e2a012195c5af6f2",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 162,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/DRP_eta0/tune0000",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      92,
+      0,
+      0
+     ],
+     "stream_sha256": "93592e70423a0b08937e003ca5a29a6650c85cfeff2528527ec129ea0c4d1715",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 272,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/DRP_eta0/tune0001",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      92,
+      0,
+      1
+     ],
+     "stream_sha256": "b217906b89338cad8f839a7d8606e54d00b89a4329f3a54be52ce4721e5f632f",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 296,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/DRP_eta0/tune0002",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      92,
+      0,
+      2
+     ],
+     "stream_sha256": "9254e3cf37bedfeb3ce17de6dd6d07297ec966545461975f9ed2f83b9739dfa7",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 241,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/DRP_eta0/tune0003",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      92,
+      0,
+      3
+     ],
+     "stream_sha256": "b5a25f15f46336b3cc0dbf1ccbf48316974374dfd1f3872adf9df40562073d22",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 191,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-valuations-below-pmin/DRP_eta0/tune0004",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      92,
+      0,
+      4
+     ],
+     "stream_sha256": "33a467ac5a6e53ece2345fb6f9591e9685e38dcada3fc8b1e2a012195c5af6f2",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 0.0,
+      "units_sold": 0,
+      "sell_through": 0.0,
+      "arrivals": 162,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0,
+      "consumer_surplus": 0.0,
+      "total_surplus": 0.0,
+      "mean_price_paid": null,
+      "mean_price_paid_L": null,
+      "mean_price_paid_H": null,
+      "buyers_L": 0,
+      "buyers_H": 0
+     }
+    }
+   ],
+   "contrasts": [
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "revenue",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.975,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "revenue",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.975,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "revenue",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.975,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "revenue",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.975,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "sell_through",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "availability",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "consumer_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "total_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "sell_through",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "availability",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "consumer_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "total_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "sell_through",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "availability",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "consumer_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "total_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "sell_through",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "availability",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "consumer_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "total_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": null,
+     "classification": null
+    }
+   ],
+   "timing": {
+    "stream_generation_s": 0.002705834000153118,
+    "tuning_s": 0.0,
+    "tuning_runs": 0,
+    "eval_s": 0.0042103340001631295,
+    "eval_runs": 25
+   }
+  },
+  {
+   "cell_id": "edge-kappa20",
+   "cell_index": 93,
+   "scenario": {
+    "T": 60,
+    "C": 100,
+    "kappa": 20.0,
+    "demand_scale": 1.0,
+    "w_L": 0.7,
+    "m_L": 100.0,
+    "m_H": 200.0,
+    "sigma_v": 0.5,
+    "sigma_M": 0.25,
+    "surge_prob": 0.05,
+    "surge_len": 3,
+    "surge_factor": 1.8,
+    "arrival_profile": "linear",
+    "p_min": 30.0,
+    "p_max": 600.0
+   },
+   "tuning": [],
+   "runs": [
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/FIX/tune0000",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      93,
+      0,
+      0
+     ],
+     "stream_sha256": "2264b38d68f8043fe641d8bb2e6553ed59bc2b25ff73a703107956595e950f42",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 15000.0,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 2895,
+      "availability": 0.14991364421416234,
+      "stockout_period": 8,
+      "price_volatility": 0.0,
+      "consumer_surplus": 6161.528590129519,
+      "total_surplus": 21161.52859012952,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 88,
+      "buyers_H": 12
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/FIX/tune0001",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      93,
+      0,
+      1
+     ],
+     "stream_sha256": "5f41d7294cb1522c4eab86d621d2ff4654140df2f1377dcdf6482f6e059167b0",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 15000.0,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 2532,
+      "availability": 0.17890995260663506,
+      "stockout_period": 10,
+      "price_volatility": 0.0,
+      "consumer_surplus": 5704.437586362298,
+      "total_surplus": 20704.4375863623,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 86,
+      "buyers_H": 14
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/FIX/tune0002",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      93,
+      0,
+      2
+     ],
+     "stream_sha256": "c339ec1e912dc3fc025df35fc592b5214ed8917266a96f83c103bc80ec13db2f",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 15000.0,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 1917,
+      "availability": 0.2436098069900887,
+      "stockout_period": 12,
+      "price_volatility": 0.0,
+      "consumer_surplus": 6192.8430545848105,
+      "total_surplus": 21192.84305458481,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 85,
+      "buyers_H": 15
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/FIX/tune0003",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      93,
+      0,
+      3
+     ],
+     "stream_sha256": "e95611a720328d0814182c06c681f2f69cb249c2a1f7f715b5e65805e2c79634",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 15000.0,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 2115,
+      "availability": 0.2520094562647754,
+      "stockout_period": 12,
+      "price_volatility": 0.0,
+      "consumer_surplus": 6103.418519634152,
+      "total_surplus": 21103.418519634153,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 90,
+      "buyers_H": 10
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/FIX/tune0004",
+     "arm": "FIX",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      93,
+      0,
+      4
+     ],
+     "stream_sha256": "58b4823ccd46cdbaee9dfd4e64ef1ee13b41e57e55dcf21b303919c893be30a2",
+     "policy": {
+      "family": "FIX",
+      "params": {
+       "p": 150.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 15000.0,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 1434,
+      "availability": 0.3186889818688982,
+      "stockout_period": 17,
+      "price_volatility": 0.0,
+      "consumer_surplus": 6643.1134974471615,
+      "total_surplus": 21643.11349744716,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 70,
+      "buyers_H": 30
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/OCC/tune0000",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      93,
+      0,
+      0
+     ],
+     "stream_sha256": "2264b38d68f8043fe641d8bb2e6553ed59bc2b25ff73a703107956595e950f42",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 21770.83667981656,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 2895,
+      "availability": 0.4245250431778929,
+      "stockout_period": 19,
+      "price_volatility": 0.0228813559322034,
+      "consumer_surplus": 6532.8627300873195,
+      "total_surplus": 28303.69940990388,
+      "mean_price_paid": 217.7083667981656,
+      "mean_price_paid_L": 202.25097444193955,
+      "mean_price_paid_H": 246.41495260258546,
+      "buyers_L": 65,
+      "buyers_H": 35
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/OCC/tune0001",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      93,
+      0,
+      1
+     ],
+     "stream_sha256": "5f41d7294cb1522c4eab86d621d2ff4654140df2f1377dcdf6482f6e059167b0",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 21258.708561676267,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 2532,
+      "availability": 0.4218009478672986,
+      "stockout_period": 22,
+      "price_volatility": 0.02163841807909607,
+      "consumer_surplus": 7652.572003202708,
+      "total_surplus": 28911.280564878976,
+      "mean_price_paid": 212.58708561676266,
+      "mean_price_paid_L": 196.88897439246148,
+      "mean_price_paid_H": 239.31630202570793,
+      "buyers_L": 63,
+      "buyers_H": 37
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/OCC/tune0002",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      93,
+      0,
+      2
+     ],
+     "stream_sha256": "c339ec1e912dc3fc025df35fc592b5214ed8917266a96f83c103bc80ec13db2f",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 20655.111442228244,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 1917,
+      "availability": 0.4919144496609285,
+      "stockout_period": 26,
+      "price_volatility": 0.02096045197740114,
+      "consumer_surplus": 8006.379769733321,
+      "total_surplus": 28661.491211961566,
+      "mean_price_paid": 206.55111442228244,
+      "mean_price_paid_L": 191.4158346622803,
+      "mean_price_paid_H": 230.22424430331142,
+      "buyers_L": 61,
+      "buyers_H": 39
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/OCC/tune0003",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      93,
+      0,
+      3
+     ],
+     "stream_sha256": "e95611a720328d0814182c06c681f2f69cb249c2a1f7f715b5e65805e2c79634",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 20993.090163846173,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 2115,
+      "availability": 0.45673758865248226,
+      "stockout_period": 21,
+      "price_volatility": 0.0222033898305085,
+      "consumer_surplus": 6935.829322930574,
+      "total_surplus": 27928.919486776747,
+      "mean_price_paid": 209.93090163846173,
+      "mean_price_paid_L": 198.60004632805828,
+      "mean_price_paid_H": 242.18025906037934,
+      "buyers_L": 74,
+      "buyers_H": 26
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/OCC/tune0004",
+     "arm": "OCC",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      93,
+      0,
+      4
+     ],
+     "stream_sha256": "58b4823ccd46cdbaee9dfd4e64ef1ee13b41e57e55dcf21b303919c893be30a2",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 1.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 19752.948488777387,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 1434,
+      "availability": 0.5292887029288703,
+      "stockout_period": 29,
+      "price_volatility": 0.017683615819209048,
+      "consumer_surplus": 8783.274800439955,
+      "total_surplus": 28536.22328921734,
+      "mean_price_paid": 197.52948488777386,
+      "mean_price_paid_L": 183.05050081606936,
+      "mean_price_paid_H": 211.44066566254887,
+      "buyers_L": 49,
+      "buyers_H": 51
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/DRP/tune0000",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      93,
+      0,
+      0
+     ],
+     "stream_sha256": "2264b38d68f8043fe641d8bb2e6553ed59bc2b25ff73a703107956595e950f42",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 33068.70546089001,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 2895,
+      "availability": 0.9761658031088083,
+      "stockout_period": 58,
+      "price_volatility": 0.09065092609652835,
+      "consumer_surplus": 9247.388987051918,
+      "total_surplus": 42316.09444794193,
+      "mean_price_paid": 330.6870546089001,
+      "mean_price_paid_L": 231.24300289827997,
+      "mean_price_paid_H": 362.0904393596222,
+      "buyers_L": 24,
+      "buyers_H": 76
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/DRP/tune0001",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      93,
+      0,
+      1
+     ],
+     "stream_sha256": "5f41d7294cb1522c4eab86d621d2ff4654140df2f1377dcdf6482f6e059167b0",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 32585.483340238214,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 2532,
+      "availability": 0.9739336492890995,
+      "stockout_period": 58,
+      "price_volatility": 0.06685898141065595,
+      "consumer_surplus": 8562.893774132615,
+      "total_surplus": 41148.37711437083,
+      "mean_price_paid": 325.85483340238216,
+      "mean_price_paid_L": 232.13641342813438,
+      "mean_price_paid_H": 355.45012392056566,
+      "buyers_L": 24,
+      "buyers_H": 76
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/DRP/tune0002",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      93,
+      0,
+      2
+     ],
+     "stream_sha256": "c339ec1e912dc3fc025df35fc592b5214ed8917266a96f83c103bc80ec13db2f",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 30026.77723382404,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 1917,
+      "availability": 0.9880020865936359,
+      "stockout_period": 59,
+      "price_volatility": 0.062493490031888345,
+      "consumer_surplus": 9463.141763433798,
+      "total_surplus": 39489.91899725784,
+      "mean_price_paid": 300.2677723382404,
+      "mean_price_paid_L": 217.5533230687651,
+      "mean_price_paid_H": 339.1922190532876,
+      "buyers_L": 32,
+      "buyers_H": 68
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/DRP/tune0003",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      93,
+      0,
+      3
+     ],
+     "stream_sha256": "e95611a720328d0814182c06c681f2f69cb249c2a1f7f715b5e65805e2c79634",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 27418.666538309466,
+      "units_sold": 98,
+      "sell_through": 0.98,
+      "arrivals": 2115,
+      "availability": 1.0,
+      "stockout_period": 61,
+      "price_volatility": 0.0940640516779957,
+      "consumer_surplus": 8460.575798469526,
+      "total_surplus": 35879.24233677899,
+      "mean_price_paid": 279.7823116154027,
+      "mean_price_paid_L": 230.09195164002833,
+      "mean_price_paid_H": 308.6347786978781,
+      "buyers_L": 36,
+      "buyers_H": 62
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/DRP/tune0004",
+     "arm": "DRP",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      93,
+      0,
+      4
+     ],
+     "stream_sha256": "58b4823ccd46cdbaee9dfd4e64ef1ee13b41e57e55dcf21b303919c893be30a2",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.25,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 28072.27081186691,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 1434,
+      "availability": 0.9581589958158996,
+      "stockout_period": 58,
+      "price_volatility": 0.05776459396367221,
+      "consumer_surplus": 14224.49445238697,
+      "total_surplus": 42296.76526425388,
+      "mean_price_paid": 280.7227081186691,
+      "mean_price_paid_L": 222.7471624150235,
+      "mean_price_paid_H": 301.092494446977,
+      "buyers_L": 26,
+      "buyers_H": 74
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/OCC_k0/tune0000",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      93,
+      0,
+      0
+     ],
+     "stream_sha256": "2264b38d68f8043fe641d8bb2e6553ed59bc2b25ff73a703107956595e950f42",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 15000.0,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 2895,
+      "availability": 0.14991364421416234,
+      "stockout_period": 8,
+      "price_volatility": 0.0,
+      "consumer_surplus": 6161.528590129519,
+      "total_surplus": 21161.52859012952,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 88,
+      "buyers_H": 12
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/OCC_k0/tune0001",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      93,
+      0,
+      1
+     ],
+     "stream_sha256": "5f41d7294cb1522c4eab86d621d2ff4654140df2f1377dcdf6482f6e059167b0",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 15000.0,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 2532,
+      "availability": 0.17890995260663506,
+      "stockout_period": 10,
+      "price_volatility": 0.0,
+      "consumer_surplus": 5704.437586362298,
+      "total_surplus": 20704.4375863623,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 86,
+      "buyers_H": 14
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/OCC_k0/tune0002",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      93,
+      0,
+      2
+     ],
+     "stream_sha256": "c339ec1e912dc3fc025df35fc592b5214ed8917266a96f83c103bc80ec13db2f",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 15000.0,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 1917,
+      "availability": 0.2436098069900887,
+      "stockout_period": 12,
+      "price_volatility": 0.0,
+      "consumer_surplus": 6192.8430545848105,
+      "total_surplus": 21192.84305458481,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 85,
+      "buyers_H": 15
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/OCC_k0/tune0003",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      93,
+      0,
+      3
+     ],
+     "stream_sha256": "e95611a720328d0814182c06c681f2f69cb249c2a1f7f715b5e65805e2c79634",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 15000.0,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 2115,
+      "availability": 0.2520094562647754,
+      "stockout_period": 12,
+      "price_volatility": 0.0,
+      "consumer_surplus": 6103.418519634152,
+      "total_surplus": 21103.418519634153,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 90,
+      "buyers_H": 10
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/OCC_k0/tune0004",
+     "arm": "OCC_k0",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      93,
+      0,
+      4
+     ],
+     "stream_sha256": "58b4823ccd46cdbaee9dfd4e64ef1ee13b41e57e55dcf21b303919c893be30a2",
+     "policy": {
+      "family": "OCC",
+      "params": {
+       "p0": 150.0,
+       "k": 0.0
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 15000.0,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 1434,
+      "availability": 0.3186889818688982,
+      "stockout_period": 17,
+      "price_volatility": 0.0,
+      "consumer_surplus": 6643.1134974471615,
+      "total_surplus": 21643.11349744716,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 70,
+      "buyers_H": 30
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/DRP_eta0/tune0000",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 0,
+     "seed_key": [
+      1,
+      93,
+      0,
+      0
+     ],
+     "stream_sha256": "2264b38d68f8043fe641d8bb2e6553ed59bc2b25ff73a703107956595e950f42",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 15000.0,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 2895,
+      "availability": 0.14991364421416234,
+      "stockout_period": 8,
+      "price_volatility": 0.0,
+      "consumer_surplus": 6161.528590129519,
+      "total_surplus": 21161.52859012952,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 88,
+      "buyers_H": 12
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/DRP_eta0/tune0001",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 1,
+     "seed_key": [
+      1,
+      93,
+      0,
+      1
+     ],
+     "stream_sha256": "5f41d7294cb1522c4eab86d621d2ff4654140df2f1377dcdf6482f6e059167b0",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 15000.0,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 2532,
+      "availability": 0.17890995260663506,
+      "stockout_period": 10,
+      "price_volatility": 0.0,
+      "consumer_surplus": 5704.437586362298,
+      "total_surplus": 20704.4375863623,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 86,
+      "buyers_H": 14
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/DRP_eta0/tune0002",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 2,
+     "seed_key": [
+      1,
+      93,
+      0,
+      2
+     ],
+     "stream_sha256": "c339ec1e912dc3fc025df35fc592b5214ed8917266a96f83c103bc80ec13db2f",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 15000.0,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 1917,
+      "availability": 0.2436098069900887,
+      "stockout_period": 12,
+      "price_volatility": 0.0,
+      "consumer_surplus": 6192.8430545848105,
+      "total_surplus": 21192.84305458481,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 85,
+      "buyers_H": 15
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/DRP_eta0/tune0003",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 3,
+     "seed_key": [
+      1,
+      93,
+      0,
+      3
+     ],
+     "stream_sha256": "e95611a720328d0814182c06c681f2f69cb249c2a1f7f715b5e65805e2c79634",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 15000.0,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 2115,
+      "availability": 0.2520094562647754,
+      "stockout_period": 12,
+      "price_volatility": 0.0,
+      "consumer_surplus": 6103.418519634152,
+      "total_surplus": 21103.418519634153,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 90,
+      "buyers_H": 10
+     }
+    },
+    {
+     "run_id": "EXP-001-exp-smoke-20261124T161050Z/edge-kappa20/DRP_eta0/tune0004",
+     "arm": "DRP_eta0",
+     "role": "tune",
+     "stream_index": 4,
+     "seed_key": [
+      1,
+      93,
+      0,
+      4
+     ],
+     "stream_sha256": "58b4823ccd46cdbaee9dfd4e64ef1ee13b41e57e55dcf21b303919c893be30a2",
+     "policy": {
+      "family": "DRP",
+      "params": {
+       "p0": 150.0,
+       "eta": 0.0,
+       "weight": 0.3
+      }
+     },
+     "status": "ok",
+     "error": null,
+     "metrics": {
+      "revenue": 15000.0,
+      "units_sold": 100,
+      "sell_through": 1.0,
+      "arrivals": 1434,
+      "availability": 0.3186889818688982,
+      "stockout_period": 17,
+      "price_volatility": 0.0,
+      "consumer_surplus": 6643.1134974471615,
+      "total_surplus": 21643.11349744716,
+      "mean_price_paid": 150.0,
+      "mean_price_paid_L": 150.0,
+      "mean_price_paid_H": 150.0,
+      "buyers_L": 70,
+      "buyers_H": 30
+     }
+    }
+   ],
+   "contrasts": [
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "revenue",
+     "n": 5,
+     "mean_diff": 5886.139067268926,
+     "sd_diff": 753.3974849943795,
+     "d_z": 7.81279362422193,
+     "level": 0.975,
+     "boot_ci": [
+      5181.409414481315,
+      6512.861752994423
+     ],
+     "t_ci": [
+      4708.433351214082,
+      7063.84478332377
+     ],
+     "relative_effect": 0.39240927115126173,
+     "classification": "detectable_practically_relevant"
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "revenue",
+     "n": 5,
+     "mean_diff": 15234.380677025727,
+     "sd_diff": 2559.645731493182,
+     "d_z": 5.9517535921420945,
+     "level": 0.975,
+     "boot_ci": [
+      13071.00953212387,
+      17460.31981547681
+     ],
+     "t_ci": [
+      11233.160246780473,
+      19235.60110727098
+     ],
+     "relative_effect": 1.0156253784683817,
+     "classification": "detectable_practically_relevant"
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "revenue",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.975,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": "practically_equivalent"
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "revenue",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.975,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": "practically_equivalent"
+    },
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "sell_through",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "availability",
+     "n": 5,
+     "mean_diff": 0.23622697806858262,
+     "sd_diff": 0.02877749318412671,
+     "d_z": 8.208740648712318,
+     "level": 0.95,
+     "boot_ci": [
+      0.2147093404312043,
+      0.2588273451879961
+     ],
+     "t_ci": [
+      0.2004950008234795,
+      0.27195895531368575
+     ],
+     "relative_effect": 1.0332446766015257,
+     "classification": null
+    },
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "consumer_surplus",
+     "n": 5,
+     "mean_diff": 1421.1154756471872,
+     "sd_diff": 774.1744537603788,
+     "d_z": 1.83565276372068,
+     "level": 0.95,
+     "boot_ci": [
+      778.9095280020465,
+      1998.0256309629833
+     ],
+     "t_ci": [
+      459.8509280887356,
+      2382.3800232056387
+     ],
+     "relative_effect": 0.23066056373132457,
+     "classification": null
+    },
+    {
+     "arm": "OCC",
+     "comparator": "FIX",
+     "metric": "total_surplus",
+     "n": 5,
+     "mean_diff": 7307.254542916114,
+     "sd_diff": 562.619380792553,
+     "d_z": 12.987918284333718,
+     "level": 0.95,
+     "boot_ci": [
+      6929.400232445498,
+      7782.935612013876
+     ],
+     "t_ci": [
+      6608.670313097849,
+      8005.838772734378
+     ],
+     "relative_effect": 0.3453159574325049,
+     "classification": null
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "sell_through",
+     "n": 5,
+     "mean_diff": -0.0040000000000000036,
+     "sd_diff": 0.008944271909999166,
+     "d_z": -0.4472135954999579,
+     "level": 0.95,
+     "boot_ci": [
+      -0.01200000000000001,
+      0.0
+     ],
+     "t_ci": [
+      -0.01510578042073486,
+      0.007105780420734852
+     ],
+     "relative_effect": -0.0040000000000000036,
+     "classification": null
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "availability",
+     "n": 5,
+     "mean_diff": 0.7506257385725765,
+     "sd_diff": 0.07087300176132616,
+     "d_z": 10.591137949827553,
+     "level": 0.95,
+     "boot_ci": [
+      0.6915652036254031,
+      0.8036344905939898
+     ],
+     "t_ci": [
+      0.6626252838413522,
+      0.8386261933038008
+     ],
+     "relative_effect": 3.2831984510889898,
+     "classification": null
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "consumer_surplus",
+     "n": 5,
+     "mean_diff": 3830.6307054633776,
+     "sd_diff": 2124.44283429163,
+     "d_z": 1.8031225145865861,
+     "level": 0.95,
+     "boot_ci": [
+      2685.5261884555016,
+      5774.579552287747
+     ],
+     "t_ci": [
+      1192.7865218948746,
+      6468.474889031881
+     ],
+     "relative_effect": 0.6217478122714251,
+     "classification": null
+    },
+    {
+     "arm": "DRP",
+     "comparator": "FIX",
+     "metric": "total_surplus",
+     "n": 5,
+     "mean_diff": 19065.011382489105,
+     "sd_diff": 2635.256809922114,
+     "d_z": 7.234593346161423,
+     "level": 0.95,
+     "boot_ci": [
+      16888.575092461753,
+      20812.07495544936
+     ],
+     "t_ci": [
+      15792.907875604113,
+      22337.114889374097
+     ],
+     "relative_effect": 0.9009474927061408,
+     "classification": null
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "sell_through",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "availability",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "consumer_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "OCC_k0",
+     "comparator": "FIX",
+     "metric": "total_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "sell_through",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "availability",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "consumer_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    },
+    {
+     "arm": "DRP_eta0",
+     "comparator": "FIX",
+     "metric": "total_surplus",
+     "n": 5,
+     "mean_diff": 0.0,
+     "sd_diff": 0.0,
+     "d_z": null,
+     "level": 0.95,
+     "boot_ci": [
+      0.0,
+      0.0
+     ],
+     "t_ci": [
+      0.0,
+      0.0
+     ],
+     "relative_effect": 0.0,
+     "classification": null
+    }
+   ],
+   "timing": {
+    "stream_generation_s": 0.003122375001112232,
+    "tuning_s": 0.0,
+    "tuning_runs": 0,
+    "eval_s": 0.0052462080002442235,
+    "eval_runs": 25
+   }
+  }
+ ],
+ "failures": 0,
+ "manifest_path": "run_manifest.json",
+ "note": "Smoke matrix of research/protocol.md section 9 and EXP-001 protocol section 18: base cell with one hand-set configuration per family plus nesting arms (OCC k=0, DRP eta=0) on 5 tuning streams, and edge-case cells. Exploratory; validates invariants and metric code and measures runtime. Never evidence."
+}

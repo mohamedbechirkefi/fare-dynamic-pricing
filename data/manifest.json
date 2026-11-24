@@ -4,10 +4,12 @@
   "licence_note": "Third-party data keep their own licences; see NOTICE.md section 2.",
   "datasets_used": [],
   "synthetic_data": {
-    "description": "All study data are synthetic demand streams generated per run from documented parameters and seeds (research/protocol.md section 3). Generator code is not yet implemented (M2).",
-    "generator_version": null,
-    "parameters": "research/experiments/EXP-NNN/config.json (to be created at M2/M3)",
-    "seed_scheme": "numpy SeedSequence, spawn_key = (experiment, cell, role, index)"
+    "description": "All study data are synthetic demand streams generated per run from documented parameters and seeds (research/protocol.md section 3; generator src/fare/streams.py). Streams are regenerated from their seed keys and identified by SHA-256 in every result file; no stream data are stored separately.",
+    "generator_version": "fare-streams-1",
+    "generator_code": "src/fare/streams.py",
+    "project_entropy": 20261124,
+    "parameters": "research/experiments/EXP-NNN/config.json (planned confirmatory), experiments/smoke.json and experiments/exploratory/*.json (exploratory)",
+    "seed_scheme": "numpy SeedSequence(entropy=20261124, spawn_key=(experiment, cell, role, index)); role 0 = tune, 1 = eval"
   },
   "candidate_datasets": [
     {
