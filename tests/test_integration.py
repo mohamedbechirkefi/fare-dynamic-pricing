@@ -76,10 +76,16 @@ def test_config_guards(mutate, exc):
         validate_config(c, UNFROZEN)
 
 
-def test_real_registry_protocols_are_unfrozen():
+def test_real_protocols_and_configs_are_frozen():
+    """Frozen v1.0 (owner-approved 2026-11-24, D-009): registry, freeze record and files on disk agree."""
+    rec = json.loads((REPO_ROOT / "research" / "freeze.json").read_text())
+    assert rec["status"] == "frozen" and rec["main_protocol"]["sha256"] == sha256_file(REPO_ROOT / "research" / "protocol.md")
     for exp in ("EXP-001", "EXP-002", "EXP-003"):
-        st = protocol_status(exp)
-        assert st["frozen"] is False and st["sha256"] is not None
+        cfg = json.loads((REPO_ROOT / "research" / "experiments" / exp / "config.json").read_text())
+        st = protocol_status(exp, cfg=cfg)
+        assert st["frozen"] is True and st["reason"] is None, st
+        validate_config(cfg, st)  # accepted; no run is made here (M3 is scheduled by the coordinator)
+        assert cfg["grid"]["p0_n"] == 6 and len(cfg["grid"]["occ_k"]) == len(cfg["grid"]["drp_eta"]) == 6
 
 
 def _frozen_fixture(tmp_path, cfg):
@@ -142,15 +148,31 @@ def test_cli_accepts_frozen_and_refuses_changed_config(tmp_path, monkeypatch, ca
     assert "REFUSED" in capsys.readouterr().err
 
 
-def test_cli_refuses_confirmatory_configs(capsys):
+def test_cli_refuses_changed_confirmatory_configs(tmp_path, capsys):
+    """Any edit to a frozen confirmatory config is refused before a single run (exit 3)."""
     for exp in ("EXP-001", "EXP-002", "EXP-003"):
-        code = cli.main(["run", "--config", str(REPO_ROOT / "research" / "experiments" / exp / "config.json")])
-        assert code == 3
-        assert "REFUSED" in capsys.readouterr().err
+        cfg = json.loads((REPO_ROOT / "research" / "experiments" / exp / "config.json").read_text())
+        for mutate in (lambda c: c.update(sesoi_fraction=0.02),
+                       lambda c: c["grid"].update(drp_eta=[0.0] + c["grid"]["drp_eta"][1:]),
+                       lambda c: c["eval_streams"].update(count=300)):
+            bad = copy.deepcopy(cfg)
+            mutate(bad)
+            path = tmp_path / f"{exp}.json"
+            path.write_text(json.dumps(bad))
+            assert cli.main(["run", "--config", str(path), "--out", str(tmp_path / "out")]) == 3
+            assert "REFUSED" in capsys.readouterr().err
+        assert not (tmp_path / "out").exists()
+
+
+def test_cli_plan_accepts_frozen_configs(capsys):
+    for exp in ("EXP-001", "EXP-002", "EXP-003"):
+        assert cli.main(["run", "--plan", "--config", str(REPO_ROOT / "research" / "experiments" / exp / "config.json")]) == 0
+        out = capsys.readouterr()
+        assert "REFUSED" not in out.out + out.err
 
 
 def test_cli_plan_counts_match_protocol(capsys):
-    expected = {"EXP-001": 74_500, "EXP-002": 594_000, "EXP-003": 258_000}  # 500 tuning, 4,000 evaluation streams
+    expected = {"EXP-001": 73_000, "EXP-002": 594_000, "EXP-003": 258_000}  # 500 tuning, 4,000 evaluation streams
     for exp, n in expected.items():
         cli.main(["run", "--plan", "--config", str(REPO_ROOT / "research" / "experiments" / exp / "config.json")])
         out = capsys.readouterr().out
@@ -230,3 +252,42 @@ def test_interaction_table_in_report():
     tab = interaction_table({"cells": body["cells"]}, n_resamples=200, seed=1)
     assert tab is not None and tab.count("Delta(kappa=4) - Delta(kappa=1)") == 2
     assert interaction_table({"cells": body["cells"][:1]}) is None
+
+
+def test_grid_edge_findings_follow_the_frozen_rule(tmp_path):
+    """Edge optima are listed as findings with the reading of research/protocol.md section 4."""
+    from fare.report import grid_edge_findings
+    from fare.tuning import DRP_ETA_V1, OCC_K_V1, edge_labels, grid
+    g = {"lo": 40.0, "hi": 400.0, "fix_n": 36, "p0_n": 6, "occ_k": list(OCC_K_V1), "drp_eta": list(DRP_ETA_V1)}
+    drp = grid("DRP", **g)
+    assert edge_labels("DRP", drp, 1) == ["price-low"]
+    assert edge_labels("DRP", drp, 6 + 0) == ["sensitivity-low"]          # p0 index 1, eta = 0.025
+    assert edge_labels("DRP", drp, 35) == ["price-high", "sensitivity-high"]
+    assert edge_labels("OCC", grid("OCC", **g), 6 + 2) == []
+    assert edge_labels("FIX", grid("FIX", fix_n=6), 5) == ["price-high"]
+    cfg = _cfg(grid=g)
+    body = run_experiment(cfg, UNFROZEN, "rs")
+    cell = body["cells"][0]
+    # force a DRP lower-sensitivity edge and an interior OCC to check the reading
+    for t in cell["tuning"]:
+        if t["arm"] == "DRP":
+            t.update(selected_index=6, at_grid_edge=True, selected={"family": "DRP", "params": {"p0": drp[6].p0, "eta": 0.025}})
+        if t["arm"] == "OCC":
+            t.update(at_grid_edge=False)
+    rows = grid_edge_findings({"config": cfg, "cells": body["cells"]})
+    drp_rows = [r for r in rows if r["arm"] == "DRP"]
+    assert len(drp_rows) == 1 and drp_rows[0]["edges"] == ["sensitivity-low"]
+    assert "fixed price" in drp_rows[0]["reading"][0] and "eta = 0" in drp_rows[0]["reading"][0]
+    assert not [r for r in rows if r["arm"] == "OCC"]
+    assert all(r["edges"] for r in rows) and {r["arm"] for r in rows} <= {"FIX", "OCC", "DRP", "FIX6"}
+    # a config whose grid does not match the recorded tuning fails closed
+    with pytest.raises(ReportError):
+        grid_edge_findings({"config": _cfg(grid={"p0_n": 5}), "cells": body["cells"]})
+
+
+def test_report_has_grid_edge_section(tmp_path):
+    cfg_path = tmp_path / "tiny.json"
+    cfg_path.write_text(json.dumps(_cfg()))
+    res = cli.execute(cfg_path, tmp_path / "out", ["test"])
+    text = Path(build_report(res)["report_md"]).read_text()
+    assert "## Grid-edge findings" in text

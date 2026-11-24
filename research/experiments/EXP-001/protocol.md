@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
 # EXP-001 protocol: tuned dynamic rules versus the best fixed price at the base scenario
 
-**Status: DRAFT v0.2 (2026-11-24). Planned; not frozen.** Owner-approved amendments of 2026-11-24 applied except the tuning-grid item, which awaits the owner's ruling before the freeze (G-FREEZE; see `research/protocol.md`, "Amendments before freeze"). Not executed. Parameter values are planning proposals. Study-level context: `research/protocol.md`.
+**Status: FROZEN v1.0 (owner-approved 2026-11-24). Not yet run.** Owner-approved amendments of 2026-11-24 applied, including the second-round tuning-grid ruling (see `research/protocol.md`, "Amendments before freeze"). Frozen by the owner's approval; hashes in `research/freeze.json` (G-FREEZE). Not executed. Study-level context: `research/protocol.md`.
 
 ## 1. Precise question
 
@@ -44,7 +44,7 @@ Unit: one evaluation demand stream (one seed) of the base cell. Scope: the synth
 ## 9. Treatment, control and baseline
 
 - Control and baseline: FIX(p*), p* chosen from 36 geometric prices in [40, 400] by mean revenue on 500 tuning streams.
-- Treatments: OCC(p0*, k*) and DRP(p0*, eta*), each chosen from 36 configurations (9 geometric p0 in [40, 400] times 4 sensitivity values) on the same 500 tuning streams.
+- Treatments: OCC(p0*, k*) and DRP(p0*, eta*), each chosen from 36 configurations (6 geometric p0 in [40, 400] times 6 sensitivity values: k in {0.25, 0.5, 1, 2, 4, 8}, eta in {0.025, 0.05, 0.1, 0.25, 0.5, 1.0}) on the same 500 tuning streams.
 
 ## 10. Sampling and seed plan
 
@@ -56,7 +56,7 @@ n = 4,000 evaluation streams (owner-approved amendment). The pilot on tuning str
 
 ## 12. Fixed compute budget
 
-Tuning: 3 families x 36 configurations x 500 streams = 54,000 runs. Evaluation: 3 x 4,000 = 12,000 runs. Tuning-grid sensitivity: 9 x 500 + 4,000 = 8,500 runs. Total 74,500 runs (`fare.cli run --plan`). Wall-clock cap: 15 minutes on the audited laptop; exceeding it is recorded as a deviation, not a reason to cut runs.
+Tuning: 3 families x 36 configurations x 500 streams = 54,000 runs. Evaluation: 3 x 4,000 = 12,000 runs. Tuning-grid sensitivity: 6 x 500 + 4,000 = 7,000 runs. Total 73,000 runs (`fare.cli run --plan`). Wall-clock cap: 15 minutes on the audited laptop; exceeding it is recorded as a deviation, not a reason to cut runs.
 
 ## 13. Metric formulas and units
 
@@ -75,7 +75,7 @@ Stream-level paired percentile bootstrap, 10,000 resamples, fixed seed; 97.5% in
 
 ## 15. Sensitivity test inside this experiment
 
-Tuning-grid sensitivity: FIX re-tuned on the same 9 starting prices available to OCC and DRP; Delta_j recomputed. A change of sign or class is reported and the main result is then attributed to grid resolution.
+Tuning-grid sensitivity: FIX re-tuned on the same 6 starting prices available to OCC and DRP (arm FIX6); Delta_j recomputed. A change of sign or class is reported and the main result is then attributed to grid resolution.
 
 ## 16. Exclusion and stopping rules
 
@@ -83,7 +83,7 @@ As `research/protocol.md` section 8: no outcome-based exclusion; failures record
 
 ## 17. Anticipated failure modes
 
-- Tuned optimum at the edge of a grid (p* = 40 or 400, or k* or eta* at an extreme): reported; the grid is not extended after seeing evaluation results.
+- Tuned optimum at the edge of a grid (p* or p0* = 40 or 400, k* = 0.25 or 8, eta* = 0.025 or 1.0): reported as a finding under the grid-edge rule of `research/protocol.md` section 4 (a DRP lower edge is read as a rule close to eta = 0, which is the fixed price); the grid is not extended after the freeze.
 - DRP oscillation (price hitting bounds repeatedly): visible in price volatility and price-path figures.
 - Bootstrap intervals degenerate if all paired differences are zero (possible if tuned k* or eta* is tiny): reported as exact equality.
 
@@ -112,6 +112,13 @@ $UV run --frozen --python /usr/local/bin/python3 python -m fare.cli report --res
 Approved by the owner on 2026-11-24 (`/Users/bechir/research/labs/_shared/owner-approvals-2026-11-24.md`, FARE section); applied in draft v0.2 (decision D-008).
 
 1. Stream counts: 500 tuning and 4,000 evaluation streams (sections 9 to 12). Applied.
-2. Tuning grids: not applied; the draft grid of section 9 stands until the owner rules (see `research/protocol.md`). In the base cell the proposed widened grid gives interior pilot optima; the open problem is in EXP-002 cells.
+2. Tuning grids: not applied in the first round (could not be applied as written); resolved in the second round below.
 3. Entropy pinned at 20261124 (section 10); other pinned choices in `research/protocol.md` section 13. Applied.
 4. Commands: section 19 names the implemented CLI. Applied.
+
+## Amendments before freeze, second round (owner-approved 2026-11-24)
+
+Owner answer "Approve all", 2026-11-24 (`/Users/bechir/research/labs/_shared/owner-approvals-2026-11-24b.md`, section 2): "Keep the widened grids within the equal tuning budget. Report optima on a grid edge as a finding (a DRP responsiveness of 0 means the dynamic rule reduces to a fixed price). Freeze." Applied before any confirmatory data (decision D-009).
+
+5. Tuning grids widened within the equal budget (section 9), sensitivity arm FIX6 (section 15), run counts updated (section 12). Applied.
+6. Grid-edge optima reported as findings (section 17; rule in `research/protocol.md` section 4). Applied.

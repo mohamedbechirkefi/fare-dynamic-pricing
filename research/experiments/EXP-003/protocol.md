@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
 # EXP-003 protocol: robustness of the base comparison to demand misspecification
 
-**Status: DRAFT v0.2 (2026-11-24). Planned; not frozen.** Owner-approved amendments of 2026-11-24 applied except the tuning-grid item, which awaits the owner's ruling before the freeze (G-FREEZE; see `research/protocol.md`, "Amendments before freeze"). Not executed. Depends on EXP-001 tuned configurations (the configurations, not the evaluation results). This is the sensitivity analysis designated as able to invalidate the main interpretation.
+**Status: FROZEN v1.0 (owner-approved 2026-11-24). Not yet run.** Owner-approved amendments of 2026-11-24 applied, including the second-round tuning-grid ruling (see `research/protocol.md`, "Amendments before freeze"). Frozen by the owner's approval; hashes in `research/freeze.json` (G-FREEZE). Not executed. Depends on EXP-001 tuned configurations (the configurations, not the evaluation results). This is the sensitivity analysis designated as able to invalidate the main interpretation.
 
 ## 1. Precise question
 
@@ -41,7 +41,7 @@ As EXP-001 sections 13, 14 and 16; 95% paired bootstrap intervals per cell, no m
 
 ## 10. Anticipated failure modes
 
-Large shifts may push all policies to price bounds; reported. Reversed arrival order may favour fixed prices strongly; reported as found.
+Large shifts may push all policies to price bounds; reported. Base-tuned optima on a grid edge are reported as findings under the grid-edge rule of `research/protocol.md` section 4. Reversed arrival order may favour fixed prices strongly; reported as found.
 
 ## 11. Reproducibility commands
 
@@ -63,6 +63,13 @@ $UV run --frozen --python /usr/local/bin/python3 python -m fare.cli report --res
 Approved by the owner on 2026-11-24 (`/Users/bechir/research/labs/_shared/owner-approvals-2026-11-24.md`, FARE section); applied in draft v0.2 (decision D-008).
 
 1. Stream counts: 500 tuning and 4,000 evaluation streams per cell (sections 6 to 8). Applied.
-2. Tuning grids: not applied; the draft grid stands until the owner rules. The base tuning used here gives interior pilot optima under the proposed widened grid.
+2. Tuning grids: not applied in the first round (could not be applied as written); resolved in the second round below. The base tuning used here gives interior pilot optima under the widened grid.
 3. The re-derived base tuning and its run count are pinned (sections 7 and 8). Applied.
 4. Commands: section 11 names the implemented CLI. Applied.
+
+## Amendments before freeze, second round (owner-approved 2026-11-24)
+
+Owner answer "Approve all", 2026-11-24 (`/Users/bechir/research/labs/_shared/owner-approvals-2026-11-24b.md`, section 2): "Keep the widened grids within the equal tuning budget. Report optima on a grid edge as a finding (a DRP responsiveness of 0 means the dynamic rule reduces to a fixed price). Freeze." Applied before any confirmatory data (decision D-009).
+
+5. The base tuning uses the widened grids of `research/protocol.md` section 4 (36 configurations per family); run count unchanged (section 8). Applied.
+6. Grid-edge optima reported as findings (section 10). Applied.

@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
 # EXP-002 protocol: sensitivity to price elasticity and demand-to-capacity tightness
 
-**Status: DRAFT v0.2 (2026-11-24). Planned; not frozen.** Owner-approved amendments of 2026-11-24 applied except the tuning-grid item, which awaits the owner's ruling before the freeze (G-FREEZE; see `research/protocol.md`, "Amendments before freeze"). Not executed. Depends on EXP-001 code and analysis pipeline (not on its results).
+**Status: FROZEN v1.0 (owner-approved 2026-11-24). Not yet run.** Owner-approved amendments of 2026-11-24 applied, including the second-round tuning-grid ruling (see `research/protocol.md`, "Amendments before freeze"). Frozen by the owner's approval; hashes in `research/freeze.json` (G-FREEZE). Not executed. Depends on EXP-001 code and analysis pipeline (not on its results).
 
 ## 1. Precise question
 
@@ -33,7 +33,7 @@ Unit: one evaluation stream within a cell. Factors: sigma_v in {0.25, 0.5, 1.0};
 
 ## 8. Treatment, control and baseline
 
-As EXP-001, re-tuned independently in each cell (36 configurations per family on 500 tuning streams per cell). Not re-tuning would make FIX a strawman.
+As EXP-001, re-tuned independently in each cell (36 configurations per family on 500 tuning streams per cell, on the widened grids of `research/protocol.md` section 4). Not re-tuning would make FIX a strawman.
 
 ## 9. Seeds and sample size
 
@@ -49,7 +49,7 @@ As EXP-001 sections 13, 14 and 16.
 
 ## 12. Anticipated failure modes
 
-Degenerate cells (kappa = 1.0 with sigma_v = 1.0 may sell out rarely, making all policies close to identical); tuned optima at grid edges in extreme cells. Both reported, the grid is not changed after evaluation.
+Degenerate cells (kappa = 1.0 with sigma_v = 1.0 may sell out rarely, making all policies close to identical); tuned optima at grid edges in extreme cells. Both reported. Edge optima are findings under the grid-edge rule of `research/protocol.md` section 4: a DRP optimum at eta = 0.025 is read as a rule close to eta = 0, where DRP reduces to a fixed price; the pre-freeze tuning-only check (J-0006) found 7 of 18 pilot optima of this experiment on an edge of the frozen grid. The grid is not changed after the freeze.
 
 ## 13. Reproducibility commands
 
@@ -71,6 +71,13 @@ $UV run --frozen --python /usr/local/bin/python3 python -m fare.cli report --res
 Approved by the owner on 2026-11-24 (`/Users/bechir/research/labs/_shared/owner-approvals-2026-11-24.md`, FARE section); applied in draft v0.2 (decision D-008).
 
 1. Stream counts: 500 tuning and 4,000 evaluation streams per cell (sections 8 to 10). Applied.
-2. Tuning grids: not applied; the draft grid stands until the owner rules. With the proposed widened grid, 7 of the 18 pilot optima in this experiment's cells stay on a grid edge (`results/exploratory/grid_interior_check.json`).
+2. Tuning grids: not applied in the first round (could not be applied as written); resolved in the second round below. With the widened grid, 7 of the 18 pilot optima in this experiment's cells stay on a grid edge (`results/exploratory/grid_interior_check.json`).
 3. Interaction-contrast method named (section 5). Applied.
 4. Commands: section 13 names the implemented CLI. Applied.
+
+## Amendments before freeze, second round (owner-approved 2026-11-24)
+
+Owner answer "Approve all", 2026-11-24 (`/Users/bechir/research/labs/_shared/owner-approvals-2026-11-24b.md`, section 2): "Keep the widened grids within the equal tuning budget. Report optima on a grid edge as a finding (a DRP responsiveness of 0 means the dynamic rule reduces to a fixed price). Freeze." Applied before any confirmatory data (decision D-009).
+
+5. Tuning grids widened within the equal budget (section 8); run count unchanged (section 10). Applied.
+6. Grid-edge optima reported as findings (sections 4 and 12). Applied.

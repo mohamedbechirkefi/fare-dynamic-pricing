@@ -13,7 +13,23 @@
   "lo": 40.0,
   "hi": 400.0,
   "fix_n": 36,
-  "p0_n": 9
+  "p0_n": 6,
+  "occ_k": [
+   0.25,
+   0.5,
+   1.0,
+   2.0,
+   4.0,
+   8.0
+  ],
+  "drp_eta": [
+   0.025,
+   0.05,
+   0.1,
+   0.25,
+   0.5,
+   1.0
+  ]
  },
  "tune_streams": {
   "role": 0,
@@ -32,7 +48,7 @@
   "secondary_level": 0.95
  },
  "sesoi_fraction": 0.01,
- "note": "Planned confirmatory configuration for EXP-001 (draft v0.2: owner-approved stream counts of 2026-11-24 applied; grid amendment pending). The CLI refuses it until the owner freezes the protocol.",
+ "note": "Frozen confirmatory configuration for EXP-001 (frozen v1.0, owner-approved 2026-11-24: 500 tuning and 4,000 evaluation streams; widened grids within the equal 36-configuration budget).",
  "fix_coarse_sensitivity": true,
  "cells": [
   {

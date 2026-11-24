@@ -24,6 +24,7 @@ from .schema import read_result
 from .simulate import simulate
 from .stats import holm, interaction_bootstrap_ci, sign_flip_pvalue
 from .streams import SeedKey, generate_stream
+from .tuning import edge_labels, grid
 
 PANDOC = Path("/Users/bechir/research/labs/.tools/pandoc")
 TOOLS_PY = Path("/Users/bechir/research/labs/.tools/py/bin/python")
@@ -95,6 +96,56 @@ def tuning_table(cell: dict) -> str:
                      f"{_policy_str(t['selected'])} | {_fmt(t['mean_revenue'][t['selected_index']])} | "
                      f"{'yes' if t['at_grid_edge'] else 'no'} | {el} |")
     return "\n".join(lines)
+
+
+EDGE_READING = {
+    ("DRP", "sensitivity-low"): "least responsive DRP offered: close to eta = 0, where DRP reduces to the fixed price "
+                                "FIX(p0); read as the demand-responsive rule adding little or nothing over a fixed price here",
+    ("OCC", "sensitivity-low"): "least responsive OCC offered: close to k = 0, where OCC reduces to the fixed price FIX(p0)",
+    ("DRP", "sensitivity-high"): "most responsive DRP offered: a stronger response might earn more; the contrast measures "
+                                 "the family as gridded (limitation of this cell)",
+    ("OCC", "sensitivity-high"): "most responsive OCC offered: a stronger response might earn more; the contrast measures "
+                                 "the family as gridded (limitation of this cell)",
+    "price-low": "lowest price offered: a lower price might earn more (limitation of this cell)",
+    "price-high": "highest price offered: a higher price might earn more (limitation of this cell)",
+}
+
+
+def grid_edge_findings(doc: dict) -> list[dict]:
+    """Tuned optima on a grid edge, with the reading fixed in research/protocol.md section 4.
+
+    The grid is rebuilt from the config recorded in the result; FIX arms use
+    their own price count (36 for FIX, p0_n for the coarse sensitivity arm).
+    Each tuning record is listed once, in the cell where it was tuned.
+    """
+    g = dict((doc.get("config") or {}).get("grid") or {})
+    out = []
+    for c in doc["cells"]:
+        for t in c["tuning"]:
+            if not t["at_grid_edge"] or t.get("tuned_in_cell", c["cell_id"]) != c["cell_id"]:
+                continue
+            kw = {**g, "fix_n": t["n_configs"]} if t["family"] == "FIX" else g
+            configs = grid(t["family"], **kw)
+            if len(configs) != t["n_configs"]:
+                raise ReportError(f"cell {c['cell_id']} arm {t['arm']}: grid rebuilt from the config has "
+                                  f"{len(configs)} configurations, result records {t['n_configs']}")
+            labels = edge_labels(t["family"], configs, t["selected_index"])
+            readings = [EDGE_READING.get((t["family"], lab)) or EDGE_READING[lab] for lab in labels]
+            out.append({"cell_id": c["cell_id"], "arm": t["arm"], "family": t["family"],
+                        "selected": t["selected"], "edges": labels, "reading": readings})
+    return out
+
+
+def grid_edge_section(doc: dict) -> list[str]:
+    rows = grid_edge_findings(doc)
+    md = ["", "## Grid-edge findings (rule of research/protocol.md section 4)", ""]
+    if not rows:
+        return md + ["No tuned optimum lies on a grid edge."]
+    md += ["| Cell | Arm | Selected | Edge | Reading |", "|---|---|---|---|---|"]
+    for r in rows:
+        md.append(f"| {r['cell_id']} | {r['arm']} | {_policy_str(r['selected'])} | {', '.join(r['edges'])} | "
+                  f"{'; '.join(r['reading'])} |")
+    return md
 
 
 def contrast_table(cell: dict) -> str:
@@ -298,6 +349,8 @@ def build_report(result_path: Path, out_dir: Path | None = None, pdf: bool = Fal
                 (out / name).write_text(svg)
                 figs.append(name)
                 md += ["", f"![{doc['experiment_id']} {c['cell_id']} {kind} figure]({name})"]
+    if any(c["tuning"] for c in doc["cells"]):
+        md += grid_edge_section(doc)
     mt = multiplicity_table(doc)
     if mt:
         md += ["", "## Multiplicity across cells (revenue vs FIX, Holm over all listed contrasts)", "", mt]

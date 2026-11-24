@@ -22,9 +22,10 @@ from .streams import DemandStream
 # exploratory configs (which do not name a grid) reproduce unchanged.
 OCC_K = (0.5, 1.0, 2.0, 4.0)
 DRP_ETA = (0.1, 0.25, 0.5, 1.0)
-# Frozen v1.0 sensitivity values (owner-approved amendment 2026-11-24, D-008):
-# widened so that the pilot optima are interior. The confirmatory configs name
-# them explicitly ("occ_k", "drp_eta") together with p0_n = 6.
+# Frozen v1.0 sensitivity values (owner-approved 2026-11-24, D-008 and D-009):
+# widened within the equal 36-configuration budget. The frozen confirmatory
+# configs name them explicitly ("occ_k", "drp_eta") together with p0_n = 6.
+# Optima on a grid edge are reported as findings (edge_labels below).
 OCC_K_V1 = (0.25, 0.5, 1.0, 2.0, 4.0, 8.0)
 DRP_ETA_V1 = (0.025, 0.05, 0.1, 0.25, 0.5, 1.0)
 
@@ -86,9 +87,38 @@ def _at_edge(family: str, configs: list[Policy], i: int) -> bool:
     return pol.p0 in (min(p0s), max(p0s)) or s in (min(sens), max(sens))
 
 
+def edge_labels(family: str, configs: list[Policy], i: int) -> list[str]:
+    """Which grid edges configuration i lies on (empty list: interior).
+
+    Labels: "price-low"/"price-high" (FIX price or p0 at the grid bounds) and
+    "sensitivity-low"/"sensitivity-high" (k for OCC, eta for DRP). Used by the
+    grid-edge reporting rule of research/protocol.md section 4 (frozen v1.0).
+    """
+    pol = configs[i]
+    out = []
+    if family == "FIX":
+        ps = [c.p for c in configs]
+        v = pol.p
+    else:
+        ps = [c.p0 for c in configs]
+        v = pol.p0
+    if v == min(ps):
+        out.append("price-low")
+    if v == max(ps):
+        out.append("price-high")
+    if family != "FIX":
+        sens = [c.k if family == "OCC" else c.eta for c in configs]
+        s = pol.k if family == "OCC" else pol.eta
+        if s == min(sens):
+            out.append("sensitivity-low")
+        if s == max(sens):
+            out.append("sensitivity-high")
+    return out
+
+
 def tune(family: str, streams: Sequence[DemandStream], sp: ScenarioParams, **grid_kw) -> TuningResult:
     configs = grid(family, **grid_kw)
     return select(family, configs, revenue_matrix(configs, streams, sp))
 
 
-__all__ = ["grid", "tune", "select", "revenue_matrix", "TuningResult", "compute_metrics"]
+__all__ = ["grid", "tune", "edge_labels", "select", "revenue_matrix", "TuningResult", "compute_metrics"]
