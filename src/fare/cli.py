@@ -35,6 +35,14 @@ def _load(path: Path) -> dict:
         raise ConfigError(f"cannot read config {path}: {exc}") from exc
 
 
+def _rel(path: Path) -> str:
+    """Repository-relative path when possible, so manifests carry no local paths."""
+    try:
+        return str(Path(path).resolve().relative_to(REPO_ROOT))
+    except ValueError:
+        return Path(path).name
+
+
 def execute(cfg_path: Path, out_root: Path | None = None, argv: list[str] | None = None) -> Path:
     cfg = _load(cfg_path)
     protocol = protocol_status(cfg.get("experiment_id", ""))
@@ -99,7 +107,7 @@ def main(argv: list[str] | None = None) -> int:
     a = ap.parse_args(argv)
     try:
         if a.cmd == "smoke":
-            res = execute(a.config, a.out, ["fare", "smoke", "--config", str(a.config)])
+            res = execute(a.config, a.out, ["fare", "smoke", "--config", _rel(a.config)])
             if not a.no_report:
                 print(json.dumps(build_report(res), indent=1))
             return 0
@@ -111,7 +119,7 @@ def main(argv: list[str] | None = None) -> int:
                                   "protocol": prot, "planned": planned_run_counts(cfg)}, indent=1))
                 validate_config(cfg, prot)
                 return 0
-            execute(a.config, a.out, ["fare", "run", "--config", str(a.config)])
+            execute(a.config, a.out, ["fare", "run", "--config", _rel(a.config)])
             return 0
         if a.cmd == "report":
             print(json.dumps(build_report(a.result, a.out, a.pdf), indent=1))
