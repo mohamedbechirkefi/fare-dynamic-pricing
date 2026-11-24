@@ -190,6 +190,8 @@ def test_end_to_end_cli_and_report(tmp_path):
     for key in ("config_sha256", "seeds", "git", "environment", "runtime_s", "peak_rss_bytes", "start_utc"):
         assert key in man
     assert man["config_sha256"] == doc["config_sha256"]
+    assert man["data_manifest"] == {"path": "data/manifest.json",
+                                    "sha256": sha256_file(REPO_ROOT / "data" / "manifest.json")}
     produced = build_report(res)
     assert Path(produced["report_md"]).read_text().count("EXPLORATORY") >= 1
     assert all((res.parent / "report" / f).exists() for f in produced["figures"])

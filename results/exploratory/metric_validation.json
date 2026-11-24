@@ -1,0 +1,414 @@
+{
+ "label": "exploratory",
+ "purpose": "M3 metric validation on hand-built known cases",
+ "n_checks": 58,
+ "n_failed": 0,
+ "checks": [
+  {
+   "case": "A-simulate",
+   "metric": "revenue",
+   "expected": 200,
+   "computed": 200.0,
+   "ok": true
+  },
+  {
+   "case": "A-simulate",
+   "metric": "units_sold",
+   "expected": 2,
+   "computed": 2,
+   "ok": true
+  },
+  {
+   "case": "A-simulate",
+   "metric": "sell_through",
+   "expected": 1.0,
+   "computed": 1.0,
+   "ok": true
+  },
+  {
+   "case": "A-simulate",
+   "metric": "arrivals",
+   "expected": 4,
+   "computed": 4,
+   "ok": true
+  },
+  {
+   "case": "A-simulate",
+   "metric": "availability",
+   "expected": 0.75,
+   "computed": 0.75,
+   "ok": true
+  },
+  {
+   "case": "A-simulate",
+   "metric": "stockout_period",
+   "expected": 2,
+   "computed": 2,
+   "ok": true
+  },
+  {
+   "case": "A-simulate",
+   "metric": "price_volatility",
+   "expected": 0.0,
+   "computed": 0.0,
+   "ok": true
+  },
+  {
+   "case": "A-simulate",
+   "metric": "consumer_surplus",
+   "expected": 70,
+   "computed": 70.0,
+   "ok": true
+  },
+  {
+   "case": "A-simulate",
+   "metric": "total_surplus",
+   "expected": 270,
+   "computed": 270.0,
+   "ok": true
+  },
+  {
+   "case": "A-simulate",
+   "metric": "mean_price_paid",
+   "expected": 100,
+   "computed": 100.0,
+   "ok": true
+  },
+  {
+   "case": "A-simulate",
+   "metric": "mean_price_paid_L",
+   "expected": 100,
+   "computed": 100.0,
+   "ok": true
+  },
+  {
+   "case": "A-simulate",
+   "metric": "mean_price_paid_H",
+   "expected": null,
+   "computed": null,
+   "ok": true
+  },
+  {
+   "case": "A-simulate",
+   "metric": "buyers_L",
+   "expected": 2,
+   "computed": 2,
+   "ok": true
+  },
+  {
+   "case": "A-simulate",
+   "metric": "buyers_H",
+   "expected": 0,
+   "computed": 0,
+   "ok": true
+  },
+  {
+   "case": "A-simulate_reference",
+   "metric": "revenue",
+   "expected": 200,
+   "computed": 200.0,
+   "ok": true
+  },
+  {
+   "case": "A-simulate_reference",
+   "metric": "units_sold",
+   "expected": 2,
+   "computed": 2,
+   "ok": true
+  },
+  {
+   "case": "A-simulate_reference",
+   "metric": "sell_through",
+   "expected": 1.0,
+   "computed": 1.0,
+   "ok": true
+  },
+  {
+   "case": "A-simulate_reference",
+   "metric": "arrivals",
+   "expected": 4,
+   "computed": 4,
+   "ok": true
+  },
+  {
+   "case": "A-simulate_reference",
+   "metric": "availability",
+   "expected": 0.75,
+   "computed": 0.75,
+   "ok": true
+  },
+  {
+   "case": "A-simulate_reference",
+   "metric": "stockout_period",
+   "expected": 2,
+   "computed": 2,
+   "ok": true
+  },
+  {
+   "case": "A-simulate_reference",
+   "metric": "price_volatility",
+   "expected": 0.0,
+   "computed": 0.0,
+   "ok": true
+  },
+  {
+   "case": "A-simulate_reference",
+   "metric": "consumer_surplus",
+   "expected": 70,
+   "computed": 70.0,
+   "ok": true
+  },
+  {
+   "case": "A-simulate_reference",
+   "metric": "total_surplus",
+   "expected": 270,
+   "computed": 270.0,
+   "ok": true
+  },
+  {
+   "case": "A-simulate_reference",
+   "metric": "mean_price_paid",
+   "expected": 100,
+   "computed": 100.0,
+   "ok": true
+  },
+  {
+   "case": "A-simulate_reference",
+   "metric": "mean_price_paid_L",
+   "expected": 100,
+   "computed": 100.0,
+   "ok": true
+  },
+  {
+   "case": "A-simulate_reference",
+   "metric": "mean_price_paid_H",
+   "expected": null,
+   "computed": null,
+   "ok": true
+  },
+  {
+   "case": "A-simulate_reference",
+   "metric": "buyers_L",
+   "expected": 2,
+   "computed": 2,
+   "ok": true
+  },
+  {
+   "case": "A-simulate_reference",
+   "metric": "buyers_H",
+   "expected": 0,
+   "computed": 0,
+   "ok": true
+  },
+  {
+   "case": "B-no-arrivals",
+   "metric": "revenue",
+   "expected": 0,
+   "computed": 0.0,
+   "ok": true
+  },
+  {
+   "case": "B-no-arrivals",
+   "metric": "sell_through",
+   "expected": 0.0,
+   "computed": 0.0,
+   "ok": true
+  },
+  {
+   "case": "B-no-arrivals",
+   "metric": "availability",
+   "expected": 1.0,
+   "computed": 1.0,
+   "ok": true
+  },
+  {
+   "case": "B-no-arrivals",
+   "metric": "stockout_period",
+   "expected": 4,
+   "computed": 4,
+   "ok": true
+  },
+  {
+   "case": "B-no-arrivals",
+   "metric": "consumer_surplus",
+   "expected": 0,
+   "computed": 0.0,
+   "ok": true
+  },
+  {
+   "case": "B-no-arrivals",
+   "metric": "mean_price_paid",
+   "expected": null,
+   "computed": null,
+   "ok": true
+  },
+  {
+   "case": "C-occ-prices",
+   "metric": "p_1",
+   "expected": 100.0,
+   "computed": 100.0,
+   "ok": true
+  },
+  {
+   "case": "C-occ-prices",
+   "metric": "p_2",
+   "expected": 71.65313105737893,
+   "computed": 71.65313105737893,
+   "ok": true
+  },
+  {
+   "case": "C-occ-prices",
+   "metric": "p_3",
+   "expected": 51.3417119032592,
+   "computed": 51.3417119032592,
+   "ok": true
+  },
+  {
+   "case": "C-occ-volatility",
+   "metric": "price_volatility",
+   "expected": 0.3333333333333333,
+   "computed": 0.3333333333333335,
+   "ok": true
+  },
+  {
+   "case": "D-drp-prices",
+   "metric": "p_1",
+   "expected": 100.0,
+   "computed": 100.0,
+   "ok": true
+  },
+  {
+   "case": "D-drp-prices",
+   "metric": "p_2",
+   "expected": 80.0,
+   "computed": 80.0,
+   "ok": true
+  },
+  {
+   "case": "D-drp-prices",
+   "metric": "p_3",
+   "expected": 39.6,
+   "computed": 39.6,
+   "ok": true
+  },
+  {
+   "case": "E-segments",
+   "metric": "revenue",
+   "expected": 174.0818220681718,
+   "computed": 174.0818220681718,
+   "ok": true
+  },
+  {
+   "case": "E-segments",
+   "metric": "mean_price_paid_H",
+   "expected": 100,
+   "computed": 100.0,
+   "ok": true
+  },
+  {
+   "case": "E-segments",
+   "metric": "mean_price_paid_L",
+   "expected": 74.08182206817179,
+   "computed": 74.08182206817179,
+   "ok": true
+  },
+  {
+   "case": "E-segments",
+   "metric": "consumer_surplus",
+   "expected": 115.91817793182821,
+   "computed": 115.91817793182821,
+   "ok": true
+  },
+  {
+   "case": "E-segments",
+   "metric": "sell_through",
+   "expected": 0.4,
+   "computed": 0.4,
+   "ok": true
+  },
+  {
+   "case": "E-segments",
+   "metric": "price_volatility",
+   "expected": 0.3,
+   "computed": 0.3000000000000007,
+   "ok": true
+  },
+  {
+   "case": "E-segments",
+   "metric": "stockout_period",
+   "expected": 3,
+   "computed": 3,
+   "ok": true
+  },
+  {
+   "case": "F-stats",
+   "metric": "constant-diff mean",
+   "expected": 5.0,
+   "computed": 5.0,
+   "ok": true
+  },
+  {
+   "case": "F-stats",
+   "metric": "constant-diff boot lo",
+   "expected": 5.0,
+   "computed": 5.0,
+   "ok": true
+  },
+  {
+   "case": "F-stats",
+   "metric": "holm[0]",
+   "expected": 0.04,
+   "computed": 0.04,
+   "ok": true
+  },
+  {
+   "case": "F-stats",
+   "metric": "holm[1]",
+   "expected": 0.08,
+   "computed": 0.08,
+   "ok": true
+  },
+  {
+   "case": "F-stats",
+   "metric": "holm[2]",
+   "expected": 0.06,
+   "computed": 0.06,
+   "ok": true
+  },
+  {
+   "case": "F-stats",
+   "metric": "holm[3]",
+   "expected": 0.5,
+   "computed": 0.5,
+   "ok": true
+  },
+  {
+   "case": "F-classify",
+   "metric": "rel",
+   "expected": "detectable_practically_relevant",
+   "computed": "detectable_practically_relevant",
+   "ok": true
+  },
+  {
+   "case": "F-classify",
+   "metric": "below",
+   "expected": "detectable_below_sesoi",
+   "computed": "detectable_below_sesoi",
+   "ok": true
+  },
+  {
+   "case": "F-classify",
+   "metric": "eq",
+   "expected": "practically_equivalent",
+   "computed": "practically_equivalent",
+   "ok": true
+  },
+  {
+   "case": "F-classify",
+   "metric": "inc",
+   "expected": "inconclusive",
+   "computed": "inconclusive",
+   "ok": true
+  }
+ ]
+}

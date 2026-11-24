@@ -170,6 +170,15 @@ def build_freeze_record(*, approval: dict, common_decisions: dict, disclosure: d
     }
 
 
+def data_manifest_record(root: Path = REPO_ROOT) -> dict[str, Any]:
+    """Path and SHA-256 of the data manifest in force when a run set executes.
+
+    FARE uses synthetic streams only (decision D-002); the manifest documents
+    the generator and seed scheme, so its hash pins the data provenance."""
+    path = root / "data" / "manifest.json"
+    return {"path": "data/manifest.json", "sha256": sha256_file(path) if path.exists() else None}
+
+
 def build_manifest(*, run_set_id: str, label: str, experiment_id: str, cfg: dict, cfg_sha: str,
                    protocol: dict, start_utc: str, end_utc: str, runtime_s: float, seed_keys: dict,
                    counts: dict, command: list[str]) -> dict[str, Any]:
@@ -183,6 +192,7 @@ def build_manifest(*, run_set_id: str, label: str, experiment_id: str, cfg: dict
         "protocol": protocol,
         "seeds": {"project_entropy": PROJECT_ENTROPY, "generator_version": GENERATOR_VERSION, **seed_keys},
         "git": git_revision(),
+        "data_manifest": data_manifest_record(),
         "environment": environment(),
         "command": command,
         "start_utc": start_utc,
