@@ -1,11 +1,12 @@
 # SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0
-# Minimal project definition for FARE (M0). The core package is added in M2.
+# Project definition for FARE. The core package lives in src/fare (M2); it is
+# imported with PYTHONPATH=src (package = false keeps the lock free of a build backend).
 # Dependency resolution is capped at 2026-11-10 (exclude-newer) so that every
 # locked version was released at least two weeks before 2026-11-24.
 
 [project]
 name = "fare-dynamic-pricing"
-version = "0.0.0"
+version = "0.2.0"
 description = "FARE: a simulated perishable-inventory market comparing fixed, occupancy-based and demand-responsive pricing policies"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
@@ -24,3 +25,7 @@ dev = [
 [tool.uv]
 package = false
 exclude-newer = "2026-11-10T00:00:00Z"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

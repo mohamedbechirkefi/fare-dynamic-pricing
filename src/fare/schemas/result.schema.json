@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fare-result-1.0.0",
+  "title": "FARE result file, schema version 1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "schema_version", "label", "simulated", "experiment_id", "run_set_id",
+               "created_utc", "config", "config_sha256", "protocol", "cells", "failures", "manifest_path"],
+  "properties": {
+    "schema": {"const": "fare-result"},
+    "schema_version": {"const": "1.0.0"},
+    "label": {"enum": ["exploratory", "confirmatory"]},
+    "simulated": {"const": true},
+    "experiment_id": {"type": "string", "pattern": "^(EXP-[0-9]{3}|SMOKE)$"},
+    "run_set_id": {"type": "string", "minLength": 1},
+    "created_utc": {"type": "string"},
+    "note": {"type": "string"},
+    "config": {"type": "object"},
+    "config_sha256": {"$ref": "#/$defs/sha"},
+    "protocol": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "frozen"],
+      "properties": {
+        "path": {"type": "string"},
+        "sha256": {"anyOf": [{"$ref": "#/$defs/sha"}, {"type": "null"}]},
+        "frozen": {"type": "boolean"}
+      }
+    },
+    "failures": {"type": "integer", "minimum": 0},
+    "manifest_path": {"type": "string"},
+    "cells": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/cell"}}
+  },
+  "$defs": {
+    "sha": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "nullable_number": {"anyOf": [{"type": "number"}, {"type": "null"}]},
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["family", "params"],
+      "properties": {
+        "family": {"enum": ["FIX", "OCC", "DRP"]},
+        "params": {"type": "object", "additionalProperties": {"type": "number"}}
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["revenue", "units_sold", "sell_through", "arrivals", "availability", "stockout_period",
+                   "price_volatility", "consumer_surplus", "total_surplus", "mean_price_paid",
+                   "mean_price_paid_L", "mean_price_paid_H", "buyers_L", "buyers_H"],
+      "properties": {
+        "revenue": {"type": "number", "minimum": 0},
+        "units_sold": {"type": "integer", "minimum": 0},
+        "sell_through": {"type": "number", "minimum": 0, "maximum": 1},
+        "arrivals": {"type": "integer", "minimum": 0},
+        "availability": {"type": "number", "minimum": 0, "maximum": 1},
+        "stockout_period": {"type": "integer", "minimum": 1},
+        "price_volatility": {"type": "number", "minimum": 0},
+        "consumer_surplus": {"type": "number"},
+        "total_surplus": {"type": "number"},
+        "mean_price_paid": {"$ref": "#/$defs/nullable_number"},
+        "mean_price_paid_L": {"$ref": "#/$defs/nullable_number"},
+        "mean_price_paid_H": {"$ref": "#/$defs/nullable_number"},
+        "buyers_L": {"type": "integer", "minimum": 0},
+        "buyers_H": {"type": "integer", "minimum": 0}
+      }
+    },
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["run_id", "arm", "role", "stream_index", "seed_key", "stream_sha256", "policy", "status", "error", "metrics"],
+      "properties": {
+        "run_id": {"type": "string"},
+        "arm": {"type": "string"},
+        "role": {"enum": ["tune", "eval", "edge"]},
+        "stream_index": {"type": "integer", "minimum": 0},
+        "seed_key": {"type": "array", "items": {"type": "integer", "minimum": 0}, "minItems": 4, "maxItems": 4},
+        "stream_sha256": {"$ref": "#/$defs/sha"},
+        "policy": {"$ref": "#/$defs/policy"},
+        "status": {"enum": ["ok", "failed"]},
+        "error": {"type": ["string", "null"]},
+        "metrics": {"anyOf": [{"$ref": "#/$defs/metrics"}, {"type": "null"}]}
+      }
+    },
+    "tuning": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["arm", "family", "n_configs", "n_streams", "selected_index", "selected", "at_grid_edge", "mean_revenue"],
+      "properties": {
+        "arm": {"type": "string"},
+        "family": {"enum": ["FIX", "OCC", "DRP"]},
+        "n_configs": {"type": "integer", "minimum": 1},
+        "n_streams": {"type": "integer", "minimum": 1},
+        "tuned_in_cell": {"type": "string"},
+        "selected_index": {"type": "integer", "minimum": 0},
+        "selected": {"$ref": "#/$defs/policy"},
+        "at_grid_edge": {"type": "boolean"},
+        "mean_revenue": {"type": "array", "items": {"type": "number"}}
+      }
+    },
+    "contrast": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["arm", "comparator", "metric", "n", "mean_diff", "sd_diff", "d_z", "level", "boot_ci", "t_ci", "relative_effect", "classification"],
+      "properties": {
+        "arm": {"type": "string"},
+        "comparator": {"type": "string"},
+        "metric": {"type": "string"},
+        "n": {"type": "integer", "minimum": 2},
+        "mean_diff": {"type": "number"},
+        "sd_diff": {"type": "number", "minimum": 0},
+        "d_z": {"$ref": "#/$defs/nullable_number"},
+        "level": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1},
+        "boot_ci": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+        "t_ci": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+        "relative_effect": {"$ref": "#/$defs/nullable_number"},
+        "classification": {"type": ["string", "null"]}
+      }
+    },
+    "cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cell_id", "cell_index", "scenario", "tuning", "runs", "contrasts", "timing"],
+      "properties": {
+        "cell_id": {"type": "string"},
+        "cell_index": {"type": "integer", "minimum": 0},
+        "scenario": {"type": "object"},
+        "tuning": {"type": "array", "items": {"$ref": "#/$defs/tuning"}},
+        "runs": {"type": "array", "items": {"$ref": "#/$defs/run"}},
+        "contrasts": {"type": "array", "items": {"$ref": "#/$defs/contrast"}},
+        "timing": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["stream_generation_s", "tuning_s", "tuning_runs", "eval_s", "eval_runs"],
+          "properties": {
+            "stream_generation_s": {"type": "number", "minimum": 0},
+            "tuning_s": {"type": "number", "minimum": 0},
+            "tuning_runs": {"type": "integer", "minimum": 0},
+            "eval_s": {"type": "number", "minimum": 0},
+            "eval_runs": {"type": "integer", "minimum": 0}
+          }
+        }
+      }
+    }
+  }
+}

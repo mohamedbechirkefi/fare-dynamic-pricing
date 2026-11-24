@@ -1,0 +1,111 @@
+{
+ "experiment_id": "EXP-002",
+ "experiment_number": 2,
+ "label": "confirmatory",
+ "mode": "tuned",
+ "base_scenario": {},
+ "families": [
+  "FIX",
+  "OCC",
+  "DRP"
+ ],
+ "grid": {
+  "lo": 40.0,
+  "hi": 400.0,
+  "fix_n": 36,
+  "p0_n": 9
+ },
+ "tune_streams": {
+  "role": 0,
+  "start": 0,
+  "count": 100
+ },
+ "eval_streams": {
+  "role": 1,
+  "start": 0,
+  "count": 300
+ },
+ "bootstrap": {
+  "resamples": 10000,
+  "seed": 20261124,
+  "primary_level": 0.95,
+  "secondary_level": 0.95
+ },
+ "sesoi_fraction": 0.01,
+ "note": "Planned confirmatory configuration for EXP-002 (draft v0.1): 3 x 3 cells, sigma_v outer, kappa inner, re-tuned per cell. Sign-flip and Holm analysis is applied to the result file by the EXP-002 analysis step. Refused until frozen.",
+ "fix_coarse_sensitivity": false,
+ "cells": [
+  {
+   "id": "sv0.25-k1.0",
+   "index": 0,
+   "scenario": {
+    "sigma_v": 0.25,
+    "kappa": 1.0
+   }
+  },
+  {
+   "id": "sv0.25-k2.0",
+   "index": 1,
+   "scenario": {
+    "sigma_v": 0.25,
+    "kappa": 2.0
+   }
+  },
+  {
+   "id": "sv0.25-k4.0",
+   "index": 2,
+   "scenario": {
+    "sigma_v": 0.25,
+    "kappa": 4.0
+   }
+  },
+  {
+   "id": "sv0.5-k1.0",
+   "index": 3,
+   "scenario": {
+    "sigma_v": 0.5,
+    "kappa": 1.0
+   }
+  },
+  {
+   "id": "sv0.5-k2.0",
+   "index": 4,
+   "scenario": {
+    "sigma_v": 0.5,
+    "kappa": 2.0
+   }
+  },
+  {
+   "id": "sv0.5-k4.0",
+   "index": 5,
+   "scenario": {
+    "sigma_v": 0.5,
+    "kappa": 4.0
+   }
+  },
+  {
+   "id": "sv1.0-k1.0",
+   "index": 6,
+   "scenario": {
+    "sigma_v": 1.0,
+    "kappa": 1.0
+   }
+  },
+  {
+   "id": "sv1.0-k2.0",
+   "index": 7,
+   "scenario": {
+    "sigma_v": 1.0,
+    "kappa": 2.0
+   }
+  },
+  {
+   "id": "sv1.0-k4.0",
+   "index": 8,
+   "scenario": {
+    "sigma_v": 1.0,
+    "kappa": 4.0
+   }
+  }
+ ]
+}
