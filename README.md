@@ -1,13 +1,13 @@
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
 # FARE: pricing policies in a simulated booking market
 
-**Status: M2 (core implementation), 2026-11-24. The simulator, policies, runner, result schema and report generator exist and are tested. Only exploratory smoke and pilot runs on tuning streams have been made; they are not findings. No confirmatory experiment has run: the protocols await the owner's freeze.**
+**Status: M2 done; M1 freeze pending, 2026-11-24. The simulator, policies, runner, result schema and report generator exist and are tested. Only exploratory smoke and pilot runs on tuning streams have been made; they are not findings. No confirmatory experiment has run: the owner approved the freeze with amendments, all applied except the tuning-grid item, which awaits the owner's ruling (D-008).**
 
 **Question.** How do demand and inventory policies affect prices and availability in a simulated market?
 
 **Why it matters.** Sellers of perishable capacity (seats, rooms) change prices as stock and time run out. Theory shows that a well-chosen fixed price can be close to optimal when sales volumes are large. FARE asks, in a transparent and reproducible simulation, what simple dynamic rules change for revenue, availability, price stability and buyers, and how fragile any difference is.
 
-**What exists now.** Control files, a feasibility audit, a targeted literature and dataset review, a draft protocol (not frozen) and three registered, planned experiments. Also implemented: the core package `src/fare/`, with a demand-stream generator, the fixed-price baseline, occupancy and demand-responsive rules, a simulator with invariant checks and a reference oracle, metrics, equal-budget tuning, paired statistics, a runner, a JSON result schema, run manifests and a report generator. 133 tests pass.
+**What exists now.** Control files, a feasibility audit, a targeted literature and dataset review, a draft protocol (not frozen) and three registered, planned experiments. Also implemented: the core package `src/fare/`, with a demand-stream generator, the fixed-price baseline, occupancy and demand-responsive rules, a simulator with invariant checks and a reference oracle, metrics, equal-budget tuning, paired statistics, a runner, a JSON result schema, run manifests, a freeze guard and a report generator. 138 tests pass.
 
 | Experiment | Question | Status |
 |---|---|---|

@@ -1,7 +1,7 @@
 ---
 title: "The mathematics behind changing prices (working title)"
 subtitle: "Independent research manuscript, preprint draft, not peer-reviewed. Skeleton only: no results exist."
-author: "Author metadata pending owner approval"
+author: "Mohamed Bechir Kefi"
 date: "Draft skeleton, 2026-11-24"
 ---
 
@@ -50,6 +50,8 @@ date: "Draft skeleton, 2026-11-24"
 # 10. Data, code and artifact availability
 
 # 11. Funding, competing interests and AI assistance
+
+AI assistance: the author used an AI research and development assistant (Claude Code, Anthropic) for code, analysis scripts and drafting under the author's direction. The assistant is not an author. Funding and competing interests: to be completed before release.
 
 # References
 

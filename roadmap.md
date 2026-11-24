@@ -1,14 +1,14 @@
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
 # FARE roadmap
 
-Updated 2026-11-24 (M2 session). Effort is a planning estimate in focused days (five-day target). Section 11.6 additions of the master prompt are included and mandatory.
+Updated 2026-11-24 (freeze session). Effort is a planning estimate in focused days (five-day target). Section 11.6 additions of the master prompt are included and mandatory.
 
 | ID | Milestone | Depends on | Priority | Effort | Status | Blockers |
 |---|---|---|---|---|---|---|
 | M0 | Bootstrap and feasibility | none | P0 | 0.5 d | done pending owner review (see acceptance) | none |
-| M1 | Research and preregistration | M0 | P0 | 0.5 d | in progress: drafts written; freeze pending | owner freeze (G-FREEZE) of research/protocol.md and EXP-001..003 |
+| M1 | Research and preregistration | M0 | P0 | 0.5 d | in progress: owner approved the freeze with amendments (2026-11-24); amendments applied (draft v0.2) except the tuning-grid item; **M1 gate not passed** | owner ruling on the tuning-grid item (D-008), then the freeze (G-FREEZE) |
 | M2 | Core implementation | M1 drafts (implementation may start before the freeze) | P0 | 1 d | implemented; acceptance met for the draft protocol (133 tests pass); exploratory smoke and pilot run | owner decisions D-007 may require config and grid changes before M3 |
-| M3 | Experiments | M2 gate; M1 freeze for confirmatory runs | P0 | 0.75 d | not started (exploratory pilot only) | owner freeze; D-007 decisions |
+| M3 | Experiments | M2 gate; M1 freeze for confirmatory runs | P0 | 0.75 d | not started (exploratory pilot only) | M1 freeze; M3 scheduled by the coordinator |
 | M4 | Interpretation | M3 | P0 | 1 d | not started | M3 |
 | M5 | Interactive experience | M2 schemas; M4 verified results for published numbers | P1 (cut first if time is short) | 0.75 d | not started | M4 |
 | M6 | Release candidate | M4, M5 | P0 | 0.5 d | not started | owner approval for any publication (G-PUBLIC) |
@@ -25,6 +25,7 @@ Updated 2026-11-24 (M2 session). Effort is a planning estimate in focused days (
 - 11.6 additions: initialise registry, manuscript skeleton and experiment-specific protocols (done as drafts); confirm the zero-cost toolchain (done, exploratory check); **the owner freezes confirmatory protocols before execution**.
 - Acceptance: protocols frozen by the owner with SHA-256 recorded in the registry and decision log; exploratory results (if any) visibly separated; fixture manifest lists the synthetic fixtures.
 - Open items: optional pilot on tuning streams to estimate the paired-difference SD; owner decisions listed in `progress.md`.
+- Status (2026-11-24, freeze session): owner-approved amendments applied (D-008): 500 tuning and 4,000 evaluation streams, scope cut (no DP reference, no scale experiment), D-006 choices and DRP target reading pinned, EXP-002 interaction method named and implemented, commands fixed, authorship set. The grid amendment could not be applied as written (7 of 20 pilot optima stay on an edge with the proposed grid; J-0006), so the protocols were not frozen. The freeze guard (`research/freeze.json` plus registry hashes plus config hashes) is implemented and tested.
 
 ## M2: Core implementation
 
@@ -41,8 +42,8 @@ Updated 2026-11-24 (M2 session). Effort is a planning estimate in focused days (
   - Tests: 133 passed, 0 failed. Every acceptance item above has a test, including Hypothesis property tests and a differential test against a naive reference simulator.
   - Exploratory smoke and pilots on tuning streams only: J-0002 to J-0005 and `results/exploratory/`.
   - Open:
-    - the EXP-002 interaction-contrast interval (D-007, item 7);
-    - the owner's decisions on the D-007 amendments (n, tuning streams, grids), which change the planned configs before M3.
+    - the tuning-grid ruling (D-008), which changes the confirmatory configs before the freeze.
+  - Freeze session additions: configurable grids, EXP-002 interaction-contrast bootstrap, freeze record and config-hash freeze guard; 138 tests pass.
 
 ## M3: Experiments
 
@@ -68,7 +69,7 @@ Updated 2026-11-24 (M2 session). Effort is a planning estimate in focused days (
 - 11.6 additions: compile and visually inspect manuscript and report PDFs (Typst path); verify references, cross-links, equations, figure readability and metadata; complete the owner review checklist.
 - Acceptance: actual command outputs recorded in `research/publication/reproducibility_report.md`; owner approves any publication; nothing pushed without approval.
 
-## Optional (only if the budget allows, owner decision)
+## Out of scope (owner decision, 2026-11-24, D-008)
 
-- Scale sensitivity (C in {10, 30, 100, 300, 1000} with proportional demand) to relate results to the asymptotic optimality of fixed prices (Gallego and van Ryzin, 1994). Would need its own EXP ID and protocol.
-- Known-model dynamic-programming reference arm (upper reference, not a primary contrast).
+- Scale sensitivity (C in {10, 30, 100, 300, 1000} with proportional demand) to relate results to the asymptotic optimality of fixed prices (Gallego and van Ryzin, 1994). Not run.
+- Known-model dynamic-programming reference arm (upper reference, not a primary contrast). Not computed.

@@ -147,3 +147,33 @@ def test_purchase_probability_and_elasticity():
     assert purchase_elasticity(ScenarioParams(sigma_v=0.0), 100.0) is None
     with pytest.raises(ValueError):
         purchase_probability(sp, 0.0)
+
+
+# --- owner-approved amendments 2026-11-24 (D-008) ---
+
+def test_v1_grid_has_36_configs_and_shared_p0():
+    from fare.tuning import DRP_ETA_V1, OCC_K_V1
+    for fam, vals, attr in (("OCC", OCC_K_V1, "k"), ("DRP", DRP_ETA_V1, "eta")):
+        g = grid(fam, p0_n=6, occ_k=OCC_K_V1, drp_eta=DRP_ETA_V1)
+        assert len(g) == 36
+        assert sorted({getattr(c, attr) for c in g}) == sorted(vals)
+        assert [c.p0 for c in g[::6]] == geometric(40.0, 400.0, 6)
+    assert [p.p for p in grid("FIX", fix_n=6)] == geometric(40.0, 400.0, 6)
+    # draft defaults unchanged, so pre-freeze exploratory configs reproduce
+    assert {c.k for c in grid("OCC")} == {0.5, 1.0, 2.0, 4.0} and len(grid("DRP")) == 36
+
+
+def test_interaction_bootstrap():
+    from fare.stats import interaction_bootstrap_ci
+    rng = np.random.default_rng(3)
+    a, b = rng.normal(5.0, 1.0, 400), rng.normal(2.0, 2.0, 300)
+    est, ci = interaction_bootstrap_ci(a, b, 0.95, 2000, 7)
+    assert est == pytest.approx(a.mean() - b.mean())
+    assert ci[0] < est < ci[1]
+    se = math.sqrt(a.var(ddof=1) / len(a) + b.var(ddof=1) / len(b))
+    assert ci[1] - ci[0] == pytest.approx(2 * 1.96 * se, rel=0.1)
+    assert interaction_bootstrap_ci(a, b, 0.95, 2000, 7) == (est, ci)
+    est0, ci0 = interaction_bootstrap_ci([1.0, 1.0], [0.5, 0.5, 0.5], 0.95, 100, 0)
+    assert est0 == 0.5 and ci0 == (0.5, 0.5)
+    with pytest.raises(ValueError):
+        interaction_bootstrap_ci([1.0], [1.0, 2.0])

@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
 # FARE study protocol
 
-**Status: DRAFT v0.1 (2026-11-24). Not frozen. Awaiting owner review and freeze (G-FREEZE).** No confirmatory run may be executed or evaluated under this protocol until the owner has frozen it and its SHA-256 hash is recorded in `research/experiment_registry.csv` and `research/decision_log.md`. All numeric parameter values below are planning proposals, open to change before the freeze.
+**Status: DRAFT v0.2 (2026-11-24). Not frozen.** The owner approved a freeze with amendments on 2026-11-24. Every approved amendment is applied below except the tuning-grid amendment, which could not be applied as written (see "Amendments before freeze"); the freeze waits for the owner's ruling on that item (G-FREEZE). No confirmatory run may be executed or evaluated under this protocol until it is frozen, its SHA-256 hash is recorded in `research/experiment_registry.csv`, and `research/freeze.json` records it together with the confirmatory configs.
 
 Experiment-level protocols: `research/experiments/EXP-001/protocol.md`, `EXP-002/protocol.md`, `EXP-003/protocol.md`. Feasibility audit: `research/feasibility.md`.
 
@@ -25,9 +25,10 @@ The master prompt lists revenue, sell-through, a consumer surplus proxy, price v
 - Periods t = 1, ..., T (base T = 60). Simulation periods, not calendar days of any real product.
 - Initial stock C units (base C = 100); stock x_t, with x_1 = C. Unsold units at the end of period T perish with zero salvage value.
 - Two buyer segments s in {L, H} ("early, lower-valuation" and "late, higher-valuation"); shares w_L = 0.7, w_H = 0.3.
-- Expected total arrivals over the horizon A = kappa * C (base kappa = 2.0). Segment arrival profiles over time: L decreasing, H increasing, each normalised to sum to one.
-- Demand shocks: a stream-level multiplier M ~ LogNormal(-sigma_M^2 / 2, sigma_M), sigma_M = 0.25, plus surge episodes (each period starts a 3-period surge with probability 0.05; intensity multiplied by 1.8 during a surge).
+- Expected total arrivals over the horizon A = kappa * C (base kappa = 2.0). Segment arrival profiles over time are linear, each normalised to sum to one: a_L(t) proportional to T + 1 - t (decreasing) and a_H(t) proportional to t (increasing). The EXP-003 reversed cell swaps them.
+- Demand shocks: a stream-level multiplier M ~ LogNormal(-sigma_M^2 / 2, sigma_M), sigma_M = 0.25, plus surge episodes (each period starts a 3-period surge with probability 0.05; intensity multiplied by 1.8 during a surge). Overlapping surges do not compound: a period inside one or more surges has factor 1.8.
 - Arrivals N_{s,t} ~ Poisson(M * A * w_s * a_s(t) * surge_t). Valuations v ~ LogNormal(ln m_s, sigma_v), m_L = 100, m_H = 200 (currency units are abstract), base sigma_v = 0.5.
+- Within a period, the arrival order of L and H buyers is a uniform random permutation, fixed in the stream.
 - Buyers are myopic and have unit demand: a buyer arriving in period t buys one unit if v >= p_t and x > 0, otherwise leaves for good.
 - Policies observe t, x_t and past prices and sales only (not valuations, not arrivals of non-buyers).
 - Price bounds [p_min, p_max] = [30, 600].
@@ -38,9 +39,9 @@ Because buyers are myopic, the demand stream (arrival times, order and valuation
 
 - **FIX(p)** (baseline, primary comparator): p_t = p for all t.
 - **OCC(p0, k)**: booking-curve occupancy rule. With f_t = (C - x_t) / C the fraction sold and e_t = (t - 1) / T the fraction of the horizon elapsed, p_t = clip(p0 * exp(k * (f_t - e_t)), p_min, p_max). k = 0 reduces to FIX(p0).
-- **DRP(p0, eta)**: demand-responsive rule. p_1 = p0. After each period, r_hat is an exponentially weighted average of units sold per period (weight 0.3, initialised at C / T); the target rate is r*_t = x_t / (T - t + 1). Then p_{t+1} = clip(p_t * ((r_hat + 0.5) / (r*_t + 0.5))^eta, p_min, p_max). eta = 0 reduces to FIX(p0).
+- **DRP(p0, eta)**: demand-responsive rule. p_1 = p0. After each period, r_hat is an exponentially weighted average of units sold per period (weight 0.3, initialised at C / T); the target rate is r*_t = x_t / (T - t + 1), where x_t is the stock at the start of period t (the literal reading, pinned; the alternative post-period reading x_{t+1} / (T - t) is not used). Then p_{t+1} = clip(p_t * ((r_hat + 0.5) / (r*_t + 0.5))^eta, p_min, p_max). eta = 0 reduces to FIX(p0).
 
-**Fair tuning.** Each family gets the same budget: 36 configurations, each evaluated on the same 100 tuning streams, selected by highest mean revenue (ties: lowest configuration index). FIX: 36 geometrically spaced prices from 40 to 400. OCC: 9 geometrically spaced p0 from 40 to 400 times k in {0.5, 1, 2, 4}. DRP: the same 9 p0 times eta in {0.1, 0.25, 0.5, 1.0}. Tuning streams and evaluation streams are disjoint by construction; nothing is ever tuned on evaluation streams.
+**Fair tuning.** Each family gets the same budget: 36 configurations, each evaluated on the same 500 tuning streams, selected by highest mean revenue (ties: lowest configuration index). FIX: 36 geometrically spaced prices from 40 to 400. OCC: 9 geometrically spaced p0 from 40 to 400 times k in {0.5, 1, 2, 4}. DRP: the same 9 p0 times eta in {0.1, 0.25, 0.5, 1.0}. Tuning streams and evaluation streams are disjoint by construction; nothing is ever tuned on evaluation streams.
 
 ## 5. Hypotheses (primary, EXP-001)
 
@@ -67,8 +68,8 @@ What would contradict H1_j: an interval that includes zero. What would contradic
 ## 7. Units, seeds and sample size
 
 - Experimental unit: one evaluation demand stream within one scenario cell. The three policies are within-unit treatments; observations are paired by stream.
-- Seeds: numpy `SeedSequence` with spawn keys (experiment, cell, role, index); role in {tune, eval}; tuning indices 0 to 99, evaluation indices 0 to 299. Every stochastic arm therefore has 300 independent evaluation seeds, well above the minimum of five.
-- Sample-size rationale: for a two-sided paired test at alpha = 0.025 per contrast, n = 300 gives about 89% power to detect a standardised paired effect d_z = 0.2 (normal approximation: 0.2 * sqrt(300) - 2.24 = 1.22, Phi(1.22) = 0.89). The standard deviation of paired differences is unknown; an exploratory pilot on tuning streams only (never evaluation streams) may estimate it before the freeze, and n may be raised before the freeze, never after.
+- Seeds: numpy `SeedSequence(entropy=20261124, spawn_key=(experiment, cell, role, index))`; role 0 (tune) or 1 (eval); tuning indices 0 to 499, evaluation indices 0 to 3999. Every stochastic arm therefore has 4,000 independent evaluation seeds per cell.
+- Sample-size rationale: n = 4,000 evaluation streams per cell (owner-approved amendment, 2026-11-24). The exploratory pilot on tuning streams only (journal J-0003 to J-0005, `results/exploratory/pilot_summary.json`) estimated the SD of the paired revenue differences. With the normal approximation at two-sided alpha = 0.025 and power 0.89, the 1% SESOI needs n = 384 (OCC) and 680 (DRP) at the base cell, at most 2,735 across the EXP-002 cells and at most 3,435 across the EXP-003 cells; n = 4,000 covers every pilot cell. These pilot estimates rest on 50 streams and are planning inputs, not evidence. n is fixed at the freeze and never changed after it.
 - Uncertainty method: stream-level paired percentile bootstrap, 10,000 resamples, fixed bootstrap seed; paired t interval reported as a cross-check; per-stream raw distributions are exported and plotted.
 
 ## 8. Exclusion and stopping rules
@@ -81,9 +82,10 @@ What would contradict H1_j: an interval that includes zero. What would contradic
 
 - **Smoke matrix (exploratory, tuning streams only):** base cell; FIX, OCC, DRP at one hand-set configuration each; 5 seeds; plus edge cases (zero demand, C = 1, all valuations below p_min, demand far above capacity). Purpose: validate invariants and metric code, measure runtime. Never interpreted as evidence.
 - **Full matrix (confirmatory once frozen):**
-  - EXP-001: base cell, 3 policies, 300 evaluation streams (900 evaluation runs plus 10,800 tuning runs).
-  - EXP-002: sigma_v in {0.25, 0.5, 1.0} times kappa in {1.0, 2.0, 4.0}: 9 cells, each re-tuned, 300 evaluation streams per cell.
-  - EXP-003: policies tuned at the base cell, evaluated without re-tuning on 6 misspecified cells (demand level times 0.6, 0.8, 1.25, 1.6; reversed segment arrival order; no shocks), with a re-tuned FIX reference per cell, 300 evaluation streams per cell.
+  - EXP-001: base cell, 3 policies plus the tuning-grid sensitivity arm, 4,000 evaluation streams (74,500 runs: 58,500 tuning, 16,000 evaluation).
+  - EXP-002: sigma_v in {0.25, 0.5, 1.0} times kappa in {1.0, 2.0, 4.0}: 9 cells, each re-tuned, 4,000 evaluation streams per cell (594,000 runs).
+  - EXP-003: policies tuned at the base cell, evaluated without re-tuning on 6 misspecified cells (demand level times 0.6, 0.8, 1.25, 1.6; reversed segment arrival order; no shocks), with a re-tuned FIX reference per cell, 4,000 evaluation streams per cell (258,000 runs, including the 54,000 runs that re-derive the base tuning from the EXP-001 tuning-stream keys).
+  - Run counts are those printed by `fare.cli run --plan` for the confirmatory configs; they do not depend on the grid item still open, because both candidate grids have 36 configurations per family (the sensitivity arm has 9 prices under the draft grid; the counts above use it).
 - Compute budget: at most one CPU-hour of wall-clock for all confirmatory runs on the audited laptop; runtime and peak memory are recorded per experiment.
 
 ## 10. Sensitivity analyses that could invalidate the main interpretation
@@ -99,6 +101,31 @@ What would contradict H1_j: an interval that includes zero. What would contradic
 - The nesting property (k = 0 or eta = 0 gives FIX) is tested in M2 so that implementation differences between families cannot masquerade as policy effects.
 - Known confound: myopic buyers. Strategic waiting (Su, 2007) is out of scope; results do not extend to strategic buyers.
 
-## 12. Claims boundary
+## 12. Out of scope (owner decision, 2026-11-24)
+
+- No dynamic-programming reference policy (known-model optimum) is computed or reported.
+- The optional scale-sensitivity experiment (varying C with proportional demand) is not run and has no EXP ID.
+
+## 13. Implementation choices pinned in this protocol (from decision D-006)
+
+- Project entropy 20261124; spawn-key layout (experiment, cell, role, index).
+- Linear arrival profiles, uniform random within-period arrival order and non-compounding surges (section 3).
+- DRP target rate with the stock at the start of period t (section 4).
+- EXP-003 re-derives the base tuning from the EXP-001 tuning-stream keys (experiment 1, cell 0) instead of reading an EXP-001 result file; the tuned configurations are identical by construction.
+- Exploratory configs may not use evaluation streams (role 1).
+- The simulator is the bisection simulator in `src/fare/simulate.py`, checked against the naive buyer-by-buyer oracle by differential tests.
+
+## 14. Claims boundary
 
 All results are simulated and hold only within this model. No airline or hotel personalisation claims, no live scraping, no prediction of actual fares, no inference about any proprietary pricing system, and no causal claims about human behaviour.
+
+## Amendments before freeze (owner-approved 2026-11-24)
+
+The owner approved the following on 2026-11-24 (`/Users/bechir/research/labs/_shared/owner-approvals-2026-11-24.md`, FARE section; proposals in decision D-007). Applied in draft v0.2 on 2026-11-24 (decision D-008).
+
+1. **Stream counts.** 4,000 evaluation streams and 500 tuning streams per cell (sections 4, 7 and 9; all three EXP protocols and configs). Applied.
+2. **Tuning grids.** "Widen the OCC and DRP tuning grids so the pilot optima are interior." **Not applied: it cannot be applied as written.** The proposed grid (6 p0 values times OCC k in {0.25, 0.5, 1, 2, 4, 8} and DRP eta in {0.025, 0.05, 0.1, 0.25, 0.5, 1}) was checked by tuning only, on the pilot tuning streams 0 to 49, without any evaluation (`experiments/exploratory/grid_interior_check.py`, `results/exploratory/grid_interior_check.json`, journal J-0006). It makes the base-cell optima interior (EXP-001, and the EXP-003 base tuning), but 7 of the 20 pilot optima stay on a grid edge, all in EXP-002 cells: OCC at k = 8 in two cells and at k = 0.25 in one, DRP at eta = 0.025 in four. A further tuning-only probe found the DRP optimum at eta = 0 (DRP reduced to a fixed price) in two kappa = 1.0 cells, so no widening of a positive eta grid can make those optima interior. The draft grid of section 4 is therefore kept unchanged, and the owner rules on this item before the freeze (decision D-008).
+3. **Scope.** No dynamic-programming reference policy; the optional scale experiment is out of scope (section 12). Applied.
+4. **Pinned implementation choices** of D-006 and the DRP target reading (sections 3, 4 and 13). Applied.
+5. **EXP-002 interaction contrasts.** Named method: independent stratified percentile bootstrap (EXP-002 protocol section 5). Applied and implemented (`fare.stats.interaction_bootstrap_ci`, report table).
+6. **Command names.** The reproduction commands in the EXP protocols now name the implemented CLI. Applied.

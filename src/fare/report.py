@@ -22,12 +22,12 @@ from .params import ScenarioParams
 from .policies import policy_from_dict
 from .schema import read_result
 from .simulate import simulate
-from .stats import holm, sign_flip_pvalue
+from .stats import holm, interaction_bootstrap_ci, sign_flip_pvalue
 from .streams import SeedKey, generate_stream
 
 PANDOC = Path("/Users/bechir/research/labs/.tools/pandoc")
 TOOLS_PY = Path("/Users/bechir/research/labs/.tools/py/bin/python")
-PALETTE = {"FIX": "#4a4a4a", "OCC": "#1f6f8b", "DRP": "#b5562b", "FIX9": "#8a8a8a", "FIX_retuned": "#6b8e23"}
+PALETTE = {"FIX": "#4a4a4a", "OCC": "#1f6f8b", "DRP": "#b5562b", "FIX9": "#8a8a8a", "FIX6": "#8a8a8a", "FIX_retuned": "#6b8e23"}
 
 
 class ReportError(RuntimeError):
@@ -129,6 +129,43 @@ def multiplicity_table(doc: dict, n_perm: int = 10_000, seed: int = 20261124) ->
     for r, a in zip(rows, adj):
         lines.append(f"| {r[0]} | {r[1]} | {r[2]} | {_fmt(r[3], 3)} | {r[4]:.4f} | {a:.4f} |")
     return "\n".join(lines)
+
+
+def interaction_table(doc: dict, level: float = 0.95, n_resamples: int = 10_000,
+                      seed: int = 20261124) -> str | None:
+    """EXP-002 interaction contrasts: for each sigma_v, Delta at the largest
+    kappa minus Delta at the smallest kappa, per arm, with the independent
+    stratified bootstrap interval (stats.interaction_bootstrap_ci)."""
+    by_sv: dict[float, dict[float, dict]] = {}
+    for c in doc["cells"]:
+        sc = c.get("scenario", {})
+        if c["runs"] and "sigma_v" in sc and "kappa" in sc:
+            by_sv.setdefault(float(sc["sigma_v"]), {})[float(sc["kappa"])] = c
+    rows = []
+    for sv in sorted(by_sv):
+        ks = sorted(by_sv[sv])
+        if len(ks) < 2:
+            continue
+        hi_c, lo_c = by_sv[sv][ks[-1]], by_sv[sv][ks[0]]
+        for arm in ("OCC", "DRP"):
+            dh, dl = _paired_revenue(hi_c, arm), _paired_revenue(lo_c, arm)
+            if len(dh) >= 2 and len(dl) >= 2:
+                est, ci = interaction_bootstrap_ci(dh, dl, level, n_resamples, seed)
+                rows.append((sv, ks[-1], ks[0], arm, len(dh), len(dl), est, ci))
+    if not rows:
+        return None
+    lines = ["| sigma_v | Arm | Contrast | n (hi, lo) | Difference of differences | Bootstrap interval |",
+             "|---|---|---|---|---|---|"]
+    for sv, kh, kl, arm, nh, nl, est, ci in rows:
+        lines.append(f"| {sv:g} | {arm} | Delta(kappa={kh:g}) - Delta(kappa={kl:g}) | {nh}, {nl} | {_fmt(est, 3)} | "
+                     f"[{_fmt(ci[0], 3)}, {_fmt(ci[1], 3)}] |")
+    return "\n".join(lines)
+
+
+def _paired_revenue(cell: dict, arm: str) -> list[float]:
+    fix = {r["stream_index"]: r["metrics"]["revenue"] for r in cell["runs"] if r["arm"] == "FIX" and r["status"] == "ok"}
+    return [r["metrics"]["revenue"] - fix[r["stream_index"]] for r in cell["runs"]
+            if r["arm"] == arm and r["status"] == "ok" and r["stream_index"] in fix]
 
 
 def _svg(width: int, height: int, body: list[str], title: str, desc: str) -> str:
@@ -264,6 +301,9 @@ def build_report(result_path: Path, out_dir: Path | None = None, pdf: bool = Fal
     mt = multiplicity_table(doc)
     if mt:
         md += ["", "## Multiplicity across cells (revenue vs FIX, Holm over all listed contrasts)", "", mt]
+    it = interaction_table(doc)
+    if it:
+        md += ["", "## Interaction contrasts (independent stratified bootstrap, 95%)", "", it]
     (out / "report.md").write_text("\n".join(md) + "\n")
     produced = {"report_md": str(out / "report.md"), "metrics_csv": str(out / "metrics.csv"), "figures": figs, "pdf": None}
     if pdf:

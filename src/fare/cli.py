@@ -45,7 +45,7 @@ def _rel(path: Path) -> str:
 
 def execute(cfg_path: Path, out_root: Path | None = None, argv: list[str] | None = None) -> Path:
     cfg = _load(cfg_path)
-    protocol = protocol_status(cfg.get("experiment_id", ""))
+    protocol = protocol_status(cfg.get("experiment_id", ""), cfg=cfg)
     validate_config(cfg, protocol)
     label = cfg["label"]
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
@@ -75,7 +75,8 @@ def execute(cfg_path: Path, out_root: Path | None = None, argv: list[str] | None
     (out / "config.json").write_text(json.dumps(cfg, indent=1) + "\n")
     doc = {"schema": "fare-result", "schema_version": SCHEMA_VERSION, "label": label, "simulated": True,
            "experiment_id": cfg["experiment_id"], "run_set_id": run_set_id, "created_utc": end,
-           "config": cfg, "config_sha256": cfg_sha, "protocol": protocol, "cells": body["cells"],
+           "config": cfg, "config_sha256": cfg_sha,
+           "protocol": {k: protocol[k] for k in ("path", "sha256", "frozen")}, "cells": body["cells"],
            "failures": body["failures"], "manifest_path": "run_manifest.json"}
     if cfg.get("note"):
         doc["note"] = cfg["note"]
@@ -113,7 +114,7 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         if a.cmd == "run":
             cfg = _load(a.config)
-            prot = protocol_status(cfg.get("experiment_id", ""))
+            prot = protocol_status(cfg.get("experiment_id", ""), cfg=cfg)
             if a.plan:
                 print(json.dumps({"experiment_id": cfg.get("experiment_id"), "label": cfg.get("label"),
                                   "protocol": prot, "planned": planned_run_counts(cfg)}, indent=1))

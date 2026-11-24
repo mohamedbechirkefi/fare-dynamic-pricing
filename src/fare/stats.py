@@ -127,6 +127,33 @@ def classify(ci: tuple[float, float], estimate: float, sesoi: float) -> str:
     return "inconclusive"
 
 
+def interaction_bootstrap_ci(d_hi, d_lo, level: float = 0.95, n_resamples: int = 10_000,
+                             seed: int = 0) -> tuple[float, tuple[float, float]]:
+    """Difference of differences between two cells with independent streams
+    (EXP-002 interaction contrast, protocol v1.0 section 5).
+
+    Estimate: mean(d_hi) - mean(d_lo), where each vector holds the per-stream
+    paired differences (arm minus FIX) of one cell. Interval: independent
+    stratified percentile bootstrap, resampling streams with replacement
+    within each cell separately (the cells share no streams), n_resamples
+    resamples from one fixed seed.
+    """
+    a, b = _as_diffs(d_hi), _as_diffs(d_lo)
+    if not 0 < level < 1:
+        raise ValueError("level must lie in (0, 1)")
+    rng = np.random.default_rng(seed)
+    out = np.empty(n_resamples)
+    chunk = 1000
+    for s in range(0, n_resamples, chunk):
+        m = min(chunk, n_resamples - s)
+        ia = rng.integers(0, len(a), size=(m, len(a)))
+        ib = rng.integers(0, len(b), size=(m, len(b)))
+        out[s : s + m] = a[ia].mean(axis=1) - b[ib].mean(axis=1)
+    q = (1 - level) / 2
+    lo, hi = np.quantile(out, [q, 1 - q])
+    return float(a.mean() - b.mean()), (float(lo), float(hi))
+
+
 @dataclass(frozen=True)
 class PairedSummary:
     n: int

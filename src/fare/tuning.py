@@ -18,22 +18,30 @@ from .policies import DRP, FIX, OCC, Policy
 from .simulate import simulate
 from .streams import DemandStream
 
+# Draft v0.1 sensitivity values: the defaults, kept so that the pre-freeze
+# exploratory configs (which do not name a grid) reproduce unchanged.
 OCC_K = (0.5, 1.0, 2.0, 4.0)
 DRP_ETA = (0.1, 0.25, 0.5, 1.0)
+# Frozen v1.0 sensitivity values (owner-approved amendment 2026-11-24, D-008):
+# widened so that the pilot optima are interior. The confirmatory configs name
+# them explicitly ("occ_k", "drp_eta") together with p0_n = 6.
+OCC_K_V1 = (0.25, 0.5, 1.0, 2.0, 4.0, 8.0)
+DRP_ETA_V1 = (0.025, 0.05, 0.1, 0.25, 0.5, 1.0)
 
 
 def geometric(lo: float, hi: float, n: int) -> list[float]:
     return [float(v) for v in np.geomspace(lo, hi, n)]
 
 
-def grid(family: str, *, lo: float = 40.0, hi: float = 400.0, fix_n: int = 36, p0_n: int = 9) -> list[Policy]:
+def grid(family: str, *, lo: float = 40.0, hi: float = 400.0, fix_n: int = 36, p0_n: int = 9,
+         occ_k: Sequence[float] = OCC_K, drp_eta: Sequence[float] = DRP_ETA) -> list[Policy]:
     """Configuration list in index order (p0 outer, sensitivity inner)."""
     if family == "FIX":
         return [FIX(p) for p in geometric(lo, hi, fix_n)]
     if family == "OCC":
-        return [OCC(p0, k) for p0 in geometric(lo, hi, p0_n) for k in OCC_K]
+        return [OCC(p0, float(k)) for p0 in geometric(lo, hi, p0_n) for k in occ_k]
     if family == "DRP":
-        return [DRP(p0, e) for p0 in geometric(lo, hi, p0_n) for e in DRP_ETA]
+        return [DRP(p0, float(e)) for p0 in geometric(lo, hi, p0_n) for e in drp_eta]
     raise ValueError(f"unknown family {family!r}")
 
 

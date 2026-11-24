@@ -8,7 +8,7 @@ from pathlib import Path
 import pytest
 
 from fare import cli
-from fare.manifest import REPO_ROOT, protocol_status, sha256_file
+from fare.manifest import REPO_ROOT, build_freeze_record, protocol_status, sha256_file
 from fare.report import ReportError, build_report
 from fare.runner import ConfigError, ProtocolNotFrozen, planned_run_counts, run_experiment, validate_config
 from fare.schema import ResultValidationError, read_result, validate_result
@@ -82,14 +82,64 @@ def test_real_registry_protocols_are_unfrozen():
         assert st["frozen"] is False and st["sha256"] is not None
 
 
-def test_freeze_detection(tmp_path):
+def _frozen_fixture(tmp_path, cfg):
+    """A temporary repository with one frozen experiment (EXP-009)."""
+    (tmp_path / "research").mkdir()
+    (tmp_path / "research" / "protocol.md").write_text("main protocol v1\n")
     proto = tmp_path / "p.md"
     proto.write_text("protocol v1\n")
+    (tmp_path / "c.json").write_text(json.dumps(cfg))
     reg = tmp_path / "reg.csv"
     reg.write_text("exp_id,protocol_path,protocol_hash\nEXP-009,p.md," + sha256_file(proto) + "\n")
-    assert protocol_status("EXP-009", reg, tmp_path)["frozen"] is True
+    rec = build_freeze_record(approval={"quote": "q", "date": "2026-11-24"}, common_decisions={}, disclosure={},
+                              experiments={"EXP-009": {"protocol": "p.md", "config": "c.json"}},
+                              root=tmp_path, revision="0" * 40)
+    (tmp_path / "research" / "freeze.json").write_text(json.dumps(rec))
+    return reg, proto
+
+
+def test_freeze_detection(tmp_path):
+    cfg = _cfg(experiment_id="EXP-009", label="confirmatory")
+    reg, proto = _frozen_fixture(tmp_path, cfg)
+    st = protocol_status("EXP-009", reg, tmp_path, cfg=cfg)
+    assert st["frozen"] is True and st["reason"] is None
+    validate_config(cfg, st)  # accepted
+    # a changed config is refused
+    changed = _cfg(experiment_id="EXP-009", label="confirmatory", sesoi_fraction=0.02)
+    st = protocol_status("EXP-009", reg, tmp_path, cfg=changed)
+    assert st["frozen"] is False and "config" in st["reason"]
+    with pytest.raises(ProtocolNotFrozen):
+        validate_config(changed, st)
+    # an edited main protocol unfreezes everything
+    main = tmp_path / "research" / "protocol.md"
+    main.write_text("main protocol v1, edited\n")
+    assert protocol_status("EXP-009", reg, tmp_path, cfg=cfg)["frozen"] is False
+    main.write_text("main protocol v1\n")
+    assert protocol_status("EXP-009", reg, tmp_path, cfg=cfg)["frozen"] is True
+    # an edited experiment protocol unfreezes it
     proto.write_text("protocol v1, edited after the freeze\n")
-    assert protocol_status("EXP-009", reg, tmp_path)["frozen"] is False
+    assert protocol_status("EXP-009", reg, tmp_path, cfg=cfg)["frozen"] is False
+    proto.write_text("protocol v1\n")
+    # no freeze record: not frozen even though the registry hash matches
+    (tmp_path / "research" / "freeze.json").unlink()
+    st = protocol_status("EXP-009", reg, tmp_path, cfg=cfg)
+    assert st["frozen"] is False and "freeze record" in st["reason"]
+
+
+def test_cli_accepts_frozen_and_refuses_changed_config(tmp_path, monkeypatch, capsys):
+    import functools
+    cfg = _cfg(experiment_id="EXP-009", label="confirmatory")
+    reg, _ = _frozen_fixture(tmp_path, cfg)
+    monkeypatch.setattr(cli, "protocol_status", functools.partial(protocol_status, registry=reg, root=tmp_path))
+    out = tmp_path / "out"
+    assert cli.main(["run", "--config", str(tmp_path / "c.json"), "--out", str(out)]) == 0
+    doc = read_result(next(out.glob("*/result.json")))
+    assert doc["label"] == "confirmatory" and doc["protocol"]["frozen"] is True
+    capsys.readouterr()
+    (tmp_path / "c2.json").write_text(json.dumps(_cfg(experiment_id="EXP-009", label="confirmatory",
+                                                      bootstrap={"resamples": 201, "seed": 1})))
+    assert cli.main(["run", "--config", str(tmp_path / "c2.json"), "--out", str(out)]) == 3
+    assert "REFUSED" in capsys.readouterr().err
 
 
 def test_cli_refuses_confirmatory_configs(capsys):
@@ -100,7 +150,7 @@ def test_cli_refuses_confirmatory_configs(capsys):
 
 
 def test_cli_plan_counts_match_protocol(capsys):
-    expected = {"EXP-001": 12_900, "EXP-002": 105_300}
+    expected = {"EXP-001": 74_500, "EXP-002": 594_000, "EXP-003": 258_000}  # 500 tuning, 4,000 evaluation streams
     for exp, n in expected.items():
         cli.main(["run", "--plan", "--config", str(REPO_ROOT / "research" / "experiments" / exp / "config.json")])
         out = capsys.readouterr().out
@@ -155,3 +205,28 @@ def test_schema_rejects_malformed(tmp_path):
     p.write_text("{not json")
     with pytest.raises(ResultValidationError):
         read_result(p)
+
+
+def test_v1_grid_config_runs_with_fix6_sensitivity_arm():
+    from fare.tuning import DRP_ETA_V1, OCC_K_V1
+    cfg = _cfg(grid={"lo": 40.0, "hi": 400.0, "fix_n": 36, "p0_n": 6,
+                     "occ_k": list(OCC_K_V1), "drp_eta": list(DRP_ETA_V1)})
+    body = run_experiment(cfg, UNFROZEN, "rs")
+    cell = body["cells"][0]
+    assert {t["arm"] for t in cell["tuning"]} == {"FIX", "OCC", "DRP", "FIX6"}
+    assert all(t["n_configs"] == 36 for t in cell["tuning"] if t["arm"] != "FIX6")
+    assert cell["timing"]["tuning_runs"] == 3 * 36 * 2 + 6 * 2
+    assert ("DRP", "FIX6", "revenue") in {(k["arm"], k["comparator"], k["metric"]) for k in cell["contrasts"]}
+    assert planned_run_counts(cfg)["total_runs"] == cell["timing"]["tuning_runs"] + len(cell["runs"])
+    with pytest.raises(ConfigError):
+        validate_config(_cfg(grid={"p0_n": 6, "occ_K": [1.0]}), UNFROZEN)
+
+
+def test_interaction_table_in_report():
+    from fare.report import interaction_table
+    cells = [{"id": f"sv{sv}-k{k}", "index": i, "scenario": {"sigma_v": sv, "kappa": k}}
+             for i, (sv, k) in enumerate([(0.5, 1.0), (0.5, 4.0)])]
+    body = run_experiment(_cfg(cells=cells, fix_coarse_sensitivity=False), UNFROZEN, "rs")
+    tab = interaction_table({"cells": body["cells"]}, n_resamples=200, seed=1)
+    assert tab is not None and tab.count("Delta(kappa=4) - Delta(kappa=1)") == 2
+    assert interaction_table({"cells": body["cells"][:1]}) is None

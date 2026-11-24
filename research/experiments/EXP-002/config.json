@@ -18,12 +18,12 @@
  "tune_streams": {
   "role": 0,
   "start": 0,
-  "count": 100
+  "count": 500
  },
  "eval_streams": {
   "role": 1,
   "start": 0,
-  "count": 300
+  "count": 4000
  },
  "bootstrap": {
   "resamples": 10000,
@@ -32,7 +32,7 @@
   "secondary_level": 0.95
  },
  "sesoi_fraction": 0.01,
- "note": "Planned confirmatory configuration for EXP-002 (draft v0.1): 3 x 3 cells, sigma_v outer, kappa inner, re-tuned per cell. Sign-flip and Holm analysis is applied to the result file by the EXP-002 analysis step. Refused until frozen.",
+ "note": "Planned confirmatory configuration for EXP-002 (draft v0.2: owner-approved stream counts of 2026-11-24 applied; grid amendment pending): 3 x 3 cells, sigma_v outer, kappa inner, re-tuned per cell. Sign-flip and Holm analysis is applied to the result file by the EXP-002 analysis step. Refused until frozen.",
  "fix_coarse_sensitivity": false,
  "cells": [
   {

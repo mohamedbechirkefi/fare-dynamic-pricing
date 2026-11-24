@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
 # EXP-002 protocol: sensitivity to price elasticity and demand-to-capacity tightness
 
-**Status: DRAFT v0.1 (2026-11-24). Planned; protocol draft awaiting owner freeze (G-FREEZE).** Not executed. Depends on EXP-001 code and analysis pipeline (not on its results).
+**Status: DRAFT v0.2 (2026-11-24). Planned; not frozen.** Owner-approved amendments of 2026-11-24 applied except the tuning-grid item, which awaits the owner's ruling before the freeze (G-FREEZE; see `research/protocol.md`, "Amendments before freeze"). Not executed. Depends on EXP-001 code and analysis pipeline (not on its results).
 
 ## 1. Precise question
 
@@ -21,7 +21,7 @@ Cell-to-cell differences may reflect the tuning grid fitting some cells better t
 
 ## 5. Hypotheses
 
-Descriptive-confirmatory: for each cell c and j in {OCC, DRP}, H0_{j,c}: Delta_{j,c} = 0 versus H1_{j,c}: Delta_{j,c} != 0. 18 contrasts; Each contrast gets a p-value from a paired sign-flip permutation test (10,000 permutations, fixed seed); Holm adjustment over the 18 p-values at family-wise alpha = 0.05. Paired bootstrap 95% intervals are reported alongside. Contradicting result for a claimed pattern ("dynamic rules gain more when capacity is tight"): Delta at kappa = 4.0 not larger than at kappa = 1.0 within each sigma_v, judged on the interval of the difference of differences.
+Descriptive-confirmatory: for each cell c and j in {OCC, DRP}, H0_{j,c}: Delta_{j,c} = 0 versus H1_{j,c}: Delta_{j,c} != 0. 18 contrasts; Each contrast gets a p-value from a paired sign-flip permutation test (10,000 permutations, fixed seed); Holm adjustment over the 18 p-values at family-wise alpha = 0.05. Paired bootstrap 95% intervals are reported alongside. Contradicting result for a claimed pattern ("dynamic rules gain more when capacity is tight"): Delta at kappa = 4.0 not larger than at kappa = 1.0 within each sigma_v, judged on the interval of the difference of differences. Interaction-contrast method: because the cells use different streams, the difference of differences is an independent-samples contrast. Its estimate is mean(d at kappa = 4.0) - mean(d at kappa = 1.0), with d the per-stream paired revenue differences (arm minus FIX) of each cell, and its interval is an independent stratified percentile bootstrap: streams are resampled with replacement within each cell separately, 10,000 resamples, fixed seed 20261124, 95% level, no multiplicity adjustment (6 interaction contrasts: 3 sigma_v values times 2 arms, descriptive). Implemented in `fare.stats.interaction_bootstrap_ci` and reported by `fare.cli report`.
 
 ## 6. Estimand
 
@@ -33,15 +33,15 @@ Unit: one evaluation stream within a cell. Factors: sigma_v in {0.25, 0.5, 1.0};
 
 ## 8. Treatment, control and baseline
 
-As EXP-001, re-tuned independently in each cell (36 configurations per family on 100 tuning streams per cell). Not re-tuning would make FIX a strawman.
+As EXP-001, re-tuned independently in each cell (36 configurations per family on 500 tuning streams per cell). Not re-tuning would make FIX a strawman.
 
 ## 9. Seeds and sample size
 
-Spawn key (2, cell, role, index), cells 0 to 8 in row-major order (sigma_v outer, kappa inner); 100 tuning and 300 evaluation streams per cell. Same power rationale per contrast as EXP-001 before Holm adjustment; the adjusted analysis has less power, accepted and disclosed.
+Spawn key (2, cell, role, index), cells 0 to 8 in row-major order (sigma_v outer, kappa inner); 500 tuning and 4,000 evaluation streams per cell (tuning indices 0 to 499, evaluation indices 0 to 3999). The pilot (J-0004) implies n between 144 and 2,735 for the 1% SESOI at two-sided alpha = 0.025 and power 0.89 across the cells; n = 4,000 covers all of them. Same power rationale per contrast as EXP-001 before Holm adjustment; the adjusted analysis has less power, accepted and disclosed.
 
 ## 10. Compute budget
 
-9 cells x (10,800 + 900) = 105,300 runs. Wall-clock cap: 40 minutes.
+9 cells x (54,000 + 12,000) = 594,000 runs. Wall-clock cap: 40 minutes.
 
 ## 11. Metrics, uncertainty, exclusions, stopping
 
@@ -51,9 +51,26 @@ As EXP-001 sections 13, 14 and 16.
 
 Degenerate cells (kappa = 1.0 with sigma_v = 1.0 may sell out rarely, making all policies close to identical); tuned optima at grid edges in extreme cells. Both reported, the grid is not changed after evaluation.
 
-## 13. Reproducibility commands (planned)
+## 13. Reproducibility commands
+
+Run from the repository root. The package is imported from `src/` (`PYTHONPATH=src`); `UV` is `/Users/bechir/research/labs/.tools/py/bin/uv` on the owner's machine.
 
 ```
-uv run python -m fare.cli run --exp EXP-002 --config research/experiments/EXP-002/config.json
-uv run python -m fare.cli report --exp EXP-002
+export PYTHONPATH=src
+$UV sync --frozen --python /usr/local/bin/python3
+$UV run --frozen --python /usr/local/bin/python3 python -m fare.cli test
+$UV run --frozen --python /usr/local/bin/python3 python -m fare.cli run --plan --config research/experiments/EXP-002/config.json
+$UV run --frozen --python /usr/local/bin/python3 python -m fare.cli run --config research/experiments/EXP-002/config.json
+$UV run --frozen --python /usr/local/bin/python3 python -m fare.cli report --result results/confirmatory/<run_set_id>/result.json --pdf
 ```
+
+`run` writes `results/confirmatory/<run_set_id>/` (result.json, run_manifest.json, config.json) and refuses the config unless the protocol, the main protocol and this exact config are recorded as frozen (`research/experiment_registry.csv`, `research/freeze.json`).
+
+## Amendments before freeze (owner-approved 2026-11-24)
+
+Approved by the owner on 2026-11-24 (`/Users/bechir/research/labs/_shared/owner-approvals-2026-11-24.md`, FARE section); applied in draft v0.2 (decision D-008).
+
+1. Stream counts: 500 tuning and 4,000 evaluation streams per cell (sections 8 to 10). Applied.
+2. Tuning grids: not applied; the draft grid stands until the owner rules. With the proposed widened grid, 7 of the 18 pilot optima in this experiment's cells stay on a grid edge (`results/exploratory/grid_interior_check.json`).
+3. Interaction-contrast method named (section 5). Applied.
+4. Commands: section 13 names the implemented CLI. Applied.

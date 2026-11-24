@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
 # EXP-001 protocol: tuned dynamic rules versus the best fixed price at the base scenario
 
-**Status: DRAFT v0.1 (2026-11-24). Planned; protocol draft awaiting owner freeze (G-FREEZE).** Not executed. Parameter values are planning proposals. Study-level context: `research/protocol.md`.
+**Status: DRAFT v0.2 (2026-11-24). Planned; not frozen.** Owner-approved amendments of 2026-11-24 applied except the tuning-grid item, which awaits the owner's ruling before the freeze (G-FREEZE; see `research/protocol.md`, "Amendments before freeze"). Not executed. Parameter values are planning proposals. Study-level context: `research/protocol.md`.
 
 ## 1. Precise question
 
@@ -43,20 +43,20 @@ Unit: one evaluation demand stream (one seed) of the base cell. Scope: the synth
 
 ## 9. Treatment, control and baseline
 
-- Control and baseline: FIX(p*), p* chosen from 36 geometric prices in [40, 400] by mean revenue on 100 tuning streams.
-- Treatments: OCC(p0*, k*) and DRP(p0*, eta*), each chosen from 36 configurations (9 geometric p0 in [40, 400] times 4 sensitivity values) on the same 100 tuning streams.
+- Control and baseline: FIX(p*), p* chosen from 36 geometric prices in [40, 400] by mean revenue on 500 tuning streams.
+- Treatments: OCC(p0*, k*) and DRP(p0*, eta*), each chosen from 36 configurations (9 geometric p0 in [40, 400] times 4 sensitivity values) on the same 500 tuning streams.
 
 ## 10. Sampling and seed plan
 
-`numpy.random.SeedSequence(entropy=<fixed project entropy>, spawn_key=(1, cell, role, index))`, experiment 1, cell 0, role 0 (tune) indices 0 to 99, role 1 (eval) indices 0 to 299. Each stream is generated once, serialised with its hash, and replayed under every policy.
+`numpy.random.SeedSequence(entropy=20261124, spawn_key=(1, cell, role, index))`, experiment 1, cell 0, role 0 (tune) indices 0 to 499, role 1 (eval) indices 0 to 3999. Each stream is generated once, serialised with its hash, and replayed under every policy.
 
 ## 11. Sample-size rationale
 
-n = 300 evaluation streams: about 89% power for d_z = 0.2 at two-sided alpha = 0.025 per contrast (normal approximation). An exploratory pilot on tuning streams only may revise n before the freeze.
+n = 4,000 evaluation streams (owner-approved amendment). The pilot on tuning streams (J-0003) gives SDs of the paired revenue differences of 655 (OCC) and 871 (DRP); the 1% SESOI (about 116) then needs n = 384 and 680 at two-sided alpha = 0.025 and power 0.89 (normal approximation). n = 4,000 covers these with a wide margin for the pilot's own uncertainty (50 streams).
 
 ## 12. Fixed compute budget
 
-Tuning: 3 families x 36 configurations x 100 streams = 10,800 runs. Evaluation: 3 x 300 = 900 runs. Tuning-grid sensitivity: 9 x 100 + 300 = 1,200 runs. Wall-clock cap: 15 minutes on the audited laptop; exceeding it is recorded as a deviation, not a reason to cut runs.
+Tuning: 3 families x 36 configurations x 500 streams = 54,000 runs. Evaluation: 3 x 4,000 = 12,000 runs. Tuning-grid sensitivity: 9 x 500 + 4,000 = 8,500 runs. Total 74,500 runs (`fare.cli run --plan`). Wall-clock cap: 15 minutes on the audited laptop; exceeding it is recorded as a deviation, not a reason to cut runs.
 
 ## 13. Metric formulas and units
 
@@ -91,11 +91,27 @@ As `research/protocol.md` section 8: no outcome-based exclusion; failures record
 
 Base cell, 5 tuning streams, one hand-set configuration per family, plus edge cases (zero demand, C = 1, all valuations below p_min, kappa = 20). Checks: invariants, nesting (k = 0 and eta = 0 reproduce FIX exactly), runtime. Labelled exploratory; never reported as evidence.
 
-## 19. Reproducibility commands (to be implemented in M2; names are planned, not yet existing)
+## 19. Reproducibility commands
+
+Run from the repository root. The package is imported from `src/` (`PYTHONPATH=src`); `UV` is `/Users/bechir/research/labs/.tools/py/bin/uv` on the owner's machine.
 
 ```
-/Users/bechir/research/labs/.tools/py/bin/uv sync --frozen
-uv run python -m fare.cli smoke --exp EXP-001
-uv run python -m fare.cli run --exp EXP-001 --config research/experiments/EXP-001/config.json
-uv run python -m fare.cli report --exp EXP-001
+export PYTHONPATH=src
+$UV sync --frozen --python /usr/local/bin/python3
+$UV run --frozen --python /usr/local/bin/python3 python -m fare.cli test
+$UV run --frozen --python /usr/local/bin/python3 python -m fare.cli smoke
+$UV run --frozen --python /usr/local/bin/python3 python -m fare.cli run --plan --config research/experiments/EXP-001/config.json
+$UV run --frozen --python /usr/local/bin/python3 python -m fare.cli run --config research/experiments/EXP-001/config.json
+$UV run --frozen --python /usr/local/bin/python3 python -m fare.cli report --result results/confirmatory/<run_set_id>/result.json --pdf
 ```
+
+`run` writes `results/confirmatory/<run_set_id>/` (result.json, run_manifest.json, config.json) and refuses the config unless the protocol, the main protocol and this exact config are recorded as frozen (`research/experiment_registry.csv`, `research/freeze.json`).
+
+## Amendments before freeze (owner-approved 2026-11-24)
+
+Approved by the owner on 2026-11-24 (`/Users/bechir/research/labs/_shared/owner-approvals-2026-11-24.md`, FARE section); applied in draft v0.2 (decision D-008).
+
+1. Stream counts: 500 tuning and 4,000 evaluation streams (sections 9 to 12). Applied.
+2. Tuning grids: not applied; the draft grid of section 9 stands until the owner rules (see `research/protocol.md`). In the base cell the proposed widened grid gives interior pilot optima; the open problem is in EXP-002 cells.
+3. Entropy pinned at 20261124 (section 10); other pinned choices in `research/protocol.md` section 13. Applied.
+4. Commands: section 19 names the implemented CLI. Applied.

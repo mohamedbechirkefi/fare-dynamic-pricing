@@ -26,6 +26,8 @@ from .stats import classify, summarise
 from .streams import ROLE_EVAL, DemandStream, SeedKey, generate_stream
 from .tuning import grid, revenue_matrix, select
 
+GRID_KEYS = ("lo", "hi", "fix_n", "p0_n", "occ_k", "drp_eta")
+
 PRIMARY_ARMS = ("OCC", "DRP")
 SECONDARY_METRICS = ("sell_through", "availability", "consumer_surplus", "total_surplus")
 ROLE_NAMES = {0: "tune", 1: "eval"}
@@ -70,9 +72,9 @@ def validate_config(cfg: dict, protocol: dict) -> None:
         raise ConfigError("mode must be 'tuned' or 'fixed'")
     if cfg["label"] == "confirmatory" and not protocol.get("frozen"):
         raise ProtocolNotFrozen(
-            f"{cfg['experiment_id']}: protocol {protocol.get('path')!r} is not frozen (G-FREEZE). "
-            "Confirmatory runs are refused until the owner freezes it and its SHA-256 is recorded "
-            "in research/experiment_registry.csv.")
+            f"{cfg['experiment_id']}: protocol {protocol.get('path')!r} is not frozen (G-FREEZE): "
+            f"{protocol.get('reason') or 'not frozen'}. Confirmatory runs are refused unless the registry "
+            "and research/freeze.json record the protocol, the main protocol and this exact config.")
     ev = StreamSet.from_dict(cfg["eval_streams"])
     if cfg["label"] != "confirmatory" and ev.role == ROLE_EVAL:
         raise ConfigError("exploratory configs may not use evaluation streams (role 1)")
@@ -85,6 +87,9 @@ def validate_config(cfg: dict, protocol: dict) -> None:
     else:
         if not cfg.get("fixed_policies"):
             raise ConfigError("mode 'fixed' needs fixed_policies")
+    unknown = set(cfg.get("grid", {})) - set(GRID_KEYS)
+    if unknown:
+        raise ConfigError(f"unknown grid keys {sorted(unknown)}")
     ids = [c["id"] for c in cfg["cells"]]
     if len(set(ids)) != len(ids):
         raise ConfigError("cell ids must be unique")
@@ -200,7 +205,10 @@ def run_experiment(cfg: dict, protocol: dict, run_set_id: str) -> dict:
                 if cell.get("retuned_fix_reference"):
                     arms["FIX_retuned"] = do_tune("FIX_retuned", "FIX", tu_streams)
             if cfg.get("fix_coarse_sensitivity") and "FIX" in families:
-                arms["FIX9"] = do_tune("FIX9", "FIX", tu_streams, fix_n=int(g.get("p0_n", 9)))
+                # FIX re-tuned on the p0 values shared by OCC and DRP: "FIX9" in
+                # draft v0.1 (9 p0 values), "FIX6" in frozen v1.0 (6 p0 values).
+                coarse = f"FIX{int(g.get('p0_n', 9))}"
+                arms[coarse] = do_tune(coarse, "FIX", tu_streams, fix_n=int(g.get("p0_n", 9)))
         t0 = time.perf_counter()
         runs = []
         for arm, pol in arms.items():
@@ -209,7 +217,7 @@ def run_experiment(cfg: dict, protocol: dict, run_set_id: str) -> dict:
         timing["eval_runs"] = len(runs)
         contrasts = []
         if "FIX" in arms:
-            comps = [("FIX", sesoi)] + [(c, sesoi) for c in ("FIX9", "FIX_retuned") if c in arms]
+            comps = [("FIX", sesoi)] + [(c, sesoi) for c in arms if c.startswith("FIX") and c != "FIX"]
             for comp, ses in comps:
                 for arm in arms:
                     if arm.startswith("FIX"):
@@ -232,9 +240,11 @@ def run_experiment(cfg: dict, protocol: dict, run_set_id: str) -> dict:
 
 def planned_run_counts(cfg: dict) -> dict[str, int]:
     """Number of simulation runs a config implies (for runtime projection)."""
-    n_fam = len(cfg.get("families", ["FIX", "OCC", "DRP"]))
+    families = cfg.get("families", ["FIX", "OCC", "DRP"])
+    n_fam = len(families)
     g = cfg.get("grid", {})
-    n_cfg = int(g.get("fix_n", 36))
+    n_cfg_all = sum(len(grid(f, **g)) for f in families)
+    n_fix = len(grid("FIX", **g))
     p0 = int(g.get("p0_n", 9))
     tu = int(cfg.get("tune_streams", {}).get("count", 0))
     ev = int(cfg["eval_streams"]["count"])
@@ -244,9 +254,9 @@ def planned_run_counts(cfg: dict) -> dict[str, int]:
         if cfg["mode"] == "fixed":
             arms = len(cfg["fixed_policies"])
         elif cell.get("tune_in") is None:
-            tuning += n_fam * n_cfg * tu
+            tuning += n_cfg_all * tu
         if cell.get("retuned_fix_reference"):
-            tuning += n_cfg * tu
+            tuning += n_fix * tu
             arms += 1
         if cfg.get("fix_coarse_sensitivity"):
             tuning += p0 * tu

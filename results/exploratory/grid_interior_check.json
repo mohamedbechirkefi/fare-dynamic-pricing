@@ -1,0 +1,539 @@
+{
+ "label": "EXPLORATORY (pre-freeze; tuning streams 0-49 only; no evaluation, no contrast; not evidence)",
+ "git": {
+  "revision": "88fdddf9307a4043b65b889b3d1e997d0c852428",
+  "dirty_tracked_files": true
+ },
+ "grids": {
+  "draft-v0.1": {
+   "lo": 40.0,
+   "hi": 400.0,
+   "p0_n": 9,
+   "occ_k": [
+    0.5,
+    1.0,
+    2.0,
+    4.0
+   ],
+   "drp_eta": [
+    0.1,
+    0.25,
+    0.5,
+    1.0
+   ]
+  },
+  "v1.0": {
+   "lo": 40.0,
+   "hi": 400.0,
+   "p0_n": 6,
+   "occ_k": [
+    0.25,
+    0.5,
+    1.0,
+    2.0,
+    4.0,
+    8.0
+   ],
+   "drp_eta": [
+    0.025,
+    0.05,
+    0.1,
+    0.25,
+    0.5,
+    1.0
+   ]
+  }
+ },
+ "rows": [
+  {
+   "experiment_id": "EXP-001",
+   "cell_id": "base",
+   "grid": "draft-v0.1",
+   "family": "OCC",
+   "n_configs": 36,
+   "selected_p0": 126.49110640673521,
+   "selected_sensitivity": 4.0,
+   "sensitivity_name": "k",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-001",
+   "cell_id": "base",
+   "grid": "draft-v0.1",
+   "family": "DRP",
+   "n_configs": 36,
+   "selected_p0": 94.85494822646623,
+   "selected_sensitivity": 0.1,
+   "sensitivity_name": "eta",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-001",
+   "cell_id": "base",
+   "grid": "v1.0",
+   "family": "OCC",
+   "n_configs": 36,
+   "selected_p0": 159.24286822139882,
+   "selected_sensitivity": 4.0,
+   "sensitivity_name": "k",
+   "sensitivity_at_edge": false,
+   "at_grid_edge": false
+  },
+  {
+   "experiment_id": "EXP-001",
+   "cell_id": "base",
+   "grid": "v1.0",
+   "family": "DRP",
+   "n_configs": 36,
+   "selected_p0": 100.47545726038321,
+   "selected_sensitivity": 0.1,
+   "sensitivity_name": "eta",
+   "sensitivity_at_edge": false,
+   "at_grid_edge": false
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.25-k1.0",
+   "grid": "draft-v0.1",
+   "family": "OCC",
+   "n_configs": 36,
+   "selected_p0": 94.85494822646623,
+   "selected_sensitivity": 0.5,
+   "sensitivity_name": "k",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.25-k1.0",
+   "grid": "draft-v0.1",
+   "family": "DRP",
+   "n_configs": 36,
+   "selected_p0": 71.1311764015569,
+   "selected_sensitivity": 0.1,
+   "sensitivity_name": "eta",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.25-k1.0",
+   "grid": "v1.0",
+   "family": "OCC",
+   "n_configs": 36,
+   "selected_p0": 100.47545726038321,
+   "selected_sensitivity": 0.5,
+   "sensitivity_name": "k",
+   "sensitivity_at_edge": false,
+   "at_grid_edge": false
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.25-k1.0",
+   "grid": "v1.0",
+   "family": "DRP",
+   "n_configs": 36,
+   "selected_p0": 100.47545726038321,
+   "selected_sensitivity": 0.025,
+   "sensitivity_name": "eta",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.25-k2.0",
+   "grid": "draft-v0.1",
+   "family": "OCC",
+   "n_configs": 36,
+   "selected_p0": 126.49110640673521,
+   "selected_sensitivity": 4.0,
+   "sensitivity_name": "k",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.25-k2.0",
+   "grid": "draft-v0.1",
+   "family": "DRP",
+   "n_configs": 36,
+   "selected_p0": 94.85494822646623,
+   "selected_sensitivity": 0.1,
+   "sensitivity_name": "eta",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.25-k2.0",
+   "grid": "v1.0",
+   "family": "OCC",
+   "n_configs": 36,
+   "selected_p0": 159.24286822139882,
+   "selected_sensitivity": 8.0,
+   "sensitivity_name": "k",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.25-k2.0",
+   "grid": "v1.0",
+   "family": "DRP",
+   "n_configs": 36,
+   "selected_p0": 100.47545726038321,
+   "selected_sensitivity": 0.1,
+   "sensitivity_name": "eta",
+   "sensitivity_at_edge": false,
+   "at_grid_edge": false
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.25-k4.0",
+   "grid": "draft-v0.1",
+   "family": "OCC",
+   "n_configs": 36,
+   "selected_p0": 224.9365300761397,
+   "selected_sensitivity": 4.0,
+   "sensitivity_name": "k",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.25-k4.0",
+   "grid": "draft-v0.1",
+   "family": "DRP",
+   "n_configs": 36,
+   "selected_p0": 126.49110640673521,
+   "selected_sensitivity": 0.1,
+   "sensitivity_name": "eta",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.25-k4.0",
+   "grid": "v1.0",
+   "family": "OCC",
+   "n_configs": 36,
+   "selected_p0": 252.38293779207726,
+   "selected_sensitivity": 4.0,
+   "sensitivity_name": "k",
+   "sensitivity_at_edge": false,
+   "at_grid_edge": false
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.25-k4.0",
+   "grid": "v1.0",
+   "family": "DRP",
+   "n_configs": 36,
+   "selected_p0": 159.24286822139882,
+   "selected_sensitivity": 0.1,
+   "sensitivity_name": "eta",
+   "sensitivity_at_edge": false,
+   "at_grid_edge": false
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.5-k1.0",
+   "grid": "draft-v0.1",
+   "family": "OCC",
+   "n_configs": 36,
+   "selected_p0": 94.85494822646623,
+   "selected_sensitivity": 0.5,
+   "sensitivity_name": "k",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.5-k1.0",
+   "grid": "draft-v0.1",
+   "family": "DRP",
+   "n_configs": 36,
+   "selected_p0": 71.1311764015569,
+   "selected_sensitivity": 0.1,
+   "sensitivity_name": "eta",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.5-k1.0",
+   "grid": "v1.0",
+   "family": "OCC",
+   "n_configs": 36,
+   "selected_p0": 100.47545726038321,
+   "selected_sensitivity": 0.25,
+   "sensitivity_name": "k",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.5-k1.0",
+   "grid": "v1.0",
+   "family": "DRP",
+   "n_configs": 36,
+   "selected_p0": 100.47545726038321,
+   "selected_sensitivity": 0.025,
+   "sensitivity_name": "eta",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.5-k2.0",
+   "grid": "draft-v0.1",
+   "family": "OCC",
+   "n_configs": 36,
+   "selected_p0": 126.49110640673521,
+   "selected_sensitivity": 4.0,
+   "sensitivity_name": "k",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.5-k2.0",
+   "grid": "draft-v0.1",
+   "family": "DRP",
+   "n_configs": 36,
+   "selected_p0": 94.85494822646623,
+   "selected_sensitivity": 0.1,
+   "sensitivity_name": "eta",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.5-k2.0",
+   "grid": "v1.0",
+   "family": "OCC",
+   "n_configs": 36,
+   "selected_p0": 159.24286822139882,
+   "selected_sensitivity": 4.0,
+   "sensitivity_name": "k",
+   "sensitivity_at_edge": false,
+   "at_grid_edge": false
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.5-k2.0",
+   "grid": "v1.0",
+   "family": "DRP",
+   "n_configs": 36,
+   "selected_p0": 100.47545726038321,
+   "selected_sensitivity": 0.1,
+   "sensitivity_name": "eta",
+   "sensitivity_at_edge": false,
+   "at_grid_edge": false
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.5-k4.0",
+   "grid": "draft-v0.1",
+   "family": "OCC",
+   "n_configs": 36,
+   "selected_p0": 224.9365300761397,
+   "selected_sensitivity": 4.0,
+   "sensitivity_name": "k",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.5-k4.0",
+   "grid": "draft-v0.1",
+   "family": "DRP",
+   "n_configs": 36,
+   "selected_p0": 168.67860137143293,
+   "selected_sensitivity": 0.1,
+   "sensitivity_name": "eta",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.5-k4.0",
+   "grid": "v1.0",
+   "family": "OCC",
+   "n_configs": 36,
+   "selected_p0": 252.38293779207726,
+   "selected_sensitivity": 8.0,
+   "sensitivity_name": "k",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv0.5-k4.0",
+   "grid": "v1.0",
+   "family": "DRP",
+   "n_configs": 36,
+   "selected_p0": 159.24286822139882,
+   "selected_sensitivity": 0.1,
+   "sensitivity_name": "eta",
+   "sensitivity_at_edge": false,
+   "at_grid_edge": false
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv1.0-k1.0",
+   "grid": "draft-v0.1",
+   "family": "OCC",
+   "n_configs": 36,
+   "selected_p0": 224.9365300761397,
+   "selected_sensitivity": 0.5,
+   "sensitivity_name": "k",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv1.0-k1.0",
+   "grid": "draft-v0.1",
+   "family": "DRP",
+   "n_configs": 36,
+   "selected_p0": 126.49110640673521,
+   "selected_sensitivity": 0.1,
+   "sensitivity_name": "eta",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv1.0-k1.0",
+   "grid": "v1.0",
+   "family": "OCC",
+   "n_configs": 36,
+   "selected_p0": 252.38293779207726,
+   "selected_sensitivity": 0.5,
+   "sensitivity_name": "k",
+   "sensitivity_at_edge": false,
+   "at_grid_edge": false
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv1.0-k1.0",
+   "grid": "v1.0",
+   "family": "DRP",
+   "n_configs": 36,
+   "selected_p0": 252.38293779207726,
+   "selected_sensitivity": 0.025,
+   "sensitivity_name": "eta",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv1.0-k2.0",
+   "grid": "draft-v0.1",
+   "family": "OCC",
+   "n_configs": 36,
+   "selected_p0": 224.9365300761397,
+   "selected_sensitivity": 0.5,
+   "sensitivity_name": "k",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv1.0-k2.0",
+   "grid": "draft-v0.1",
+   "family": "DRP",
+   "n_configs": 36,
+   "selected_p0": 126.49110640673521,
+   "selected_sensitivity": 0.1,
+   "sensitivity_name": "eta",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv1.0-k2.0",
+   "grid": "v1.0",
+   "family": "OCC",
+   "n_configs": 36,
+   "selected_p0": 252.38293779207726,
+   "selected_sensitivity": 1.0,
+   "sensitivity_name": "k",
+   "sensitivity_at_edge": false,
+   "at_grid_edge": false
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv1.0-k2.0",
+   "grid": "v1.0",
+   "family": "DRP",
+   "n_configs": 36,
+   "selected_p0": 252.38293779207726,
+   "selected_sensitivity": 0.025,
+   "sensitivity_name": "eta",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv1.0-k4.0",
+   "grid": "draft-v0.1",
+   "family": "OCC",
+   "n_configs": 36,
+   "selected_p0": 299.9576837329824,
+   "selected_sensitivity": 4.0,
+   "sensitivity_name": "k",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv1.0-k4.0",
+   "grid": "draft-v0.1",
+   "family": "DRP",
+   "n_configs": 36,
+   "selected_p0": 168.67860137143293,
+   "selected_sensitivity": 0.1,
+   "sensitivity_name": "eta",
+   "sensitivity_at_edge": true,
+   "at_grid_edge": true
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv1.0-k4.0",
+   "grid": "v1.0",
+   "family": "OCC",
+   "n_configs": 36,
+   "selected_p0": 252.38293779207726,
+   "selected_sensitivity": 4.0,
+   "sensitivity_name": "k",
+   "sensitivity_at_edge": false,
+   "at_grid_edge": false
+  },
+  {
+   "experiment_id": "EXP-002",
+   "cell_id": "sv1.0-k4.0",
+   "grid": "v1.0",
+   "family": "DRP",
+   "n_configs": 36,
+   "selected_p0": 252.38293779207726,
+   "selected_sensitivity": 0.05,
+   "sensitivity_name": "eta",
+   "sensitivity_at_edge": false,
+   "at_grid_edge": false
+  }
+ ],
+ "summary": {
+  "draft-v0.1": {
+   "n": 20,
+   "at_grid_edge": 20
+  },
+  "v1.0": {
+   "n": 20,
+   "at_grid_edge": 7
+  }
+ }
+}

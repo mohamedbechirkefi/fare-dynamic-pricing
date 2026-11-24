@@ -1,0 +1,178 @@
+{
+ "label": "EXPLORATORY (pre-freeze; tuning streams 0-49 only; no evaluation, no contrast; not evidence)",
+ "git": {
+  "revision": "88fdddf9307a4043b65b889b3d1e997d0c852428",
+  "dirty_tracked_files": true
+ },
+ "occ_k": [
+  0.25,
+  0.5,
+  1.0,
+  2.0,
+  4.0,
+  8.0,
+  16.0,
+  32.0
+ ],
+ "drp_eta": [
+  0.0,
+  0.000390625,
+  0.00078125,
+  0.0015625,
+  0.003125,
+  0.00625,
+  0.0125,
+  0.025,
+  0.05,
+  0.1,
+  0.25,
+  0.5,
+  1.0
+ ],
+ "rows": [
+  {
+   "cell_id": "sv0.25-k1.0",
+   "family": "OCC",
+   "selected_p0": 100.47545726038321,
+   "sensitivity_name": "k",
+   "selected_sensitivity": 0.5,
+   "sensitivity_at_edge": false
+  },
+  {
+   "cell_id": "sv0.25-k1.0",
+   "family": "DRP",
+   "selected_p0": 100.47545726038321,
+   "sensitivity_name": "eta",
+   "selected_sensitivity": 0.003125,
+   "sensitivity_at_edge": false
+  },
+  {
+   "cell_id": "sv0.25-k2.0",
+   "family": "OCC",
+   "selected_p0": 159.24286822139882,
+   "sensitivity_name": "k",
+   "selected_sensitivity": 8.0,
+   "sensitivity_at_edge": false
+  },
+  {
+   "cell_id": "sv0.25-k2.0",
+   "family": "DRP",
+   "selected_p0": 100.47545726038321,
+   "sensitivity_name": "eta",
+   "selected_sensitivity": 0.1,
+   "sensitivity_at_edge": false
+  },
+  {
+   "cell_id": "sv0.25-k4.0",
+   "family": "OCC",
+   "selected_p0": 252.38293779207726,
+   "sensitivity_name": "k",
+   "selected_sensitivity": 4.0,
+   "sensitivity_at_edge": false
+  },
+  {
+   "cell_id": "sv0.25-k4.0",
+   "family": "DRP",
+   "selected_p0": 159.24286822139882,
+   "sensitivity_name": "eta",
+   "selected_sensitivity": 0.1,
+   "sensitivity_at_edge": false
+  },
+  {
+   "cell_id": "sv0.5-k1.0",
+   "family": "OCC",
+   "selected_p0": 100.47545726038321,
+   "sensitivity_name": "k",
+   "selected_sensitivity": 0.25,
+   "sensitivity_at_edge": true
+  },
+  {
+   "cell_id": "sv0.5-k1.0",
+   "family": "DRP",
+   "selected_p0": 100.47545726038321,
+   "sensitivity_name": "eta",
+   "selected_sensitivity": 0.0,
+   "sensitivity_at_edge": true
+  },
+  {
+   "cell_id": "sv0.5-k2.0",
+   "family": "OCC",
+   "selected_p0": 159.24286822139882,
+   "sensitivity_name": "k",
+   "selected_sensitivity": 4.0,
+   "sensitivity_at_edge": false
+  },
+  {
+   "cell_id": "sv0.5-k2.0",
+   "family": "DRP",
+   "selected_p0": 100.47545726038321,
+   "sensitivity_name": "eta",
+   "selected_sensitivity": 0.1,
+   "sensitivity_at_edge": false
+  },
+  {
+   "cell_id": "sv0.5-k4.0",
+   "family": "OCC",
+   "selected_p0": 252.38293779207726,
+   "sensitivity_name": "k",
+   "selected_sensitivity": 8.0,
+   "sensitivity_at_edge": false
+  },
+  {
+   "cell_id": "sv0.5-k4.0",
+   "family": "DRP",
+   "selected_p0": 159.24286822139882,
+   "sensitivity_name": "eta",
+   "selected_sensitivity": 0.1,
+   "sensitivity_at_edge": false
+  },
+  {
+   "cell_id": "sv1.0-k1.0",
+   "family": "OCC",
+   "selected_p0": 252.38293779207726,
+   "sensitivity_name": "k",
+   "selected_sensitivity": 0.5,
+   "sensitivity_at_edge": false
+  },
+  {
+   "cell_id": "sv1.0-k1.0",
+   "family": "DRP",
+   "selected_p0": 159.24286822139882,
+   "sensitivity_name": "eta",
+   "selected_sensitivity": 0.0,
+   "sensitivity_at_edge": true
+  },
+  {
+   "cell_id": "sv1.0-k2.0",
+   "family": "OCC",
+   "selected_p0": 252.38293779207726,
+   "sensitivity_name": "k",
+   "selected_sensitivity": 1.0,
+   "sensitivity_at_edge": false
+  },
+  {
+   "cell_id": "sv1.0-k2.0",
+   "family": "DRP",
+   "selected_p0": 252.38293779207726,
+   "sensitivity_name": "eta",
+   "selected_sensitivity": 0.000390625,
+   "sensitivity_at_edge": false
+  },
+  {
+   "cell_id": "sv1.0-k4.0",
+   "family": "OCC",
+   "selected_p0": 252.38293779207726,
+   "sensitivity_name": "k",
+   "selected_sensitivity": 4.0,
+   "sensitivity_at_edge": false
+  },
+  {
+   "cell_id": "sv1.0-k4.0",
+   "family": "DRP",
+   "selected_p0": 252.38293779207726,
+   "sensitivity_name": "eta",
+   "selected_sensitivity": 0.05,
+   "sensitivity_at_edge": false
+  }
+ ]
+}
