@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0
+# Licence: FARE Source-Available Non-Commercial Research License v1.0
+# (custom licence, see LICENSE; intentionally not given as an SPDX license field).
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "FARE: pricing policies in a simulated booking market"
+type: software
+authors:
+  - family-names: Kefi
+    given-names: Mohamed Bechir
+version: 0.0.0
+abstract: "Work in progress (M0). A reproducible simulation study of fixed, occupancy-based and demand-responsive pricing for perishable inventory. No findings yet."
+keywords:
+  - dynamic pricing
+  - revenue management
+  - perishable inventory
+  - simulation

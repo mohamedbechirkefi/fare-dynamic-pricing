@@ -1,0 +1,47 @@
+{
+  "schema_version": "0.1",
+  "updated": "2026-11-24",
+  "licence_note": "Third-party data keep their own licences; see NOTICE.md section 2.",
+  "datasets_used": [],
+  "synthetic_data": {
+    "description": "All study data are synthetic demand streams generated per run from documented parameters and seeds (research/protocol.md section 3). Generator code is not yet implemented (M2).",
+    "generator_version": null,
+    "parameters": "research/experiments/EXP-NNN/config.json (to be created at M2/M3)",
+    "seed_scheme": "numpy SeedSequence, spawn_key = (experiment, cell, role, index)"
+  },
+  "candidate_datasets": [
+    {
+      "name": "Hotel booking demand datasets",
+      "source": "Antonio, de Almeida and Nunes (2019), Data in Brief 22, 41-49, supplementary files",
+      "doi": "10.1016/j.dib.2018.11.126",
+      "url_checked": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6297060/",
+      "accessed": "2026-11-24",
+      "licence": "Article: CC BY 4.0. Data supplements: no separate licence stated on the page read; coverage by CC BY 4.0 not confirmed.",
+      "redistribution": "unclear",
+      "downloaded": false,
+      "sha256": null,
+      "status": "not used; owner blocker if it is ever proposed for use"
+    },
+    {
+      "name": "Third-party mirrors of the hotel booking data (for example Kaggle)",
+      "licence": "unverified",
+      "redistribution": "unverified",
+      "downloaded": false,
+      "status": "excluded; primary source preferred"
+    },
+    {
+      "name": "Scraped airline fare datasets",
+      "licence": "typically unclear or restricted by terms of service",
+      "redistribution": "no",
+      "downloaded": false,
+      "status": "excluded by the claims boundary (no scraping, no actual fare predictions)"
+    },
+    {
+      "name": "U.S. DOT/BTS DB1B airline origin and destination survey",
+      "licence": "unverified (source not opened)",
+      "redistribution": "unverified",
+      "downloaded": false,
+      "status": "not planned"
+    }
+  ]
+}

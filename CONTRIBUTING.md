@@ -35,3 +35,24 @@ Mohamed Bechir Kefi is the project owner and lead maintainer, and the only perso
 ## 5. Privacy and disclosure
 
 Never commit an e-mail address, a name or any other personal identifier in code, logs, fixtures or results. Report security issues privately through GitHub's private vulnerability reporting.
+
+## 6. Development commands
+
+Paths below are those of the owner's machine; adapt them to your installation of uv and pandoc.
+
+```
+# environment (locked; resolution capped at 2026-11-10)
+/Users/bechir/research/labs/.tools/py/bin/uv sync --frozen --python /usr/local/bin/python3
+
+# regenerate the lockfile after a recorded dependency decision
+/Users/bechir/research/labs/.tools/py/bin/uv lock --python /usr/local/bin/python3
+
+# manuscript: Markdown -> LaTeX source (not compiled locally; no TeX distribution)
+{ echo '% SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0'; echo '% Generated from research/paper/manuscript.md by pandoc 3.6.3; do not edit by hand.'; /Users/bechir/research/labs/.tools/pandoc research/paper/manuscript.md -s -t latex; } > research/paper/manuscript.tex
+
+# manuscript: Markdown -> Typst -> PDF (mainfont must be set: the default template's empty font list fails to compile)
+/Users/bechir/research/labs/.tools/pandoc research/paper/manuscript.md -s -t typst -V mainfont="Libertinus Serif" -o research/paper/manuscript.typ
+/Users/bechir/research/labs/.tools/py/bin/python -c "import typst; typst.compile('research/paper/manuscript.typ', output='research/paper/manuscript.pdf')"
+```
+
+Simulation, test and report commands are added at M2.
