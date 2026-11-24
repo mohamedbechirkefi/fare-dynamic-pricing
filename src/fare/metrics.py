@@ -66,3 +66,25 @@ def compute_metrics(o: SimOutcome, sp: ScenarioParams) -> dict[str, Any]:
         if isinstance(v, float) and not math.isfinite(v):
             raise ValueError(f"metric {k} is not finite: {v}")
     return m
+
+
+def purchase_probability(sp: ScenarioParams, p: float) -> float:
+    """P(v >= p) for a buyer drawn from the segment mixture (weights w_L, 1 - w_L)."""
+    if p <= 0:
+        raise ValueError("price must be positive")
+    if sp.sigma_v == 0:
+        return sp.w_L * float(sp.m_L >= p) + (1 - sp.w_L) * float(sp.m_H >= p)
+    s = sp.sigma_v * math.sqrt(2.0)
+    surv = lambda m: 0.5 * math.erfc((math.log(p) - math.log(m)) / s)
+    return sp.w_L * surv(sp.m_L) + (1 - sp.w_L) * surv(sp.m_H)
+
+
+def purchase_elasticity(sp: ScenarioParams, p: float, h: float = 1e-4) -> float | None:
+    """Point elasticity d ln P(v >= p) / d ln p by central difference in ln p
+    (EXP-002 protocol section 7). None when undefined (P = 0 or sigma_v = 0)."""
+    if sp.sigma_v == 0:
+        return None
+    up, dn = purchase_probability(sp, p * math.exp(h)), purchase_probability(sp, p * math.exp(-h))
+    if up <= 0 or dn <= 0:
+        return None
+    return (math.log(up) - math.log(dn)) / (2 * h)

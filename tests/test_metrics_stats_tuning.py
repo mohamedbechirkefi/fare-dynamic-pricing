@@ -132,3 +132,18 @@ def test_tuning_picks_the_best_mean():
     R = revenue_matrix(grid("FIX"), streams, sp)
     assert tr.best_index == int(np.argmax(R.mean(axis=1)))
     assert tr.mean_revenue[tr.best_index] == pytest.approx(R.mean(axis=1).max())
+
+
+def test_purchase_probability_and_elasticity():
+    from fare.metrics import purchase_elasticity, purchase_probability
+    sp = ScenarioParams(w_L=1.0, m_L=100.0, sigma_v=0.5)
+    assert purchase_probability(sp, 100.0) == pytest.approx(0.5)
+    # lognormal survival S: d ln S / d ln p at the median = -phi(0) / (sigma * S) with S = 0.5
+    phi0 = 1 / math.sqrt(2 * math.pi)
+    assert purchase_elasticity(sp, 100.0) == pytest.approx(-phi0 / (0.5 * 0.5), rel=1e-6)
+    # elasticity grows in magnitude when valuations are less dispersed
+    assert purchase_elasticity(ScenarioParams(w_L=1.0, m_L=100.0, sigma_v=0.25), 120.0) < \
+        purchase_elasticity(ScenarioParams(w_L=1.0, m_L=100.0, sigma_v=1.0), 120.0)
+    assert purchase_elasticity(ScenarioParams(sigma_v=0.0), 100.0) is None
+    with pytest.raises(ValueError):
+        purchase_probability(sp, 0.0)

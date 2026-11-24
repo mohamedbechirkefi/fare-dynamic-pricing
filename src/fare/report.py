@@ -17,7 +17,7 @@ from pathlib import Path
 
 import numpy as np
 
-from .metrics import METRIC_NAMES
+from .metrics import METRIC_NAMES, purchase_elasticity
 from .params import ScenarioParams
 from .policies import policy_from_dict
 from .schema import read_result
@@ -83,12 +83,17 @@ def arm_table(cell: dict) -> str:
 def tuning_table(cell: dict) -> str:
     if not cell["tuning"]:
         return "_No tuning in this cell (fixed hand-set policies)._"
-    lines = ["| Arm | Tuned in cell | Configs x streams | Selected | Mean tuning revenue | At grid edge |",
-             "|---|---|---|---|---|---|"]
+    sp = ScenarioParams.from_dict(cell["scenario"])
+    lines = ["| Arm | Tuned in cell | Configs x streams | Selected | Mean tuning revenue | At grid edge | Purchase elasticity at selected FIX price |",
+             "|---|---|---|---|---|---|---|"]
     for t in cell["tuning"]:
+        el = "n/a"
+        if t["family"] == "FIX":
+            e = purchase_elasticity(sp, t["selected"]["params"]["p"])
+            el = _fmt(e, 3) if e is not None else "undefined"
         lines.append(f"| {t['arm']} | {t.get('tuned_in_cell', '')} | {t['n_configs']} x {t['n_streams']} | "
                      f"{_policy_str(t['selected'])} | {_fmt(t['mean_revenue'][t['selected_index']])} | "
-                     f"{'yes' if t['at_grid_edge'] else 'no'} |")
+                     f"{'yes' if t['at_grid_edge'] else 'no'} | {el} |")
     return "\n".join(lines)
 
 
