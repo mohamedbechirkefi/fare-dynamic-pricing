@@ -4,7 +4,7 @@
 # locked version was released at least two weeks before 2026-11-24.
 
 [project]
-name = "fare-research"
+name = "fare-dynamic-pricing"
 version = "0.0.0"
 description = "FARE: a simulated perishable-inventory market comparing fixed, occupancy-based and demand-responsive pricing policies"
 readme = "README.md"

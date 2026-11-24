@@ -24,7 +24,7 @@ wheels = [
 ]
 
 [[package]]
-name = "fare-research"
+name = "fare-dynamic-pricing"
 version = "0.0.0"
 source = { virtual = "." }
 dependencies = [
