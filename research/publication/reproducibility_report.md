@@ -57,4 +57,15 @@ The fresh-clone re-check of the committed release candidate is recorded in secti
 
 ## 5. Fresh-clone re-check after the M6 commit
 
-Recorded in `progress.md` (M6 entry, part 2) and appended below by the same session.
+A second fresh clone was made of the M6 commit `bef6384` (2026-11-25) and deleted afterwards.
+
+| Step | Actual output |
+|---|---|
+| `uv sync --frozen --all-groups --all-extras` | 14 packages installed |
+| `.venv/bin/python -m pytest -q` | `161 passed in 3.85s` |
+| `.venv/bin/python scripts/check_links.py` | `47 Markdown files, 60 links, 0 unresolved` |
+| `fare.cli smoke --no-report` and comparison | `0 tuning + 125 evaluation runs, 0 failed, 0.10 s, peak RSS 43.4 MiB`; differences only in 125 `run_id`, 5 `eval_s`, 5 `stream_generation_s`, `created_utc`, `run_set_id` |
+| `scripts/export_demo_data.py`, then `git status --short` | `wrote demo/public/data/results.json (138087 bytes)`; 0 changed files |
+| `npm ci --prefer-offline`, `npm test`, `npm run build` | `added 53 packages`; `Tests 31 passed (31)`; `index-CIQDcuSr.js 251.80 kB` |
+| `node tools/a11y_check.mjs dist` | `A11Y-CHECK PASS` |
+| `scripts/build_pdfs.py` | Without the toolchain next to the clone, it stops with "pandoc or the tools Python (typst package) is not available", the intended message. With `FARE_TOOLS_DIR` pointing to the shared toolchain, the five PDFs are rebuilt at the committed sizes (302,856, 187,283, 152,207, 141,051 and 120,206 bytes); they differ from the committed files in 58 bytes (manuscript) and 96 bytes (EXP-003 report), the embedded build timestamp and identifiers |

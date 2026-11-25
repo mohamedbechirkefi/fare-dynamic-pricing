@@ -566,3 +566,24 @@ Manifests:
 - Su (2007) was read in the author's version, not the version of record.
 
 **Next action.** Fresh-clone re-check of the commit (part 2). Then the owner's review and the G-PUBLIC decision.
+
+## 2026-11-25: M6 release candidate, part 2 (fresh-clone re-check of bef6384)
+
+A fresh clone was made of the M6 commit `bef6384` in the session scratch folder and deleted afterwards. Actual outputs:
+
+```
+$ uv sync --frozen --all-groups --all-extras        14 packages installed
+$ .venv/bin/python -m pytest -q                     161 passed in 3.85s
+$ .venv/bin/python scripts/check_links.py           47 Markdown files, 60 links, 0 unresolved
+$ fare.cli smoke --no-report                        0 tuning + 125 evaluation runs, 0 failed, 0.10 s, peak RSS 43.4 MiB
+  comparison with the committed smoke result        only 125 run_id, 5 eval_s, 5 stream_generation_s, created_utc, run_set_id differ
+$ scripts/export_demo_data.py; git status --short   wrote demo/public/data/results.json (138087 bytes); no output
+$ npm ci --prefer-offline; npm test; npm run build  added 53 packages; Tests 31 passed (31); index-CIQDcuSr.js 251.80 kB
+$ node tools/a11y_check.mjs dist                    A11Y-CHECK PASS
+$ scripts/build_pdfs.py                             without ../.tools: "pandoc or the tools Python (typst package) is not available"
+$ FARE_TOOLS_DIR=<shared toolchain> scripts/build_pdfs.py   five PDFs at the committed sizes; 58 and 96 differing bytes (timestamps)
+```
+
+**Result.** The fixes made in part 1 hold in a fresh clone. M6 status: release candidate prepared, awaiting owner review and G-PUBLIC. Not done until the owner signs off (`research/publication/author_review.md`).
+
+**Next action.** The owner reviews `research/publication/author_review.md` and decides on publication (G-PUBLIC).
