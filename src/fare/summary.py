@@ -215,8 +215,13 @@ def verdict_exp003(contrasts: list[dict], exp001: dict | None) -> dict:
 
 def forest_svg(rows: list[dict], title: str, sesoi: dict[str, float]) -> str:
     """Horizontal interval plot of paired revenue differences."""
-    W, rowh, L, R, top = 820, 26, 250, 40, 50
-    H = top + rowh * len(rows) + 60
+    labels = [f'{r["cell_id"]}: {r["arm"]} vs {r["comparator"]} (n={r["n"]}, {100 * r["level"]:g}%)' for r in rows]
+    # M6 layout fix: the label column is sized to the longest label (about 6.5 px per character at 11 px
+    # Helvetica) so labels are not clipped on the left, and the axis caption is split over two lines.
+    rowh, R, top = 26, 40, 50
+    L = max(250, 18 + math.ceil(6.5 * max((len(t) for t in labels), default=0)))
+    W = L + 570
+    H = top + rowh * len(rows) + 76
     vals = [v for r in rows for v in (r["boot_lo"], r["boot_hi"], r["mean_diff"])]
     vals += [s for r in rows for s in (-sesoi.get(r["cell_id"], 0), sesoi.get(r["cell_id"], 0))] + [0.0]
     lo, hi = min(vals), max(vals)
@@ -232,7 +237,7 @@ def forest_svg(rows: list[dict], title: str, sesoi: dict[str, float]) -> str:
         if s:
             body.append(f'<rect x="{sx(-s):.1f}" y="{cy - 9:.1f}" width="{sx(s) - sx(-s):.1f}" height="18" fill="#dddddd" fill-opacity="0.6"/>')
         c = col.get(r["arm"], "#333")
-        lab = f'{r["cell_id"]}: {r["arm"]} vs {r["comparator"]} (n={r["n"]}, {100 * r["level"]:g}%)'
+        lab = labels[i]
         body.append(f'<text x="{L - 8}" y="{cy + 4:.1f}" text-anchor="end">{html.escape(lab)}</text>')
         body.append(f'<line x1="{sx(r["boot_lo"]):.1f}" y1="{cy:.1f}" x2="{sx(r["boot_hi"]):.1f}" y2="{cy:.1f}" stroke="{c}" stroke-width="2.5"/>')
         body.append(f'<circle cx="{sx(r["mean_diff"]):.1f}" cy="{cy:.1f}" r="4" fill="{c}"/>')
@@ -242,8 +247,9 @@ def forest_svg(rows: list[dict], title: str, sesoi: dict[str, float]) -> str:
         x = lo + (hi - lo) * k / 5
         body.append(f'<line x1="{sx(x):.1f}" y1="{yb}" x2="{sx(x):.1f}" y2="{yb + 5}" stroke="#333"/>')
         body.append(f'<text x="{sx(x):.1f}" y="{yb + 18}" text-anchor="middle">{x:,.0f}</text>')
-    body.append(f'<text x="{(L + W - R) / 2}" y="{yb + 38}" text-anchor="middle">mean paired revenue difference (currency per season); '
-                f'bar = paired percentile bootstrap interval; grey band = +/- SESOI (1% of mean FIX revenue in the cell)</text>')
+    body.append(f'<text x="{(L + W - R) / 2}" y="{yb + 36}" text-anchor="middle">mean paired revenue difference (currency per season)</text>')
+    body.append(f'<text x="{(L + W - R) / 2}" y="{yb + 52}" text-anchor="middle">bar = paired percentile bootstrap interval; '
+                f'grey band = +/- SESOI (1% of mean FIX revenue in the cell)</text>')
     desc = "Interval plot. " + "; ".join(
         f'{r["cell_id"]} {r["arm"]} vs {r["comparator"]}: mean {r["mean_diff"]:.2f}, interval [{r["boot_lo"]:.2f}, {r["boot_hi"]:.2f}], n {r["n"]}'
         for r in rows)

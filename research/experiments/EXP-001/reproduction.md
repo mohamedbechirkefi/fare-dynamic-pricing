@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
 # EXP-001 reproduction
 
-All commands run from the repository root. `UV` is `/Users/bechir/research/labs/.tools/py/bin/uv` on the owner's machine.
+All commands run from the repository root. `UV` is `../.tools/py/bin/uv` on the owner's machine.
 
 ## Environment
 

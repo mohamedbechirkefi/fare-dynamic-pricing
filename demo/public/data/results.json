@@ -8,7 +8,7 @@
  "sources": [
   {
    "path": "research/claims_register.csv",
-   "sha256": "ccab7f728a20e553bedd4bc4f69ee6fee9f594a44bdf400f5bdda4fe03fb0a2f"
+   "sha256": "b8dccbdda68e1476bef1b60d7d5e405f02b1bf20c54b4b743ea841eda7ade0d3"
   },
   {
    "path": "research/experiment_registry.csv",
@@ -132,11 +132,11 @@
   },
   {
    "path": "research/paper/manuscript.md",
-   "sha256": "e3ebee9f7c49a2dcab1e09e96c807d63c3d88d968e349eb023a36e3d36d2dfb6"
+   "sha256": "22b730f1b4c80e22b9800f8504e333069a484d0e3ebec6caad3f0c616c8ac85c"
   },
   {
    "path": "research/publication/artifact_manifest.json",
-   "sha256": "a1ffe2ec1d179b31e32fded1da51e7cd649d2df58ae1c63e51f398093ae2d52f"
+   "sha256": "218d5722e68e59bcde801da035d5dcc60d740b95eead0b63efe941e7ca2a8660"
   },
   {
    "path": "results/exploratory/m4_audit_sensitivity.json",

@@ -86,7 +86,7 @@ Each item gives the challenge, the evidence, a verdict (holds, partly holds or r
 ### 2.5 External claims
 
 - **Problem.** The draft said Gallego and van Ryzin (1994) prove that fixed prices "built from" the deterministic bound are optimal. The source as read states that simple fixed-price policies are asymptotically optimal.
-- **Change.** The wording now follows the source. Three of the four references were read as abstracts only, and the manuscript marks them so.
+- **Change.** The wording now follows the source. Three of the four references were read as abstracts only at M4, and the manuscript marked them so. At M6 (2026-11-25) two of them were checked against free full texts (`evidence_audit.md` section 3); one remains abstract only.
 
 ### 2.6 Gains against the re-tuned fixed price
 

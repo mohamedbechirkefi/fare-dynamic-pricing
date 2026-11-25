@@ -38,28 +38,28 @@ Never commit an e-mail address, a name or any other personal identifier in code,
 
 ## 6. Development commands
 
-Paths below are those of the owner's machine; adapt them to your installation of uv and pandoc.
+Paths below assume the shared toolchain folder `../.tools/` next to the repository, as on the owner's machine; adapt them to your installation of uv and pandoc. `src/fare/report.py` reads the same folder, or the one named by `FARE_TOOLS_DIR`.
 
 ```
 # environment (locked; resolution capped at 2026-11-10)
-/Users/bechir/research/labs/.tools/py/bin/uv sync --frozen --python /usr/local/bin/python3
+../.tools/py/bin/uv sync --frozen --python /usr/local/bin/python3
 
 # regenerate the lockfile after a recorded dependency decision
-/Users/bechir/research/labs/.tools/py/bin/uv lock --python /usr/local/bin/python3
+../.tools/py/bin/uv lock --python /usr/local/bin/python3
 
 # manuscript: Markdown -> LaTeX source (not compiled locally; no TeX distribution)
-{ echo '% SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0'; echo '% Generated from research/paper/manuscript.md by pandoc 3.6.3; do not edit by hand.'; /Users/bechir/research/labs/.tools/pandoc research/paper/manuscript.md -s -t latex; } > research/paper/manuscript.tex
+{ echo '% SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0'; echo '% Generated from research/paper/manuscript.md by pandoc 3.6.3; do not edit by hand.'; ../.tools/pandoc research/paper/manuscript.md -s -t latex; } > research/paper/manuscript.tex
 
 # manuscript: Markdown -> Typst -> PDF (mainfont must be set: the default template's empty font list fails to compile)
-/Users/bechir/research/labs/.tools/pandoc research/paper/manuscript.md -s -t typst -V mainfont="Libertinus Serif" -o research/paper/manuscript.typ
-/Users/bechir/research/labs/.tools/py/bin/python -c "import typst; typst.compile('research/paper/manuscript.typ', output='research/paper/manuscript.pdf')"
+../.tools/pandoc research/paper/manuscript.md -s -t typst -V mainfont="Libertinus Serif" -o research/paper/manuscript.typ
+../.tools/py/bin/python -c "import typst; typst.compile('research/paper/manuscript.typ', output='research/paper/manuscript.pdf')"
 ```
 
 Simulation, test and report commands (M2). The package is imported from `src/` with `PYTHONPATH=src`.
 
 ```
 export PYTHONPATH=src
-UV=/Users/bechir/research/labs/.tools/py/bin/uv
+UV=../.tools/py/bin/uv
 
 # tests (unit, property, golden, differential, integration)
 $UV run --frozen --python /usr/local/bin/python3 python -m fare.cli test
@@ -78,7 +78,7 @@ $UV run --frozen --python /usr/local/bin/python3 python -m fare.cli run --plan -
 $UV run --frozen --python /usr/local/bin/python3 python -m fare.cli report --result results/exploratory/<run_set_id>/result.json [--pdf]
 ```
 
-Demo commands (M5). Node from `/Users/bechir/research/helix/.tools/node/bin` on the owner's machine.
+Demo commands (M5). Node 22 (on the owner's machine, a shared read-only installation outside this repository).
 
 ```
 # published data for the demo (committed results only; fails closed if a display string is not in the manuscript)
@@ -88,4 +88,15 @@ PYTHONPATH=src .venv/bin/python scripts/make_sandbox_fixture.py
 
 cd demo && npm ci && npm test && npm run build && npm run preview
 node tools/a11y_check.mjs dist --screenshots <dir>      # must print A11Y-CHECK PASS
+```
+
+Release-candidate commands (M6).
+
+```
+# manuscript, supplementary and experiment-report PDFs (pandoc -> Typst -> PDF; optional page PNGs for inspection)
+PYTHONPATH=src .venv/bin/python scripts/build_pdfs.py [--png-dir <dir outside the repository>]
+# relative links and anchors in every tracked Markdown file
+.venv/bin/python scripts/check_links.py
+# number trace of any text against the committed evidence
+PYTHONPATH=src .venv/bin/python -m fare.audit README.md articles/medium.md
 ```

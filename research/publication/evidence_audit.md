@@ -64,13 +64,15 @@ No number in a frozen artifact (protocols, configs, freeze record) was changed. 
 
 | Claim | Source | Access | Status in the manuscript |
 |---|---|---|---|
-| E-001: fixed-price policies are asymptotically optimal as expected sales grow; the optimal price depends on remaining stock and time | Gallego and van Ryzin (1994) | Full text retrieved (author-hosted PDF, SHA-256 in `literature_review.md`). The statements used appear in the abstract, which was checked. | Cited as read |
-| E-004: the deterministic bound gives asymptotically optimal heuristics in the network case | Gallego and van Ryzin (1997) | Abstract only | Marked "abstract only read" |
+| E-001: fixed-price policies are asymptotically optimal as expected sales grow; the optimal price depends on remaining stock and time | Gallego and van Ryzin (1994) | Full text retrieved (author-hosted PDF, SHA-256 in `literature_review.md`). M6: checked against Theorem 1 (p. 1005) and Theorem 3 (p. 1008). | Cited as read |
+| E-004: the deterministic bound gives asymptotically optimal heuristics in the network case | Gallego and van Ryzin (1997) | M6: full text (author-hosted), checked against Section 5 (pp. 30-32) | Cited as read (full text) |
 | E-002: review of dynamic pricing with inventory; airlines and hotels as the classical setting | Elmaghraby and Keskinocak (2003) | Abstract only | Marked "abstract only read" |
-| E-003: strategic customers change price paths and welfare | Su (2007) | Abstract only | Marked "abstract only read" |
+| E-003: strategic customers change price paths and welfare | Su (2007) | M6: full text of the author's submitted version (University of Pennsylvania repository), checked against Sections 5 and 6; version of record not read | Cited as read (author's version) |
 | Existence of work on pricing and learning | den Boer (2013) thesis | Front matter only | Named as existing work, explicitly not cited for content |
 
-Unverified sources in `literature_review.md` (den Boer 2015, Talluri and van Ryzin 2004, Bitran and Caldentey) are not cited. Every entry in `references.bib` that the manuscript cites is in the reference list. The hotel booking dataset (Antonio et al., 2019) is in the bibliography file, but the manuscript does not cite it, because no dataset was used.
+Unverified sources in `literature_review.md` (den Boer 2015, Talluri and van Ryzin 2004, Bitran and Caldentey) are not cited. Every entry in `references.bib` that the manuscript cites is in the reference list. The hotel booking dataset (Antonio et al., 2019) was in the bibliography file without being cited, because no dataset was used; it was removed from `references.bib` at M6.
+
+**Source labels after M6 (2026-11-25).** Read in full text: 3 (Gallego and van Ryzin 1994 and 1997; Su 2007, author's version). Abstract only: 1 (Elmaghraby and Keskinocak 2003, no free legal full text found). Unverified: 0 cited (den Boer 2015, Talluri and van Ryzin 2004 and Bitran and Caldentey stay uncited). Front matter only: den Boer (2013), named but not cited for content and not in `references.bib`. Details, hashes and page references: `research/literature_review.md` section 5.
 
 ## 4. Strength and scope of evidence per conclusion
 

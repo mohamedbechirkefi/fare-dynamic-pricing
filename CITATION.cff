@@ -3,13 +3,13 @@
 # (custom licence, see LICENSE; intentionally not given as an SPDX license field).
 cff-version: 1.2.0
 message: "If you use this work, please cite it as below."
-title: "FARE: pricing policies in a simulated booking market"
+title: "Simple dynamic pricing rules versus a tuned fixed price for a perishable stock: a preregistered simulation study"
 type: software
 authors:
   - family-names: Kefi
     given-names: Mohamed Bechir
-version: 0.0.0
-abstract: "Work in progress. A preregistered, reproducible simulation study of fixed, occupancy-based and demand-responsive pricing for perishable inventory (protocols frozen 2026-11-24; confirmatory runs complete; static offline demo built). At the base scenario the two dynamic rules earn +3.47% and +3.94% more than a tuned fixed price; across 9 market cells 8 of 18 contrasts are negative, including every loose-capacity cell, so no general advantage is supported. All results are simulated; the manuscript is a preprint draft, not peer-reviewed. Developed with an AI research and development assistant (Claude Code), which is not an author."
+version: 0.1.0-rc1
+abstract: "FARE. Release candidate prepared for the owner's review, not released. A preregistered, reproducible simulation study of fixed, occupancy-based and demand-responsive pricing for perishable inventory (protocols frozen 2026-11-24; confirmatory runs complete; static offline demo built). At the base scenario the two dynamic rules earn +3.47% and +3.94% more than a tuned fixed price; across 9 market cells 8 of 18 contrasts are negative, including every loose-capacity cell, so no general advantage is supported. All results are simulated; the manuscript is a preprint draft, not peer-reviewed. Developed with an AI research and development assistant (Claude Code), which is not an author."
 keywords:
   - dynamic pricing
   - revenue management

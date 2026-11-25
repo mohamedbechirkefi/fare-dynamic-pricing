@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
 # FARE roadmap
 
-Updated 2026-11-25 (M5 done: static offline demo, export with manuscript-consistency test, sandbox port, text consistency). Effort is a planning estimate in focused days (five-day target). Section 11.6 additions of the master prompt are included and mandatory.
+Updated 2026-11-25 (M6: release candidate prepared, awaiting owner review and G-PUBLIC; M5 done). Effort is a planning estimate in focused days (five-day target). Section 11.6 additions of the master prompt are included and mandatory.
 
 | ID | Milestone | Depends on | Priority | Effort | Status | Blockers |
 |---|---|---|---|---|---|---|
@@ -11,7 +11,7 @@ Updated 2026-11-25 (M5 done: static offline demo, export with manuscript-consist
 | M3 | Experiments | M2 gate; M1 freeze for confirmatory runs | P0 | 0.75 d | matrix complete: EXP-001 73,000, EXP-002 594,000, EXP-003 258,000 runs, 0 failed (J-0009 to J-0011); summaries, figures, claims and records done; 11.3 reports written by the coordinator (D-012); **done** | none |
 | M4 | Interpretation | M3 | P0 | 1 d | **done** 2026-11-25 (D-013, J-0012): confounder and sensitivity review, expected versus observed, claims register with result ids, evidence audit (11 findings fixed), manuscript and supplementary, second review pass; gate holds | owner review of the manuscript, title, funding and competing-interests statements (not a gate blocker) |
 | M5 | Interactive experience | M2 schemas; M4 verified results for published numbers | P1 (cut first if time is short) | 0.75 d | **done** 2026-11-25 (D-015, J-0013): `demo/` built, checker A11Y-CHECK PASS, 151 Python and 31 vitest tests pass; gate holds | owner placeholders: repository and demo URL, funding, competing interests, affiliation |
-| M6 | Release candidate | M4, M5 | P0 | 0.5 d | not started | owner approval for any publication (G-PUBLIC) |
+| M6 | Release candidate | M4, M5 | P0 | 0.5 d | release candidate prepared, awaiting owner review and G-PUBLIC (2026-11-25, D-016, J-0014): clean clone reproduced, 5 PDFs compiled and inspected, links, references, manifests and scans checked, owner checklist prepared; not done until the owner signs off | owner review (`research/publication/author_review.md`); owner approval for any publication (G-PUBLIC); owner-only facts (repository and demo URL, funding, competing interests, affiliation) |
 
 ## M0: Bootstrap and feasibility
 
@@ -72,6 +72,7 @@ Updated 2026-11-25 (M5 done: static offline demo, export with manuscript-consist
 - Deliverables: clean clone in a separate directory, locked install, tests, smoke reproduction, demo build, manifest and link checks, secret and licence scan, README, report.md, articles drafts.
 - 11.6 additions: compile and visually inspect manuscript and report PDFs (Typst path); verify references, cross-links, equations, figure readability and metadata; complete the owner review checklist.
 - Acceptance: actual command outputs recorded in `research/publication/reproducibility_report.md`; owner approves any publication; nothing pushed without approval.
+- Status (2026-11-25): release candidate prepared, awaiting owner review and G-PUBLIC (D-016). Clean clone of ecbbca3: 151 tests passed, smoke result identical apart from ids and timings, demo `A11Y-CHECK PASS`, export deterministic. PDFs: manuscript 17 pages, supplementary 8, reports 7, 7 and 6, every manuscript page inspected. Links 0 unresolved; manifests resolve; 0 e-mail addresses, tokens or keys; dependency licences all permissive. Open: the owner review checklist, the publication decision, and absolute local paths left in frozen and append-only files.
 
 ## Out of scope (owner decision, 2026-11-24, D-008)
 

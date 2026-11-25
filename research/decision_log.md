@@ -166,3 +166,32 @@ Each entry: ID, date, decision, decided by, context, alternatives, consequences.
 - **Placeholders kept.** Repository URL, demo URL, funding and competing interests, affiliation; the author line is the owner-approved one (D-008).
 - **Claims boundary.** The page, README and articles state that every result is simulated in abstract currency units and describes no real seller, airline, hotel, fare or pricing system.
 - **Unchanged.** No frozen protocol, config, seed or result was touched; no confirmatory run; nothing pushed.
+
+## D-016 (2026-11-25): M6 release candidate (clean clone, PDFs, checks, owner review checklist)
+
+- **Authority.** Owner, 2026-11-25, "Next" (second) (`labs/_shared/owner-approvals-2026-11-25e.md`, outside this repository), which starts "M6 (release candidate) in the 19 repositories whose M5 is done", FARE included: "M6 is local work: a clean clone, PDFs, checks, and a release candidate prepared for the owner's review." Applied by the AI assistant under the shared M6 brief. The instruction "does not decide" any push, release, licence change or publication (G-PUBLIC), any ticking of `author_review.md`, or any owner-only fact (repository and demo URL, funding, competing interests, author line, affiliation).
+- **Coordinator default applied.** `CITATION.cff` `date-released` is to be removed until a release exists. The file had no `date-released` at the start of M6, so nothing was removed; re-adding it is part of the owner's publication step.
+- **CITATION.cff.** `version` is `0.1.0-rc1` (it was `0.0.0`), which marks a release candidate. `title` is now the manuscript title approved by the owner on 2026-11-25 (D-014); it was the README heading. The abstract now opens with "FARE. Release candidate prepared for the owner's review, not released." The file was checked structurally against CFF 1.2.0: the required keys are present, there are no unknown keys, `authors` is a list of maps, `type` is `software` and `keywords` are strings. Alternative considered: keeping the software name as title and adding a `preferred-citation` for the manuscript. Rejected for now, because the brief asks for the manuscript title; the owner may revisit this at release.
+- **PDFs committed.** Neither `.gitignore` nor any decision excludes them. Each is under 5 MB.
+  - `research/paper/manuscript.pdf` (17 pages) and `supplementary.pdf` (8 pages).
+  - `research/experiments/EXP-00N/report.pdf` (7, 7 and 6 pages).
+  - They are built by the new `scripts/build_pdfs.py` (pandoc to Typst, D-003). The PDFs carry a build timestamp, so they are not byte-reproducible; the Markdown stays canonical.
+- **Presentation fixes (no number changed).**
+  - **Forest figures.** `src/fare/summary.py` `forest_svg` now sizes the label column to the labels and splits the axis caption over two lines. The three forest figures were regenerated from the raw outputs, and every other regenerated output is byte-identical.
+  - **PDF builder.** Typst rules drop the duplicate "Figure N:" caption prefix, left-align table cells and allow long inline code to break.
+  - **Alternative considered.** Leaving the figures clipped and disclosing the defect. Rejected, because the EXP-003 row labels were unreadable.
+- **Sources.** Free, legal full texts were found and checked for two cited sources:
+  - Gallego and van Ryzin (1997): author-hosted copy, Section 5;
+  - Su (2007): author's submitted version in the University of Pennsylvania repository, Sections 5 and 6.
+
+  Gallego and van Ryzin (1994) was re-checked against Theorems 1 and 3. Elmaghraby and Keskinocak (2003) stays abstract only: no free legal copy was found, and an upload of unclear authorisation was not used. The uncited dataset entry was removed from `references.bib`. No cited claim changed. Records: `research/literature_review.md` section 5, `evidence_audit.md` section 3, and claims register rows E-001, E-003 and E-004.
+- **Local paths.** Absolute home-directory paths were replaced by repository-relative paths in six editable files:
+  - `README.md`, `CONTRIBUTING.md` and `demo/README.md`;
+  - `research/feasibility.md` and `EXP-001/reproduction.md`;
+  - `src/fare/report.py`, which now reads `FARE_TOOLS_DIR` or the sibling `.tools/` folder.
+
+  They remain in the frozen protocols (4 files), in `CLAUDE.md`, and in the append-only `progress.md` and this log. Those files were not edited, and this note records the paths instead.
+- **New checks.** `scripts/check_links.py` is tested by `tests/test_links_refs.py`, which also checks the bibliography. `tests/test_text_consistency.py` checks the numbers in the README, articles and `CITATION.cff` against the manuscript.
+- **Records.** Journal J-0014; `research/publication/reproducibility_report.md`, `release_checklist.md`, `author_review.md` (section "Prepared for the owner", no box ticked) and `dependency_licences.md`.
+- **Unchanged.** No frozen protocol, config, seed or result value was touched. There was no confirmatory run, no push, no tag and no remote change.
+- **Status.** M6 release candidate prepared, awaiting owner review and G-PUBLIC. M6 is not done until the owner signs off.

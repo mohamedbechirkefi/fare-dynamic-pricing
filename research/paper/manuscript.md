@@ -1,6 +1,6 @@
 ---
 title: "Simple dynamic pricing rules versus a tuned fixed price for a perishable stock: a preregistered simulation study"
-subtitle: "Independent research manuscript, preprint draft, not peer-reviewed. All results are simulated. Version M4 (2026-11-25); title and the funding, competing-interest and AI-use statements approved by the owner on 2026-11-25 (D-014); the owner's full-text review is pending (M6)."
+subtitle: "Independent research manuscript, preprint draft, not peer-reviewed. All results are simulated. Version M6, release candidate prepared for the owner's review (2026-11-25), not released; title and the funding, competing-interest and AI-use statements approved by the owner on 2026-11-25 (D-014); the owner's full-text review is pending (M6)."
 author: "Mohamed Bechir Kefi"
 date: "Draft, 2026-11-25"
 ---
@@ -39,13 +39,13 @@ No novelty claim is made. The literature search was targeted, not systematic (Se
 
 # 2. Related work
 
-The search behind this section was targeted, and each source is marked by what was actually read (`research/literature_review.md`). Only one source was read in full text; the others are cited only for what their abstracts state.
+The search behind this section was targeted, and each source is marked by what was actually read (`research/literature_review.md`). Three sources were checked against their full text (the cited section is given in `research/literature_review.md`); Elmaghraby and Keskinocak (2003) was read as an abstract only and is cited only for what the abstract states.
 
-**Finite-horizon pricing of a fixed stock.** Gallego and van Ryzin (1994; full text retrieved) formulate the sale of a fixed stock over a finite horizon under price-sensitive stochastic demand as an intensity-control problem. They show that the optimal price is monotone in remaining stock and remaining time, derive a deterministic upper bound on expected revenue and prove that simple fixed-price policies are asymptotically optimal as the volume of expected sales tends to infinity. Their multiproduct extension (Gallego and van Ryzin, 1997; abstract only) applies a similar deterministic bound to network yield management. FARE does not test the asymptotic regime: it fixes the stock at 100 units and asks what simple rules do at that scale.
+**Finite-horizon pricing of a fixed stock.** Gallego and van Ryzin (1994; full text, Theorems 1 and 3) formulate the sale of a fixed stock over a finite horizon under price-sensitive stochastic demand as an intensity-control problem. They show that the optimal price is monotone in remaining stock and remaining time, derive a deterministic upper bound on expected revenue and prove that simple fixed-price policies are asymptotically optimal as the volume of expected sales tends to infinity. Their multiproduct extension (Gallego and van Ryzin, 1997; full text, Section 5) applies a similar deterministic bound to network yield management. FARE does not test the asymptotic regime: it fixes the stock at 100 units and asks what simple rules do at that scale.
 
 **Reviews and practice.** Elmaghraby and Keskinocak (2003; abstract only) review dynamic pricing in the presence of inventory considerations and identify industries with short-run fixed, perishable capacity, such as airlines and hotels, as the classical setting. FARE borrows only this framing. It makes no claim about any airline, hotel or proprietary pricing system.
 
-**Strategic buyers.** Su (2007; abstract only) shows that when customers differ in valuation and patience and time their purchases, the optimal price path and its effects on revenue and welfare change. FARE assumes myopic buyers, so its results do not extend to strategic buyers.
+**Strategic buyers.** Su (2007; full text of the author's version, Sections 5 and 6) shows that when customers differ in valuation and patience and time their purchases, the optimal price path and its effects on revenue and welfare change. FARE assumes myopic buyers, so its results do not extend to strategic buyers.
 
 **Learning and uncertainty.** Work on dynamic pricing under demand uncertainty and learning exists (for example den Boer's 2013 doctoral thesis), but only the front matter of that thesis was opened, so it is not cited for content here.
 
@@ -274,7 +274,7 @@ Table 8. Competing explanations and how the evidence addresses them.
 - **Statistical.** The EXP-002 permutation $p$-values sit at their floor, so the Holm values are bounds. Interaction contrasts, secondary metrics and EXP-003 intervals are unadjusted and descriptive. The M4 checks are exploratory and post hoc, and B1 is in-sample on tuning streams.
 - **Construct.** Revenue is the tuning objective, so a comparison on revenue is fair to each family on its own terms but says nothing about other objectives. The consumer surplus proxy rests on synthetic valuations. "Elasticity" is operationalised by $\sigma_v$, while the realised elasticity also depends on the tuned price.
 - **Execution.** The confirmatory runs shared a loaded machine with other sessions; timings are not results. Raw per-run outputs are git-ignored and must be regenerated to re-audit them.
-- **Literature.** The search was targeted, not systematic; three of the four cited sources were read as abstracts only.
+- **Literature.** The search was targeted, not systematic; one of the four cited sources (Elmaghraby and Keskinocak, 2003) was read as an abstract only.
 
 The living list is `research/limitations.md`.
 
@@ -301,7 +301,7 @@ PYTHONPATH=src $UV run python -m fare.summary --result results/raw/confirmatory/
 PYTHONPATH=src $UV run python -m fare.audit research/paper/manuscript.md
 ```
 
-Replace EXP-001 by EXP-002 or EXP-003 for the other experiments (EXP-003's summary also takes `--exp001-summary research/experiments/EXP-001/summary.json`). The repository is source-available under a non-commercial research licence chosen by the owner. A clean-clone reproduction is scheduled for the release-candidate milestone and has not yet been performed.
+Replace EXP-001 by EXP-002 or EXP-003 for the other experiments (EXP-003's summary also takes `--exp001-summary research/experiments/EXP-001/summary.json`). The repository is source-available under a non-commercial research licence chosen by the owner. A clean-clone reproduction (locked install, test suite, smoke run and demo build) was performed at the release-candidate milestone; its commands and actual outputs are in `research/publication/reproducibility_report.md`.
 
 # 11. Funding, competing interests and AI assistance
 
@@ -315,9 +315,9 @@ Elmaghraby, W., and Keskinocak, P. (2003). Dynamic pricing in the presence of in
 
 Gallego, G., and van Ryzin, G. (1994). Optimal dynamic pricing of inventories with stochastic demand over finite horizons. *Management Science*, 40(8), 999-1020. https://doi.org/10.1287/mnsc.40.8.999
 
-Gallego, G., and van Ryzin, G. (1997). A multiproduct dynamic pricing problem and its applications to network yield management. *Operations Research*, 45(1), 24-41. https://doi.org/10.1287/opre.45.1.24 (abstract only read).
+Gallego, G., and van Ryzin, G. (1997). A multiproduct dynamic pricing problem and its applications to network yield management. *Operations Research*, 45(1), 24-41. https://doi.org/10.1287/opre.45.1.24 (full text read; author-hosted copy).
 
-Su, X. (2007). Intertemporal pricing with strategic customer behavior. *Management Science*, 53(5), 726-741. https://doi.org/10.1287/mnsc.1060.0667 (abstract only read).
+Su, X. (2007). Intertemporal pricing with strategic customer behavior. *Management Science*, 53(5), 726-741. https://doi.org/10.1287/mnsc.1060.0667 (full text of the author's version read; University of Pennsylvania repository).
 
 # Supplementary appendix
 

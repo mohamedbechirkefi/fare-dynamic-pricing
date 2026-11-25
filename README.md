@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
 # FARE: pricing policies in a simulated booking market
 
-**Status: M5 (interactive experience) done locally on 2026-11-25. The frozen matrix ran in full (M3, 925,000 runs, 0 failed); experiment reports, an evidence audit, a preprint-draft manuscript (not peer-reviewed) and a static, offline demo exist. All results are simulated. The owner approved the manuscript title and the funding, competing-interest and AI-use statements on 2026-11-25; the owner's full-text review of the manuscript is pending (M6). Nothing has been published.**
+**Status: M6 release candidate prepared locally on 2026-11-25, awaiting the owner's review; nothing is released (M5, the interactive experience, is done). The frozen matrix ran in full (M3, 925,000 runs, 0 failed); experiment reports, an evidence audit, a preprint-draft manuscript (not peer-reviewed) and a static, offline demo exist. All results are simulated. The owner approved the manuscript title and the funding, competing-interest and AI-use statements on 2026-11-25; the owner's full-text review of the manuscript is pending (`research/publication/author_review.md`). Compiled PDFs of the manuscript, supplementary file and experiment reports sit next to their Markdown sources. Nothing has been published.**
 
 **Question.** How do demand and inventory policies affect prices and availability in a simulated market?
 
@@ -39,7 +39,7 @@ cd demo && npm ci && npm run build && npm run preview
 **Quick start (development).**
 
 ```
-/Users/bechir/research/labs/.tools/py/bin/uv sync --frozen --python /usr/local/bin/python3
+../.tools/py/bin/uv sync --frozen --python /usr/local/bin/python3
 export PYTHONPATH=src
 uv run --frozen python -m fare.cli test                     # test suite
 uv run --frozen python -m fare.cli smoke                    # exploratory smoke run -> results/exploratory/

@@ -22,7 +22,7 @@ Labels are distinct on the page: Measured (published, frozen experiments), Explo
 
 ## Commands
 
-Node from `/Users/bechir/research/helix/.tools/node/bin` on the owner's machine.
+Node 22 (on the owner's machine, a shared read-only installation outside this repository).
 
 ```
 cd demo && npm ci && npm run build && npm run preview     # quick start

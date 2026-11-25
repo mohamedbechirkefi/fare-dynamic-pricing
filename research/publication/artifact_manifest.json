@@ -1,7 +1,7 @@
 {
   "schema_version": "0.2",
   "updated": "2026-11-25",
-  "status": "M4: every table, figure and numbered prose block of the manuscript, supplementary file and experiment reports v1.1 is listed; each individual number traces to the listed result files (python -m fare.audit, 0 untraced; research/publication/evidence_audit.md) M5 (2026-11-25): the demo data file is listed as D-demo-results.",
+  "status": "M4: every table, figure and numbered prose block of the manuscript, supplementary file and experiment reports v1.1 is listed; each individual number traces to the listed result files (python -m fare.audit, 0 untraced; research/publication/evidence_audit.md) M5 (2026-11-25): the demo data file is listed as D-demo-results. M6 (2026-11-25): every listed path resolves (103 path references, 33 of them to the three git-ignored raw result files, present locally and hash-checked, 47 of 47 raw files). The three forest figures were redrawn by the M6 layout fix of src/fare/summary.py from the same committed contrasts (embedded data description unchanged; metrics.csv and arm_summary.csv byte-identical on regeneration). PDFs are built by scripts/build_pdfs.py from the Markdown sources listed here.",
   "entries": [
     {
       "artifact_id": "T-EXP-001-contrasts",

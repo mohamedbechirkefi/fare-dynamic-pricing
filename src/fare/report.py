@@ -12,6 +12,7 @@ import csv
 import html
 import io
 import math
+import os
 import subprocess
 from pathlib import Path
 
@@ -26,8 +27,11 @@ from .stats import holm, interaction_bootstrap_ci, sign_flip_pvalue
 from .streams import SeedKey, generate_stream
 from .tuning import edge_labels, grid
 
-PANDOC = Path("/Users/bechir/research/labs/.tools/pandoc")
-TOOLS_PY = Path("/Users/bechir/research/labs/.tools/py/bin/python")
+# Shared zero-cost toolchain (decision D-003): by default the `.tools/` folder next to the
+# repository; FARE_TOOLS_DIR overrides it. No absolute local path is stored in the code.
+TOOLS_DIR = Path(os.environ.get("FARE_TOOLS_DIR", Path(__file__).resolve().parents[3] / ".tools"))
+PANDOC = TOOLS_DIR / "pandoc"
+TOOLS_PY = TOOLS_DIR / "py" / "bin" / "python"
 PALETTE = {"FIX": "#4a4a4a", "OCC": "#1f6f8b", "DRP": "#b5562b", "FIX9": "#8a8a8a", "FIX6": "#8a8a8a", "FIX_retuned": "#6b8e23"}
 
 

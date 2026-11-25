@@ -18,12 +18,12 @@ All values below were confirmed by commands run in this session; the outputs are
 | Tool | Confirmed version | Location | Use |
 |---|---|---|---|
 | Python | 3.12.1 | `/usr/local/bin/python3` | runtime for the core and experiments |
-| uv | 0.9.5 | `/Users/bechir/research/labs/.tools/py/bin/uv` | lockfile and environment |
-| typst (Python package) | 0.15.0 | `/Users/bechir/research/labs/.tools/py/` | PDF compilation |
+| uv | 0.9.5 | `../.tools/py/bin/uv` | lockfile and environment |
+| typst (Python package) | 0.15.0 | `../.tools/py/` | PDF compilation |
 | pypdf | 6.20.0 | same | PDF inspection |
 | pillow | 11.3.0 | same | figure checks |
-| pandoc | 3.6.3 | `/Users/bechir/research/labs/.tools/pandoc` | Markdown to Typst and LaTeX |
-| Node | v22.23.3 | `/Users/bechir/research/helix/.tools/node/bin` (read-only) | static demo build (M5) |
+| pandoc | 3.6.3 | `../.tools/pandoc` | Markdown to Typst and LaTeX |
+| Node | v22.23.3 | a shared read-only Node folder outside the repository | static demo build (M5) |
 | git | 2.42.1 | system | version control |
 | TeX (tex, pdflatex, xelatex, tectonic) | not found | n/a | not available |
 
