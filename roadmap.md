@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
 # FARE roadmap
 
-Updated 2026-11-25 (M4 done: interpretation, evidence audit, manuscript draft, second review pass). Effort is a planning estimate in focused days (five-day target). Section 11.6 additions of the master prompt are included and mandatory.
+Updated 2026-11-25 (M5 done: static offline demo, export with manuscript-consistency test, sandbox port, text consistency). Effort is a planning estimate in focused days (five-day target). Section 11.6 additions of the master prompt are included and mandatory.
 
 | ID | Milestone | Depends on | Priority | Effort | Status | Blockers |
 |---|---|---|---|---|---|---|
@@ -10,7 +10,7 @@ Updated 2026-11-25 (M4 done: interpretation, evidence audit, manuscript draft, s
 | M2 | Core implementation | M1 drafts (implementation may start before the freeze) | P0 | 1 d | implemented; acceptance met for the draft protocol (133 tests pass); exploratory smoke and pilot run | none (frozen configs in place) |
 | M3 | Experiments | M2 gate; M1 freeze for confirmatory runs | P0 | 0.75 d | matrix complete: EXP-001 73,000, EXP-002 594,000, EXP-003 258,000 runs, 0 failed (J-0009 to J-0011); summaries, figures, claims and records done; 11.3 reports written by the coordinator (D-012); **done** | none |
 | M4 | Interpretation | M3 | P0 | 1 d | **done** 2026-11-25 (D-013, J-0012): confounder and sensitivity review, expected versus observed, claims register with result ids, evidence audit (11 findings fixed), manuscript and supplementary, second review pass; gate holds | owner review of the manuscript, title, funding and competing-interests statements (not a gate blocker) |
-| M5 | Interactive experience | M2 schemas; M4 verified results for published numbers | P1 (cut first if time is short) | 0.75 d | not started | none (M4 done); owner review of M4 numbers advised first |
+| M5 | Interactive experience | M2 schemas; M4 verified results for published numbers | P1 (cut first if time is short) | 0.75 d | **done** 2026-11-25 (D-015, J-0013): `demo/` built, checker A11Y-CHECK PASS, 151 Python and 31 vitest tests pass; gate holds | owner placeholders: repository and demo URL, funding, competing interests, affiliation |
 | M6 | Release candidate | M4, M5 | P0 | 0.5 d | not started | owner approval for any publication (G-PUBLIC) |
 
 ## M0: Bootstrap and feasibility
@@ -65,6 +65,7 @@ Updated 2026-11-25 (M4 done: interpretation, evidence audit, manuscript draft, s
 - Deliverables: static booking-market simulator with price timeline and policy comparisons, published results separated from visitor sandbox runs, methodology and limitations panels.
 - 11.6 additions: demo, paper, reports and articles use identical verified results, labels and scope.
 - Acceptance: offline after initial load, responsive, keyboard usable, reduced-motion option, fails closed on malformed results, no runtime service, no fabricated data.
+- Status (2026-11-25): done. Owner "Next" (D-015). Static page from the shared template; `scripts/export_demo_data.py` exports committed results only, and `tests/test_demo_export.py` checks that every displayed string is printed in the manuscript (or is a documented exception) and that the committed file equals a fresh export. Price timelines reproduce the committed price figures byte for byte. Sandbox: simulator and rules ported exactly (1e-9 against Python); demand streams use a different generator (checked in distribution). README, CITATION, demo README and article drafts use the manuscript's numbers. Checker output and test counts are in `progress.md`.
 
 ## M6: Release candidate
 

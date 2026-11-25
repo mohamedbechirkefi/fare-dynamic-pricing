@@ -9,7 +9,7 @@ authors:
   - family-names: Kefi
     given-names: Mohamed Bechir
 version: 0.0.0
-abstract: "Work in progress. A preregistered, reproducible simulation study of fixed, occupancy-based and demand-responsive pricing for perishable inventory (protocols frozen 2026-11-24; confirmatory runs complete). All results are simulated; the manuscript is a preprint draft, not peer-reviewed. Developed with an AI research and development assistant (Claude Code), which is not an author."
+abstract: "Work in progress. A preregistered, reproducible simulation study of fixed, occupancy-based and demand-responsive pricing for perishable inventory (protocols frozen 2026-11-24; confirmatory runs complete; static offline demo built). At the base scenario the two dynamic rules earn +3.47% and +3.94% more than a tuned fixed price; across 9 market cells 8 of 18 contrasts are negative, including every loose-capacity cell, so no general advantage is supported. All results are simulated; the manuscript is a preprint draft, not peer-reviewed. Developed with an AI research and development assistant (Claude Code), which is not an author."
 keywords:
   - dynamic pricing
   - revenue management

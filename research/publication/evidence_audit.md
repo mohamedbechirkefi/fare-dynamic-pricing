@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
 # Evidence audit (master prompt 11.5, M4)
 
-**Date.** 2026-11-25. **Performed by.** The AI assistant (Claude Code). This is internal quality control, not external review. The owner's review is pending (`author_review.md`).
+**Date.** 2026-11-25. **Performed by.** The AI assistant (Claude Code). This is internal quality control, not external review. The owner approved the manuscript title and the funding, competing-interest and AI-use statements on 2026-11-25 (D-014); the owner's full-text review is pending and belongs to M6 (`author_review.md`).
 
 **Scope.** Every number in these documents:
 - `research/paper/manuscript.md` and `supplementary.md`;

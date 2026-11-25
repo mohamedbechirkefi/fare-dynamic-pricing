@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
 # Second review pass: arguing against the preferred reading (M4)
 
-**Date.** 2026-11-25. **Performed by.** The AI assistant (Claude Code), as internal quality control under master prompt 11.5. This is not external peer review, and the owner has not yet reviewed it.
+**Date.** 2026-11-25. **Performed by.** The AI assistant (Claude Code), as internal quality control under master prompt 11.5. This is not external peer review. The owner approved the manuscript title and the funding, competing-interest and AI-use statements on 2026-11-25 (D-014); the owner's full-text review of the manuscript, and of this pass, is pending and belongs to M6.
 
 **Object.** `research/paper/manuscript.md` (M4 draft), the three experiment reports (v1.1) and the claims register.
 

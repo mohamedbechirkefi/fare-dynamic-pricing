@@ -403,3 +403,69 @@ $ .venv/bin/python -m pytest -q                                    (end)
 3. `research/publication/author_review.md`: the author review checklist, including "Authorship and affiliation metadata approved", is completed only by the owner. The manuscript states no affiliation; the owner decides whether one is given.
 
 **Next action.** M5 (interactive experience), using only the M4-verified numbers.
+
+## 2026-11-25: M5 interactive experience (D-015, J-0013)
+
+**Authority.** Owner, 2026-11-25, "Next" (`/Users/bechir/research/labs/_shared/owner-approvals-2026-11-25d.md`); stack: TypeScript, React and Vite from the shared template, pinned versions. Milestone M5; bounded task: export, consistency test, page, sandbox, checks, text consistency.
+
+**What was built.**
+- `scripts/export_demo_data.py` writes `demo/public/data/results.json` from committed files only (3 registered experiments, 76 measured estimates, 4 exploratory checks, 16 price paths, 16 cell presets, 34 hashed sources, 6 documented display exceptions; `code_revision` e18f314). It fails closed if a display string is not in the manuscript or a re-simulated price path does not reproduce its committed figure byte for byte.
+- `tests/test_demo_export.py` (4 tests): fresh export equals the committed file; every display string is printed in the manuscript or a documented exception; every registered experiment exported with status, verdict and claims; source hashes match, no timestamp.
+- `demo/`: page with overview and status, labelled chips (Measured, Exploratory, Assumption, Sandbox), the price-timeline and policy-comparison explorer for 16 cells, every experiment with intervals on a shared axis, exploratory checks, assumptions, method and limitations, and the sandbox (Web Worker; seed, seasons, reset, cancel, scenario and policy controls; JSON download of the visitor's own output). `validateResults` extended to the new keys, failing closed.
+- Sandbox: simulator and rules ported exactly (tolerance 1e-9 against the Python engine); demand streams use a different generator and are checked in distribution only (`scripts/make_sandbox_fixture.py`, `demo/src/engine.test.ts`).
+- Text: README (status, findings, screenshot `docs/demo.png` 170,532 bytes, demo quick start), `CITATION.cff` abstract, `demo/README.md`, new `articles/medium.md` and `articles/linkedin.md`, `articles/README.md`, CONTRIBUTING demo commands; stale owner-review sentences fixed in the manuscript subtitle, `review_pass_2.md`, `evidence_audit.md`, `claims_audit.md`; `author_review.md` box unticked (D-015).
+
+**Commands and actual outputs.**
+
+```
+$ ../.tools/py/bin/uv sync --frozen --all-groups --all-extras
+Audited 14 packages in 2ms
+$ .venv/bin/python -m pytest -q                                  (start)
+147 passed in 2.04s
+$ cd demo && npm ci --prefer-offline                              (Node v22.23.3, shared npm cache)
+added 53 packages in 481ms
+$ PYTHONPATH=src .venv/bin/python scripts/make_sandbox_fixture.py
+wrote demo/src/fixtures/engine_fixture.json (155364 bytes, 10 cases, 4 distributions)   (3.8 s)
+$ PYTHONPATH=src .venv/bin/python scripts/export_demo_data.py
+wrote demo/public/data/results.json (138087 bytes)
+$ { pandoc command of CONTRIBUTING } > research/paper/manuscript.tex
+exit 0
+$ PYTHONPATH=src .venv/bin/python -m fare.audit articles/medium.md articles/linkedin.md README.md CITATION.cff demo/README.md
+articles/medium.md: 24 numbers checked, 0 untraced
+articles/linkedin.md: 4 numbers checked, 0 untraced
+README.md: 18 numbers checked, 0 untraced
+CITATION.cff: 5 numbers checked, 0 untraced
+demo/README.md: 3 numbers checked, 1 untraced   (line 21: "1,000", the fixture size, not a result)
+$ PYTHONPATH=src .venv/bin/python scripts/export_demo_data.py --check
+results.json is up to date
+$ .venv/bin/python -m pytest -q                                  (end)
+151 passed in 2.07s
+$ npm test
+Test Files  2 passed (2)
+     Tests  31 passed (31)
+$ npm run build
+dist/index.html 0.99 kB; dist/assets/sandbox.worker-B08EYJ0Z.js 6.04 kB; dist/assets/index-BHY9J5mL.css 7.02 kB; dist/assets/index-CIQDcuSr.js 251.80 kB; built in 73ms
+$ node tools/a11y_check.mjs dist --screenshots <scratchpad>/fare-dynamic-pricing/shots
+PASS results render (no fail-closed panel): 3 experiment panels
+PASS text contrast, light scheme (WCAG AA)
+PASS text contrast, dark scheme (WCAG AA)
+PASS keyboard reaches every focusable element: 53 reached of 53
+PASS visible focus indicator
+PASS no horizontal page scroll at 360 px: overflow 0px
+PASS reduced motion: no running animations: 0 running
+PASS no request leaves the local origin
+PASS offline after first load: results stay, sandbox runs: Sandbox output ready: 200 simulated seasons, seed 1.
+A11Y-CHECK PASS
+$ node tools/a11y_check.mjs <copy of dist with one price set to 9999>     (fail-closed check)
+... FAIL offline after first load ...; A11Y-CHECK FAIL (2)
+```
+
+**Failures on the way, fixed.** First checker run: FAIL keyboard (42 of 54; unlabelled inputs collided in the checker's key, and a table inside a closed `<details>` counted as focusable) and FAIL 360 px (2 px overflow from long unbreakable paths in the limitations list). Fixed with ids on every control, rendering the table only when opened, and `overflow-wrap: break-word`. The checker itself is unchanged. Screenshots (desktop light, desktop dark, mobile, also with the sandbox run) were inspected: overlapping sandbox fields, locale decimal commas in number inputs, a 61-point stock series, tables clipped on mobile and a stretched shared axis were found and fixed.
+
+**M5 gate (master prompt section 5 and roadmap).** Offline after the initial load, responsive at 360 px, usable with the keyboard, reduced motion honoured (no animation), fails closed on malformed results, no runtime service, no fabricated data (every number traced to the manuscript or a documented exception). **M5 done.**
+
+**Owner placeholders that remain.** Repository URL and demo URL; funding and competing interests (manuscript section 11, owner-approved as a placeholder); affiliation (none stated); the owner review checklist (`author_review.md`, now with no box ticked).
+
+**Risks.** The sandbox demand generator differs from numpy's; only its distribution is checked. The vitest fixture must be regenerated if the engine changes.
+
+**Next action.** M6 (release candidate): clean clone, PDFs, link and metadata checks, owner review checklist.

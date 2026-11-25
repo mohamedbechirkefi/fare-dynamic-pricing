@@ -1,6 +1,6 @@
 ---
 title: "Simple dynamic pricing rules versus a tuned fixed price for a perishable stock: a preregistered simulation study"
-subtitle: "Independent research manuscript, preprint draft, not peer-reviewed. All results are simulated. Version M4 (2026-11-25); title approved by the owner on 2026-11-25 (D-014); the remaining metadata await the owner's review."
+subtitle: "Independent research manuscript, preprint draft, not peer-reviewed. All results are simulated. Version M4 (2026-11-25); title and the funding, competing-interest and AI-use statements approved by the owner on 2026-11-25 (D-014); the owner's full-text review is pending (M6)."
 author: "Mohamed Bechir Kefi"
 date: "Draft, 2026-11-25"
 ---

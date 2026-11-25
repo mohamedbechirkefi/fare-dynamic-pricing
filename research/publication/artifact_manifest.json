@@ -1,7 +1,7 @@
 {
   "schema_version": "0.2",
   "updated": "2026-11-25",
-  "status": "M4: every table, figure and numbered prose block of the manuscript, supplementary file and experiment reports v1.1 is listed; each individual number traces to the listed result files (python -m fare.audit, 0 untraced; research/publication/evidence_audit.md)",
+  "status": "M4: every table, figure and numbered prose block of the manuscript, supplementary file and experiment reports v1.1 is listed; each individual number traces to the listed result files (python -m fare.audit, 0 untraced; research/publication/evidence_audit.md) M5 (2026-11-25): the demo data file is listed as D-demo-results.",
   "entries": [
     {
       "artifact_id": "T-EXP-001-contrasts",
@@ -465,6 +465,37 @@
       },
       "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252",
       "claims": []
+    },
+    {
+      "artifact_id": "D-demo-results",
+      "kind": "demo data",
+      "used_in": "demo/ (M5 interactive page)",
+      "path": "demo/public/data/results.json",
+      "experiment_id": "EXP-001;EXP-002;EXP-003 (plus J-0012 exploratory checks)",
+      "run_ids": "as for T-EXP-001-contrasts, T-EXP-002-contrasts and T-EXP-003-contrasts; price paths: evaluation stream 0 of each evaluated cell (as F-EXP-NNN-price)",
+      "metric_definition": "display strings at the manuscript's printed precision; every display string printed in research/paper/manuscript.md except the listed display_exceptions (tests/test_demo_export.py)",
+      "result_path": "research/experiments/EXP-NNN/{summary.json, metrics.csv, arm_summary.csv, config.json}; results/exploratory/m4_audit_sensitivity.json; committed price figures",
+      "generator_script": "scripts/export_demo_data.py",
+      "config_or_protocol_hash": "per source file SHA-256 in results.json sources",
+      "code_revision": "e18f31494a07305c241f89becd9d262c3701c66e (last commit of the committed result files)",
+      "claims": [
+        "C-001",
+        "C-002",
+        "C-003",
+        "C-004",
+        "C-005",
+        "C-006",
+        "C-007",
+        "C-008",
+        "C-009",
+        "C-010",
+        "C-011",
+        "C-012",
+        "C-013",
+        "C-014",
+        "C-015"
+      ],
+      "label": "confirmatory results, descriptive results and exploratory checks, each labelled"
     }
   ],
   "entry_fields": [

@@ -77,3 +77,15 @@ $UV run --frozen --python /usr/local/bin/python3 python -m fare.cli run --plan -
 # tables, figures and (optionally) a PDF from a result file
 $UV run --frozen --python /usr/local/bin/python3 python -m fare.cli report --result results/exploratory/<run_set_id>/result.json [--pdf]
 ```
+
+Demo commands (M5). Node from `/Users/bechir/research/helix/.tools/node/bin` on the owner's machine.
+
+```
+# published data for the demo (committed results only; fails closed if a display string is not in the manuscript)
+PYTHONPATH=src .venv/bin/python scripts/export_demo_data.py
+# fixture that checks the browser sandbox against the Python engine (about 4 s, one core)
+PYTHONPATH=src .venv/bin/python scripts/make_sandbox_fixture.py
+
+cd demo && npm ci && npm test && npm run build && npm run preview
+node tools/a11y_check.mjs dist --screenshots <dir>      # must print A11Y-CHECK PASS
+```

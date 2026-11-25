@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
 # Claims audit
 
-Status (2026-11-25, M4): applied by the AI assistant to every row of `research/claims_register.csv` (C-001 to C-015, E-001 to E-004). The owner's review is pending. Details are in `research/publication/evidence_audit.md` and `research/publication/review_pass_2.md`.
+Status (2026-11-25, M4): applied by the AI assistant to every row of `research/claims_register.csv` (C-001 to C-015, E-001 to E-004). The owner's review of the register is pending and belongs to M6. Details are in `research/publication/evidence_audit.md` and `research/publication/review_pass_2.md`.
 
 - [x] **Numerical claims are mapped.** Each numerical claim gives its experiment and run set (`result_id`), config hash, figure or table, manuscript section and evidence path. Each number in it traces to a committed result file (`python -m fare.audit`, 0 untraced).
 - [x] **External claims are mapped.** Each external claim maps to a source in `research/literature_review.md`, marked full text, abstract only or front matter only. No unverified source is cited.
