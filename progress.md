@@ -301,3 +301,18 @@ $ .venv/bin/python -m pytest -q                      (end of session)
 **Owner decisions needed.** How the three 11.3 experiment reports are to be written (they are the remaining M3 item). Nothing else is blocked.
 
 **Next action.** Write the EXP-001 to EXP-003 reports from the committed summaries; then M4.
+
+## 2026-11-25: M3 close session (owner decisions of 2026-11-25)
+
+**Brief.** `/Users/bechir/research/labs/_shared/M3-close-brief.md`. Only item 4 ("Experiment reports") of `owner-approvals-2026-11-25.md` concerns FARE.
+
+**What happened.**
+- Decision D-011 recorded with the owner's quote.
+- The Write tool was called for `research/experiments/EXP-001/report.md` and refused it again ("Subagents should return findings as text, not write report files"). As the brief requires, report writing stopped there, with no shell workaround. No report or `reproduction.md` was written.
+- Limitations, claims register and freeze record are unchanged: the decision adds no deviation and no result.
+
+**Tests.** `.venv/bin/python -m pytest -q`: 143 passed in 2.07s.
+
+**M3 status.** Not done. The matrix is complete, but the reports are missing.
+
+**Next action.** Write the three 11.3 reports and their `reproduction.md` files from the committed summaries, in a session whose file tool permits it.

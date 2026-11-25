@@ -104,3 +104,12 @@ Each entry: ID, date, decision, decided by, context, alternatives, consequences.
 - **Deviation 2 (execution conditions).** EXP-002 ran as a second worker beside EXP-001 and then EXP-003, under `nice -n 10`, on a machine shared with other sessions (load average up to about 50). Wall-clock: EXP-001 34.5 s, EXP-002 268.8 s, EXP-003 161.1 s, all within the frozen caps (15, 40, 15 minutes). Runtime is not a result.
 - **Not used as evidence.** The generic `fare.cli report` also prints a Holm table for EXP-001 and EXP-003; Holm across cells is frozen only for EXP-002. Those tables are not part of the frozen analysis and are not reported.
 - **Open (owner):** the 11.3 experiment reports (`research/experiments/EXP-NNN/report.md`, `reproduction.md`) were not written in this session: the file tool refused to write an experiment report, and the coordinator instructed that this not be worked around.
+
+## D-011 (2026-11-25): Owner approves writing the missing experiment reports; the file tool still refuses
+
+- **Decided by:** the owner, 2026-11-25, "approve all recommendations, RIGGED A" (`/Users/bechir/research/labs/_shared/owner-approvals-2026-11-25.md`, item 4, "Experiment reports"). The decision reads: "The owner approves writing the missing 11.3/11.6 experiment reports (`report.md`, and `reproduction.md` where the repo uses it). They are written from the committed results, tables and figures only." It adds: "Nothing is recomputed and no numbers change." No other item of that file concerns FARE.
+- **Applied:** not yet. In the M3 close session, the Write tool was called for `research/experiments/EXP-001/report.md` with a report drawn only from the committed summaries. The tool refused it again. As the close brief requires, report writing stopped there: no shell or other workaround was used, and no report or `reproduction.md` exists for EXP-001, EXP-002 or EXP-003.
+- **Consequences:**
+  - M3 stays open. The run matrix is complete (D-010), but the 11.6 report requirement is not met.
+  - No result, claim, limitation or freeze-record entry changes, because the decision adds no deviation to the frozen protocol.
+  - The reports must be written in a session whose file tool permits it, from `research/experiments/EXP-NNN/{summary.json, metrics.csv, arm_summary.csv}`.
