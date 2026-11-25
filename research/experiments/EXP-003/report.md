@@ -9,7 +9,7 @@
 |---|---|
 | Experiment | EXP-003 |
 | Report date | 2026-11-25 |
-| Report version | 1.0 (M3) |
+| Report version | 1.1 (M4, 2026-11-25: evidence audit and interpretation revisions listed in section 9, "M4 revisions") |
 | Status | confirmatory, complete |
 | Authorship | Mohamed Bechir Kefi (owner-approved, C3). The AI assistant (Claude Code) ran the experiment and composed this report from committed results (D-011, D-012). It is disclosed and is not an author. |
 | Protocol | `research/experiments/EXP-003/protocol.md` v1.0, SHA-256 `b1e2a2f8931bada91fd5f4589f0fa8bd50004db6c05d568c9354f43f14a510fd` |
@@ -147,10 +147,15 @@ The rule is not triggered for either arm.
 - **Expected versus observed.** The protocol anticipated that large shifts might push all policies to the price bounds, and that reversed arrivals might strongly favour fixed prices.
   - Neither price-bound failure appears in the arm means.
   - Reversed arrivals favour FIX only against DRP (equivalence), not against OCC.
+- **M4 revisions (2026-11-25, version 1.1).** The frozen verdict is unchanged. Changes:
+  1. Evidence audit (`research/publication/evidence_audit.md`): every number in this report was checked against the raw outputs; no mismatch was found here.
+  2. Second review pass. The invalidation rule compares the base-tuned rules with the base-tuned FIX, which is misspecified in the same way. Not triggering the rule shows that the rules suffer less from the moderate shifts than the fixed price does. It does not show that they keep a structural advantage: against a fixed price re-tuned to the true demand, the x0.8 contrasts are within the SESOI (-0.39% and +0.52%). At x0.8, most of the advantage over the base-tuned FIX is therefore the fixed price's own misspecification cost (re-tuned FIX 10,023.0 against base-tuned FIX 9,851.2).
+  3. The per-stream distribution (J-0012, B3, exploratory) shows the same asymmetry: the rules lose to the base-tuned FIX on 55.8% (OCC) and 56.7% (DRP) of streams at x0.6, and on 8.75% (OCC) and 8.675% (DRP) of streams at x1.6.
 
 ## 10. Threats to validity
 
 - **Statistical.** The intervals are unadjusted 95% intervals across 24 contrasts and are descriptive, except for the four used by the pre-specified rule.
+- **Construct (M4).** The invalidation rule is benchmarked against a fixed price that is misspecified in the same way as the rules (section 9, M4 revisions, item 2).
 - **Internal.** The base tuning is identical to EXP-001 by construction, so EXP-001 and EXP-003 share the same tuned policies. They do not share evaluation streams.
 - **External and construct.** As in EXP-001. The shifts are one-factor-at-a-time and do not combine.
 

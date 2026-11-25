@@ -9,7 +9,7 @@
 |---|---|
 | Experiment | EXP-002 |
 | Report date | 2026-11-25 |
-| Report version | 1.0 (M3) |
+| Report version | 1.1 (M4, 2026-11-25: evidence audit and interpretation revisions listed in section 9, "M4 revisions") |
 | Status | confirmatory, complete |
 | Authorship | Mohamed Bechir Kefi (owner-approved, C3). The AI assistant (Claude Code) ran the experiment and composed this report from committed results (D-011, D-012). It is disclosed and is not an author. |
 | Protocol | `research/experiments/EXP-002/protocol.md` v1.0, SHA-256 `7ffbc666ffd6465791d09e10ee3a3014002a513c90a876bf65c6e8ea4d2f6ab9` |
@@ -74,7 +74,7 @@
 - **Deviations and decisions.** None touches the protocol, the config, the seeds or the analysis.
   - D-010: the raw output (147,753,410 bytes) is git-ignored under `results/raw/confirmatory/`, and the aggregates come from `fare.summary`.
   - D-011 and D-012: this report was composed from committed results under the owner's approval of 2026-11-25.
-- **Disclosed omission.** The protocol asks for the point price elasticity at the tuned FIX price in each cell. Those values were computed by `fare.cli report`, but they exist only in the git-ignored raw report (`results/raw/confirmatory/EXP-002-con-config-20261124T233503Z/report/report.md`, SHA-256 `9548aee6799102b0a414486414e5aaec039791a881146343f48b46267910e082`). Under the no-new-numbers rule they are not quoted here.
+- **Elasticity values (omission in version 1.0, resolved in M4).** The protocol asks for the point price elasticity at the tuned FIX price in each cell. `fare.cli report` printed them in the git-ignored raw report (`results/raw/confirmatory/EXP-002-con-config-20261124T233503Z/report/report.md`, SHA-256 `9548aee6799102b0a414486414e5aaec039791a881146343f48b46267910e082`), so version 1.0 did not quote them. In M4 they were copied into a committed file and re-derived deterministically from the scenario parameters, with agreement to the printed precision (`results/exploratory/m4_audit_sensitivity.json`, `audit.EXP-002_elasticity`, J-0012). They are reported in section 8.
 
 ## 8. Results
 
@@ -100,6 +100,17 @@
 How these are read:
 - Lower edges are read as rules close to the nesting point, where the rule is the fixed price FIX(p0). In those cells the dynamic rule adds little or nothing over a fixed price.
 - At the upper edges, the contrast measures OCC as gridded and may understate it.
+- M4 caveat on the frozen lower-edge reading (section 9, "M4 revisions"): at eta = 0.025 the DRP prices do not stay close to p0. The mean price paid is 84.3 against p0 = 100.48 in sv0.25-k1.0, 81.6 against 100.48 in sv0.5-k1.0, 130.7 against 252.38 in sv1.0-k1.0 and 176.7 against 252.38 in sv1.0-k2.0 (`arm_summary.csv`). The frozen reading is kept as frozen, but "close to a fixed price" holds for the parameter value, not for the realised prices.
+
+**Purchase elasticity at the tuned FIX price** (protocol section 7; deterministic, no interval; values as printed by the confirmatory raw report and re-derived in M4):
+
+| sigma_v | kappa = 1.0 | kappa = 2.0 | kappa = 4.0 |
+|---|---|---|---|
+| 0.25 | -1.253 | -1.993 | -2.156 |
+| 0.5 | -1.047 | -1.557 | -2.121 |
+| 1.0 | -0.955 | -1.123 | -1.345 |
+
+The elasticity depends on the tuned price as well as on sigma_v, so sigma_v alone does not order the cells by elasticity. In the three kappa = 1.0 cells it is close to -1.
 
 **Revenue contrasts against the re-tuned FIX.**
 - n = 4,000 per cell; paired bootstrap 95% intervals.
@@ -141,16 +152,25 @@ How these are read:
 - **What was measured.** The advantage found at the base cell is not general, even within the model.
   - With loose capacity (kappa = 1.0), both dynamic rules earn less than a well-tuned fixed price at every dispersion level. DRP loses most: -11.41% at sigma_v = 1.0.
   - With tighter capacity, both rules gain, by up to +8.87%.
-- **The kappa = 1.0 cells and the edges.** In these cells the tuning pushed both families toward their least responsive grid values: DRP to eta = 0.025 in all three, and OCC to k = 0.25 in two. Under the frozen reading, the tuning itself prefers a near-fixed price there. The remaining losses are the cost of the residual responsiveness that the grid imposes.
+- **The kappa = 1.0 cells and the edges.** In these cells the tuning pushed both families toward their least responsive grid values: DRP to eta = 0.025 in all three, and OCC to k = 0.25 in two. Under the frozen reading, the tuning itself prefers a near-fixed price there. M4 qualifies the rest of this paragraph as follows.
+  - The fixed price in these cells sits where the purchase elasticity is close to -1 (-1.253, -1.047, -0.955). In this model that is the price that maximises expected revenue per arriving buyer when stock does not bind, so there is little scarcity for a dynamic rule to exploit.
+  - Even at eta = 0.025, DRP marks prices down well below p0 (mean price paid 81.6 against 100.48 in sv0.5-k1.0, 130.7 against 252.38 in sv1.0-k1.0). Its target rate asks it to sell the remaining stock by the deadline, and with loose capacity that target is out of reach, so the multiplicative update keeps lowering the price over 60 periods. The DRP losses are therefore a property of the rule's clearance target, not small residual noise.
+  - An exploratory decomposition on the tuning streams (J-0012, B1; in-sample) splits each rule's advantage into a price-resolution part (FIX at the rule's own p0 minus the best of 36 fixed prices) and a responsiveness part (the rule minus FIX at its own p0). For DRP, the responsiveness part is the whole loss in sv0.5-k1.0 (-462.4), most of it in sv1.0-k1.0 (-543.2 of -812.7) and about half in sv0.25-k1.0 (-162.0 of -328.6). For OCC in sv0.25-k1.0 and in sv1.0-k2.0 the responsiveness part is positive (+60.2 and +89.7) and the loss comes from the coarser p0 grid (-166.7 and -172.3).
 - **The base parameters.** The base-parameter cell sv0.5-k2.0 (+435.5 and +491.1, on EXP-002's own streams) agrees with EXP-001 (+407.04 and +462.08).
 - **Claimed pattern.** "Dynamic rules gain more when capacity is tight" is supported descriptively for every sigma_v and both arms. Every interaction interval excludes 0.
 - **Alternative explanations.**
   - Grid fit differs across cells. The upper-edge OCC optima in sv0.25-k2.0 and sv1.0-k4.0 may understate OCC there.
   - The lower-edge optima suggest that the grid's floor, not policy structure, drives part of the loss at kappa = 1.0. A grid that includes eta = 0 or k = 0 would nest the fixed price exactly, but the protocol froze the grid.
+  - Grid resolution (M4). EXP-002 has no FIX6 arm, so the tuning-grid sensitivity of EXP-001 was not registered here. The exploratory decomposition above indicates that the OCC losses in sv0.25-k1.0 (-1.72%) and sv1.0-k2.0 (-0.83%) reflect the 6-value p0 grid rather than the occupancy response. These two contrasts are therefore weak evidence against OCC's structure, although they stand as frozen verdicts.
 - **Expected versus observed.**
   - The protocol anticipated degenerate cells near kappa = 1.0 with sigma_v = 1.0. In fact sv1.0-k1.0 is far from degenerate: DRP loses 815.0.
   - The protocol expected edge optima in extreme cells. 8 occurred, against 7 of 18 in the pre-freeze tuning-only check.
-- **Verdict under the frozen rule.** H0_{j,c} is rejected for all 18 contrasts at family-wise alpha 0.05 (Holm). The directions are mixed: 7 negative and 11 positive. The tightness pattern holds in all 6 interaction contrasts (descriptive).
+- **Verdict under the frozen rule.** H0_{j,c} is rejected for all 18 contrasts at family-wise alpha 0.05 (Holm). The directions are mixed: 8 negative and 10 positive (corrected in M4; version 1.0 said 7 and 11, see `research/publication/evidence_audit.md`, finding F-1). The tightness pattern holds in all 6 interaction contrasts (descriptive).
+- **M4 revisions (2026-11-25, version 1.1).** No frozen verdict changes. Changes:
+  1. Evidence audit (`research/publication/evidence_audit.md`, finding F-1): the count of negative and positive contrasts was wrong in version 1.0 (7 and 11); the committed results give 8 and 10. Corrected above.
+  2. The per-cell elasticities are reported (section 8).
+  3. The interpretation of the kappa = 1.0 cells and the alternative explanations were revised with the exploratory decomposition (J-0012, B1) and the realised DRP prices at eta = 0.025.
+  4. Internal replication (exploratory, B2): sv0.5-k2.0 and EXP-001 select the same configurations on independent streams and differ by +28.4 [-13.3, 70.2] (OCC) and +29.0 [-15.3, 73.4] (DRP).
 
 ## 10. Threats to validity
 
@@ -161,7 +181,8 @@ How these are read:
   - Edge optima in 8 of the 27 tuned selections.
   - Selection noise from 500 tuning streams per cell.
 - **External and construct.** As in EXP-001: a synthetic market, myopic buyers, arbitrary parameters and a proxy welfare measure.
-- **Missing elasticity values.** The per-cell elasticities are not reported here (section 7), so the elasticity axis is described by sigma_v only.
+- **Elasticity axis.** The per-cell elasticities are now reported (section 8). They show that sigma_v and kappa do not move elasticity independently, because the tuned price changes with both. The factor "elasticity" in the research question is therefore operationalised by sigma_v, with the realised elasticity as a descriptive covariate.
+- **Exploratory checks.** The M4 decomposition (J-0012, B1) is in-sample on the tuning streams and was computed after the results were seen.
 
 ## 11. Conclusion and next experiment
 

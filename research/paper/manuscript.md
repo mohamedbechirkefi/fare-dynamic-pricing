@@ -1,58 +1,324 @@
 ---
-title: "The mathematics behind changing prices (working title)"
-subtitle: "Independent research manuscript, preprint draft, not peer-reviewed. Skeleton only: no results exist."
+title: "Simple dynamic pricing rules versus a tuned fixed price for a perishable stock: a preregistered simulation study"
+subtitle: "Independent research manuscript, preprint draft, not peer-reviewed. All results are simulated. Version M4 (2026-11-25); title and metadata await the owner's approval."
 author: "Mohamed Bechir Kefi"
-date: "Draft skeleton, 2026-11-24"
+date: "Draft, 2026-11-25"
 ---
 
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
 
 # Abstract
 
+**Background.** A fixed price is asymptotically optimal for selling a fixed perishable stock as expected sales grow, leaving open what simple dynamic rules gain or lose at moderate scale. **Question.** In a simulated market with 100 units, 60 periods, two buyer segments and demand shocks, does an occupancy rule (OCC) or a demand-responsive rule (DRP) change expected revenue relative to the best fixed price (FIX) under equal tuning budgets and identical demand streams? **Method.** Three experiments were frozen before any evaluation stream existed: a base comparison (EXP-001), a 3 x 3 grid of valuation dispersion and demand-to-capacity ratio (EXP-002) and a misspecification test (EXP-003), with 4,000 paired evaluation streams per cell (925,000 simulated seasons, none failed). **Results.** At the base cell, OCC and DRP earn +407.0 (97.5% interval [373.2, 440.2], +3.47%) and +462.1 ([426.0, 498.1], +3.94%) currency units per season more than FIX. The sign is not general: all 18 EXP-002 contrasts reject the null (Holm), but 8 are negative, including every loose-capacity cell (DRP down to -11.41%). The preregistered invalidation rule is not triggered by moderate demand shifts, but the rules lose at 0.6 times the forecast demand, and against a fixed price re-tuned to the true demand their relevant gains are confined to demand above the forecast (and, for OCC, reversed arrivals). **Conclusion.** Within this model, the two simple rules beat a well-tuned fixed price when stock is scarce relative to demand or demand exceeds the forecast, and lose when capacity is loose; no general advantage is supported.
+
 # Keywords
+
+dynamic pricing; revenue management; perishable inventory; simulation; preregistration; reproducibility
 
 # 1. Introduction
 
+Sellers of perishable capacity, such as seats or rooms, face a finite selling horizon after which unsold units are worth nothing. A price that is too low sells out before the high-valuation buyers arrive; a price that is too high leaves units unsold at the deadline. Dynamic pricing changes the price over the horizon in response to the remaining stock, the remaining time or the observed sales. Gallego and van Ryzin (1994) showed for a single product under price-sensitive stochastic demand that the optimal price depends on remaining stock and remaining time, and that simple fixed-price policies are asymptotically optimal as the volume of expected sales tends to infinity. A well-tuned fixed price is therefore a principled baseline, and the open question at moderate scale is empirical: how much do simple, model-free dynamic rules gain or lose against it, and under which market conditions?
+
+This manuscript answers that question for one transparent synthetic market. The research question is the one set for the project: "How do demand and inventory policies affect prices and availability in a simulated market?" It is made operational as follows.
+
+- **RQ1 (EXP-001).** At the base scenario, does a tuned occupancy rule or a tuned demand-responsive rule change expected revenue per selling season relative to the tuned fixed price, under identical demand streams and equal tuning budgets?
+- **RQ2.** How do the policies differ in sell-through, availability, price volatility and a consumer surplus proxy?
+- **RQ3 (EXP-002).** How do the differences depend on valuation dispersion (which sets price elasticity) and on demand-to-capacity tightness?
+- **RQ4 (EXP-003).** Does the base comparison survive misspecification of the demand used for tuning?
+
+The primary hypotheses are nondirectional: for $j \in \{\text{OCC}, \text{DRP}\}$, $H_0: \Delta_j = 0$ against $H_1: \Delta_j \neq 0$, where $\Delta_j$ is the expected paired revenue difference against the tuned fixed price. The planning expectation, stated before the freeze and not a hypothesis, was a small gain of at most 5% of fixed-price revenue at this scale.
+
+The contributions are the following.
+
+1. A preregistered comparison of a fixed price and two simple dynamic rule families under an equal 36-configuration tuning budget, exactly matched demand streams and held-out evaluation streams, with every protocol and configuration frozen by hash before execution.
+2. A complete report of a mixed-sign result: the dynamic rules gain at the base cell and in tight markets and lose in every loose-capacity cell.
+3. A pre-specified misspecification analysis, reported together with its limits as an invalidation test.
+4. An evidence audit and a challenge pass that revise two interpretations of the experiment reports, with every change recorded.
+
+No novelty claim is made. The literature search was targeted, not systematic (Section 2).
+
 # 2. Related work
 
+The search behind this section was targeted, and each source is marked by what was actually read (`research/literature_review.md`). Only one source was read in full text; the others are cited only for what their abstracts state.
+
+**Finite-horizon pricing of a fixed stock.** Gallego and van Ryzin (1994; full text retrieved) formulate the sale of a fixed stock over a finite horizon under price-sensitive stochastic demand as an intensity-control problem. They show that the optimal price is monotone in remaining stock and remaining time, derive a deterministic upper bound on expected revenue and prove that simple fixed-price policies are asymptotically optimal as the volume of expected sales tends to infinity. Their multiproduct extension (Gallego and van Ryzin, 1997; abstract only) applies a similar deterministic bound to network yield management. FARE does not test the asymptotic regime: it fixes the stock at 100 units and asks what simple rules do at that scale.
+
+**Reviews and practice.** Elmaghraby and Keskinocak (2003; abstract only) review dynamic pricing in the presence of inventory considerations and identify industries with short-run fixed, perishable capacity, such as airlines and hotels, as the classical setting. FARE borrows only this framing. It makes no claim about any airline, hotel or proprietary pricing system.
+
+**Strategic buyers.** Su (2007; abstract only) shows that when customers differ in valuation and patience and time their purchases, the optimal price path and its effects on revenue and welfare change. FARE assumes myopic buyers, so its results do not extend to strategic buyers.
+
+**Learning and uncertainty.** Work on dynamic pricing under demand uncertainty and learning exists (for example den Boer's 2013 doctoral thesis), but only the front matter of that thesis was opened, so it is not cited for content here.
+
+**Position of this study.** FARE is a replication-style extension, not new theory. It takes the fixed price that theory recommends as the baseline, adds two rule families that a practitioner could tune without a demand model, and asks a narrow empirical question under a frozen protocol. Whether a comparable open, preregistered study exists was not established.
+
 # 3. Background and formal model
+
+The full specification is in `research/protocol.md` (frozen v1.0, SHA-256 `d4b7c1e0...`). Table 1 lists the base parameters.
+
+**Market.** Periods $t = 1, \dots, T$ with $T = 60$. Stock $x_t$ starts at $x_1 = C = 100$ units; units unsold after period $T$ perish with zero salvage. Two buyer segments, $s \in \{L, H\}$, have shares $w_L = 0.7$ and $w_H = 0.3$. Expected arrivals over the horizon are $A = \kappa C$ with base $\kappa = 2.0$. Segment arrival profiles are linear and normalised: $a_L(t) \propto T + 1 - t$ (early) and $a_H(t) \propto t$ (late). A stream-level multiplier $M \sim \text{LogNormal}(-\sigma_M^2/2, \sigma_M)$ with $\sigma_M = 0.25$ and three-period surges (start probability 0.05 per period, intensity factor 1.8, non-compounding) create demand shocks. Arrivals are $N_{s,t} \sim \text{Poisson}(M A w_s a_s(t) \cdot \text{surge}_t)$ and valuations are $v \sim \text{LogNormal}(\ln m_s, \sigma_v)$ with $m_L = 100$, $m_H = 200$ (abstract currency units) and base $\sigma_v = 0.5$. Buyers are myopic with unit demand: a buyer arriving in period $t$ buys if $v \geq p_t$ and $x > 0$ and otherwise leaves. Prices are bounded in $[30, 600]$.
+
+Because buyers are myopic, the demand stream does not depend on the policy. Each stream is generated once and replayed under every policy (common random numbers), so policy comparisons are exactly paired.
+
+**Policies.** With $f_t = (C - x_t)/C$ the fraction sold and $e_t = (t-1)/T$ the fraction of the horizon elapsed:
+
+$$\text{FIX}(p):\; p_t = p, \qquad \text{OCC}(p_0, k):\; p_t = \operatorname{clip}\big(p_0\, e^{k (f_t - e_t)},\, 30,\, 600\big).$$
+
+DRP$(p_0, \eta)$ starts at $p_1 = p_0$, keeps an exponentially weighted average $\hat r$ of units sold per period (weight 0.3, initialised at $C/T$), computes the target rate $r^*_t = x_t / (T - t + 1)$ and updates
+
+$$p_{t+1} = \operatorname{clip}\Big(p_t \Big(\frac{\hat r + 0.5}{r^*_t + 0.5}\Big)^{\eta},\, 30,\, 600\Big).$$
+
+Both rules nest the fixed price: $k = 0$ gives FIX$(p_0)$ and $\eta = 0$ gives FIX$(p_0)$.
+
+**Tuning.** Each family has 36 configurations, all evaluated on the same 500 tuning streams, and the configuration with the highest mean revenue is selected. FIX uses 36 geometric prices from 40 to 400. OCC and DRP use 6 geometric starting prices $p_0$ from 40 to 400 times 6 sensitivity values: $k \in \{0.25, 0.5, 1, 2, 4, 8\}$ and $\eta \in \{0.025, 0.05, 0.1, 0.25, 0.5, 1.0\}$. The 6 starting prices are also FIX prices. Tuning and evaluation streams are disjoint.
+
+**Estimand.** For $j \in \{\text{OCC}, \text{DRP}\}$,
+
+$$\Delta_j = \mathbb{E}\big[R(j^*, S) - R(\text{FIX}^*, S)\big],$$
+
+the expected paired revenue difference per evaluation stream $S$, where $j^*$ and FIX$^*$ are the tuned policies. The relative effect is $\Delta_j / \mathbb{E}[R(\text{FIX}^*, S)]$.
+
+**Complexity.** The simulator sorts the valuations within each period and locates the sale cut-off by bisection; a naive buyer-by-buyer simulator serves as a differential-test oracle. The full confirmatory matrix of 925,000 runs took 34.5 s, 268.8 s and 161.1 s for the three experiments on a shared laptop (runtime is not a result).
+
+Table 1. Base parameters (protocol section 3; source `research/experiments/EXP-001/protocol.md` section 7).
+
+| Parameter | Symbol | Base value |
+|---|---|---|
+| Periods | $T$ | 60 |
+| Initial stock | $C$ | 100 |
+| Arrivals to capacity | $\kappa$ | 2.0 |
+| Valuation dispersion | $\sigma_v$ | 0.5 |
+| Stream shock dispersion | $\sigma_M$ | 0.25 |
+| Surge start probability, length, factor | | 0.05, 3, 1.8 |
+| Segment shares L, H | $w_L, w_H$ | 0.7, 0.3 |
+| Segment median valuations L, H | $m_L, m_H$ | 100, 200 |
+| Price bounds | | [30, 600] |
 
 # 4. Methods
 
 ## 4.1 Design and protocol registration
 
+The study protocol and the three experiment protocols were written before any confirmatory run and frozen by the owner on 2026-11-24 as v1.0 after two rounds of amendments, with SHA-256 hashes of every protocol and confirmatory configuration recorded in `research/freeze.json`. The runner refuses any configuration or protocol whose hash differs from the freeze record. Before the freeze, exploratory values of the primary contrast had been computed on tuning streams only (n = 50 per cell, an earlier grid); they are disclosed in the freeze record (C4). The owner chose the final tuning grids with these values available, which is a disclosed forking-paths risk on the grid choice. No evaluation stream was generated before the freeze.
+
+All three experiments are confirmatory. The checks in Section 5.4 were computed during interpretation (M4), after the results were seen; they are exploratory and never change a frozen verdict.
+
 ## 4.2 Simulated market and data
 
-## 4.3 Policies, baselines and tuning
+All data are synthetic (no dataset was downloaded). Streams are generated by `numpy.random.SeedSequence(entropy = 20261124, spawn_key = (experiment, cell, role, index))`, with role 0 for tuning (indices 0 to 499) and role 1 for evaluation (indices 0 to 3999). Each run records its seed key and the SHA-256 of its stream.
+
+## 4.3 Experiments, controls and baselines
+
+- **EXP-001** (base cell). FIX, OCC and DRP tuned and evaluated on 4,000 streams. A tuning-grid sensitivity arm FIX6 re-tunes FIX on the 6 starting prices available to the rules.
+- **EXP-002** (elasticity and tightness). $\sigma_v \in \{0.25, 0.5, 1.0\}$ times $\kappa \in \{1.0, 2.0, 4.0\}$, 9 cells, each re-tuned (a fixed price tuned elsewhere would be a strawman) and evaluated on 4,000 streams.
+- **EXP-003** (misspecification). The policies tuned at the base cell are evaluated without re-tuning on 6 cells: demand level times 0.6, 0.8, 1.25 and 1.6, reversed segment arrival order, and no shocks. A fixed price re-tuned on each cell's own tuning streams is a reference that separates the cost of misspecification from policy structure.
+
+The controls are common random numbers, the equal tuning budget, disjoint tuning and evaluation streams, and the tested nesting property ($k = 0$ and $\eta = 0$ reproduce FIX exactly).
 
 ## 4.4 Metrics
 
+Revenue per season (primary, currency units). Secondary and descriptive: sell-through (units sold / $C$), availability (share of arriving buyers who found stock; 1 when no buyer arrived), stock-out period, price volatility $\frac{1}{T-1}\sum_{t=2}^{T}|\ln p_t - \ln p_{t-1}|$, a consumer surplus proxy $\sum_i (v_i - p_{\text{paid},i})$ and a total surplus proxy (revenue plus consumer surplus proxy; no costs are modelled). The point purchase elasticity at the tuned fixed price is reported per EXP-002 cell.
+
 ## 4.5 Statistical analysis
+
+- **EXP-001.** $H_0^j$ is rejected when the Bonferroni-adjusted 97.5% stream-level paired percentile bootstrap interval (10,000 resamples, seed 20261124) excludes 0. Effects are classified against a smallest effect size of interest (SESOI) of 1% of mean FIX$^*$ revenue: detectable and practically relevant, detectable but below the SESOI, practically equivalent (interval inside $\pm$ SESOI) or inconclusive. Paired $t$ intervals are a cross-check. If the contrast against FIX6 changes sign or class, the result is attributed to grid resolution.
+- **EXP-002.** A paired sign-flip permutation test per contrast (10,000 permutations), Holm adjustment over the 18 contrasts at family-wise $\alpha = 0.05$, paired bootstrap 95% intervals. Interaction contrasts $\Delta(\kappa = 4) - \Delta(\kappa = 1)$ per $\sigma_v$ use an independent stratified bootstrap (descriptive).
+- **EXP-003.** Paired bootstrap 95% intervals per cell (descriptive), with a pre-specified invalidation rule: if, at demand times 0.8 or 1.25, the 95% interval of $\Delta_{j,c}$ lies entirely on the opposite side of zero from the EXP-001 estimate, the EXP-001 result for $j$ is reported as specific to correct specification.
+- **Sample size.** 4,000 evaluation streams per cell. A tuning-stream pilot put the requirement for the 1% SESOI at two-sided $\alpha = 0.025$ and power 0.89 between 384 and 3,435 streams across cells. The sample size was fixed at the freeze; there were no interim looks and no outcome-based exclusions.
 
 ## 4.6 Reproducibility
 
+Every confirmatory run set records the git revision (`4204eac`, no tracked file modified), the protocol and configuration hashes, the data manifest hash, the environment (Python 3.12.1, numpy 2.5.4, Apple M1 Pro, macOS 15.3.1), runtime and peak memory. Raw per-run outputs (21.5 MB, 147.8 MB and 132.2 MB) are git-ignored and regenerable; their SHA-256 hashes, the aggregate tables and the figures are committed under `research/experiments/EXP-NNN/`. Section 10 gives the commands.
+
 # 5. Results
 
-## 5.1 EXP-001
+All 925,000 planned runs completed (EXP-001: 73,000; EXP-002: 594,000; EXP-003: 258,000) and none failed or was dropped. Every number below comes from the committed files named in each table caption. The evidence audit (`research/publication/evidence_audit.md`) recomputed every committed arm summary and contrast from the raw outputs with zero discrepancy.
 
-## 5.2 EXP-002
+## 5.1 EXP-001: the base comparison (RQ1, RQ2)
 
-## 5.3 EXP-003
+No tuned configuration lies on a grid edge. The selected policies are FIX(139.61), OCC($p_0$ = 159.24, $k$ = 4) and DRP($p_0$ = 100.48, $\eta$ = 0.1).
+
+Table 2. EXP-001 primary and sensitivity contrasts, n = 4,000 paired streams, 97.5% intervals. Source: `research/experiments/EXP-001/metrics.csv`, `summary.json` (T-EXP-001-contrasts).
+
+| Contrast | Mean difference | Bootstrap 97.5% | Paired $t$ 97.5% | Relative | Class |
+|---|---|---|---|---|---|
+| OCC - FIX | +407.04 | [373.17, 440.17] | [373.30, 440.79] | +3.47% | detectable, practically relevant |
+| DRP - FIX | +462.08 | [426.03, 498.13] | [426.14, 498.02] | +3.94% | detectable, practically relevant |
+| OCC - FIX6 | +816.60 | [789.75, 843.30] | [789.51, 843.70] | +7.22% | detectable, practically relevant |
+| DRP - FIX6 | +871.64 | [836.47, 905.82] | [836.83, 906.44] | +7.71% | detectable, practically relevant |
+
+Both null hypotheses are rejected and both effects exceed the SESOI. Neither gain exceeds 5%, so the planning expectation is not contradicted. The FIX6 sensitivity changes neither sign nor class; Section 6 explains why this check carries little weight.
+
+Mean revenue per season is 11,715.6 (SD 2,262.1) for FIX, 12,122.6 (2,667.8) for OCC and 12,177.6 (2,574.6) for DRP. Pairing matters: the SDs of the paired differences are 951.7 and 1,013.7.
+
+Secondary metrics (95%, descriptive, unadjusted): against FIX, OCC and DRP raise sell-through by +0.093 [0.090, 0.096] and +0.146 [0.142, 0.151], availability by +0.025 [0.023, 0.027] and +0.014 [0.012, 0.016], and the consumer surplus proxy by +1,141.8 [1,108.5, 1,174.9] and +1,223.7 [1,171.4, 1,275.0]. Their mean price paid is lower (128.78 and 123.23 against 139.61). Price volatility is 0.0439 (OCC) and 0.0288 (DRP) per period, and zero for FIX by construction.
+
+![Figure 1. EXP-001 mean paired revenue differences (currency units per season) with 97.5% paired bootstrap intervals, n = 4,000 streams per contrast; the grey band is plus or minus the SESOI of 1% of FIX* revenue. Source: F-EXP-001-forest.](../experiments/EXP-001/figures/fig-EXP-001-forest-revenue.svg)
+
+## 5.2 EXP-002: elasticity and tightness (RQ3)
+
+All 18 contrasts reject $H_0$ after Holm adjustment (every raw sign-flip $p$ is at the permutation floor 1/10001, so every Holm value of 0.0018 is a bound). The directions are mixed: 8 negative and 10 positive. With 4,000 paired streams per cell, rejection is expected for any effect of practical size, so the information is in the signs, the effect sizes and the SESOI classes rather than in the rejections.
+
+Table 3. EXP-002 revenue contrasts against the fixed price re-tuned in each cell, n = 4,000 per cell, paired bootstrap 95% intervals, and the purchase elasticity at the tuned fixed price. "Relevant" means detectable and practically relevant; "below" means detectable but below the SESOI; "edge" marks a tuned optimum on a grid edge. Sources: `research/experiments/EXP-002/metrics.csv`, `summary.json` (T-EXP-002-contrasts); elasticity from `results/exploratory/m4_audit_sensitivity.json` (audit, values printed by the confirmatory raw report).
+
+| Cell | Elasticity | FIX* revenue | OCC - FIX | OCC relative | DRP - FIX | DRP relative |
+|---|---|---|---|---|---|---|
+| sv0.25-k1.0 | -1.253 | 7,254.0 | -125.0 [-144.7, -105.3] | -1.72%, relevant | -348.7 [-373.5, -324.4] | -4.81%, relevant (edge) |
+| sv0.25-k2.0 | -1.993 | 10,776.4 | +815.1 [786.5, 842.8] | +7.56%, relevant (edge) | +955.5 [928.9, 982.5] | +8.87%, relevant |
+| sv0.25-k4.0 | -2.156 | 15,491.3 | +527.5 [493.6, 561.7] | +3.40%, relevant | +262.8 [223.0, 302.0] | +1.70%, relevant |
+| sv0.5-k1.0 | -1.047 | 6,873.7 | -37.0 [-41.3, -32.6] | -0.54%, below (edge) | -480.0 [-496.3, -463.5] | -6.98%, relevant (edge) |
+| sv0.5-k2.0 | -1.557 | 11,756.6 | +435.5 [405.8, 464.1] | +3.70%, relevant | +491.1 [459.5, 522.0] | +4.18%, relevant |
+| sv0.5-k4.0 | -2.121 | 17,221.2 | +1,094.1 [1,054.8, 1,133.2] | +6.35%, relevant | +1,050.8 [1,008.5, 1,093.8] | +6.10%, relevant |
+| sv1.0-k1.0 | -0.955 | 7,141.9 | -120.3 [-131.3, -109.5] | -1.69%, relevant (edge) | -815.0 [-834.2, -796.2] | -11.41%, relevant (edge) |
+| sv1.0-k2.0 | -1.123 | 14,067.0 | -116.3 [-136.2, -95.8] | -0.83%, below | -473.8 [-502.3, -444.3] | -3.37%, relevant (edge) |
+| sv1.0-k4.0 | -1.345 | 24,916.0 | +1,036.7 [964.6, 1,111.5] | +4.16%, relevant (edge) | +939.0 [866.4, 1,013.8] | +3.77%, relevant |
+
+The rules lose in every loose-capacity cell ($\kappa = 1.0$) and in sv1.0-k2.0, and gain in the other five cells (+1.70% to +8.87%). The base-parameter cell sv0.5-k2.0 selects the same configurations as EXP-001 on independent streams and gives +435.5 and +491.1.
+
+**Grid edges.** 8 of the 18 rule selections lie on a grid edge (no FIX selection does): DRP at the lower edge $\eta = 0.025$ in sv0.25-k1.0, sv0.5-k1.0, sv1.0-k1.0 and sv1.0-k2.0; OCC at the lower edge $k = 0.25$ in sv0.5-k1.0 and sv1.0-k1.0; OCC at $k = 8$ in sv0.25-k2.0 and at $p_0 = 400$ with $k = 8$ in sv1.0-k4.0. Under the frozen reading, a lower edge means the tuning prefers a rule close to the fixed price, and an upper edge means the contrast measures OCC as gridded and may understate it. The realised prices qualify the first reading: at $\eta = 0.025$, DRP's mean price paid is 81.6 against $p_0$ = 100.48 in sv0.5-k1.0 and 130.7 against 252.38 in sv1.0-k1.0 (`arm_summary.csv`).
+
+Table 4. EXP-002 interaction contrasts $\Delta(\kappa = 4.0) - \Delta(\kappa = 1.0)$, independent stratified bootstrap 95% intervals, n = 4,000 and 4,000, descriptive. Source: `research/experiments/EXP-002/summary.json` (`verdict.interactions`).
+
+| $\sigma_v$ | OCC | DRP |
+|---|---|---|
+| 0.25 | +652.4 [613.9, 691.5] | +611.5 [564.6, 658.1] |
+| 0.5 | +1,131.1 [1,091.7, 1,171.1] | +1,530.8 [1,485.1, 1,576.5] |
+| 1.0 | +1,157.0 [1,083.4, 1,232.3] | +1,754.1 [1,679.5, 1,831.4] |
+
+The preregistered pattern "dynamic rules gain more when capacity is tight" holds descriptively for every $\sigma_v$ and both rules. The elasticity column shows that $\sigma_v$ does not order the cells by elasticity alone, because the tuned price moves with both factors.
+
+![Figure 2. EXP-002 mean paired revenue differences against the re-tuned fixed price, all 18 cell contrasts, with paired bootstrap 95% intervals and SESOI bands, n = 4,000 streams per contrast. Source: F-EXP-002-forest.](../experiments/EXP-002/figures/fig-EXP-002-forest-revenue.svg)
+
+## 5.3 EXP-003: misspecification (RQ4)
+
+The re-derived base tuning selects the same configurations as EXP-001 with identical tuning revenues.
+
+Table 5. EXP-003 revenue contrasts of the base-tuned rules, against the base-tuned FIX(139.61) and against a FIX re-tuned in each cell, paired bootstrap 95% intervals, n = 4,000 per cell, relative to the comparator's mean. Unless marked, each class is detectable and practically relevant. Source: `research/experiments/EXP-003/metrics.csv`, `summary.json` (T-EXP-003-contrasts).
+
+| Cell | OCC - FIX | DRP - FIX | OCC - FIX re-tuned | DRP - FIX re-tuned |
+|---|---|---|---|---|
+| demand x0.6 | -111.7 [-132.6, -90.9], -1.47% | -196.9 [-227.1, -166.7], -2.60% | -602.8 [-629.1, -577.0], -7.47% | -687.9 [-719.8, -655.7], -8.52% |
+| demand x0.8 | +132.4 [111.9, 153.4], +1.34% | +224.4 [197.2, 251.7], +2.28% | -39.4 [-63.5, -14.2], -0.39% (below) | +52.6 [23.9, 81.1], +0.52% (below) |
+| demand x1.25 | +1,127.6 [1,084.5, 1,171.2], +8.61% | +1,087.2 [1,044.4, 1,129.9], +8.30% | +819.3 [787.3, 852.0], +6.11% | +778.9 [744.8, 813.4], +5.81% |
+| demand x1.6 | +2,532.7 [2,473.6, 2,592.2], +18.42% | +2,389.7 [2,332.5, 2,447.7], +17.38% | +959.0 [924.2, 994.5], +6.26% | +816.0 [778.3, 853.8], +5.32% |
+| reversed arrivals | +857.3 [828.2, 886.6], +7.30% | -19.5 [-50.6, 10.7], -0.17% (equivalent) | same as against FIX | same as against FIX |
+| no shocks | +188.1 [170.6, 205.6], +1.66% | +437.4 [414.6, 459.4], +3.87% | -138.8 [-158.6, -118.9], -1.19% | +110.5 [90.6, 130.0], +0.95% (below) |
+
+In the reversed-arrivals cell the re-tuned fixed price is the base price (139.61), so the two comparisons coincide.
+
+**Invalidation rule.** EXP-001 rejected $H_0$ for both rules with positive estimates. At demand times 0.8 and 1.25 every interval lies above zero (OCC [111.9, 153.4] and [1,084.5, 1,171.2]; DRP [197.2, 251.7] and [1,044.4, 1,129.9]), so the rule is not triggered for either rule.
+
+**Beyond the rule.** Against the base-tuned FIX, the advantage grows when demand exceeds the forecast (up to +18.42% at x1.6, where FIX availability falls to 0.807) and reverses when demand falls to x0.6. Against the re-tuned FIX, the rules gain by more than the SESOI only at x1.25 and x1.6 among the demand-level cells; they lose clearly at x0.6 (-7.47% and -8.52%), are within the SESOI at x0.8, and without shocks OCC loses (-1.19%) while DRP gains below the SESOI (+0.95%). With reversed arrivals DRP is practically equivalent to FIX while OCC gains +7.30%.
+
+![Figure 3. EXP-003 mean paired revenue differences, all 24 contrasts (two rules, two comparators, six cells), with paired bootstrap 95% intervals, n = 4,000 streams per contrast. Source: F-EXP-003-forest.](../experiments/EXP-003/figures/fig-EXP-003-forest-revenue.svg)
+
+## 5.4 Exploratory checks made during interpretation
+
+These checks (journal J-0012, `results/exploratory/m4_audit_sensitivity.json`) ran no simulation and generated no stream. They read the committed summaries and the raw outputs after verifying their hashes. They were computed after the results were seen, are not adjusted for multiplicity and are not evidence for any preregistered hypothesis.
+
+Table 6. Exploratory checks (M4). Intervals are 95%. Source: `results/exploratory/m4_audit_sensitivity.json`.
+
+| Check | Question | Observation |
+|---|---|---|
+| B1, tuning-stream decomposition (in-sample) | Does a rule's advantage come from its response or from its coarser starting-price grid? | Base cell: price-resolution part -410.0 (OCC) and -1,810.1 (DRP), responsiveness part +879.6 and +2,338.9. EXP-002 OCC in sv0.25-k1.0 and sv1.0-k2.0: responsiveness +60.2 and +89.7, resolution -166.7 and -172.3. DRP at $\kappa = 1.0$: responsiveness -162.0 of -328.6 (sv0.25), -462.4 of -462.4 (sv0.5), -543.2 of -812.7 (sv1.0). |
+| B2, internal replication | Does EXP-002 sv0.5-k2.0 reproduce EXP-001? | Differences +28.4 [-13.3, 70.2] (OCC) and +29.0 [-15.3, 73.4] (DRP). |
+| B3, distribution | How often does a rule lose, and where does the base gain arise? | Base cell: the rules lose on 36.375% (OCC) and 32.15% (DRP) of streams. By tercile of realised arrivals: OCC +118.1, +43.5, +1,063.5; DRP +315.1, +136.8, +936.0. In the top tercile FIX sold out in 85.5% of streams and sell-through differences are near zero. |
+| B4, tuning optimism | Is the selected configuration's tuning revenue optimistic? | Base cell: evaluation minus tuning mean +43.6 (FIX), -19.0 (OCC), -23.2 (DRP); small relative to the effects, and evaluation streams are held out. |
+
+## 5.5 Expected versus observed
+
+Table 7. Predictions fixed before execution, observations and verdicts under the frozen rules.
+
+| Experiment | Prediction (frozen) | Observation | Verdict |
+|---|---|---|---|
+| EXP-001 OCC | $H_1$: $\Delta \neq 0$; planning expectation: small gain, at most 5% | +407.0 [373.2, 440.2], +3.47% | $H_0$ rejected; relevant; expectation met |
+| EXP-001 DRP | as above | +462.1 [426.0, 498.1], +3.94% | $H_0$ rejected; relevant; expectation met |
+| EXP-001 FIX6 | sign or class change would attribute the result to grid resolution | +816.6 and +871.6, same sign and class | not attributed to grid resolution (one-sided check, Section 6) |
+| EXP-002 cells | $H_1$ per cell; a result holding in one cell only is cell-specific | 18 of 18 reject; 8 negative, 10 positive | rejected everywhere; sign is cell-specific |
+| EXP-002 pattern | $\Delta(\kappa = 4) > \Delta(\kappa = 1)$ within each $\sigma_v$ | 6 of 6 interaction intervals above 0 (+611.5 to +1,754.1) | supported (descriptive) |
+| EXP-002 failure modes | sv1.0-k1.0 possibly degenerate; edge optima in extreme cells | sv1.0-k1.0 not degenerate (DRP -815.0); 8 rule optima on an edge, 4 of them DRP at the lower edge | reported as findings |
+| EXP-003 rule | invalidation if an interval at x0.8 or x1.25 lies opposite to EXP-001 | all four intervals above 0 | not triggered |
+| EXP-003 failure modes | large shifts may push prices to bounds; reversed arrivals may favour FIX strongly | DRP equivalent to FIX with reversed arrivals; OCC +7.30% | partly observed (DRP only) |
 
 # 6. Discussion
 
+**What the evidence supports.** Within this model, the advantage of simple dynamic rules over a well-tuned fixed price depends on how scarce the stock is relative to demand. At the base cell the gain is a few percent, consistent with a small finite-scale gap to the asymptotically optimal fixed price (Gallego and van Ryzin, 1994); the asymptotic regime itself is not tested. When expected arrivals equal capacity, both rules lose at every valuation dispersion, and DRP loses more than OCC in each of those cells. When arrivals are four times capacity, both rules gain at every dispersion.
+
+**Mechanisms.** Two observations explain most of the pattern, and both are model-dependent inferences.
+
+1. *Where the gain comes from.* At the base cell the exploratory tercile split (B3) shows that most of the average gain arises in streams with high realised demand, where the fixed price sells out early (85.5% of the top tercile) and the rules sell the same number of units at higher prices. In low-demand streams the rules gain by selling stock that would otherwise perish. The M3 report of EXP-001 named only the second channel; the audit withdrew that reading. The no-shocks cell of EXP-003 points the same way: without demand shocks, the gain over a correctly tuned fixed price largely disappears (OCC -1.19%, DRP +0.95%), so much of the base advantage is a response to demand uncertainty.
+2. *Why loose capacity hurts.* In the three $\kappa = 1.0$ cells the tuned fixed price sits where the purchase elasticity is close to -1 (-1.253, -1.047, -0.955). When stock does not bind, revenue per arriving buyer is $p \cdot P(v \geq p)$, which is maximised where the elasticity equals -1, so the fixed price is already near the unconstrained optimum and there is little scarcity to exploit. DRP's target asks it to clear the remaining stock by the deadline; with loose capacity the target is out of reach, and the multiplicative update keeps lowering the price over 60 periods even at $\eta = 0.025$ (mean price paid 81.6 against 100.48 in sv0.5-k1.0). The same clearance logic explains the losses at demand x0.6 in EXP-003.
+
+**Competing explanations.** Table 8 lists, for each confirmatory conclusion, the competing explanations named in the protocols and how far the results address them.
+
+Table 8. Competing explanations and how the evidence addresses them.
+
+| Conclusion | Competing explanation (protocol) | Addressed by | Status |
+|---|---|---|---|
+| EXP-001 gain | Finer tuning resolution, not policy structure | FIX6 arm (frozen); B1 decomposition | FIX6 is one-sided by construction; B1 shows the rules gain despite a coarser starting-price grid. Addressed, with the FIX6 caveat. |
+| EXP-001 gain | Specific to the tuning distribution | EXP-003 | Not specific under moderate shifts against the base-tuned FIX; against a re-tuned FIX the relevant gains are confined to demand above forecast and, for OCC, reversed arrivals. Partly addressed. |
+| EXP-001 gain | Losses from noise-chasing | Arm metrics | No net loss at the base cell, but the rules lose on about a third of streams (B3). Addressed for the mean only. |
+| EXP-001 gain | Myopic buyers (known confound) | Not testable in this model | Not addressed; stated as a limitation. |
+| EXP-002 signs | Grid fit differs across cells (edge optima) | Edge flags; B1 | Two OCC losses (sv0.25-k1.0, sv1.0-k2.0) are attributable to starting-price resolution on tuning streams; the DRP losses are mostly a property of its response. Partly addressed; no FIX6 arm was registered for EXP-002. |
+| EXP-002 pattern | Tightness or the tuned price level | Elasticity column | $\kappa$ and the tuned price move together; the pattern is not attributed to tightness alone. Not separable here. |
+| EXP-003 robustness | FIX tuned at the wrong level, not rule merit | Re-tuned FIX reference | Addressed: the advantage at x0.8 is mostly the fixed price's own misspecification cost. |
+
+**Second review pass.** A pass that argued against the preferred reading (`research/publication/review_pass_2.md`) led to four revisions, all recorded: the EXP-001 mechanism was corrected; the EXP-002 lower-edge reading was qualified by the realised DRP prices; the FIX6 check was reclassified as one-sided; and the EXP-003 invalidation rule is now described as a test against an equally misspecified fixed price, which is weaker than a test of structural advantage.
+
+**Practical significance.** The findings bound what a simulation of this kind can say. A seller who can tune a fixed price on the correct demand level loses little by not using these simple rules unless stock is scarce or demand can surprise upward. A seller facing loose capacity loses revenue with a clearance-seeking rule such as DRP. These statements hold for the synthetic market only.
+
 # 7. Limitations and threats to validity
+
+- **Simulation only.** All data are synthetic. Nothing here is evidence about any real market, airline, hotel or proprietary pricing system, and no fare is predicted.
+- **Behavioural assumptions.** Buyers are myopic, have unit demand and never return or compare sellers. Strategic waiting (Su, 2007) can change price paths and welfare. There is one seller, no competition, no costs and zero salvage.
+- **Arbitrary parameters.** Segment shares, medians, shock sizes and the horizon are planning choices, not calibrated estimates. EXP-002 and EXP-003 probe only a few directions, one factor at a time.
+- **Policy families as gridded.** Each family is measured on its frozen 36-configuration grid. 8 of 18 rule optima in EXP-002 lie on an edge; at upper edges the rule may be understated, and at the DRP lower edge the rule still moves prices substantially. The grids do not include the nesting values $k = 0$ and $\eta = 0$. No dynamic-programming reference was computed (owner decision), so the distance to the optimal policy is unknown.
+- **Statistical.** The EXP-002 permutation $p$-values sit at their floor, so the Holm values are bounds. Interaction contrasts, secondary metrics and EXP-003 intervals are unadjusted and descriptive. The M4 checks are exploratory and post hoc, and B1 is in-sample on tuning streams.
+- **Construct.** Revenue is the tuning objective, so a comparison on revenue is fair to each family on its own terms but says nothing about other objectives. The consumer surplus proxy rests on synthetic valuations. "Elasticity" is operationalised by $\sigma_v$, while the realised elasticity also depends on the tuned price.
+- **Execution.** The confirmatory runs shared a loaded machine with other sessions; timings are not results. Raw per-run outputs are git-ignored and must be regenerated to re-audit them.
+- **Literature.** The search was targeted, not systematic; three of the four cited sources were read as abstracts only.
+
+The living list is `research/limitations.md`.
 
 # 8. Ethics and responsible research
 
+The study uses synthetic data only; no personal data was collected and no human participant was involved, so no ethics approval was needed or claimed. No website was scraped and no proprietary system was probed. The claims boundary excludes airline personalisation claims, live scraping and actual fare predictions. The consumer surplus proxy is a property of synthetic agents, not a welfare measurement of people, and the results should not be read as guidance on charging real customers. The study evaluates availability and buyer-side outcomes as outcomes, not as targets for manipulation.
+
 # 9. Conclusion and future work
+
+In a transparent, preregistered simulation of a perishable stock, simple occupancy and demand-responsive pricing rules earn 3.47% and 3.94% more than the best fixed price at the base scenario. That advantage is conditional. It reverses in every loose-capacity cell, grows with demand-to-capacity tightness, survives moderate demand misspecification against an equally misspecified fixed price, and against a correctly re-tuned fixed price remains practically relevant only when demand exceeds the forecast or, for OCC, when the arrival order is reversed. Within this model, and for these two rule families, the value of dynamic pricing lies in responding to scarcity and to demand above the forecast, not in changing prices as such. Other dynamic rules, in particular a known-model optimal policy, were not tested and could behave differently.
+
+Feasible extensions, each needing a new experiment identifier and the owner's approval: grids that include the nesting values $k = 0$ and $\eta = 0$; a FIX6 arm in every cell; a known-model dynamic-programming reference; combined demand shifts or tuning on a mixture of demand levels; and strategic buyers.
 
 # 10. Data, code and artifact availability
 
+All code, protocols, configurations, committed summaries and figures are in the project repository (URL: placeholder, to be added by the owner if and when the repository is released). Key paths: `research/protocol.md`, `research/freeze.json`, `research/experiments/EXP-NNN/` (protocol, report, configuration, run manifest, summary, metrics, figures, reproduction notes), `research/publication/artifact_manifest.json` and `research/publication/evidence_audit.md`. From the repository root:
+
+```
+UV=/path/to/uv
+$UV sync --frozen
+PYTHONPATH=src $UV run python -m pytest -q
+PYTHONPATH=src $UV run python -m fare.cli run --config research/experiments/EXP-001/config.json --out results/raw/confirmatory
+PYTHONPATH=src $UV run python -m fare.summary --result results/raw/confirmatory/<run_set_id>/result.json --out research/experiments/EXP-001
+PYTHONPATH=src $UV run python -m fare.audit research/paper/manuscript.md
+```
+
+Replace EXP-001 by EXP-002 or EXP-003 for the other experiments (EXP-003's summary also takes `--exp001-summary research/experiments/EXP-001/summary.json`). The repository is source-available under a non-commercial research licence chosen by the owner. A clean-clone reproduction is scheduled for the release-candidate milestone and has not yet been performed.
+
 # 11. Funding, competing interests and AI assistance
 
-AI assistance: the author used an AI research and development assistant (Claude Code, Anthropic) for code, analysis scripts and drafting under the author's direction. The assistant is not an author. Funding and competing interests: to be completed before release.
+**Funding and competing interests.** To be stated by the owner before any release.
+
+**AI assistance.** The author used an AI research and development assistant (Claude Code, Anthropic) under the author's direction. The assistant proposed the draft protocols, wrote the simulation code and tests, ran the frozen experiments, composed the experiment reports, performed the evidence audit and drafted this manuscript. The author set the research question, approved the protocol amendments, froze the protocols, approved the authorship metadata and made every recorded owner decision (`research/decision_log.md`). Verification so far is automated (a test suite, hash checks, a recomputation of every committed table from the raw outputs and a number trace of this manuscript) plus the assistant's own second review pass; the author's review of this draft is pending (`research/publication/author_review.md`). The assistant is not an author.
 
 # References
 
+Elmaghraby, W., and Keskinocak, P. (2003). Dynamic pricing in the presence of inventory considerations: research overview, current practices, and future directions. *Management Science*, 49(10), 1287-1309. https://doi.org/10.1287/mnsc.49.10.1287.17315 (abstract only read).
+
+Gallego, G., and van Ryzin, G. (1994). Optimal dynamic pricing of inventories with stochastic demand over finite horizons. *Management Science*, 40(8), 999-1020. https://doi.org/10.1287/mnsc.40.8.999
+
+Gallego, G., and van Ryzin, G. (1997). A multiproduct dynamic pricing problem and its applications to network yield management. *Operations Research*, 45(1), 24-41. https://doi.org/10.1287/opre.45.1.24 (abstract only read).
+
+Su, X. (2007). Intertemporal pricing with strategic customer behavior. *Management Science*, 53(5), 726-741. https://doi.org/10.1287/mnsc.1060.0667 (abstract only read).
+
 # Supplementary appendix
+
+The complete experimental matrix, extended tables, configurations, robustness results, report links and deviations are in `research/paper/supplementary.md`.

@@ -320,3 +320,70 @@ $ .venv/bin/python -m pytest -q                      (end of session)
 ## 2026-11-25: M3 done (coordinator)
 
 The owner approved the experiment reports (owner, 2026-11-25, "approve all recommendations, RIGGED A", item 4). Subagents may not write report files, so the reports were composed by the M3 session from committed results only and written by the coordinator: 3 report(s). The coordinator checked that every decimal number in them appears in a committed file. With the complete matrices (or documented failures) recorded above, the M3 gate holds. M3 is **done**. Next: M4 (interpretation), not started.
+
+## 2026-11-25: M4 session (interpretation, evidence audit, manuscript)
+
+**Milestone.** M4, following `/Users/bechir/research/labs/_shared/M4-brief.md` after the owner's "Approve all recommendations, push then next" (`owner-approvals-2026-11-25b.md`, item 5; no FARE-specific item). Performed by the AI assistant (Claude Code). Nothing pushed.
+
+**Starting state.** `git status`: clean; HEAD fabf729. Freeze guard: all three experiments frozen (checked again after the registry status edit).
+
+**Commands and actual outputs.**
+
+```
+$ .venv/bin/python -m pytest -q                                    (start)
+143 passed in 2.07s
+$ PYTHONPATH=src nice -n 10 .venv/bin/python experiments/exploratory/m4_audit_sensitivity.py > results/exploratory/m4_audit_sensitivity.json
+first run: IndexError (EXP-003 base cell has tuning only); fixed; final run about 12 s, exit 0
+audit: 47/47 raw hashes match; 880 arm values and 174 contrast rows recompute with 0.0 discrepancy; 46/46 bootstrap replays identical; EXP-002 revenue intervals 8 below 0, 10 above
+$ fare.summary rerun into the scratchpad for EXP-001 to EXP-003
+metrics.csv, arm_summary.csv and forest figures byte-identical; summary.json identical except the output-path list
+$ PYTHONPATH=src .venv/bin/python -m fare.audit <manuscript, supplementary, reports, review pass, limitations>
+manuscript 455, supplementary 420, EXP-001 199, EXP-002 268, EXP-003 208, review pass 64, limitations 14 numbers: 0 untraced
+evidence_audit.md: 2 untraced, both checked by hand ("1,000" in prose; 0.08675 has 5 decimals, beyond the trace's 4)
+$ .venv/bin/python -I experiments/audit/keyed_table_check.py .
+keyed checks: 92, mismatches: 0
+$ pandoc research/paper/manuscript.md -s -t latex (CONTRIBUTING command) > research/paper/manuscript.tex
+exit 0
+$ .venv/bin/python -m pytest -q                                    (end)
+147 passed
+```
+
+**What the confounder and sensitivity review changed.** No frozen verdict changed. The interpretation is narrower than in M3:
+- The base-cell gain is concentrated in high-demand streams, where FIX sells out. The rules lose on 36.375% (OCC) and 32.15% (DRP) of base streams. Without shocks the gain over a correctly re-tuned FIX largely disappears.
+- The DRP losses with loose capacity come from its clearance target. Prices drift far below p0 even at eta = 0.025, which contradicts the frozen "close to a fixed price" reading; that reading is kept and the contradiction disclosed.
+- Two OCC losses (sv0.25-k1.0, sv1.0-k2.0) are attributable to p0 resolution on tuning streams.
+- The FIX6 check is one-sided, and the EXP-003 rule's benchmark is equally misspecified.
+- EXP-002 sv0.5-k2.0 replicates EXP-001 on independent streams.
+
+**Evidence-audit findings fixed (F-1 to F-11).**
+- EXP-002 sign count 7/11 corrected to 8/10.
+- EXP-001 mechanism sentence withdrawn.
+- EXP-002 elasticities reported.
+- Stale registry, README, CITATION, limitations, claims-audit and manifest status text updated.
+- One external-claim wording aligned with the source.
+- Claims register columns added.
+- Exact values given where rounding was ambiguous.
+
+**Changed files.**
+- New: `src/fare/audit.py`, `tests/test_audit.py`, `experiments/exploratory/m4_audit_sensitivity.py`, `experiments/audit/keyed_table_check.py`, `results/exploratory/m4_audit_sensitivity.json`, `research/publication/evidence_audit.md`, `research/publication/review_pass_2.md`.
+- Modified:
+  - `research/paper/{manuscript.md, manuscript.tex, supplementary.md, figures/README.md}`;
+  - `research/experiments/EXP-00N/report.md` (v1.1);
+  - `research/{claims_register.csv, experiment_registry.csv, experiment_journal.jsonl (J-0012), decision_log.md (D-013), limitations.md (items 17 to 22)}`;
+  - `research/publication/{artifact_manifest.json, claims_audit.md}`;
+  - `README.md`, `CITATION.cff` (abstract), `roadmap.md`, `progress.md`.
+
+**M4 gate.**
+- Every numerical claim maps to a result id, config hash and figure or table (claims register).
+- Every number in the manuscript and reports traces to a committed result file.
+- Every external claim maps to a source marked full text or abstract only.
+- Unsupported statements were removed or qualified.
+- M4 is **done**.
+
+**Owner decisions needed.**
+- Review the manuscript, including the proposed title, which replaces the working title.
+- Provide the funding and competing-interests statements.
+- Confirm the AI-assistance disclosure.
+- Optionally, register new experiments for the follow-ups listed in manuscript section 9. Each needs a new EXP ID.
+
+**Next action.** M5 (interactive experience), using only the M4-verified numbers.

@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
-# Limitations (living document, M0 draft 2026-11-24)
+# Limitations (living document; started at M0 on 2026-11-24, updated at M4 on 2026-11-25)
 
-No results exist yet. These are limitations known at design time; the list is extended as the study proceeds.
+Items 1 to 11 were known at design time. Items 12 to 16 come from the confirmatory results (M3), and items 17 to 22 from the M4 interpretation, evidence audit and second review pass (`research/publication/review_pass_2.md`).
 
 1. **Simulation only.** All data are synthetic. Results hold only within the model's assumptions and are not evidence about any real market, airline, hotel or proprietary pricing system.
 2. **Myopic, unit-demand buyers.** Buyers do not wait strategically, do not return, do not compare competitors and buy at most one unit. Strategic behaviour can change optimal price paths and welfare (Su, 2007).
@@ -19,3 +19,9 @@ No results exist yet. These are limitations known at design time; the list is ex
 14. **Sign-flip p-values at the permutation floor.** In EXP-002 every raw p-value equals 1/10001, the smallest value 10,000 permutations can give; Holm-adjusted values (0.0018) are therefore bounds, not precise p-values.
 15. **Misspecification is one-sided.** Base-tuned dynamic rules lose to the base-tuned fixed price when demand falls to 0.6 times the tuning level (EXP-003, descriptive), and against a fixed price re-tuned to the true demand they lose at x0.6 and, for OCC, at x0.8 and without shocks. The advantage depends on demand not falling far below the tuning forecast.
 16. **Shared machine.** Confirmatory timings were measured with two concurrent jobs on a machine shared with other sessions.
+17. **The frozen lower-edge reading does not hold for DRP prices (M4).** The protocol reads a DRP optimum at eta = 0.025 as close to a fixed price. The realised prices are not: DRP's mean price paid is 81.6 against p0 = 100.48 in sv0.5-k1.0 and 130.7 against 252.38 in sv1.0-k1.0 (`research/experiments/EXP-002/arm_summary.csv`). The multiplicative update compounds over 60 periods while the clearance target stays out of reach. The frozen reading is kept and this contradiction is disclosed.
+18. **Coarse starting-price grid for the rules (M4).** The rules choose among 6 starting prices and FIX among 36. An exploratory, in-sample decomposition on tuning streams (J-0012, B1) attributes the OCC losses in sv0.25-k1.0 and sv1.0-k2.0 to this resolution rather than to the occupancy response. EXP-002 registered no FIX6 arm, so the frozen analysis cannot check it.
+19. **One-sided robustness checks (M4).** The FIX6 check of EXP-001 could not reverse a positive result, because FIX6 chooses among a subset of FIX's prices. The EXP-003 invalidation rule compares the rules with an equally misspecified fixed price. Neither check is a strong test of structural advantage.
+20. **Tightness and price level are confounded (M4).** In EXP-002, the tuned price and the purchase elasticity at that price change with kappa as well as with sigma_v (elasticity -0.955 to -2.156). The tightness pattern cannot be attributed to tightness alone.
+21. **Exploratory checks are post hoc (M4).** The checks B1 to B4 (J-0012) were computed after the results were seen, are unadjusted, and B1 is in-sample on tuning streams. They qualify interpretations; they never change a frozen verdict.
+22. **Number-trace limits (M4).** The automated number trace matches each displayed number to some stored value at the displayed precision. It cannot show that a number is quoted for the right quantity, and it is weak for small values. The main tables were therefore checked by key, and the prose was checked by reading (`research/publication/evidence_audit.md`).

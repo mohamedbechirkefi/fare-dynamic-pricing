@@ -1,7 +1,7 @@
 {
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "updated": "2026-11-25",
-  "status": "M3: confirmatory summaries and figures for EXP-001 to EXP-003; experiment reports and manuscript numbers pending",
+  "status": "M4: every table, figure and numbered prose block of the manuscript, supplementary file and experiment reports v1.1 is listed; each individual number traces to the listed result files (python -m fare.audit, 0 untraced; research/publication/evidence_audit.md)",
   "entries": [
     {
       "artifact_id": "T-EXP-001-contrasts",
@@ -137,17 +137,354 @@
         "protocol_sha256": "b1e2a2f8931bada91fd5f4589f0fa8bd50004db6c05d568c9354f43f14a510fd"
       },
       "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252"
+    },
+    {
+      "artifact_id": "MS-T1",
+      "kind": "table",
+      "used_in": "manuscript Table 1",
+      "path": "research/experiments/EXP-001/protocol.md",
+      "metric_definition": "frozen base parameters (protocol section 7)",
+      "experiment_id": "EXP-001",
+      "run_ids": "EXP-001-con-config-20261124T233503Z/<cell>/<arm>/eval0000-eval3999",
+      "result_path": "results/raw/confirmatory/EXP-001-con-config-20261124T233503Z/result.json",
+      "generator_script": "none (protocol text)",
+      "config_or_protocol_hash": {
+        "EXP-001": {
+          "config_canonical_sha256": "592a197632390bb9ab8fdcf7e95555e3bb590c921faba573175c4dcaa9cffc76",
+          "protocol_sha256": "06f939d8fd59389a3438cd539f862a36ed4d47275137b50aeb3ffdc233df2ec2"
+        }
+      },
+      "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252",
+      "claims": []
+    },
+    {
+      "artifact_id": "MS-T2",
+      "kind": "table",
+      "used_in": "manuscript Table 2; EXP-001 report section 8",
+      "path": "research/experiments/EXP-001/metrics.csv",
+      "metric_definition": "paired revenue difference arm minus comparator, Bonferroni 97.5% bootstrap and paired t; relative to comparator mean; SESOI class",
+      "experiment_id": "EXP-001",
+      "run_ids": "EXP-001-con-config-20261124T233503Z/<cell>/<arm>/eval0000-eval3999",
+      "result_path": "results/raw/confirmatory/EXP-001-con-config-20261124T233503Z/result.json",
+      "generator_script": "src/fare/summary.py",
+      "config_or_protocol_hash": {
+        "EXP-001": {
+          "config_canonical_sha256": "592a197632390bb9ab8fdcf7e95555e3bb590c921faba573175c4dcaa9cffc76",
+          "protocol_sha256": "06f939d8fd59389a3438cd539f862a36ed4d47275137b50aeb3ffdc233df2ec2"
+        }
+      },
+      "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252",
+      "claims": [
+        "C-001",
+        "C-002",
+        "C-003"
+      ]
+    },
+    {
+      "artifact_id": "MS-S5.1",
+      "kind": "prose",
+      "used_in": "manuscript section 5.1; supplementary S2.1",
+      "path": "research/experiments/EXP-001/arm_summary.csv; research/experiments/EXP-001/metrics.csv",
+      "metric_definition": "per-arm means and SDs; secondary contrasts at 95%",
+      "experiment_id": "EXP-001",
+      "run_ids": "EXP-001-con-config-20261124T233503Z/<cell>/<arm>/eval0000-eval3999",
+      "result_path": "results/raw/confirmatory/EXP-001-con-config-20261124T233503Z/result.json",
+      "generator_script": "src/fare/summary.py",
+      "config_or_protocol_hash": {
+        "EXP-001": {
+          "config_canonical_sha256": "592a197632390bb9ab8fdcf7e95555e3bb590c921faba573175c4dcaa9cffc76",
+          "protocol_sha256": "06f939d8fd59389a3438cd539f862a36ed4d47275137b50aeb3ffdc233df2ec2"
+        }
+      },
+      "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252",
+      "claims": [
+        "C-014"
+      ]
+    },
+    {
+      "artifact_id": "MS-T3",
+      "kind": "table",
+      "used_in": "manuscript Table 3; EXP-002 report section 8",
+      "path": "research/experiments/EXP-002/metrics.csv; research/experiments/EXP-002/summary.json; results/exploratory/m4_audit_sensitivity.json (audit.EXP-002_elasticity)",
+      "metric_definition": "paired revenue difference vs re-tuned FIX, 95% bootstrap; Holm over 18 sign-flip p-values; elasticity d ln P / d ln p at tuned FIX price",
+      "experiment_id": "EXP-002",
+      "run_ids": "EXP-002-con-config-20261124T233503Z/<cell>/<arm>/eval0000-eval3999",
+      "result_path": "results/raw/confirmatory/EXP-002-con-config-20261124T233503Z/result.json",
+      "generator_script": "src/fare/summary.py",
+      "config_or_protocol_hash": {
+        "EXP-002": {
+          "config_canonical_sha256": "df7da4d68172d469301e6b46d70628dede3cfa255ee660898ceedf6d30d62856",
+          "protocol_sha256": "7ffbc666ffd6465791d09e10ee3a3014002a513c90a876bf65c6e8ea4d2f6ab9"
+        }
+      },
+      "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252",
+      "claims": [
+        "C-004",
+        "C-005",
+        "C-012",
+        "C-015"
+      ]
+    },
+    {
+      "artifact_id": "MS-T4",
+      "kind": "table",
+      "used_in": "manuscript Table 4; EXP-002 report section 8",
+      "path": "research/experiments/EXP-002/summary.json",
+      "metric_definition": "interaction contrast Delta(kappa=4) - Delta(kappa=1), independent stratified bootstrap 95%",
+      "experiment_id": "EXP-002",
+      "run_ids": "EXP-002-con-config-20261124T233503Z/<cell>/<arm>/eval0000-eval3999",
+      "result_path": "results/raw/confirmatory/EXP-002-con-config-20261124T233503Z/result.json",
+      "generator_script": "src/fare/summary.py",
+      "config_or_protocol_hash": {
+        "EXP-002": {
+          "config_canonical_sha256": "df7da4d68172d469301e6b46d70628dede3cfa255ee660898ceedf6d30d62856",
+          "protocol_sha256": "7ffbc666ffd6465791d09e10ee3a3014002a513c90a876bf65c6e8ea4d2f6ab9"
+        }
+      },
+      "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252",
+      "claims": [
+        "C-006"
+      ]
+    },
+    {
+      "artifact_id": "MS-T5",
+      "kind": "table",
+      "used_in": "manuscript Table 5; EXP-003 report section 8",
+      "path": "research/experiments/EXP-003/metrics.csv; research/experiments/EXP-003/summary.json",
+      "metric_definition": "paired revenue difference vs base-tuned FIX and vs re-tuned FIX, 95% bootstrap; invalidation rule",
+      "experiment_id": "EXP-003",
+      "run_ids": "EXP-003-con-config-20261124T233547Z/<cell>/<arm>/eval0000-eval3999",
+      "result_path": "results/raw/confirmatory/EXP-003-con-config-20261124T233547Z/result.json",
+      "generator_script": "src/fare/summary.py",
+      "config_or_protocol_hash": {
+        "EXP-003": {
+          "config_canonical_sha256": "3c25c10c1cfcacf1103e6613b195c58c5ce0afd675556efa290f8b380ca039fd",
+          "protocol_sha256": "b1e2a2f8931bada91fd5f4589f0fa8bd50004db6c05d568c9354f43f14a510fd"
+        }
+      },
+      "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252",
+      "claims": [
+        "C-007",
+        "C-008",
+        "C-013"
+      ]
+    },
+    {
+      "artifact_id": "MS-T6",
+      "kind": "table",
+      "used_in": "manuscript Table 6 and section 5.4; supplementary S4; EXP-001/002/003 reports v1.1 (M4 revisions)",
+      "path": "results/exploratory/m4_audit_sensitivity.json",
+      "metric_definition": "B1 tuning-stream decomposition; B2 replication difference (normal 95%); B3 per-stream distribution and arrivals terciles; B4 tuning optimism",
+      "experiment_id": "EXP-001;EXP-002;EXP-003",
+      "run_ids": "EXP-001-con-config-20261124T233503Z/<cell>/<arm>/eval0000-eval3999; EXP-002-con-config-20261124T233503Z/<cell>/<arm>/eval0000-eval3999; EXP-003-con-config-20261124T233547Z/<cell>/<arm>/eval0000-eval3999",
+      "result_path": "results/raw/confirmatory/EXP-001-con-config-20261124T233503Z/result.json; results/raw/confirmatory/EXP-002-con-config-20261124T233503Z/result.json; results/raw/confirmatory/EXP-003-con-config-20261124T233547Z/result.json",
+      "generator_script": "experiments/exploratory/m4_audit_sensitivity.py",
+      "config_or_protocol_hash": {
+        "EXP-001": {
+          "config_canonical_sha256": "592a197632390bb9ab8fdcf7e95555e3bb590c921faba573175c4dcaa9cffc76",
+          "protocol_sha256": "06f939d8fd59389a3438cd539f862a36ed4d47275137b50aeb3ffdc233df2ec2"
+        },
+        "EXP-002": {
+          "config_canonical_sha256": "df7da4d68172d469301e6b46d70628dede3cfa255ee660898ceedf6d30d62856",
+          "protocol_sha256": "7ffbc666ffd6465791d09e10ee3a3014002a513c90a876bf65c6e8ea4d2f6ab9"
+        },
+        "EXP-003": {
+          "config_canonical_sha256": "3c25c10c1cfcacf1103e6613b195c58c5ce0afd675556efa290f8b380ca039fd",
+          "protocol_sha256": "b1e2a2f8931bada91fd5f4589f0fa8bd50004db6c05d568c9354f43f14a510fd"
+        }
+      },
+      "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252 (confirmatory runs); script committed in the M4 commit",
+      "claims": [
+        "C-009",
+        "C-010",
+        "C-011"
+      ],
+      "label": "exploratory (J-0012); reads the confirmatory run sets; never a verdict"
+    },
+    {
+      "artifact_id": "MS-T7",
+      "kind": "table",
+      "used_in": "manuscript Table 7 (expected versus observed)",
+      "path": "research/experiments/EXP-NNN/summary.json (verdict)",
+      "metric_definition": "frozen decision rules of each protocol",
+      "experiment_id": "EXP-001;EXP-002;EXP-003",
+      "run_ids": "EXP-001-con-config-20261124T233503Z/<cell>/<arm>/eval0000-eval3999; EXP-002-con-config-20261124T233503Z/<cell>/<arm>/eval0000-eval3999; EXP-003-con-config-20261124T233547Z/<cell>/<arm>/eval0000-eval3999",
+      "result_path": "results/raw/confirmatory/EXP-001-con-config-20261124T233503Z/result.json; results/raw/confirmatory/EXP-002-con-config-20261124T233503Z/result.json; results/raw/confirmatory/EXP-003-con-config-20261124T233547Z/result.json",
+      "generator_script": "src/fare/summary.py",
+      "config_or_protocol_hash": {
+        "EXP-001": {
+          "config_canonical_sha256": "592a197632390bb9ab8fdcf7e95555e3bb590c921faba573175c4dcaa9cffc76",
+          "protocol_sha256": "06f939d8fd59389a3438cd539f862a36ed4d47275137b50aeb3ffdc233df2ec2"
+        },
+        "EXP-002": {
+          "config_canonical_sha256": "df7da4d68172d469301e6b46d70628dede3cfa255ee660898ceedf6d30d62856",
+          "protocol_sha256": "7ffbc666ffd6465791d09e10ee3a3014002a513c90a876bf65c6e8ea4d2f6ab9"
+        },
+        "EXP-003": {
+          "config_canonical_sha256": "3c25c10c1cfcacf1103e6613b195c58c5ce0afd675556efa290f8b380ca039fd",
+          "protocol_sha256": "b1e2a2f8931bada91fd5f4589f0fa8bd50004db6c05d568c9354f43f14a510fd"
+        }
+      },
+      "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252",
+      "claims": []
+    },
+    {
+      "artifact_id": "MS-T8",
+      "kind": "table",
+      "used_in": "manuscript Table 8 (competing explanations)",
+      "path": "research/experiments/EXP-NNN/summary.json; results/exploratory/m4_audit_sensitivity.json",
+      "metric_definition": "qualitative; numbers from MS-T2 to MS-T6",
+      "experiment_id": "EXP-001;EXP-002;EXP-003",
+      "run_ids": "EXP-001-con-config-20261124T233503Z/<cell>/<arm>/eval0000-eval3999; EXP-002-con-config-20261124T233503Z/<cell>/<arm>/eval0000-eval3999; EXP-003-con-config-20261124T233547Z/<cell>/<arm>/eval0000-eval3999",
+      "result_path": "results/raw/confirmatory/EXP-001-con-config-20261124T233503Z/result.json; results/raw/confirmatory/EXP-002-con-config-20261124T233503Z/result.json; results/raw/confirmatory/EXP-003-con-config-20261124T233547Z/result.json",
+      "generator_script": "src/fare/summary.py",
+      "config_or_protocol_hash": {
+        "EXP-001": {
+          "config_canonical_sha256": "592a197632390bb9ab8fdcf7e95555e3bb590c921faba573175c4dcaa9cffc76",
+          "protocol_sha256": "06f939d8fd59389a3438cd539f862a36ed4d47275137b50aeb3ffdc233df2ec2"
+        },
+        "EXP-002": {
+          "config_canonical_sha256": "df7da4d68172d469301e6b46d70628dede3cfa255ee660898ceedf6d30d62856",
+          "protocol_sha256": "7ffbc666ffd6465791d09e10ee3a3014002a513c90a876bf65c6e8ea4d2f6ab9"
+        },
+        "EXP-003": {
+          "config_canonical_sha256": "3c25c10c1cfcacf1103e6613b195c58c5ce0afd675556efa290f8b380ca039fd",
+          "protocol_sha256": "b1e2a2f8931bada91fd5f4589f0fa8bd50004db6c05d568c9354f43f14a510fd"
+        }
+      },
+      "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252",
+      "claims": []
+    },
+    {
+      "artifact_id": "MS-F1",
+      "kind": "figure",
+      "used_in": "manuscript Figure 1",
+      "path": "research/experiments/EXP-001/figures/fig-EXP-001-forest-revenue.svg",
+      "metric_definition": "mean paired revenue difference with 97.5% bootstrap interval and SESOI band",
+      "experiment_id": "EXP-001",
+      "run_ids": "EXP-001-con-config-20261124T233503Z/<cell>/<arm>/eval0000-eval3999",
+      "result_path": "results/raw/confirmatory/EXP-001-con-config-20261124T233503Z/result.json",
+      "generator_script": "src/fare/summary.py",
+      "config_or_protocol_hash": {
+        "EXP-001": {
+          "config_canonical_sha256": "592a197632390bb9ab8fdcf7e95555e3bb590c921faba573175c4dcaa9cffc76",
+          "protocol_sha256": "06f939d8fd59389a3438cd539f862a36ed4d47275137b50aeb3ffdc233df2ec2"
+        }
+      },
+      "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252",
+      "claims": []
+    },
+    {
+      "artifact_id": "MS-F2",
+      "kind": "figure",
+      "used_in": "manuscript Figure 2",
+      "path": "research/experiments/EXP-002/figures/fig-EXP-002-forest-revenue.svg",
+      "metric_definition": "mean paired revenue difference with 95% bootstrap interval and SESOI band",
+      "experiment_id": "EXP-002",
+      "run_ids": "EXP-002-con-config-20261124T233503Z/<cell>/<arm>/eval0000-eval3999",
+      "result_path": "results/raw/confirmatory/EXP-002-con-config-20261124T233503Z/result.json",
+      "generator_script": "src/fare/summary.py",
+      "config_or_protocol_hash": {
+        "EXP-002": {
+          "config_canonical_sha256": "df7da4d68172d469301e6b46d70628dede3cfa255ee660898ceedf6d30d62856",
+          "protocol_sha256": "7ffbc666ffd6465791d09e10ee3a3014002a513c90a876bf65c6e8ea4d2f6ab9"
+        }
+      },
+      "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252",
+      "claims": []
+    },
+    {
+      "artifact_id": "MS-F3",
+      "kind": "figure",
+      "used_in": "manuscript Figure 3",
+      "path": "research/experiments/EXP-003/figures/fig-EXP-003-forest-revenue.svg",
+      "metric_definition": "mean paired revenue difference with 95% bootstrap interval",
+      "experiment_id": "EXP-003",
+      "run_ids": "EXP-003-con-config-20261124T233547Z/<cell>/<arm>/eval0000-eval3999",
+      "result_path": "results/raw/confirmatory/EXP-003-con-config-20261124T233547Z/result.json",
+      "generator_script": "src/fare/summary.py",
+      "config_or_protocol_hash": {
+        "EXP-003": {
+          "config_canonical_sha256": "3c25c10c1cfcacf1103e6613b195c58c5ce0afd675556efa290f8b380ca039fd",
+          "protocol_sha256": "b1e2a2f8931bada91fd5f4589f0fa8bd50004db6c05d568c9354f43f14a510fd"
+        }
+      },
+      "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252",
+      "claims": []
+    },
+    {
+      "artifact_id": "F-EXP-NNN-price",
+      "kind": "figure",
+      "used_in": "experiment reports section 8",
+      "path": "research/experiments/EXP-NNN/figures/fig-EXP-NNN-<cell>-price.svg and fig-EXP-001-base-diff.svg",
+      "metric_definition": "price path on evaluation stream 0; per-stream paired differences",
+      "experiment_id": "EXP-001;EXP-002;EXP-003",
+      "run_ids": "EXP-001-con-config-20261124T233503Z/<cell>/<arm>/eval0000-eval3999; EXP-002-con-config-20261124T233503Z/<cell>/<arm>/eval0000-eval3999; EXP-003-con-config-20261124T233547Z/<cell>/<arm>/eval0000-eval3999",
+      "result_path": "results/raw/confirmatory/EXP-001-con-config-20261124T233503Z/result.json; results/raw/confirmatory/EXP-002-con-config-20261124T233503Z/result.json; results/raw/confirmatory/EXP-003-con-config-20261124T233547Z/result.json",
+      "generator_script": "src/fare/report.py (copied unchanged from the raw report; byte-identical, M4 audit)",
+      "config_or_protocol_hash": {
+        "EXP-001": {
+          "config_canonical_sha256": "592a197632390bb9ab8fdcf7e95555e3bb590c921faba573175c4dcaa9cffc76",
+          "protocol_sha256": "06f939d8fd59389a3438cd539f862a36ed4d47275137b50aeb3ffdc233df2ec2"
+        },
+        "EXP-002": {
+          "config_canonical_sha256": "df7da4d68172d469301e6b46d70628dede3cfa255ee660898ceedf6d30d62856",
+          "protocol_sha256": "7ffbc666ffd6465791d09e10ee3a3014002a513c90a876bf65c6e8ea4d2f6ab9"
+        },
+        "EXP-003": {
+          "config_canonical_sha256": "3c25c10c1cfcacf1103e6613b195c58c5ce0afd675556efa290f8b380ca039fd",
+          "protocol_sha256": "b1e2a2f8931bada91fd5f4589f0fa8bd50004db6c05d568c9354f43f14a510fd"
+        }
+      },
+      "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252",
+      "claims": []
+    },
+    {
+      "artifact_id": "MS-S2",
+      "kind": "table",
+      "used_in": "supplementary S1 to S3",
+      "path": "research/experiments/EXP-NNN/{summary.json, arm_summary.csv}; research/freeze.json",
+      "metric_definition": "counts, tuned configurations, arm means, hashes",
+      "experiment_id": "EXP-001;EXP-002;EXP-003",
+      "run_ids": "EXP-001-con-config-20261124T233503Z/<cell>/<arm>/eval0000-eval3999; EXP-002-con-config-20261124T233503Z/<cell>/<arm>/eval0000-eval3999; EXP-003-con-config-20261124T233547Z/<cell>/<arm>/eval0000-eval3999",
+      "result_path": "results/raw/confirmatory/EXP-001-con-config-20261124T233503Z/result.json; results/raw/confirmatory/EXP-002-con-config-20261124T233503Z/result.json; results/raw/confirmatory/EXP-003-con-config-20261124T233547Z/result.json",
+      "generator_script": "src/fare/summary.py",
+      "config_or_protocol_hash": {
+        "EXP-001": {
+          "config_canonical_sha256": "592a197632390bb9ab8fdcf7e95555e3bb590c921faba573175c4dcaa9cffc76",
+          "protocol_sha256": "06f939d8fd59389a3438cd539f862a36ed4d47275137b50aeb3ffdc233df2ec2"
+        },
+        "EXP-002": {
+          "config_canonical_sha256": "df7da4d68172d469301e6b46d70628dede3cfa255ee660898ceedf6d30d62856",
+          "protocol_sha256": "7ffbc666ffd6465791d09e10ee3a3014002a513c90a876bf65c6e8ea4d2f6ab9"
+        },
+        "EXP-003": {
+          "config_canonical_sha256": "3c25c10c1cfcacf1103e6613b195c58c5ce0afd675556efa290f8b380ca039fd",
+          "protocol_sha256": "b1e2a2f8931bada91fd5f4589f0fa8bd50004db6c05d568c9354f43f14a510fd"
+        }
+      },
+      "code_revision": "4204eac0776f4a04e512ef5ce92a10eefa5c5252",
+      "claims": []
     }
   ],
   "entry_fields": [
     "artifact_id",
     "kind",
+    "used_in",
+    "path",
     "experiment_id",
     "run_ids",
     "metric_definition",
     "result_path",
     "generator_script",
     "config_or_protocol_hash",
-    "code_revision"
-  ]
+    "code_revision",
+    "claims",
+    "label"
+  ],
+  "number_trace": {
+    "command": "PYTHONPATH=src .venv/bin/python -m fare.audit research/paper/manuscript.md research/paper/supplementary.md research/experiments/EXP-00*/report.md research/publication/review_pass_2.md",
+    "sources": "fare.audit.SOURCES (committed summaries, metrics, arm summaries, run manifests, configs, exploratory JSON, freeze record)",
+    "keyed_check": ".venv/bin/python -I experiments/audit/keyed_table_check.py . (Tables 2, 3 and 5: 92 checks, 0 mismatches)"
+  }
 }

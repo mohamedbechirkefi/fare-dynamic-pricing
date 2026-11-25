@@ -1,16 +1,16 @@
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
 # FARE roadmap
 
-Updated 2026-11-25 (M3: frozen matrix run in full; experiment reports pending). Effort is a planning estimate in focused days (five-day target). Section 11.6 additions of the master prompt are included and mandatory.
+Updated 2026-11-25 (M4 done: interpretation, evidence audit, manuscript draft, second review pass). Effort is a planning estimate in focused days (five-day target). Section 11.6 additions of the master prompt are included and mandatory.
 
 | ID | Milestone | Depends on | Priority | Effort | Status | Blockers |
 |---|---|---|---|---|---|---|
 | M0 | Bootstrap and feasibility | none | P0 | 0.5 d | done pending owner review (see acceptance) | none |
 | M1 | Research and preregistration | M0 | P0 | 0.5 d | done: protocols frozen v1.0 (owner-approved 2026-11-24, D-009; `research/freeze.json`); **M1 gate passed** | none |
 | M2 | Core implementation | M1 drafts (implementation may start before the freeze) | P0 | 1 d | implemented; acceptance met for the draft protocol (133 tests pass); exploratory smoke and pilot run | none (frozen configs in place) |
-| M3 | Experiments | M2 gate; M1 freeze for confirmatory runs | P0 | 0.75 d | matrix complete: EXP-001 73,000, EXP-002 594,000, EXP-003 258,000 runs, 0 failed (J-0009 to J-0011); summaries, figures, claims and records done; **11.3 reports not written** | 11.3 reports for EXP-001 to EXP-003 (the file tool refused them this session; owner or coordinator to arrange) |
-| M4 | Interpretation | M3 | P0 | 1 d | not started | M3 reports |
-| M5 | Interactive experience | M2 schemas; M4 verified results for published numbers | P1 (cut first if time is short) | 0.75 d | not started | M4 |
+| M3 | Experiments | M2 gate; M1 freeze for confirmatory runs | P0 | 0.75 d | matrix complete: EXP-001 73,000, EXP-002 594,000, EXP-003 258,000 runs, 0 failed (J-0009 to J-0011); summaries, figures, claims and records done; 11.3 reports written by the coordinator (D-012); **done** | none |
+| M4 | Interpretation | M3 | P0 | 1 d | **done** 2026-11-25 (D-013, J-0012): confounder and sensitivity review, expected versus observed, claims register with result ids, evidence audit (11 findings fixed), manuscript and supplementary, second review pass; gate holds | owner review of the manuscript, title, funding and competing-interests statements (not a gate blocker) |
+| M5 | Interactive experience | M2 schemas; M4 verified results for published numbers | P1 (cut first if time is short) | 0.75 d | not started | none (M4 done); owner review of M4 numbers advised first |
 | M6 | Release candidate | M4, M5 | P0 | 0.5 d | not started | owner approval for any publication (G-PUBLIC) |
 
 ## M0: Bootstrap and feasibility
@@ -51,13 +51,14 @@ Updated 2026-11-25 (M3: frozen matrix run in full; experiment reports pending). 
 - Deliverables: smoke run, metric validation, frozen matrix EXP-001 to EXP-003, raw machine-readable results, figures with uncertainty.
 - 11.6 additions: generate each individual report (11.3) as its experiment finishes; record unsuccessful runs and deviations at once; capture provenance during execution.
 - Acceptance: complete planned matrix or documented failure; no silently dropped runs; each report has the twelve sections.
-- Status (2026-11-25): the planned matrix is complete, no run failed or was dropped, provenance captured at run time (D-010). The gate's matrix condition holds; the 11.6 requirement "reports written as experiments finish" does not, because the three reports could not be written in the M3 session. M3 is therefore not marked done.
+- Status (2026-11-25): the planned matrix is complete, no run failed or was dropped, provenance captured at run time (D-010). The three 11.3 reports were written by the coordinator from committed results (D-011, D-012). M3 is done.
 
 ## M4: Interpretation
 
 - Deliverables: confounder inspection, sensitivity analyses (tuning grid, EXP-002, EXP-003), expected versus observed, claims register, limitations.
 - 11.6 additions: finish experiment reports and evidence audit; synthesise the manuscript; include contradictory results and sensitivity; second review pass challenging the preferred hypothesis.
 - Acceptance: each numerical claim maps to result ID, config and figure; each external claim maps to an opened source; unsupported claims removed or qualified.
+- Status (2026-11-25): done. Every row of `research/claims_register.csv` carries a result id, config hash, figure or table and manuscript section; every number in the manuscript, supplementary file, reports and review pass traces to a committed result file (`python -m fare.audit`, 0 untraced); external claims map to sources marked full text or abstract only. Exploratory checks are J-0012; records are D-013, `research/publication/evidence_audit.md` and `review_pass_2.md`.
 
 ## M5: Interactive experience
 

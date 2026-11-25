@@ -9,7 +9,7 @@
 |---|---|
 | Experiment | EXP-001 |
 | Report date | 2026-11-25 |
-| Report version | 1.0 (M3) |
+| Report version | 1.1 (M4, 2026-11-25: evidence audit and interpretation revisions listed in section 9, "M4 revisions") |
 | Status | confirmatory, complete |
 | Authorship | Mohamed Bechir Kefi (owner-approved, C3). The AI assistant (Claude Code) ran the experiment and composed this report from committed results under the owner's decision of 2026-11-25 (D-011, D-012). It is disclosed and is not an author. |
 | Protocol | `research/experiments/EXP-001/protocol.md` v1.0, SHA-256 `06f939d8fd59389a3438cd539f862a36ed4d47275137b50aeb3ffdc233df2ec2`; main protocol `d4b7c1e04c1152853769f1a1de851a5fc1950a91b37cba693543b88ffebe03b1` |
@@ -158,10 +158,11 @@ A stock-out period of 61 (T + 1) means the stock never ran out.
 - **What was measured.**
   - On this stream distribution, the tuned OCC and DRP rules earn 3.47% and 3.94% more revenue per season than the best of 36 fixed prices. Both intervals are far from 0.
   - Pairing matters. The revenue SD under FIX is 2,262.1, while the paired-difference SDs are 951.7 and 1,013.7.
-- **How the gain arises.** This is a model-dependent inference from the secondary metrics.
-  - The dynamic arms sell more units (sell-through +0.093 and +0.146) at a lower mean price paid.
-  - They raise the consumer surplus proxy by 1,141.8 and 1,223.7.
-  - In this model the gain comes from selling stock that the fixed price leaves to perish, not from charging more on average.
+- **How the gain arises.** This is a model-dependent inference from the secondary metrics and from an exploratory split (M4, J-0012).
+  - On average, the dynamic arms sell more units (sell-through +0.093 and +0.146) at a lower mean price paid, and raise the consumer surplus proxy by 1,141.8 and 1,223.7.
+  - The exploratory split by tercile of realised arrivals (policy-independent; `results/exploratory/m4_audit_sensitivity.json`, B3) shows that the mean gain is concentrated in the top tercile: OCC +1,063.5 and DRP +936.0 there, against +118.1 and +315.1 in the bottom tercile and +43.5 and +136.8 in the middle one. In the top tercile FIX sold out before the deadline in 85.5% of streams, and the rules' sell-through is essentially the same as FIX's.
+  - Two channels therefore operate. In low-demand streams the rules sell stock that the fixed price leaves to perish. In high-demand streams, where most of the average gain arises, they earn more from the same units by raising prices when stock runs short. Version 1.0 of this report attributed the gain to the first channel only; that reading was incomplete and is withdrawn.
+  - The rules do not gain on every stream: they lose to FIX on 36.375% (OCC) and 32.15% (DRP) of the 4,000 evaluation streams (B3).
 - **Alternatives considered.**
   - **Grid resolution.** FIX6 earns 11,306.0, against 11,715.6 for FIX, so the 36-price FIX is the stronger baseline. Against FIX6, both contrasts keep their sign and class. Under the frozen rule, the result is therefore not attributed to grid resolution.
   - **Noise-chasing.** It would show up as losses, and none appear at this cell.
@@ -169,6 +170,12 @@ A stock-out period of 61 (T + 1) means the stock never ran out.
 - **Relation to the literature.** Gains of a few percent at C = 100 with shocks are consistent with a small, finite-scale gap to the asymptotically optimal fixed price (Gallego and van Ryzin, 1994). The asymptotic regime is not tested here.
 - **Expected versus observed.** The planning expectation was a small gain, at most 5%. The observed gains are 3.47% and 3.94%.
 - **Verdict under the frozen rule.** H0_OCC and H0_DRP are rejected. Both effects are detectable and practically relevant. The FIX6 sensitivity changes neither the sign nor the class.
+- **M4 revisions (2026-11-25, version 1.1).** The frozen verdict is unchanged. Changes:
+  1. Evidence audit (`research/publication/evidence_audit.md`): every number in this report was checked against the raw outputs; no mismatch was found here.
+  2. The mechanism paragraph above was revised after the exploratory tercile split (J-0012, B3).
+  3. Internal replication (exploratory, B2): the EXP-002 cell with the base parameters (sv0.5-k2.0) selects the same configurations on independent tuning and evaluation streams and gives +435.5 and +491.1; the differences from this report's estimates are +28.4 [-13.3, 70.2] (OCC) and +29.0 [-15.3, 73.4] (DRP), normal 95% intervals.
+  4. Grid resolution (exploratory, B1): on the tuning streams the rules' advantage over the best of 36 fixed prices (+469.7 OCC, +528.8 DRP) combines a price-resolution loss (FIX at the rule's own p0 is 410.0 and 1,810.1 below the best fixed price) with a larger responsiveness gain (+879.6 and +2,338.9). This agrees with the frozen FIX6 check.
+  5. Second review pass: the frozen FIX6 check could not have reversed a positive result. FIX6 chooses among 6 of FIX's 36 prices, so its tuning revenue cannot exceed FIX's, and the contrast against FIX6 is expected to be larger (it is: +816.6 and +871.6). The check is reported as frozen, but it carries little evidential weight; item 4 is the more informative check on grid resolution. Recorded in section 10.
 
 ## 10. Threats to validity
 
@@ -184,6 +191,8 @@ A stock-out period of 61 (T + 1) means the stock never ran out.
   - One cell, with 4,000 independent streams.
   - The bootstrap and paired t intervals agree closely.
   - The alpha control covers the two primary contrasts only.
+  - The FIX6 sensitivity is one-sided by construction (section 9, M4 revisions, item 5).
+  - The M4 checks (J-0012) are exploratory and were computed after the results were seen.
 - **Hardware.** The machine was shared and loaded, so runtime is not a result.
 
 ## 11. Conclusion and next experiment
