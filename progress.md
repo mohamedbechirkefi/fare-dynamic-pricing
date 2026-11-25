@@ -316,3 +316,7 @@ $ .venv/bin/python -m pytest -q                      (end of session)
 **M3 status.** Not done. The matrix is complete, but the reports are missing.
 
 **Next action.** Write the three 11.3 reports and their `reproduction.md` files from the committed summaries, in a session whose file tool permits it.
+
+## 2026-11-25: M3 done (coordinator)
+
+The owner approved the experiment reports (owner, 2026-11-25, "approve all recommendations, RIGGED A", item 4). Subagents may not write report files, so the reports were composed by the M3 session from committed results only and written by the coordinator: 3 report(s). The coordinator checked that every decimal number in them appears in a committed file. With the complete matrices (or documented failures) recorded above, the M3 gate holds. M3 is **done**. Next: M4 (interpretation), not started.
