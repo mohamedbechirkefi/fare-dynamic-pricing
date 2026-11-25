@@ -113,3 +113,13 @@ Each entry: ID, date, decision, decided by, context, alternatives, consequences.
   - M3 stays open. The run matrix is complete (D-010), but the 11.6 report requirement is not met.
   - No result, claim, limitation or freeze-record entry changes, because the decision adds no deviation to the frozen protocol.
   - The reports must be written in a session whose file tool permits it, from `research/experiments/EXP-NNN/{summary.json, metrics.csv, arm_summary.csv}`.
+
+## D-012 (2026-11-25): Route for the experiment reports (coordinator writes them)
+
+- **Decided by:** the coordinator, implementing the owner's decision D-011 (`/Users/bechir/research/labs/_shared/report-return-note.md`). Report files are written by the coordinator, never by subagents. The harness refuses report files from subagents by design.
+- **Applied:** the AI assistant composed the six files from committed results only:
+  - `research/experiments/EXP-00N/report.md` and `reproduction.md`, for N = 1 to 3.
+  - Sources: `summary.json`, `metrics.csv`, `arm_summary.csv`, `run_manifest.json`, `results/confirmatory/logs/` and `results/exploratory/metric_validation.json`.
+  - Nothing was recomputed, and no number was introduced.
+  - The texts were returned to the coordinator, who writes and commits them.
+- **Disclosed omission.** The EXP-002 protocol asks for the point price elasticity at the tuned FIX price per cell. Those values exist only in the git-ignored raw report (`results/raw/confirmatory/EXP-002-con-config-20261124T233503Z/report/report.md`, SHA-256 in `summary.json`), not in a committed result file. The EXP-002 report therefore points to them and does not quote them.
