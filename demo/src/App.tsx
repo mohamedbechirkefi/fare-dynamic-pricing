@@ -82,7 +82,7 @@ export function App() {
               (Claude Code, Anthropic) under the author's direction. The assistant is not an author.
             </p>
             <p>
-              Typefaces: Barlow Condensed (Jeremy Tribby) and Public Sans (USWDS), both under the SIL Open Font
+              Typefaces: Barlow Condensed (Jeremy Tribby) and Red Hat Text (MCKL for Red Hat), both under the SIL Open Font
               License 1.1, self-hosted.
             </p>
           </div>

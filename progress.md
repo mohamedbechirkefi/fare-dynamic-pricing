@@ -646,3 +646,25 @@ Screenshots (desktop 1440 full page, phone 390 in an iframe wrapper, Chrome head
 **Risks and notes.** The Open Graph image URL is absolute to the hosting address in `demo/README.md`. Full-page desktop screenshots were capped at 16,000 px height; the page bottom was checked in a separate viewport shot.
 
 **Next action.** The coordinator deploys the rebuilt demo when the owner approves.
+
+## 2026-11-26: Demo text face replaced, unique typeface pair across the labs (owner request)
+
+Authority: owner request of 2026-11-26 (shared brief `labs/_shared/FONT-UNIQUE-brief.md`): no two lab demos share a typeface. FARE keeps Barlow Condensed as display face and replaces Public Sans with Red Hat Text. Presentation only: no number, data, fixture, test expectation, accessible name or scientific sentence changed. No push, no deploy.
+
+**Changes.** `@fontsource/public-sans` removed; `@fontsource-variable/red-hat-text@5.3.0` added (OFL 1.1, weight axis 300 to 700, used at 400 and 600). Red Hat Text has tabular figures (checked in Chrome: `tnum` digits of equal advance), so numbers stay in the text face with `tabular-nums`. Measured in Chrome: x-height 0.488 em against 0.517 for Public Sans, pangram about 4 per cent narrower; the body moved from 17 px/1.6 to 18 px/1.55 and the small text-face sizes rose by about 6 per cent; display sizes unchanged. The logo is drawn from the display face and was not redrawn. `og.png` re-exported from `tools/og/og.html` with the new face. `demo/DESIGN.md`, `demo/README.md` and the footer font credit updated.
+
+**Commands and actual outputs.**
+
+```
+$ npm uninstall @fontsource/public-sans                removed 1 package
+$ npm_config_before=2026-11-12 npm install --save-exact @fontsource-variable/red-hat-text@5.3.0   added 1 package
+$ npm test                                             Test Files 2 passed (2); Tests 31 passed (31)
+$ npm run build                                        index js 261.34 kB (gzip 81.64 kB); red-hat-text latin woff2 30.09 kB
+$ node tools/a11y_check.mjs dist                       A11Y-CHECK PASS
+$ PYTHONPATH=src .venv/bin/python -m pytest -q tests/test_demo_export.py   4 passed
+$ du -sk dist                                          768 KB on disk; 620,043 bytes
+```
+
+Screenshots (desktop 1440 and phone 390, full page, Chrome headless over CDP, preview on 127.0.0.1:5241, stopped after) reviewed: no wrapping, overflow or clipped label introduced.
+
+**Next action.** The coordinator deploys the rebuilt demo when the owner approves.

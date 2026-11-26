@@ -21,7 +21,7 @@ The page has its own brand: a light itinerary carrying split-flap departure boar
 | Component | Version | Licence | Use |
 |---|---|---|---|
 | Barlow Condensed (Jeremy Tribby), via `@fontsource/barlow-condensed` | 5.3.0 | SIL Open Font License 1.1 | display type and board glyphs, weights 500 and 600, Latin subset, self-hosted |
-| Public Sans (USWDS), via `@fontsource/public-sans` | 5.3.0 | SIL Open Font License 1.1 | body text and tables, weights 400 and 600, Latin subset, self-hosted |
+| Red Hat Text (MCKL for Red Hat), via `@fontsource-variable/red-hat-text` | 5.3.0 | SIL Open Font License 1.1 | body text and tables, variable weight axis 300 to 700 (the page uses 400 and 600), upright Latin and Latin Extended files loaded by unicode range, self-hosted |
 
 ## Data
 

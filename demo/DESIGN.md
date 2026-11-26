@@ -29,10 +29,17 @@ On the board, gains print in pale teal `#8EDCCF` and losses in pale orange `#FFA
 
 - **Barlow Condensed** (OFL 1.1), weights 500 and 600: the board glyphs, headlines, navigation, stub labels. Its
   DIN and highway-sign lineage reads as transport signage, and it has tabular figures.
-- **Public Sans** (OFL 1.1), weights 400 and 600: body text and tables. A plain, open signage-office sans with
-  tabular figures, clearly distinct from the condensed display face.
+- **Red Hat Text** (OFL 1.1), variable, used at 400 and 600: body text and tables. It replaced Public Sans on
+  2026-11-26 so that no two lab demos share a typeface. Red Hat Text was drawn for small sizes and screens: open
+  apertures, round wide bowls and a calm, slightly friendly rhythm that reads like the printed small type on a
+  ticket or itinerary, next to the hard condensed signage of the board. It has tabular figures (`tnum`), which the
+  page turns on for every number set in the text face.
 
-Scale (1.25 minor third on a 17 px body): 13.6, 17, 21, 26.5, 33, 41, 52 px. Body line length 68ch maximum.
+Scale (1.25 minor third on an 18 px body): 14.4, 18, 22.5, 28, 35, 44, 55 px. Body line length 68ch maximum.
+Red Hat Text has a lower x-height than Public Sans (0.49 against 0.52 of the em, measured in Chrome) and sets
+about 4 per cent narrower, so the body moved from 17 px to 18 px, line height from 1.6 to 1.55, and the small
+text sizes (captions, legends, field notes, footer, chart ticks) rose by about 6 per cent to keep the same
+apparent size. Display sizes are unchanged.
 
 ## Layout
 
@@ -44,7 +51,7 @@ out to the full content width.
 | [tile F] FARE   Board  Timelines  Results  Checks  Assumptions  Sandbox    |  sticky, compact
 +---------------------------------------------------------------------------+
 | Question (Barlow Condensed 52)         | +-------- board slate --------+  |
-| Answer sentence (Public Sans 21)       | | Rule Market   vs FIX  /season | |
+| Answer sentence (Red Hat Text 22)      | | Rule Market   vs FIX  /season | |
 | status line, author line               | | OCC  base     +3.47%  +407.04 | |
 |                                        | | DRP  base     +3.94%  +462.08 | |
 |                                        | | DRP  sv1.0..  -11.41% -815.0  | |
