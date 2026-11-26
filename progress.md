@@ -616,3 +616,33 @@ All five PDFs were kept, because every source changed. Pages inspected as PNG: m
 **Risks and notes.** `pyproject.toml` version is `0.2.0`, not the `0.0.0` assumed by the shared brief; left unchanged and recorded. Demo footer carries the repository address as text, not as a link.
 
 **Next action.** The owner: B15 article drafts, B16 full-text review and sign-off (`research/publication/author_review.md`), B18 release. The coordinator deploys the demo with `demo/wrangler.jsonc`.
+
+## 2026-11-26: Demo brand identity, motion and UI redesign (owner request)
+
+Authority: owner request of 2026-11-26 (shared brief `labs/_shared/DEMO-BRAND-brief.md`). Presentation only: no number, result, exported data, fixture, test expectation, scientific sentence, test id or accessible name changed. The page reads the same `public/data/results.json`. No push, no deploy.
+
+**Decisions.** Direction: a light travel itinerary carrying split-flap departure boards (`demo/DESIGN.md`, with the review against the generic tells and the other demos). The hero board shows the EXP-001 base contrasts and the lowest EXP-002 contrast, read from the data; a new "Key result" section shows EXP-002 as a 3 x 3 board; experiments are drawn as boarding passes. Intermediate flaps never show digits. The footer sentence "The page uses no animation." was replaced because it is no longer true; a footer AI-use line (from manuscript section 11) and links (repository, manuscript, labs index) were added. Light scheme only. The airport imagery is a visual metaphor; the footer says so (claims boundary, master prompt section 10).
+
+**Changed files.** `demo/DESIGN.md` (new), `demo/README.md` (identity and third-party notes), `demo/index.html` (favicon, theme colour, Open Graph), `demo/package.json` and `package-lock.json` (two Fontsource packages), `demo/src/App.tsx`, `demo/src/Board.tsx` (new), `demo/src/charts.tsx` (reveal wrapper only), `demo/src/main.tsx`, `demo/src/style.css`, `demo/public/brand/` (mark, mono, reversed, lockups, favicon SVG and 32 px PNG, `og.png`), `demo/tools/og/og.html` (new, source of `og.png`).
+
+**Commands and actual outputs.**
+
+```
+$ npm_config_before=2026-11-12 npm install --save-exact @fontsource/barlow-condensed@5.3.0 @fontsource/public-sans@5.3.0
+                                                       added 2 packages
+$ python3 -I svg_audit.py public/brand/*.svg           6 files, production-readiness score 100/100 each
+$ render_png.py favicon.svg --size 32                  favicon.png 32x32 via chrome (copied to favicon-32.png)
+$ Chrome headless --window-size=1200,630 tools/og/og.html -> public/brand/og.png (1200 x 630)
+$ npm test                                             Test Files 2 passed (2); Tests 31 passed (31)
+$ npm run build                                        dist/assets/index-B1kH_dgM.js 261.33 kB (gzip 81.64 kB); built in 94ms
+$ node tools/a11y_check.mjs dist                       9 PASS lines; A11Y-CHECK PASS
+$ PYTHONPATH=src .venv/bin/python -m pytest -q tests/test_demo_export.py
+                                                       4 passed in 0.23s
+$ du -sk dist; total bytes                             792 KB on disk; 642,191 bytes (74,536 of them .woff fallbacks a modern browser does not fetch)
+```
+
+Screenshots (desktop 1440 full page, phone 390 in an iframe wrapper, Chrome headless over CDP after the hero animation) were reviewed in two critique passes: board overflow fixed with container-query sizing, the board split line moved behind the glyphs (a plus sign read as a division sign), the nav location marker fixed, the label list re-gridded on phones, a duplicate "Measured" stub label removed, hero spacing tightened.
+
+**Risks and notes.** The Open Graph image URL is absolute to the hosting address in `demo/README.md`. Full-page desktop screenshots were capped at 16,000 px height; the page bottom was checked in a separate viewport shot.
+
+**Next action.** The coordinator deploys the rebuilt demo when the owner approves.

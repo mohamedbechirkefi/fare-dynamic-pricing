@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 712 256" role="img" aria-label="FARE"><title>FARE</title>
+  <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
+  <path fill="#1B2633" d="M16,44 A28,28 0 0 1 44,16 H212 A28,28 0 0 1 240,44 V136 H16 Z M16,152 H240 V212 A28,28 0 0 1 212,240 H44 A28,28 0 0 1 16,212 Z"/>
+  <path fill="#F4F6F8" d="M84,52 H180 V84 H120 V100 H166 V128 H120 V136 H84 Z M84,152 H120 V204 H84 Z"/>
+  <g fill="#14233A"><g transform="translate(296 0)"><path d="M0,56 H82 V86 H30 V114 H70 V142 H30 V200 H0 Z"/></g><g transform="translate(388 0)"><path d="M24,56 H72 L96,200 H66 L61,170 H35 L30,200 H0 Z M46,92 L37,146 H59 L50,92 Z"/></g><g transform="translate(496 0)"><path d="M0,56 H30 V200 H0 Z M30,56 H54 A40,40 0 0 1 54,136 H30 V108 H52 A12,12 0 0 0 52,84 H30 Z M44,136 H76 L98,200 H66 Z"/></g><g transform="translate(606 0)"><path d="M0,56 H82 V86 H30 V114 H70 V142 H30 V170 H82 V200 H0 Z"/></g></g>
+</svg>

@@ -66,6 +66,7 @@ Updated 2026-11-25 (M6: release candidate prepared, awaiting owner review and G-
 - 11.6 additions: demo, paper, reports and articles use identical verified results, labels and scope.
 - Acceptance: offline after initial load, responsive, keyboard usable, reduced-motion option, fails closed on malformed results, no runtime service, no fabricated data.
 - Status (2026-11-25): done. Owner "Next" (D-015). Static page from the shared template; `scripts/export_demo_data.py` exports committed results only, and `tests/test_demo_export.py` checks that every displayed string is printed in the manuscript (or is a documented exception) and that the committed file equals a fresh export. Price timelines reproduce the committed price figures byte for byte. Sandbox: simulator and rules ported exactly (1e-9 against Python); demand streams use a different generator (checked in distribution). README, CITATION, demo README and article drafts use the manuscript's numbers. Checker output and test counts are in `progress.md`.
+- Update (2026-11-26): demo given its own brand identity, motion and UI (owner request, `demo/DESIGN.md`); same data, tests and A11Y-CHECK PASS.
 
 ## M6: Release candidate
 

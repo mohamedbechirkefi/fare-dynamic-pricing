@@ -12,6 +12,17 @@ A static booking-market lab for the FARE study. It shows, from the published res
 
 Labels are distinct on the page: Measured (published, frozen experiments), Exploratory (published, post hoc), Assumption (model inputs), Sandbox (computed in the visitor's browser). Nothing on the page describes, predicts or evaluates any real seller, airline, hotel, fare or pricing system.
 
+## Identity and motion
+
+The page has its own brand: a light itinerary carrying split-flap departure boards (plan and review in `DESIGN.md`). The hero board flips the published base-scenario results into place once on load; the EXP-002 board flips when scrolled into view; chart lines wipe in once; the experiment selector's indicator slides. Intermediate flaps are letters and blanks only, so no number outside the data is ever shown. With reduced motion, every element renders in its final state. Brand files (mark, lockups, favicon, Open Graph image) are in `public/brand/`; the Open Graph image is rendered from `tools/og/og.html` with Chrome headless. The departure board is a visual metaphor only.
+
+## Third-party notes
+
+| Component | Version | Licence | Use |
+|---|---|---|---|
+| Barlow Condensed (Jeremy Tribby), via `@fontsource/barlow-condensed` | 5.3.0 | SIL Open Font License 1.1 | display type and board glyphs, weights 500 and 600, Latin subset, self-hosted |
+| Public Sans (USWDS), via `@fontsource/public-sans` | 5.3.0 | SIL Open Font License 1.1 | body text and tables, weights 400 and 600, Latin subset, self-hosted |
+
 ## Data
 
 `public/data/results.json` (schema `lab-demo-results` 1.0.0, plus the keys `exploratory_checks`, `price_paths`, `cells` and `display_exceptions`) is written by `scripts/export_demo_data.py` from committed files only. Every display string is the exact text of `research/paper/manuscript.md`, except the listed display exceptions; `tests/test_demo_export.py` checks this and that the committed file equals a fresh export. The price paths are re-simulated from the committed seed keys and tuned policies, and the export fails unless they reproduce the committed `fig-EXP-NNN-<cell>-price.svg` figures byte for byte. The page validates the file and shows no number if any field is missing or malformed.

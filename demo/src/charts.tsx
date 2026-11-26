@@ -2,6 +2,7 @@
 // Hand-written charts: a price timeline (SVG line chart) and interval rows
 // (point estimate and interval on a shared axis, drawn with CSS).
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useInView } from "./Board";
 import { fmtEstimate, fmtInterval, type Estimate } from "./results";
 
 export const SERIES: Record<string, { cls: string; dash: string; name: string }> = {
@@ -46,6 +47,7 @@ export interface Line {
 /** Line chart over periods 1..T. Series styles come from SERIES (colour and dash). */
 export function TimeChart({ lines, yLabel, label, yMin }: { lines: Line[]; yLabel: string; label: string; yMin?: number }) {
   const [ref, width] = useWidth<HTMLDivElement>();
+  const seen = useInView(ref);
   const H = width < 480 ? 240 : 300;
   const L = 52, R = 14, top = 12, bot = 40;
   const T = Math.max(...lines.map((l) => l.values.length));
@@ -58,7 +60,7 @@ export function TimeChart({ lines, yLabel, label, yMin }: { lines: Line[]; yLabe
   const sy = (v: number) => top + (1 - (v - lo) / (hi - lo)) * (H - top - bot);
   const xt = [1, ...niceTicks(1, T, width < 480 ? 3 : 6).filter((t) => t > 1 && t < T), T];
   return (
-    <div ref={ref} className="chart">
+    <div ref={ref} className={`chart${seen ? "" : " pending"}`}>
       <svg width={width} height={H} viewBox={`0 0 ${width} ${H}`} role="img" aria-label={label}>
         {niceTicks(lo, hi).map((v) => (
           <g key={v}>
@@ -72,11 +74,13 @@ export function TimeChart({ lines, yLabel, label, yMin }: { lines: Line[]; yLabe
         <line x1={L} x2={width - R} y1={H - bot} y2={H - bot} className="axis" />
         <text x={(L + width - R) / 2} y={H - 6} textAnchor="middle" className="tick">period (simulation periods)</text>
         <text x={12} y={(top + H - bot) / 2} textAnchor="middle" className="tick" transform={`rotate(-90 12 ${(top + H - bot) / 2})`}>{yLabel}</text>
+        <g className="lines">
         {lines.map((l) => {
           const s = SERIES[l.key] ?? SERIES.FIX6;
           const d = l.values.map((v, i) => `${i ? "L" : "M"}${sx(i + 1).toFixed(1)},${sy(v).toFixed(1)}`).join("");
           return <path key={l.key} d={d} className={`line ${s.cls}`} strokeDasharray={s.dash || undefined} />;
         })}
+        </g>
       </svg>
     </div>
   );
