@@ -58,8 +58,8 @@ export function App() {
             describes, predicts or evaluates any real seller, airline, hotel, fare or pricing system.
           </p>
           <p>
-            Licence: FARE Source-Available Non-Commercial Research License v1.0. Repository URL: placeholder, to be
-            added by the owner if and when the repository is released.
+            Mohamed Bechir Kefi, independent researcher. Licence: FARE Source-Available Non-Commercial Research
+            License v1.0. Repository: https://github.com/mohamedbechirkefi/fare-dynamic-pricing.
           </p>
         </div>
       </footer>

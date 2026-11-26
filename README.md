@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
 # FARE: pricing policies in a simulated booking market
 
-**Status: M6 release candidate prepared locally on 2026-11-25, awaiting the owner's review; nothing is released (M5, the interactive experience, is done). The frozen matrix ran in full (M3, 925,000 runs, 0 failed); experiment reports, an evidence audit, a preprint-draft manuscript (not peer-reviewed) and a static, offline demo exist. All results are simulated. The owner approved the manuscript title and the funding, competing-interest and AI-use statements on 2026-11-25; the owner's full-text review of the manuscript is pending (`research/publication/author_review.md`). Compiled PDFs of the manuscript, supplementary file and experiment reports sit next to their Markdown sources. Nothing has been published.**
+**Status: M6 release candidate prepared on 2026-11-25 and public in this repository since 2026-11-25, awaiting the owner's review; no release, tag or DOI exists yet (M5, the interactive experience, is done). The frozen matrix ran in full (M3, 925,000 runs, 0 failed); experiment reports, an evidence audit, a preprint-draft manuscript (not peer-reviewed) and a static, offline demo exist. All results are simulated. The owner approved the manuscript title and the funding, competing-interest and AI-use statements on 2026-11-25; the owner's full-text review of the manuscript is pending (`research/publication/author_review.md`). Compiled PDFs of the manuscript, supplementary file and experiment reports sit next to their Markdown sources. The repository is public; nothing else has been published.**
 
 **Question.** How do demand and inventory policies affect prices and availability in a simulated market?
 
@@ -30,7 +30,7 @@
 cd demo && npm ci && npm run build && npm run preview
 ```
 
-`npm test` runs the demo tests, including the check of the browser sandbox against the Python engine (fixture from `scripts/make_sandbox_fixture.py`). Demo URL: placeholder, to be added by the owner if and when the demo is published.
+`npm test` runs the demo tests, including the check of the browser sandbox against the Python engine (fixture from `scripts/make_sandbox_fixture.py`). Demo: https://fare-dynamic-pricing.kefimohamedbechir.workers.dev (Cloudflare Workers static assets, free plan; see `demo/README.md`).
 
 **Navigation.** `research/paper/manuscript.md` (preprint draft, not peer-reviewed), `research/publication/evidence_audit.md`, `research/protocol.md` (study protocol, frozen v1.0), `research/experiments/EXP-NNN/protocol.md`, `research/feasibility.md`, `research/literature_review.md`, `research/limitations.md`, `roadmap.md`, `progress.md`.
 
@@ -51,4 +51,4 @@ uv run --frozen python -m fare.cli report --result results/exploratory/<run_set_
 
 **Licence.** FARE Source-Available Non-Commercial Research License v1.0 (`LicenseRef-FARE-NC-Research-1.0`); see `LICENSE` and `NOTICE.md`. Not an OSI open-source licence. Third-party material keeps its own terms.
 
-**Citation.** See `CITATION.cff`. Repository URL: placeholder, to be added by the owner if and when the repository is released. Funding and competing interests: to be stated by the owner before any release.
+**Citation.** See `CITATION.cff`. Author: Mohamed Bechir Kefi, independent researcher. Repository: https://github.com/mohamedbechirkefi/fare-dynamic-pricing. Funding: no funding was received. Competing interests: the author declares no competing interests.

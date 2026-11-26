@@ -195,3 +195,18 @@ Each entry: ID, date, decision, decided by, context, alternatives, consequences.
 - **Records.** Journal J-0014; `research/publication/reproducibility_report.md`, `release_checklist.md`, `author_review.md` (section "Prepared for the owner", no box ticked) and `dependency_licences.md`.
 - **Unchanged.** No frozen protocol, config, seed or result value was touched. There was no confirmatory run, no push, no tag and no remote change.
 - **Status.** M6 release candidate prepared, awaiting owner review and G-PUBLIC. M6 is not done until the owner signs off.
+
+## D-017 (2026-11-26): Owner answers applied (repository and demo URLs, author line, statements, paths, release notes)
+
+- **Authority.** "owner, 2026-11-26, decision sheet" (`labs/_shared/owner-decision-sheet-2026-11-26.md` and `labs/_shared/owner-approvals-2026-11-26.md`, outside this repository), applied by the AI assistant under the shared brief `labs/_shared/OWNER-ANSWERS-brief.md`.
+- **A1.** The repository is public since 2026-11-25. Out-of-date "nothing pushed / nothing published" sentences were corrected in `README.md`, `release_checklist.md`, `author_review.md` and `articles/`. Append-only records (`progress.md`, this log, `research/experiment_journal.jsonl`) were not edited.
+- **B1.** Repository URL https://github.com/mohamedbechirkefi/fare-dynamic-pricing in the README, manuscript section 10, articles, demo footer and `CITATION.cff` (`repository-code`).
+- **B2.** Demo URL https://fare-dynamic-pricing.kefimohamedbechir.workers.dev in the README, manuscript section 10, articles and `demo/README.md`. New `demo/wrangler.jsonc` (assets only, directory `./dist`, no Worker script). The coordinator deploys it; no script of this repository deploys anything. The built page loads only same-origin files (A11Y check "no request leaves the local origin").
+- **B3.** Author line "Mohamed Bechir Kefi, independent researcher" in the manuscript front matter, supplementary file, the identification table of the three experiment reports, README, articles and demo footer; `CITATION.cff` `affiliation: "Independent researcher"`. `pyproject.toml` has no authors field. Frozen protocols and `research/freeze.json` were not edited.
+- **B4.** Manuscript section 11 and README: "No funding was received." and "The author declares no competing interests."
+- **B6, B7.** No change: the title was approved on 2026-11-25 (D-014) and `CITATION.cff` already carries it.
+- **B8.** `CITATION.cff` keeps `0.1.0-rc1` and no `date-released`; `release_checklist.md` records that at the release the version becomes `0.1.0` and `date-released` the release day. `pyproject.toml` stays at its current `0.2.0` (not `0.0.0` as in the shared default), recorded for the owner.
+- **B9.** `CLAUDE.md` paths replaced by repository-relative paths and "the research root" in words; the remaining 27 occurrences in 6 frozen or append-only files are listed in `reproducibility_report.md` section 6.
+- **B10, B11, B13, B14.** PDFs stay committed; "Release notes (draft)" added to `release_checklist.md` (manuscript Figure 3 small labels kept; pandoc, Google Chrome, Libertinus Serif and the MPL-2.0 tools hypothesis and lightningcss used but not redistributed); source labels accepted.
+- **Open.** B15 articles, B16 full-text review and sign-off (including R-FARE-1, the redrawn forest-figure layout), B18 release. No box in `author_review.md` was ticked.
+- **Unchanged.** No result, analysis, figure, config, seed, frozen protocol, protocol hash or checksummed output changed. The PDFs and `manuscript.tex` were rebuilt from the changed Markdown; `demo/public/data/results.json` changed only in the source hash of `research/paper/manuscript.md`. Nothing was pushed or deployed.

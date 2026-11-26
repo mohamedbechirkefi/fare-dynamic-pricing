@@ -1,7 +1,7 @@
 ---
 title: "Simple dynamic pricing rules versus a tuned fixed price for a perishable stock: a preregistered simulation study"
-subtitle: "Independent research manuscript, preprint draft, not peer-reviewed. All results are simulated. Version M6, release candidate prepared for the owner's review (2026-11-25), not released; title and the funding, competing-interest and AI-use statements approved by the owner on 2026-11-25 (D-014); the owner's full-text review is pending (M6)."
-author: "Mohamed Bechir Kefi"
+subtitle: "Independent research manuscript, preprint draft, not peer-reviewed. All results are simulated. Version M6, release candidate prepared for the owner's review (2026-11-25), not released; title and the funding, competing-interest and AI-use statements approved by the owner on 2026-11-25 (D-014), the statements filled on 2026-11-26 (D-017); the owner's full-text review is pending (M6)."
+author: "Mohamed Bechir Kefi, independent researcher"
 date: "Draft, 2026-11-25"
 ---
 
@@ -290,7 +290,7 @@ Feasible extensions, each needing a new experiment identifier and the owner's ap
 
 # 10. Data, code and artifact availability
 
-All code, protocols, configurations, committed summaries and figures are in the project repository (URL: placeholder, to be added by the owner if and when the repository is released). Key paths: `research/protocol.md`, `research/freeze.json`, `research/experiments/EXP-NNN/` (protocol, report, configuration, run manifest, summary, metrics, figures, reproduction notes), `research/publication/artifact_manifest.json` and `research/publication/evidence_audit.md`. From the repository root:
+All code, protocols, configurations, committed summaries and figures are in the project repository (https://github.com/mohamedbechirkefi/fare-dynamic-pricing); the interactive demo is hosted at https://fare-dynamic-pricing.kefimohamedbechir.workers.dev. Key paths: `research/protocol.md`, `research/freeze.json`, `research/experiments/EXP-NNN/` (protocol, report, configuration, run manifest, summary, metrics, figures, reproduction notes), `research/publication/artifact_manifest.json` and `research/publication/evidence_audit.md`. From the repository root:
 
 ```
 UV=/path/to/uv
@@ -305,7 +305,9 @@ Replace EXP-001 by EXP-002 or EXP-003 for the other experiments (EXP-003's summa
 
 # 11. Funding, competing interests and AI assistance
 
-**Funding and competing interests.** To be stated by the owner before any release.
+**Funding.** No funding was received.
+
+**Competing interests.** The author declares no competing interests.
 
 **AI assistance.** The author used an AI research and development assistant (Claude Code, Anthropic) under the author's direction. The assistant proposed the draft protocols, wrote the simulation code and tests, ran the frozen experiments, composed the experiment reports, performed the evidence audit and drafted this manuscript. The author set the research question, approved the protocol amendments, froze the protocols, approved the authorship metadata and made every recorded owner decision (`research/decision_log.md`). Verification so far is automated (a test suite, hash checks, a recomputation of every committed table from the raw outputs and a number trace of this manuscript) plus the assistant's own second review pass; the author's review of this draft is pending (`research/publication/author_review.md`). The assistant is not an author.
 

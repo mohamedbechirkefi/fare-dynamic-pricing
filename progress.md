@@ -587,3 +587,32 @@ $ FARE_TOOLS_DIR=<shared toolchain> scripts/build_pdfs.py   five PDFs at the com
 **Result.** The fixes made in part 1 hold in a fresh clone. M6 status: release candidate prepared, awaiting owner review and G-PUBLIC. Not done until the owner signs off (`research/publication/author_review.md`).
 
 **Next action.** The owner reviews `research/publication/author_review.md` and decides on publication (G-PUBLIC).
+
+## 2026-11-26: Owner answers applied (D-017)
+
+Authority: owner, 2026-11-26, decision sheet (shared brief `labs/_shared/OWNER-ANSWERS-brief.md`). Wording and configuration only; no result, figure, config, seed, frozen protocol, protocol hash or checksummed output changed. No push, no deploy, no box ticked.
+
+**Changed files.** `README.md`, `CITATION.cff` (`affiliation`, `repository-code`), `CLAUDE.md` (home paths), `roadmap.md`, `articles/README.md`, `articles/medium.md`, `articles/linkedin.md`, `demo/README.md` (hosting section), `demo/src/App.tsx` (footer), new `demo/wrangler.jsonc`, `research/paper/manuscript.md` (author line, section 10 URLs, section 11 statements, subtitle), `manuscript.tex` and the five PDFs (rebuilt), `research/paper/supplementary.md`, the three `report.md` identification rows, `research/publication/author_review.md`, `release_checklist.md` (B8, release notes), `reproducibility_report.md` (section 6), `research/decision_log.md` (D-017), `demo/public/data/results.json` (source hash of the manuscript only).
+
+**Commands and actual outputs.**
+
+```
+$ git status --short                                   (start) no output
+$ fare.audit manuscript, supplementary, 3 reports      455, 420, 199, 268, 209 numbers checked, 0 untraced
+$ ../.tools/pandoc ... -t latex > manuscript.tex       exit 0
+$ scripts/build_pdfs.py --png-dir <scratch>            manuscript.pdf 303533 B (17 pp), supplementary.pdf 187585 B (8 pp),
+                                                       EXP-001 152547 B (7 pp), EXP-002 141373 B (7 pp), EXP-003 120525 B (6 pp)
+$ scripts/export_demo_data.py                          wrote demo/public/data/results.json (138087 bytes); 1 line changed (manuscript sha256)
+$ .venv/bin/python -m pytest -q                        161 passed in 2.36s
+$ scripts/check_links.py                               47 Markdown files, 60 links, 0 unresolved
+$ npm test                                             Test Files 2 passed (2); Tests 31 passed (31)
+$ npm run build                                        dist/assets/index-XT5qHzJN.js 251.82 kB; built in 171ms
+$ node tools/a11y_check.mjs dist                       9 PASS lines, including "no request leaves the local origin"; A11Y-CHECK PASS
+$ git ls-files | xargs grep -cI "/Users/"              6 files, 27 occurrences (frozen protocols and append-only logs)
+```
+
+All five PDFs were kept, because every source changed. Pages inspected as PNG: manuscript pages 1 (author line), 16 (section 10 URLs) and 17 (section 11 statements), and EXP-001 report page 1 (authorship row); PDF metadata author "Mohamed Bechir Kefi, independent researcher".
+
+**Risks and notes.** `pyproject.toml` version is `0.2.0`, not the `0.0.0` assumed by the shared brief; left unchanged and recorded. Demo footer carries the repository address as text, not as a link.
+
+**Next action.** The owner: B15 article drafts, B16 full-text review and sign-off (`research/publication/author_review.md`), B18 release. The coordinator deploys the demo with `demo/wrangler.jsonc`.

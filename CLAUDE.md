@@ -32,8 +32,8 @@ Then inspect `git status` and the existing files. Never overwrite changes made b
   - Never freeze a protocol: freezing belongs to the owner (G-FREEZE). Until the owner freezes a protocol, every run is exploratory and labelled as such.
   - A tiny exploratory smoke check of the toolchain is allowed; label it exploratory.
 - **Scope.**
-  - Work only inside this repository, except read-only use of the shared tools in `/Users/bechir/research/labs/.tools/` and Node in `/Users/bechir/research/helix/.tools/node/bin` (never modify that folder).
-  - Do not touch any other folder under `/Users/bechir/research`.
+  - Work only inside this repository, except read-only use of the shared tools in `../.tools/` (the shared labs toolchain) and Node in `../../helix/.tools/node/bin` (the research root's Helix toolchain; never modify that folder).
+  - Do not touch any other folder under the research root (the folder that contains `labs/`).
   - Never kill processes you did not start. Never delete anything you did not create in the current session.
 - **Truthfulness.**
   - Never fabricate results, citations, test counts or PDFs.
@@ -50,8 +50,8 @@ Then inspect `git status` and the existing files. Never overwrite changes made b
 
 ## 4. Toolchain (decision D-003)
 
-- Python 3.12.1 (`/usr/local/bin/python3`), environment and lockfile via `/Users/bechir/research/labs/.tools/py/bin/uv`.
-- Documents: Markdown is canonical. PDFs are produced by pandoc (`/Users/bechir/research/labs/.tools/pandoc`) to Typst, compiled with the `typst` Python package in `/Users/bechir/research/labs/.tools/py/`. `manuscript.tex` is generated from Markdown by pandoc. There is no TeX distribution on this machine.
+- Python 3.12.1 (`/usr/local/bin/python3`), environment and lockfile via `../.tools/py/bin/uv`.
+- Documents: Markdown is canonical. PDFs are produced by pandoc (`../.tools/pandoc`) to Typst, compiled with the `typst` Python package in `../.tools/py/`. `manuscript.tex` is generated from Markdown by pandoc. There is no TeX distribution on this machine.
 - Commands are listed in `CONTRIBUTING.md` (section "Development commands").
 
 ## 5. Session end

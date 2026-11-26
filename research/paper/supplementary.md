@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
 # Supplementary material
 
-Companion to `research/paper/manuscript.md` (version M6 release candidate, 2026-11-25). Independent research, preprint draft, not peer-reviewed. All results are simulated. Every number is taken from the committed files named in each section; the number trace (`python -m fare.audit`) and the evidence audit (`research/publication/evidence_audit.md`) cover this file.
+Companion to `research/paper/manuscript.md` (version M6 release candidate, 2026-11-25). Author: Mohamed Bechir Kefi, independent researcher. Independent research, preprint draft, not peer-reviewed. All results are simulated. Every number is taken from the committed files named in each section; the number trace (`python -m fare.audit`) and the evidence audit (`research/publication/evidence_audit.md`) cover this file.
 
 ## S1. Complete experimental matrix
 

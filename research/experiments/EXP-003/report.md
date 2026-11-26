@@ -11,7 +11,7 @@
 | Report date | 2026-11-25 |
 | Report version | 1.1 (M4, 2026-11-25: evidence audit and interpretation revisions listed in section 9, "M4 revisions") |
 | Status | confirmatory, complete |
-| Authorship | Mohamed Bechir Kefi (owner-approved, C3). The AI assistant (Claude Code) ran the experiment and composed this report from committed results (D-011, D-012). It is disclosed and is not an author. |
+| Authorship | Mohamed Bechir Kefi, independent researcher (owner-approved, C3; affiliation line owner, 2026-11-26, D-017). The AI assistant (Claude Code) ran the experiment and composed this report from committed results (D-011, D-012). It is disclosed and is not an author. |
 | Protocol | `research/experiments/EXP-003/protocol.md` v1.0, SHA-256 `b1e2a2f8931bada91fd5f4589f0fa8bd50004db6c05d568c9354f43f14a510fd` |
 | Config | canonical SHA-256 `3c25c10c1cfcacf1103e6613b195c58c5ce0afd675556efa290f8b380ca039fd` |
 | Provenance revision | `4204eac0776f4a04e512ef5ce92a10eefa5c5252` |

@@ -39,4 +39,8 @@ PYTHONPATH=src .venv/bin/python scripts/make_sandbox_fixture.py
 
 ## Privacy and offline use
 
-No visitor response is collected or stored and no request leaves the page's origin: no analytics, no fonts, scripts or images from a CDN. After the first load the page works without a network. The sandbox's "Download" button saves the visitor's own sandbox output as a local file; nothing is uploaded. Demo URL: placeholder, to be added by the owner if and when the demo is published.
+No visitor response is collected or stored and no request leaves the page's origin: no analytics, no fonts, scripts or images from a CDN. After the first load the page works without a network. The sandbox's "Download" button saves the visitor's own sandbox output as a local file; nothing is uploaded. 
+
+## Hosting
+
+The built page (`demo/dist`) is hosted at https://fare-dynamic-pricing.kefimohamedbechir.workers.dev as Cloudflare Workers static assets on the free plan, configured by `demo/wrangler.jsonc` (assets only, no Worker script). It is deployed by the coordinator, not by any script of this repository. Every file the page loads is served from that same origin.

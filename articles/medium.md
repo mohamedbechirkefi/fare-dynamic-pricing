@@ -1,7 +1,9 @@
 <!-- SPDX-License-Identifier: LicenseRef-FARE-NC-Research-1.0 -->
-<!-- Draft for Medium (master prompt section 8). Not published. Every number is copied from research/paper/manuscript.md. Links are placeholders until the owner releases the repository. -->
+<!-- Draft for Medium (master prompt section 8). Not published. Every number is copied from research/paper/manuscript.md. The repository and demo are public; the draft itself is not posted. -->
 
 # When does a changing price beat a fixed one? A preregistered simulation
+
+*By Mohamed Bechir Kefi, independent researcher.*
 
 *Draft. All results come from a simulated market and say nothing about any real seller, airline, hotel or fare.*
 
@@ -46,6 +48,6 @@ So, within this model, the value of these simple rules lies in responding to sca
 
 ## Reproducibility
 
-The protocols, configurations, frozen hashes, experiment reports, manuscript (a preprint draft, not peer-reviewed) and an offline interactive demo are in the project repository: placeholder, to be added by the owner if and when the repository is released. The demo URL is also a placeholder.
+The protocols, configurations, frozen hashes, experiment reports, manuscript (a preprint draft, not peer-reviewed) and an offline interactive demo are in the project repository: https://github.com/mohamedbechirkefi/fare-dynamic-pricing. The demo is at https://fare-dynamic-pricing.kefimohamedbechir.workers.dev.
 
 *The study was carried out with an AI research and development assistant (Claude Code) under the author's direction; the assistant is not an author.*

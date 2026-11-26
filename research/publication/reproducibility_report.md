@@ -69,3 +69,18 @@ A second fresh clone was made of the M6 commit `bef6384` (2026-11-25) and delete
 | `npm ci --prefer-offline`, `npm test`, `npm run build` | `added 53 packages`; `Tests 31 passed (31)`; `index-CIQDcuSr.js 251.80 kB` |
 | `node tools/a11y_check.mjs dist` | `A11Y-CHECK PASS` |
 | `scripts/build_pdfs.py` | Without the toolchain next to the clone, it stops with "pandoc or the tools Python (typst package) is not available", the intended message. With `FARE_TOOLS_DIR` pointing to the shared toolchain, the five PDFs are rebuilt at the committed sizes (302,856, 187,283, 152,207, 141,051 and 120,206 bytes); they differ from the committed files in 58 bytes (manuscript) and 96 bytes (EXP-003 report), the embedded build timestamp and identifiers |
+
+## 6. Local home paths remaining (owner answer B9, 2026-11-26)
+
+On 2026-11-26 the owner chose to scrub absolute home-directory paths from the editable files in a new commit, leaving frozen, append-only and checksummed files untouched, with no history rewrite (D-017). `CLAUDE.md` was the only editable tracked file that still named such paths; its 4 paths were replaced by repository-relative paths (`../.tools/`, `../../helix/.tools/node/bin`) and by "the research root" in words, and each relative path was checked to resolve from the repository root. Search: `git ls-files | xargs grep -cI "/Users/"`.
+
+| File | Occurrences | Why it stays |
+|---|---|---|
+| `research/protocol.md` | 2 | frozen protocol v1.0 (hash in `research/freeze.json`) |
+| `research/experiments/EXP-001/protocol.md` | 3 | frozen protocol (hash in `research/freeze.json`) |
+| `research/experiments/EXP-002/protocol.md` | 3 | frozen protocol (hash in `research/freeze.json`) |
+| `research/experiments/EXP-003/protocol.md` | 3 | frozen protocol (hash in `research/freeze.json`) |
+| `progress.md` | 9 | append-only session log; dated entries stay true for their date |
+| `research/decision_log.md` | 7 | append-only decision log |
+
+Six files, 27 occurrences; none is in source code, scripts, the README, the demo or the docs. These files were already public on 2026-11-25.
